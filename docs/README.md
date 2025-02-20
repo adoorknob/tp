@@ -1,4 +1,4 @@
-# Duke
+# SirDukeBox
 
 {Give product intro here}
 
