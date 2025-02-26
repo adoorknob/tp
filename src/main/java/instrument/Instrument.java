@@ -2,9 +2,9 @@ package instrument;
 
 public abstract class Instrument {
 
-    private boolean isRented = false;
-
     public String name;
+
+    private boolean isRented = false;
 
     public abstract String playInstrument();
 
