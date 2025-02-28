@@ -8,11 +8,9 @@ public class Parser {
     }
 
     public String parse(String input) throws IOException {
-        try {
-            return (input.split(" ")[0]);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
+        if (input.isEmpty()) {
+            throw new IOException("Empty input");
         }
+        return input.split(" ")[0];
     }
 }
