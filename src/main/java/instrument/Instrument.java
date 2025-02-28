@@ -18,4 +18,7 @@ public abstract class Instrument {
     public boolean isRented() {
         return isRented;
     }
+    public String toString() {
+        return name + " | " + (isRented ? "X" : "O");
+    }
 }
