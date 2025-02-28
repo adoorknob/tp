@@ -37,8 +37,8 @@ public class Duke {
                 case "exit":
                     isDone = true;
                     break;
-                    default:
-                        ui.printNoMatchingCommandError();
+                default:
+                    ui.printNoMatchingCommandError();
                 }
             } catch (Exception e) {
                 e.printStackTrace();
