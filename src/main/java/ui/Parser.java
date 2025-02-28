@@ -12,6 +12,7 @@ public class Parser {
             return (input.split(" ")[0]);
         } catch (Exception e) {
             e.printStackTrace();
+            return null;
         }
     }
 }
