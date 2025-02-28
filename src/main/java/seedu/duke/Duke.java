@@ -1,7 +1,5 @@
 package seedu.duke;
 
-import java.util.Scanner;
-
 import ui.Ui;
 import instrument.InstrumentList;
 
