@@ -83,7 +83,10 @@ public class Ui {
     }
 
     public String readUserInput() {
-        return scanner.nextLine();
+        if (scanner.hasNextLine()) {
+            return scanner.nextLine();
+        }
+        return null;
     }
 
     public String getCommand(String userInput) {
