@@ -2,6 +2,7 @@ package ui;
 
 import instrument.Instrument;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -89,7 +90,7 @@ public class Ui {
         return null;
     }
 
-    public String getCommand(String userInput) {
+    public String getCommand(String userInput) throws IOException {
         return parser.parse(userInput);
     }
 
