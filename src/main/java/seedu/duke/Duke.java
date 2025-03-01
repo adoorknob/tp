@@ -39,7 +39,8 @@ public class Duke {
                     ui.printNoMatchingCommandError();
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+                System.out.println(e.getMessage());
+                break;
             }
         }
         ui.printGoodbye();
