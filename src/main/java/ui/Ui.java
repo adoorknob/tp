@@ -91,7 +91,12 @@ public class Ui {
     }
 
     public String getCommand(String userInput) throws IOException {
-        return parser.parse(userInput);
+        try {
+            return parser.parse(userInput);
+        } catch (IOException e) {
+            System.out.println("Error parsing command: " + e.getMessage());
+            return null;
+        }
     }
 
     public void printCommandList() {
