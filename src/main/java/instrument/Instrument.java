@@ -12,10 +12,16 @@ public abstract class Instrument {
     public void rent() {
         isRented = true;
     }
+
     public void unrent() {
         isRented = false;
     }
+
     public boolean isRented() {
         return isRented;
+    }
+
+    public String toString() {
+        return name + " | " + (isRented ? "X" : "O");
     }
 }

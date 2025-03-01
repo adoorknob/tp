@@ -1,6 +1,6 @@
 package instrument;
 
-public class Guitar extends Instrument{
+public class Guitar extends Instrument {
 
     public Guitar(String guitarName) {
         this.name = guitarName;
