@@ -62,7 +62,8 @@ public class Ui {
 
     private final String COMMANDLIST = """
             help: list all commands
-            list: list all instruments""";
+            list: list all instruments
+            exit: exit program""";
 
     private Scanner scanner;
     private Parser parser;
