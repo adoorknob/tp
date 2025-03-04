@@ -24,12 +24,21 @@ public class Duke {
             try {
                 String userInput = ui.readUserInput();
                 String command = ui.getCommand(userInput);
+                String input = ui.getRemainingWords(userInput);
 
                 switch (command) {
                 case "help":
                     ui.printCommandList();
                     break;
                 case "list":
+                    ui.printInstrumentList(instrumentList.getList());
+                    break;
+                case "add":
+                    instrumentList.addInstrument(input);
+                    ui.printInstrumentList(instrumentList.getList());
+                    break;
+                case "delete":
+                    instrumentList.deleteInstrument(Integer.parseInt(input));
                     ui.printInstrumentList(instrumentList.getList());
                     break;
                 case "exit":
