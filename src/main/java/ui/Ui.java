@@ -94,22 +94,11 @@ public class Ui {
         return null;
     }
 
-    /**
-     *
-     * @param userInput
-     * @return
-     * @throws IOException
-     */
     public String getCommand(String userInput) throws IOException {
         String[] parsedInput = userInput.split(" ");
         return parsedInput.length > 0 ? parsedInput[0] : "";
     }
 
-    /**
-     *
-     * @param userInput
-     * @return
-     */
     public String getRemainingWords(String userInput) {
         String[] parsedInput = userInput.split(" ");
         return String.join(" ", Arrays.copyOfRange(parsedInput, 1, parsedInput.length));
