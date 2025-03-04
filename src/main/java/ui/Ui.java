@@ -62,11 +62,8 @@ public class Ui {
     private final String TEXTBORDER = "*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+";
 
     private final String COMMANDLIST = """
-            help:   list all commands
-            exit:   exit program
-            list:   list all instruments
-            add:    add instrument
-            delete: delete instrument""";
+            help: list all commands
+            list: list all instruments""";;
 
     private Scanner scanner;
     private Parser parser;
