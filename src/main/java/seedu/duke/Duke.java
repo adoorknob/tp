@@ -41,6 +41,14 @@ public class Duke {
                     instrumentList.deleteInstrument(Integer.parseInt(input));
                     ui.printInstrumentList(instrumentList.getList());
                     break;
+                case "reserve":
+                    instrumentList.reserveInstrument(Integer.parseInt(input));
+                    ui.printInstrumentList(instrumentList.getList());
+                    break;
+                case "return":
+                    instrumentList.returnInstrument(Integer.parseInt(input));
+                    ui.printInstrumentList(instrumentList.getList());
+                    break;
                 case "exit":
                     isDone = true;
                     break;

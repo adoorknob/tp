@@ -63,7 +63,12 @@ public class Ui {
 
     private final String COMMANDLIST = """
             help: list all commands
-            list: list all instruments""";;
+            list: list all instruments
+            add: adds a new instrument
+            delete: deletes an existing instrument
+            reserve: reserves an available instrument
+            return: returns a reserved instrument
+            exit: quit SirDukeBox """;;
 
     private Scanner scanner;
     private Parser parser;
