@@ -1,7 +1,7 @@
 package instrument;
 
 import java.util.ArrayList;
-import exceptions.*;
+import exceptions.emptyDescriptionException;
 
 public class InstrumentList {
     private ArrayList<Instrument> instruments;
