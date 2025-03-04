@@ -3,8 +3,7 @@ package ui;
 import instrument.Instrument;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
 
 public class Ui {
     public static final String DUKEBOX = """
@@ -61,8 +60,11 @@ public class Ui {
     private final String TEXTBORDER = "*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+";
 
     private final String COMMANDLIST = """
-            help: list all commands
-            list: list all instruments""";
+            help:   list all commands
+            exit:   exit program
+            list:   list all instruments
+            add:    add instrument
+            delete: delete instrument""";
 
     private Scanner scanner;
     private Parser parser;
@@ -90,8 +92,25 @@ public class Ui {
         return null;
     }
 
+    /** TODO
+     *
+     * @param userInput
+     * @return
+     * @throws IOException
+     */
     public String getCommand(String userInput) throws IOException {
-        return parser.parse(userInput);
+        String[] parsedInput = userInput.split(" ");
+        return parsedInput.length > 0 ? parsedInput[0] : "";
+    }
+
+    /** TODO
+     *
+     * @param userInput
+     * @return
+     */
+    public String getRemainingWords(String userInput) {
+        String[] parsedInput = userInput.split(" ");
+        return String.join(" ", Arrays.copyOfRange(parsedInput, 1, parsedInput.length));
     }
 
     public void printCommandList() {
