@@ -16,11 +16,10 @@ public class Duke {
     }
 
     public void runDuke() {
-        boolean isDone = false;
 
         ui.printStartMessage();
 
-        while (!isDone) {
+        while (true) {
             try {
                 String userInput = ui.readUserInput();
                 String command = ui.getCommand(userInput);
@@ -50,8 +49,8 @@ public class Duke {
                     ui.printInstrumentList(instrumentList.getList());
                     break;
                 case "exit":
-                    isDone = true;
-                    break;
+                    ui.printGoodbye();
+                    return;
                 default:
                     ui.printNoMatchingCommandError();
                 }
@@ -60,7 +59,7 @@ public class Duke {
                 break;
             }
         }
-        ui.printGoodbye();
+
     }
 
     public static void main(String[] args) {
