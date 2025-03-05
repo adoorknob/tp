@@ -51,7 +51,7 @@ public class Duke {
                 break;
             }
         }
-        ui.printGoodbye();
+
     }
 
     public static void main(String[] args) {
