@@ -5,6 +5,7 @@ import instrument.Instrument;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Arrays;
 
 public class Ui {
     public static final String DUKEBOX = """
@@ -62,7 +63,8 @@ public class Ui {
 
     private final String COMMANDLIST = """
             help: list all commands
-            list: list all instruments""";
+            list: list all instruments
+            exit: exit program""";
 
     private Scanner scanner;
     private Parser parser;
@@ -91,7 +93,13 @@ public class Ui {
     }
 
     public String getCommand(String userInput) throws IOException {
-        return parser.parse(userInput);
+        String[] parsedInput = userInput.split(" ");
+        return parsedInput.length > 0 ? parsedInput[0] : "";
+    }
+
+    public String getRemainingWords(String userInput) {
+        String[] parsedInput = userInput.split(" ");
+        return String.join(" ", Arrays.copyOfRange(parsedInput, 1, parsedInput.length));
     }
 
     public void printCommandList() {
