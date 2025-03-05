@@ -1,15 +1,19 @@
 package instrument;
 
 import java.util.ArrayList;
+import ui.Ui;
 import exceptions.emptyDescriptionException;
 
 public class InstrumentList {
     private ArrayList<Instrument> instruments;
     private int numberOfInstruments;
 
+    private Ui ui;
+
     public InstrumentList() {
         this.instruments = new ArrayList<>();
         this.numberOfInstruments = 0;
+        ui = new Ui();
     }
 
     public void addInstrument(String instrument) {
@@ -57,6 +61,46 @@ public class InstrumentList {
         } catch (Exception e) {
             System.out.println("Error in deleting instrument: " + (number));
         }
+    }
+
+    public void reserveInstrument(int number) {
+        if (this.instruments.isEmpty()) {
+            System.out.println("No instruments available for reservation");
+            return;
+        } else if (number > numberOfInstruments) {
+            System.out.println("Instrument number out of bounds");
+            return;
+        }
+        Instrument instToRent = instruments.get(number - 1);
+//        System.out.println("Would you like to reserve " + instToRent + "? [Y/N]");
+//        String userInput = ui.readUserInput();
+//
+//        if (userInput.equals("Y")) {
+            System.out.println("Reserving instrument: " + instToRent);
+            instToRent.rent();
+//        } else {
+//            System.out.println("Reserve cancelled");
+//        }
+    }
+
+    public void returnInstrument(int number) {
+        if (this.instruments.isEmpty()) {
+            System.out.println("No instruments to return");
+            return;
+        } else if (number > numberOfInstruments) {
+            System.out.println("Instrument number out of bounds");
+            return;
+        }
+        Instrument instToUnrent = instruments.get(number - 1);
+//        System.out.println("Would you like to return " + instToUnrent + "? [Y/N]");
+//        String userInput = ui.readUserInput();
+//
+//        if (userInput.equals("Y")) {
+            System.out.println("Returning instrument: " + instToUnrent);
+            instToUnrent.unrent();
+//        } else {
+//            System.out.println("Return cancelled");
+//        }
     }
 
     public ArrayList<Instrument> getList() {
