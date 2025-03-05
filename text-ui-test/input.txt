@@ -1,2 +1,7 @@
 help
+add Guitar
+add Piano
+add Flute
+reserve 1
+return 1
 exit
