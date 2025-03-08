@@ -16,23 +16,33 @@ public class InstrumentList {
         ui = new Ui();
     }
 
-    public void addInstrument(String instrument) {
+    public void addInstrument(String[] userInput) {
+        String instrument = userInput[0];
+        String model = userInput[1];
+        int year = Integer.parseInt(userInput[2]);
+
         if (instrument.isBlank()) { // Check if the description is empty
+            throw new EmptyDescriptionException("event");
+        }
+        if (model.isBlank()) { // Check if the model is empty
+            throw new EmptyDescriptionException("event");
+        }
+        if (year>2025 || year<1990) { // Check if the year is valid
             throw new EmptyDescriptionException("event");
         }
 
         try {
             switch (instrument) {
             case "Flute":
-                this.instruments.add(new Flute(instrument));
+                this.instruments.add(new Flute(instrument, model, year));
                 this.numberOfInstruments++;
                 break;
             case "Piano":
-                this.instruments.add(new Piano(instrument));
+                this.instruments.add(new Piano(instrument, model, year));
                 this.numberOfInstruments++;
                 break;
             case "Guitar":
-                this.instruments.add(new Guitar(instrument));
+                this.instruments.add(new Guitar(instrument, model, year));
                 this.numberOfInstruments++;
                 break;
             default:

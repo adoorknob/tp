@@ -133,4 +133,8 @@ public class Ui {
         System.out.println("No such command");
         System.out.println(TEXTBORDER);
     }
+
+    public String[] getNameModelYear(String input) throws IOException {
+        return parser.separateNMY(input.trim());
+    }
 }
