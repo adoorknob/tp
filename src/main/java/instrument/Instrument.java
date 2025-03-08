@@ -4,6 +4,10 @@ public abstract class Instrument {
 
     public String name;
 
+    public String model;
+
+    public int year;
+
     private boolean isRented = false;
 
     public abstract String playInstrument();
