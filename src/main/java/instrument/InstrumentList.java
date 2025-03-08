@@ -2,7 +2,7 @@ package instrument;
 
 import java.util.ArrayList;
 import ui.Ui;
-import exceptions.emptyDescriptionException;
+import exceptions.EmptyDescriptionException;
 
 public class InstrumentList {
     private ArrayList<Instrument> instruments;
@@ -18,7 +18,7 @@ public class InstrumentList {
 
     public void addInstrument(String instrument) {
         if (instrument.isBlank()) { // Check if the description is empty
-            throw new emptyDescriptionException("event");
+            throw new EmptyDescriptionException("event");
         }
 
         try {
@@ -38,7 +38,7 @@ public class InstrumentList {
             default:
                 System.out.println("invalid instrument");
             }
-        } catch (emptyDescriptionException e) {
+        } catch (EmptyDescriptionException e) {
             System.out.println(e.getMessage());
         }
     }
@@ -72,15 +72,15 @@ public class InstrumentList {
             return;
         }
         Instrument instToRent = instruments.get(number - 1);
-//        System.out.println("Would you like to reserve " + instToRent + "? [Y/N]");
-//        String userInput = ui.readUserInput();
-//
-//        if (userInput.equals("Y")) {
-            System.out.println("Reserving instrument: " + instToRent);
-            instToRent.rent();
-//        } else {
-//            System.out.println("Reserve cancelled");
-//        }
+        //        System.out.println("Would you like to reserve " + instToRent + "? [Y/N]");
+        //        String userInput = ui.readUserInput();
+        //
+        //        if (userInput.equals("Y")) {
+        System.out.println("Reserving instrument: " + instToRent);
+        instToRent.rent();
+        //        } else {
+        //            System.out.println("Reserve cancelled");
+        //        }
     }
 
     public void returnInstrument(int number) {
@@ -92,15 +92,15 @@ public class InstrumentList {
             return;
         }
         Instrument instToUnrent = instruments.get(number - 1);
-//        System.out.println("Would you like to return " + instToUnrent + "? [Y/N]");
-//        String userInput = ui.readUserInput();
-//
-//        if (userInput.equals("Y")) {
-            System.out.println("Returning instrument: " + instToUnrent);
-            instToUnrent.unrent();
-//        } else {
-//            System.out.println("Return cancelled");
-//        }
+        //        System.out.println("Would you like to return " + instToUnrent + "? [Y/N]");
+        //        String userInput = ui.readUserInput();
+        //
+        //        if (userInput.equals("Y")) {
+        System.out.println("Returning instrument: " + instToUnrent);
+        instToUnrent.unrent();
+        //        } else {
+        //            System.out.println("Return cancelled");
+        //        }
     }
 
     public ArrayList<Instrument> getList() {
