@@ -33,7 +33,7 @@ public class Duke {
                     ui.printInstrumentList(instrumentList.getList());
                     break;
                 case "add":
-                    instrumentList.addInstrument(input);
+                    instrumentList.addInstrument(ui.getNameModelYear(input));
                     ui.printInstrumentList(instrumentList.getList());
                     break;
                 case "delete":
@@ -56,7 +56,6 @@ public class Duke {
                 }
             } catch (Exception e) {
                 System.out.println(e.getMessage());
-                break;
             }
         }
 

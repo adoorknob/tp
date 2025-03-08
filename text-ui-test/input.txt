@@ -1,7 +1,7 @@
 help
-add Guitar
-add Piano
-add Flute
+add Guitar|Yamaha|2000
+add Piano|Yamaha|2010
+add Flute|Yamaha|2001
 reserve 1
 return 1
 exit
