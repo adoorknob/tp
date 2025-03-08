@@ -59,9 +59,9 @@ public class Ui {
             
             """;
 
-    private final String TEXTBORDER = "*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+";
+    private static final String TEXTBORDER = "*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+";
 
-    private final String COMMANDLIST = """
+    private static final String COMMANDLIST = """
             help: list all commands
             list: list all instruments
             add: adds a new instrument
