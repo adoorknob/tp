@@ -68,7 +68,6 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-        assert false : "Not implemented yet";
         new Duke().runDuke();
     }
 }
