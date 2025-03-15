@@ -17,6 +17,8 @@ public class Duke {
 
     public void runDuke() {
 
+        assert ui != null;
+
         ui.printStartMessage();
 
         while (true) {
@@ -25,6 +27,10 @@ public class Duke {
                 String command = ui.getCommand(userInput);
                 String input = ui.getRemainingWords(userInput);
 
+                assert userInput != null;
+                assert command != null;
+                assert input != null;
+                
                 switch (command) {
                 case "help":
                     ui.printCommandList();
@@ -62,6 +68,7 @@ public class Duke {
     }
 
     public static void main(String[] args) {
+        assert false : "Not implemented yet";
         new Duke().runDuke();
     }
 }
