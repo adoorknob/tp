@@ -5,6 +5,10 @@ import ui.Ui;
 import exceptions.EmptyDescriptionException;
 
 public class InstrumentList {
+    private static final String FLUTE = "flute";
+    private static final Integer currYEAR =  2025; // Current
+
+
     private ArrayList<Instrument> instruments;
     private int numberOfInstruments;
 
@@ -21,13 +25,7 @@ public class InstrumentList {
         String model = userInput[1];
         int year = Integer.parseInt(userInput[2]);
 
-        if (instrument.isBlank()) { // Check if the description is empty
-            throw new EmptyDescriptionException("event");
-        }
-        if (model.isBlank()) { // Check if the model is empty
-            throw new EmptyDescriptionException("event");
-        }
-        if (year>2025 || year<1990) { // Check if the year is valid
+        if (instrument.isBlank() || model.isBlank() || year > currYEAR ) {
             throw new EmptyDescriptionException("event");
         }
 
