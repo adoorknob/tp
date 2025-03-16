@@ -18,8 +18,8 @@ public class ParserTest {
 
     @Test
     void parse_validInput_parsedCorrectly() {
-        String validInput = "Guitar | PAC112VM | 1999";
-        String[] intendedOutput = {"Guitar", "PAC112VM", "1999"};
+        String validInput = "Guitar|PAC112VM|2000";
+        String[] intendedOutput = {"Guitar", "PAC112VM", "2000"};
         try {
             String[] output = parser.separateNMY(validInput);
             assertEquals(output, intendedOutput);
@@ -30,7 +30,7 @@ public class ParserTest {
 
     @Test
     void parse_invalidInstrument_errorMessage() {
-        String invalidInput = "Guitar | 1999";
+        String invalidInput = "Guitar|1999";
 
         try {
             parser.separateNMY(invalidInput);
@@ -42,7 +42,7 @@ public class ParserTest {
 
     @Test
     void parse_invalidYear_errorMessage() {
-        String invalidInput = "Guitar | PAC112VM | hehe";
+        String invalidInput = "Guitar|PAC112VM|hehe";
 
         try {
             parser.separateNMY(invalidInput);
