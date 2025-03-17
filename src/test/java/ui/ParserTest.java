@@ -5,8 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ParserTest {
     private Parser parser;
@@ -22,7 +21,7 @@ public class ParserTest {
         String[] intendedOutput = {"Guitar", "PAC112VM", "2000"};
         try {
             String[] output = parser.separateNMY(validInput);
-            assertEquals(output, intendedOutput);
+            assertArrayEquals(output, intendedOutput);
         } catch (IOException e) {
             throw new RuntimeException("Failed to parse input", e);
         }
