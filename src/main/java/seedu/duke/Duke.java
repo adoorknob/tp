@@ -4,6 +4,15 @@ import ui.Ui;
 import instrument.InstrumentList;
 
 public class Duke {
+    private static final String HELP = "help";
+    private static final String LIST = "list";
+    private static final String ADD = "add";
+    private static final String DELETE = "delete";
+    private static final String RESERVE = "reserve";
+    private static final String RETURN = "return";
+    private static final String EXIT = "exit";
+
+
     /**
      * Main entry-point for the java.duke.Duke application.
      */
@@ -18,7 +27,6 @@ public class Duke {
     public void runDuke() {
 
         assert ui != null;
-
         ui.printStartMessage();
 
         while (true) {
@@ -32,29 +40,29 @@ public class Duke {
                 assert input != null;
                 
                 switch (command) {
-                case "help":
+                case HELP:
                     ui.printCommandList();
                     break;
-                case "list":
+                case LIST:
                     ui.printInstrumentList(instrumentList.getList());
                     break;
-                case "add":
+                case ADD:
                     instrumentList.addInstrument(ui.getNameModelYear(input));
                     ui.printInstrumentList(instrumentList.getList());
                     break;
-                case "delete":
+                case DELETE:
                     instrumentList.deleteInstrument(Integer.parseInt(input));
                     ui.printInstrumentList(instrumentList.getList());
                     break;
-                case "reserve":
+                case RESERVE:
                     instrumentList.reserveInstrument(Integer.parseInt(input));
                     ui.printInstrumentList(instrumentList.getList());
                     break;
-                case "return":
+                case RETURN:
                     instrumentList.returnInstrument(Integer.parseInt(input));
                     ui.printInstrumentList(instrumentList.getList());
                     break;
-                case "exit":
+                case EXIT:
                     ui.printGoodbye();
                     return;
                 default:

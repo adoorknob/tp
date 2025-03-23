@@ -5,7 +5,6 @@ import ui.Ui;
 import exceptions.EmptyDescriptionException;
 
 public class InstrumentList {
-    private static final String FLUTE = "flute";
     private static final Integer currYEAR =  2025; // Current
 
 
@@ -21,11 +20,13 @@ public class InstrumentList {
     }
 
     public void addInstrument(String[] userInput) {
+        assert userInput.length > 0;
         String instrument = userInput[0];
         String model = userInput[1];
         int year = Integer.parseInt(userInput[2]);
+        assert year >= 1600 && year <= currYEAR : "Invalid year: " + year;
 
-        if (instrument.isBlank() || model.isBlank() || year > currYEAR ) {
+        if (instrument.isBlank() || model.isBlank()) {
             throw new EmptyDescriptionException("event");
         }
 
@@ -52,12 +53,9 @@ public class InstrumentList {
     }
 
     public void deleteInstrument(int number) {
-
+        assert number > 0 && number <= numberOfInstruments : "Instrument number out of bounds: " + number;
         if (this.instruments.isEmpty()) {
             System.out.println("No instruments to delete");
-            return;
-        } else if (number > numberOfInstruments) {
-            System.out.println("Instrument number out of bounds");
             return;
         }
 
@@ -72,11 +70,9 @@ public class InstrumentList {
     }
 
     public void reserveInstrument(int number) {
+        assert number > 0 && number <= numberOfInstruments : "Instrument number out of bounds: " + number;
         if (this.instruments.isEmpty()) {
             System.out.println("No instruments available for reservation");
-            return;
-        } else if (number > numberOfInstruments) {
-            System.out.println("Instrument number out of bounds");
             return;
         }
         Instrument instToRent = instruments.get(number - 1);
@@ -92,11 +88,9 @@ public class InstrumentList {
     }
 
     public void returnInstrument(int number) {
+        assert number > 0 && number <= numberOfInstruments : "Instrument number out of bounds: " + number;
         if (this.instruments.isEmpty()) {
             System.out.println("No instruments to return");
-            return;
-        } else if (number > numberOfInstruments) {
-            System.out.println("Instrument number out of bounds");
             return;
         }
         Instrument instToUnrent = instruments.get(number - 1);
