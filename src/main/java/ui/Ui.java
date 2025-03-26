@@ -97,11 +97,13 @@ public class Ui {
     }
 
     public String getCommand(String userInput) throws IOException {
+        assert userInput != null : "Input is null";
         String[] parsedInput = userInput.split(" ");
         return parsedInput.length > 0 ? parsedInput[0] : "";
     }
 
     public String getRemainingWords(String userInput) {
+        assert userInput != null : "Input is null";
         String[] parsedInput = userInput.split(" ");
         return String.join(" ", Arrays.copyOfRange(parsedInput, 1, parsedInput.length));
     }
@@ -135,6 +137,7 @@ public class Ui {
     }
 
     public String[] getNameModelYear(String input) throws IOException {
+        assert input != null : "Input is null";
         return parser.separateNMY(input.trim());
     }
 }
