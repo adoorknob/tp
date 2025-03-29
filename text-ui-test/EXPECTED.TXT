@@ -52,6 +52,7 @@ How can I help you?
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 Here is a list of available commands:
+Available Commands:
 help: list all commands
 list: list all instruments
 add: adds a new instrument
