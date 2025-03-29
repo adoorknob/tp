@@ -12,7 +12,7 @@ public class ListCommand extends Command {
 
     @Override
     public void execute(InstrumentList instrumentList, Ui ui, Parser parser) {
-        ui.printCommandList();
+        ui.printInstrumentList(instrumentList.getList());
     }
 
     @Override
