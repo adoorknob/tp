@@ -38,7 +38,8 @@ public class ParserTest {
             commandParser.separateNMY(invalidInput);
             fail("Expected incorrectAddInstrumentException to be thrown");
         } catch (incorrectAddInstrumentException e) {
-            assertEquals("Input doesn't look right: Input instrument is invalid-> add [Instrument]|[Model]|[Year]", e.getMessage());
+            assertEquals("Input doesn't look right: Input instrument is invalid-> " +
+                    "add [Instrument]|[Model]|[Year]", e.getMessage());
         }
     }
 
@@ -50,7 +51,8 @@ public class ParserTest {
             commandParser.separateNMY(invalidInput);
             fail("Expected IOException to be thrown");
         } catch (incorrectAddInstrumentException e) {
-            assertEquals("Input doesn't look right: Input year is invalid-> add [Instrument]|[Model]|[Year]", e.getMessage());
+            assertEquals("Input doesn't look right: Input year is invalid-> " +
+                    "add [Instrument]|[Model]|[Year]", e.getMessage());
         }
     }
 }
