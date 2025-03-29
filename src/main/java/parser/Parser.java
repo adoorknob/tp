@@ -1,7 +1,15 @@
 package parser;
 
-import exceptions.incorrectAddInstrumentException;
-import commands.*;
+import commands.Command;
+import commands.HelpCommand;
+import commands.AddInstrumentCommand;
+import commands.ExitCommand;
+import commands.ListCommand;
+import commands.DefaultCommand;
+import commands.ReserveCommand;
+import commands.DeleteCommand;
+import commands.ReturnCommand;
+
 
 public class Parser {
     private static final String HELP = "help";
