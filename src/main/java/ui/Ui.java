@@ -62,6 +62,7 @@ public class Ui {
     private static final String TEXTBORDER = "*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+";
 
     private static final String COMMANDLIST = """
+            Available Commands:
             help: list all commands
             list: list all instruments
             add: adds a new instrument
@@ -71,16 +72,10 @@ public class Ui {
             exit: quit SirDukeBox""";;
 
     private Scanner scanner;
-    private Parser parser;
 
-    public Ui() {
-        this.scanner = new Scanner(System.in);
-        this.parser = new Parser();
-    }
+    public Ui() {this.scanner = new Scanner(System.in);}
 
-    public void print(String s) {
-        System.out.println(s);
-    }
+    public void print(String s) {System.out.println(s);}
 
     public void printStartMessage() {
         System.out.println("Welcome to");
@@ -132,12 +127,7 @@ public class Ui {
 
     public void printNoMatchingCommandError() {
         System.out.println(TEXTBORDER);
-        System.out.println("No such command");
+        System.out.println("No matching command found");
         System.out.println(TEXTBORDER);
-    }
-
-    public String[] getNameModelYear(String input) throws IOException {
-        assert input != null : "Input is null";
-        return parser.separateNMY(input.trim());
     }
 }

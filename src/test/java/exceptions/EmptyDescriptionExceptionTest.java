@@ -17,7 +17,7 @@ public class EmptyDescriptionExceptionTest {
         });
 
         // Check if the message is correctly formatted
-        assertEquals("Input doesn't look right", exception.getMessage());
+        assertEquals("Input doesn't look right: Input", exception.getMessage());
     }
 
     @Test
@@ -29,7 +29,7 @@ public class EmptyDescriptionExceptionTest {
             instrumentList.addInstrument(invalidInput);
             fail("Expected EmptyDescriptionException to be thrown");
         } catch (EmptyDescriptionException e) {
-            assertEquals("event doesn't look right", e.getMessage());
+            assertEquals("Input doesn't look right: event", e.getMessage());
         }
     }
 
@@ -37,7 +37,6 @@ public class EmptyDescriptionExceptionTest {
     void testAddInstrumentValid() {
         InstrumentList instrumentList = new InstrumentList();
         String[] validInput = {"Flute", "Yamaha", "2023"};
-
         assertDoesNotThrow(() -> instrumentList.addInstrument(validInput));
     }
 }

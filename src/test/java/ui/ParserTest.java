@@ -1,9 +1,10 @@
 package ui;
 
+import exceptions.incorrectAddInstrumentException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.io.IOException;
+import parser.commandParser;
+import parser.Parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
@@ -22,9 +23,9 @@ public class ParserTest {
         String validInput = "Guitar|PAC112VM|2000";
         String[] intendedOutput = {"Guitar", "PAC112VM", "2000"};
         try {
-            String[] output = parser.separateNMY(validInput);
+            String[] output = commandParser.separateNMY(validInput);
             assertArrayEquals(output, intendedOutput);
-        } catch (IOException e) {
+        } catch (incorrectAddInstrumentException e) {
             throw new RuntimeException("Failed to parse input", e);
         }
     }
@@ -34,10 +35,11 @@ public class ParserTest {
         String invalidInput = "Guitar|1999";
 
         try {
-            parser.separateNMY(invalidInput);
-            fail("Expected IOException to be thrown");
-        } catch (IOException e) {
-            assertEquals("Input instrument is invalid", e.getMessage());
+            commandParser.separateNMY(invalidInput);
+            fail("Expected incorrectAddInstrumentException to be thrown");
+        } catch (incorrectAddInstrumentException e) {
+            assertEquals("Input doesn't look right: Input instrument is invalid-> " +
+                    "add [Instrument]|[Model]|[Year]", e.getMessage());
         }
     }
 
@@ -46,10 +48,11 @@ public class ParserTest {
         String invalidInput = "Guitar|PAC112VM|hehe";
 
         try {
-            parser.separateNMY(invalidInput);
+            commandParser.separateNMY(invalidInput);
             fail("Expected IOException to be thrown");
-        } catch (IOException e) {
-            assertEquals("Input year is invalid", e.getMessage());
+        } catch (incorrectAddInstrumentException e) {
+            assertEquals("Input doesn't look right: Input year is invalid-> " +
+                    "add [Instrument]|[Model]|[Year]", e.getMessage());
         }
     }
 }
