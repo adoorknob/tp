@@ -1,6 +1,7 @@
 package ui;
 
 import instrument.Instrument;
+import parser.Parser;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -71,11 +72,9 @@ public class Ui {
             exit: quit SirDukeBox""";;
 
     private Scanner scanner;
-    private Parser parser;
 
     public Ui() {
         this.scanner = new Scanner(System.in);
-        this.parser = new Parser();
     }
 
     public void print(String s) {
@@ -136,7 +135,8 @@ public class Ui {
         System.out.println(TEXTBORDER);
     }
 
-    public String[] getNameModelYear(String input) throws IOException {
+
+    public String[] getNameModelYear(String input, Parser parser) throws IOException {
         assert input != null : "Input is null";
         return parser.separateNMY(input.trim());
     }

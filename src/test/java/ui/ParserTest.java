@@ -2,6 +2,7 @@ package ui;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import parser.Parser;
 
 import java.io.IOException;
 
