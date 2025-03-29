@@ -42,4 +42,17 @@ public class Parser {
             return new DefaultCommand();
         }
     }
+
+    public static String parseFileDirectories(String outputFilePath) {
+        int index = outputFilePath.lastIndexOf("/");
+        return outputFilePath.substring(0, index);
+    }
+
+    public static String[] parseFileEntryToInstrument(String line) {
+        String[] splitInput =  line.split("\\|");
+        for (int i = 0; i < splitInput.length; i++) {
+            splitInput[i] = splitInput[i].trim();
+        }
+        return splitInput;
+    }
 }
