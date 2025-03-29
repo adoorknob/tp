@@ -1,11 +1,11 @@
-package command;
+package commands;
 
 import instrument.InstrumentList;
 import ui.Ui;
 import parser.Parser;
 
 public abstract class Command {
-    String Name;
+    public String Name;
 
     public Command(String name) {
         this.Name = name;
@@ -16,5 +16,4 @@ public abstract class Command {
 
     // Abstract method to check if the command is an exit command
     public abstract boolean isExit();
-
 }

@@ -1,7 +1,7 @@
 package parser;
 
 import exceptions.incorrectAddInstrumentException;
-import command.*;
+import commands.*;
 
 public class Parser {
     private static final String HELP = "help";

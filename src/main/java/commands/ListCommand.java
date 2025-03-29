@@ -1,17 +1,17 @@
-package command;
+package commands;
 
 import instrument.InstrumentList;
-import parser.Parser;
 import ui.Ui;
+import parser.Parser;
 
-public class ReturnCommand extends Command {
-    public ReturnCommand(String command) {
-        super(command);
+public class ListCommand extends Command {
+    // Constructor
+    public ListCommand() {
+        super("Exit");
     }
 
     @Override
     public void execute(InstrumentList instrumentList, Ui ui, Parser parser) {
-        instrumentList.returnInstrument(Integer.parseInt(this.Name));
         ui.printInstrumentList(instrumentList.getList());
     }
 

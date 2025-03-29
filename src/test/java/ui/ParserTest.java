@@ -1,10 +1,9 @@
 package ui;
 
+import exceptions.incorrectAddInstrumentException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import parser.Parser;
-
-import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
@@ -25,7 +24,7 @@ public class ParserTest {
         try {
             String[] output = parser.separateNMY(validInput);
             assertArrayEquals(output, intendedOutput);
-        } catch (IOException e) {
+        } catch (incorrectAddInstrumentException e) {
             throw new RuntimeException("Failed to parse input", e);
         }
     }
@@ -36,9 +35,9 @@ public class ParserTest {
 
         try {
             parser.separateNMY(invalidInput);
-            fail("Expected IOException to be thrown");
-        } catch (IOException e) {
-            assertEquals("Input instrument is invalid", e.getMessage());
+            fail("Expected incorrectAddInstrumentException to be thrown");
+        } catch (incorrectAddInstrumentException e) {
+            assertEquals("Input doesn't look right: Input instrument is invalid-> add [Instrument]|[Model]|[Year]", e.getMessage());
         }
     }
 
@@ -49,8 +48,8 @@ public class ParserTest {
         try {
             parser.separateNMY(invalidInput);
             fail("Expected IOException to be thrown");
-        } catch (IOException e) {
-            assertEquals("Input year is invalid", e.getMessage());
+        } catch (incorrectAddInstrumentException e) {
+            assertEquals("Input doesn't look right: Input year is invalid-> add [Instrument]|[Model]|[Year]", e.getMessage());
         }
     }
 }

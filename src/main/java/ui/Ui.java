@@ -1,7 +1,6 @@
 package ui;
 
 import instrument.Instrument;
-import parser.Parser;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -63,6 +62,7 @@ public class Ui {
     private static final String TEXTBORDER = "*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+";
 
     private static final String COMMANDLIST = """
+            Available Commands:
             help: list all commands
             list: list all instruments
             add: adds a new instrument
@@ -73,13 +73,9 @@ public class Ui {
 
     private Scanner scanner;
 
-    public Ui() {
-        this.scanner = new Scanner(System.in);
-    }
+    public Ui() {this.scanner = new Scanner(System.in);}
 
-    public void print(String s) {
-        System.out.println(s);
-    }
+    public void print(String s) {System.out.println(s);}
 
     public void printStartMessage() {
         System.out.println("Welcome to");
@@ -131,13 +127,7 @@ public class Ui {
 
     public void printNoMatchingCommandError() {
         System.out.println(TEXTBORDER);
-        System.out.println("No such command");
+        System.out.println("No matching command found");
         System.out.println(TEXTBORDER);
-    }
-
-
-    public String[] getNameModelYear(String input, Parser parser) throws IOException {
-        assert input != null : "Input is null";
-        return parser.separateNMY(input.trim());
     }
 }

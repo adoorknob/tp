@@ -1,6 +1,6 @@
 package seedu.duke;
 
-import command.Command;
+import commands.Command;
 import ui.Ui;
 import parser.Parser;
 import instrument.InstrumentList;
@@ -20,7 +20,6 @@ public class Duke {
     }
 
     public void runDuke() {
-        assert ui != null;
         ui.printStartMessage();
         boolean isExit = false;
 
