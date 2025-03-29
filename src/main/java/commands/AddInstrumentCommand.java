@@ -1,7 +1,8 @@
 package commands;
 
 import instrument.InstrumentList;
-import parser.*;
+import parser.commandParser;
+import parser.Parser;
 import ui.Ui;
 
 public class AddInstrumentCommand extends Command {
