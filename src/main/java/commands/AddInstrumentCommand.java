@@ -17,6 +17,7 @@ public class AddInstrumentCommand extends Command {
         cmdparser = new commandParser();
     }
 
+    // TODO abstact this into 2 obj, 1 for parsing storage and 1 for program run
     @Override
     public void execute(InstrumentList instrumentList, Ui ui) throws incorrectAddInstrumentException {
             String[] userInput = cmdparser.separateNMY(this.Name.trim());
@@ -51,8 +52,6 @@ public class AddInstrumentCommand extends Command {
             } catch (EmptyDescriptionException e) {
                 System.out.println(e.getMessage());
             }
-
-            // TODO: Make this not print when parsing storage
             ui.printInstrumentList(instrumentList.getList());
     }
 

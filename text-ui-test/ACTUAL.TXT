@@ -69,32 +69,32 @@ exit: quit SirDukeBox
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 Here is the list of instruments:
-Guitar | O
+1. Guitar | Yamaha | 2000 | O
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 Here is the list of instruments:
-Guitar | O
-Piano | O
+1. Guitar | Yamaha | 2000 | O
+2. Piano | Yamaha | 2010 | O
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 Here is the list of instruments:
-Guitar | O
-Piano | O
-Flute | O
+1. Guitar | Yamaha | 2000 | O
+2. Piano | Yamaha | 2010 | O
+3. Flute | Yamaha | 2001 | O
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
-Reserving instrument: Guitar | O
-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
-Here is the list of instruments:
-Guitar | X
-Piano | O
-Flute | O
-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
-Returning instrument: Guitar | X
+Reserving instrument: Guitar | Yamaha | 2000 | O
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 Here is the list of instruments:
-Guitar | O
-Piano | O
-Flute | O
+1. Guitar | Yamaha | 2000 | X
+2. Piano | Yamaha | 2010 | O
+3. Flute | Yamaha | 2001 | O
+*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
+Returning instrument: Guitar | Yamaha | 2000 | X
+*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
+Here is the list of instruments:
+1. Guitar | Yamaha | 2000 | O
+2. Piano | Yamaha | 2010 | O
+3. Flute | Yamaha | 2001 | O
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 bye bye
