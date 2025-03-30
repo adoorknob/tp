@@ -1,5 +1,7 @@
 package instrument;
 
+import java.time.LocalDate;
+
 public abstract class Instrument {
 
     public String name;
@@ -8,13 +10,16 @@ public abstract class Instrument {
 
     public int year;
 
+    public LocalDate dueBy;
+
     private boolean isRented = false;
 
     public abstract String playInstrument();
 
 
-    public void rent() {
+    public void rent(LocalDate date) {
         isRented = true;
+        dueBy = date;
     }
 
     public void unrent() {

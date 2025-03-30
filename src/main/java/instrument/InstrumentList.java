@@ -1,8 +1,9 @@
 package instrument;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import ui.Ui;
-import exceptions.emptyDescriptionException;
+import exceptions.EmptyDescriptionException;
 
 public class InstrumentList {
     private static final Integer currYEAR =  2025; // Current
@@ -69,22 +70,21 @@ public class InstrumentList {
         }
     }
 
-    public void reserveInstrument(int number) {
+    public void reserveInstrument(int number, LocalDate date) {
         assert number > 0 && number <= numberOfInstruments : "Instrument number out of bounds: " + number;
         if (this.instruments.isEmpty()) {
             System.out.println("No instruments available for reservation");
             return;
         }
-        Instrument instToRent = instruments.get(number - 1);
-        //        System.out.println("Would you like to reserve " + instToRent + "? [Y/N]");
-        //        String userInput = ui.readUserInput();
-        //
-        //        if (userInput.equals("Y")) {
-        System.out.println("Reserving instrument: " + instToRent);
-        instToRent.rent();
-        //        } else {
-        //            System.out.println("Reserve cancelled");
-        //        }
+
+        try {
+            Instrument instToRent = instruments.get(number - 1);
+            System.out.println("Reserving instrument: " + instToRent);
+            instToRent.rent(date);
+        } catch (Exception e) {
+            System.out.println("Error in reserving instrument: " + (number));
+        }
+
     }
 
     public void returnInstrument(int number) {
@@ -97,15 +97,10 @@ public class InstrumentList {
             return;
         }
         Instrument instToUnrent = instruments.get(number - 1);
-        //        System.out.println("Would you like to return " + instToUnrent + "? [Y/N]");
-        //        String userInput = ui.readUserInput();
-        //
-        //        if (userInput.equals("Y")) {
+
         System.out.println("Returning instrument: " + instToUnrent);
         instToUnrent.unrent();
-        //        } else {
-        //            System.out.println("Return cancelled");
-        //        }
+
     }
 
     public ArrayList<Instrument> getList() {
