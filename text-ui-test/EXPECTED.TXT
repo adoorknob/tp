@@ -56,6 +56,7 @@ Welcome to
 
 How can I help you?
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
+Running daily overdue check...
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 Here is a list of available commands:
 Available Commands:
@@ -67,34 +68,36 @@ reserve: reserves an available instrument
 return: returns a reserved instrument
 exit: quit SirDukeBox
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
+Checking overdue instruments...
+...Done checking overdue instruments
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 Here is the list of instruments:
-Guitar | O
-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
-Here is the list of instruments:
-Guitar | O
-Piano | O
+1. Guitar | Yamaha | 2000 | 
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 Here is the list of instruments:
-Guitar | O
-Piano | O
-Flute | O
+1. Guitar | Yamaha | 2000 | 
+2. Piano | Yamaha | 2010 | 
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
-Reserving instrument: Guitar | O
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 Here is the list of instruments:
-Guitar | X
-Piano | O
-Flute | O
+1. Guitar | Yamaha | 2000 | 
+2. Piano | Yamaha | 2010 | 
+3. Flute | Yamaha | 2001 | 
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
-Returning instrument: Guitar | X
+Reserving instrument: Guitar | Yamaha | 2000 | 
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 Here is the list of instruments:
-Guitar | O
-Piano | O
-Flute | O
+1. Guitar | Yamaha | 2000 | Rented
+2. Piano | Yamaha | 2010 | 
+3. Flute | Yamaha | 2001 | 
+*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
+Returning instrument: Guitar | Yamaha | 2000 | Rented
+*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
+Here is the list of instruments:
+1. Guitar | Yamaha | 2000 | 
+2. Piano | Yamaha | 2010 | 
+3. Flute | Yamaha | 2001 | 
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 bye bye

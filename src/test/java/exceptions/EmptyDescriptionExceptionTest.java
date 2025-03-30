@@ -1,7 +1,10 @@
 package exceptions;
 
+import commands.AddInstrumentCommand;
+import commands.Command;
 import instrument.InstrumentList;
 import org.junit.jupiter.api.Test;
+import ui.Ui;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -23,20 +26,24 @@ public class EmptyDescriptionExceptionTest {
     @Test
     void testAddInstrumentThrowsException() {
         InstrumentList instrumentList = new InstrumentList();
-        String[] invalidInput = {"", "Yamaha", "2023"}; // Empty instrument name
+        String invalidInput = "Yamaha|2023"; // Missing instrument name, will fail parsing
 
+        Command c = new AddInstrumentCommand(invalidInput);
         try {
-            instrumentList.addInstrument(invalidInput);
+            c.execute(instrumentList, new Ui());
             fail("Expected EmptyDescriptionException to be thrown");
         } catch (EmptyDescriptionException e) {
-            assertEquals("Input doesn't look right: event", e.getMessage());
+            // Adjust the message to match what your code actually throws
+            assertEquals("Input doesn't look right: Input format is invalid:" +
+                    " missing fields-> add [Instrument]|[Model]|[Year]", e.getMessage());
         }
     }
 
     @Test
     void testAddInstrumentValid() {
         InstrumentList instrumentList = new InstrumentList();
-        String[] validInput = {"Flute", "Yamaha", "2023"};
-        assertDoesNotThrow(() -> instrumentList.addInstrument(validInput));
+        String validInput = "Flute|Yamaha|2023";
+        Command c = new AddInstrumentCommand(validInput);
+        assertDoesNotThrow(() -> c.execute(instrumentList, new Ui()));
     }
 }

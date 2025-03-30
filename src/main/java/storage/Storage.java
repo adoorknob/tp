@@ -1,11 +1,13 @@
 package storage;
 
+
 import exceptions.FileCannotBeFoundException;
 import exceptions.FileCannotBeMadeException;
 import instrument.Instrument;
 import instrument.InstrumentList;
 import parser.Parser;
 import ui.Ui;
+import commands.AddInstrumentCommand;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -17,10 +19,11 @@ public class Storage {
     String outputFilePath;
     String outputText = "";
     Ui ui;
+    Parser parser;
     InstrumentList instrumentList;
     File file;
 
-    public Storage(Ui ui, String outputFilePath) {
+    public Storage(Ui ui, Parser parser, String outputFilePath) {
         this.ui = ui;
         instrumentList = new InstrumentList();
         this.outputFilePath = outputFilePath;
@@ -83,8 +86,8 @@ public class Storage {
     }
 
     private void addEntryToSession(String line) {
-        String[] newInstrumentData = Parser.parseFileEntryToInstrument(line);
-        instrumentList.addInstrument(newInstrumentData);
+        AddInstrumentCommand c = new AddInstrumentCommand(line);
+        c.parse(instrumentList, ui);
     }
 
     private void addEntryToOutputText(Instrument instrument) {
