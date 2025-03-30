@@ -60,6 +60,17 @@ public class InstrumentList {
         //        }
     }
 
+    public void reserveInstrumentFromTo(int number, String from, String to) {
+        assert number > 0 && number <= numberOfInstruments : "Instrument number out of bounds: " + number;
+        if (this.instruments.isEmpty()) {
+            System.out.println("No instruments available for reservation");
+            return;
+        }
+        Instrument instToRent = instruments.get(number - 1);
+        instToRent.rent();
+
+    }
+
     public void returnInstrument(int number) {
         assert number > 0 && number <= numberOfInstruments : "Instrument number out of bounds: " + number;
         if (this.instruments.isEmpty()) {

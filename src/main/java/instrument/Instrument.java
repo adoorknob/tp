@@ -45,6 +45,13 @@ public abstract class Instrument {
 
     public void unrent() {
         isRented = false;
+        rentedFrom = "";
+        rentedTo = "";
+    }
+
+    public void rentFromTo(String from, String to) {
+        rentedFrom = from;
+        rentedTo = to;
     }
 
     public boolean isRented() {

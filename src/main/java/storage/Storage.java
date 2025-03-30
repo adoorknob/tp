@@ -7,7 +7,6 @@ import instrument.Instrument;
 import instrument.InstrumentList;
 import parser.Parser;
 import ui.Ui;
-import commands.Command;
 import commands.AddInstrumentCommand;
 
 import java.io.File;
@@ -87,8 +86,8 @@ public class Storage {
     }
 
     private void addEntryToSession(String line) {
-        Command c = new AddInstrumentCommand(line);
-        c.execute(instrumentList, ui);
+        AddInstrumentCommand c = new AddInstrumentCommand(line);
+        c.parse(instrumentList, ui);
     }
 
     private void addEntryToOutputText(Instrument instrument) {
