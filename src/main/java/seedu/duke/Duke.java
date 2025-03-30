@@ -13,6 +13,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+
 public class Duke {
     /**
      * Main entry-point for the java.duke.Duke application.
@@ -80,6 +81,19 @@ public class Duke {
             storage.saveCurrentFile(instrumentList);
         } catch (IOException e) {
             throw new FileCannotBeFoundException(saveFilePath);
+        } finally {
+            shutdownScheduler();
+        }
+    }
+
+    private void shutdownScheduler() {
+        scheduler.shutdown();
+        try {
+            if (!scheduler.awaitTermination(3, TimeUnit.SECONDS)) {
+                scheduler.shutdownNow();
+            }
+        } catch (InterruptedException e) {
+            scheduler.shutdownNow();
         }
     }
 
