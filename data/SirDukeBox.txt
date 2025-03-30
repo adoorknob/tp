@@ -1,5 +1,0 @@
-Guitar | model | 2002 | true | false
-Piano | fdjs | 2003 | false | false
-Flute | fdaf | 2003 | false | false
-Flute | smth | 2005 | false | false
-Guitar | tom | 2020 | true | false
