@@ -120,14 +120,32 @@ public class Ui {
     }
 
     public void printGoodbye() {
-        System.out.println(TEXTBORDER);
-        System.out.println("bye bye");
-        System.out.println(TEXTBORDER);
+        printMessageWithTextBorder("bye bye");
     }
 
     public void printNoMatchingCommandError() {
+        printMessageWithTextBorder("No matching command found");
+    }
+
+    public void printDirectoryAlreadyExists() {
+        printMessageWithTextBorder("Directory already exists");
+    }
+
+    public void printFileAlreadyExists() {
+        printMessageWithTextBorder("File already exists");
+    }
+
+    public void printCreatingDirectory(String directory) {
+        printMessageWithTextBorder("Creating directory: " + directory);
+    }
+
+    public void printCreatingFile(String file) {
+        printMessageWithTextBorder("Creating file: " + file);
+    }
+
+    private void printMessageWithTextBorder(String message) {
         System.out.println(TEXTBORDER);
-        System.out.println("No matching command found");
+        System.out.println(message);
         System.out.println(TEXTBORDER);
     }
 }

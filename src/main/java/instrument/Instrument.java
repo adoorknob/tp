@@ -28,4 +28,8 @@ public abstract class Instrument {
     public String toString() {
         return name + " | " + (isRented ? "X" : "O");
     }
+
+    public String toFileEntry() {
+        return name + " | " + model + " | " + year + " | " + (isRented ? "X" : "O");
+    }
 }
