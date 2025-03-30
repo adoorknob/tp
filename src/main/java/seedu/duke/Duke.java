@@ -22,7 +22,7 @@ public class Duke {
 
     public Duke() {
         ui = new Ui();
-        storage = new Storage(saveFilePath);
+        storage = new Storage(ui, saveFilePath);
         parser = new Parser();
 
         InstrumentList currentInstrumentList;
