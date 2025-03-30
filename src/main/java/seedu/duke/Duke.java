@@ -1,9 +1,13 @@
 package seedu.duke;
 
 import commands.Command;
+import exceptions.FileCannotBeFoundException;
+import storage.Storage;
 import ui.Ui;
 import parser.Parser;
 import instrument.InstrumentList;
+
+import java.io.IOException;
 
 public class Duke {
     /**
@@ -12,11 +16,22 @@ public class Duke {
     private final Ui ui;
     private final Parser parser;
     private final InstrumentList instrumentList;
+    private final Storage storage;
+
+    private final String saveFilePath = "./data/SirDukeBox.txt";
 
     public Duke() {
         ui = new Ui();
-        instrumentList = new InstrumentList();
+        storage = new Storage(ui, saveFilePath);
         parser = new Parser();
+
+        InstrumentList currentInstrumentList;
+        try {
+            currentInstrumentList = storage.loadOldFile();
+        } catch (FileCannotBeFoundException e) {
+            currentInstrumentList = new InstrumentList();
+        }
+        instrumentList = currentInstrumentList;
     }
 
     public void runDuke() {
@@ -39,6 +54,12 @@ public class Duke {
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
+        }
+
+        try {
+            storage.saveCurrentFile(instrumentList);
+        } catch (IOException e) {
+            throw new FileCannotBeFoundException(saveFilePath);
         }
     }
 
