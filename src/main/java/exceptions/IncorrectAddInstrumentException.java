@@ -1,7 +1,7 @@
 package exceptions;
 
-public class incorrectAddInstrumentException extends EmptyDescriptionException {
-    public incorrectAddInstrumentException(String message) {
+public class IncorrectAddInstrumentException extends EmptyDescriptionException {
+    public IncorrectAddInstrumentException(String message) {
         super(message + "-> add [Instrument]|[Model]|[Year]");
     }
 }

@@ -1,57 +1,64 @@
 package parser;
 
-import exceptions.incorrectAddInstrumentException;
-import utils.TimeChecker;
+import exceptions.IncorrectAddInstrumentException;
+import utils.isOverdueChecker;
+import utils.dateTimeParser;
 
 public class commandParser {
+    public commandParser() {}
 
-    TimeChecker timeChecker;
-
-    public commandParser() {
-        timeChecker = new TimeChecker();
-    }
-
-    public String[] separateNMY(String input) throws incorrectAddInstrumentException {
+    public String[] separate(String input) throws IncorrectAddInstrumentException {
         if (input == null || input.isEmpty()) {
-            throw new incorrectAddInstrumentException("Input is Empty");
+            throw new IncorrectAddInstrumentException("Input is Empty");
         }
-        String[] split = Parser.parseFileEntryToInstrument(input);
+        String[] split = Parser.parseFileEntryToInstrument(input); // TODO fix this
 
         if (split.length < 3) {
-            throw new incorrectAddInstrumentException("Input format is invalid: missing fields");
+            throw new IncorrectAddInstrumentException("Input format is invalid: missing fields");
         }
 
         try {
             Integer.parseInt(split[2]);
             return split;
         } catch (NumberFormatException e) {
-            throw new incorrectAddInstrumentException("Input year is invalid");
+            throw new IncorrectAddInstrumentException("Input year is invalid");
         }
     }
 
-    public String instrumentName(String[] userInput) throws incorrectAddInstrumentException {
+    public String[] splits(String input) {
+        String[] splitInput = input.split("\\s+");
+
+        // Trim each element (just in case there are extra spaces around)
+        for (int i = 0; i < splitInput.length; i++) {
+            splitInput[i] = splitInput[i].trim();
+        }
+
+        return splitInput;
+    }
+
+    public String instrumentName(String[] userInput) throws IncorrectAddInstrumentException {
         if (userInput == null || userInput.length == 0 || userInput[0].isEmpty()) {
-            throw new incorrectAddInstrumentException(" is Empty");
+            throw new IncorrectAddInstrumentException(" is Empty");
         }
         return userInput[0];
     }
 
-    public String modelName(String[] userInput) throws incorrectAddInstrumentException {
+    public String modelName(String[] userInput) throws IncorrectAddInstrumentException {
         if (userInput == null || userInput.length < 1 || userInput[1].isEmpty() ) {
-            throw new incorrectAddInstrumentException("Input is Empty");
+            throw new IncorrectAddInstrumentException("Input is Empty");
         }
         return userInput[1];
     }
 
-    public int instrumentYear(String[] userInput) throws incorrectAddInstrumentException {
+    public int instrumentYear(String[] userInput) throws IncorrectAddInstrumentException {
         if (userInput == null || userInput.length <= 2 || userInput[2].isEmpty()) {
-            throw new incorrectAddInstrumentException("Instrument year is missing");
+            throw new IncorrectAddInstrumentException("Instrument year is missing");
         }
 
         try {
             return Integer.parseInt(userInput[2].trim());
         } catch (NumberFormatException e) {
-            throw new incorrectAddInstrumentException("Invalid instrument year: " + userInput[2]);
+            throw new IncorrectAddInstrumentException("Invalid instrument year: " + userInput[2]);
         }
     }
 
@@ -61,14 +68,20 @@ public class commandParser {
     }
 
     public boolean isOverdue(String[] userInput) {
-        return userInput.length > 4 && Boolean.parseBoolean(userInput[4]);
+        if (userInput.length > 6 && !userInput[6].isBlank()) {
+            return isOverdueChecker.isOverdue(userInput[6]);
+        }
+        return false;
     }
 
+
     public String rentedFrom(String[] userInput) {
-        return (userInput.length > 5 && userInput[5] != null) ? userInput[5] : "";
+        return (userInput.length > 5 && userInput[5] != null) ? dateTimeParser.parseDateTime(userInput[5]) : "";
     }
 
     public String rentedTo(String[] userInput) {
-        return (userInput.length > 6 && userInput[6] != null) ? userInput[6] : "";  // Fixed incorrect index
+        return (userInput.length > 6 && userInput[6] != null) ? dateTimeParser.parseDateTime(userInput[6]) : "";
     }
+
+
 }

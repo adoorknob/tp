@@ -58,8 +58,17 @@ public abstract class Instrument {
         return isRented;
     }
 
+    public String dueDate() {
+        return rentedTo;
+    }
+
+    public void setOverdue(boolean overDue) {
+        isOverDue = overDue;
+    }
+
     public String toString() {
-        return name + " | " + model + " | " + year + " | " + (isRented ? "X" : "O");
+        return name + " | " + model + " | " + year + " | " + (isRented ? "Rented" : "") + (isOverDue ? "| Overdue " : "") +
+                (!rentedFrom.isEmpty() ? " | Rented from: " + rentedFrom : "") + (!rentedTo.isEmpty() ? " | Rented to: " + rentedTo : "");
     }
 
     public String toFileEntry() {

@@ -3,6 +3,7 @@ package utils;
 import java.time.LocalTime;
 
 public class TimeChecker {
+
     // Method to get current time
     public LocalTime getCurrentTime() {
         return LocalTime.now();

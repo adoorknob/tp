@@ -1,7 +1,7 @@
 package commands;
 
 import exceptions.EmptyDescriptionException;
-import exceptions.incorrectAddInstrumentException;
+import exceptions.IncorrectAddInstrumentException;
 import instrument.Flute;
 import instrument.Guitar;
 import instrument.InstrumentList;
@@ -17,8 +17,8 @@ public class AddInstrumentCommand extends Command {
         cmdparser = new commandParser();
     }
 
-    public void parse(InstrumentList instrumentList, Ui ui) throws incorrectAddInstrumentException {
-        String[] userInput = cmdparser.separateNMY(this.Name.trim());
+    public void parse(InstrumentList instrumentList, Ui ui) throws IncorrectAddInstrumentException {
+        String[] userInput = cmdparser.separate(this.Name.trim());
 
         String instrument = cmdparser.instrumentName(userInput);
         String model = cmdparser.modelName(userInput);
@@ -54,8 +54,8 @@ public class AddInstrumentCommand extends Command {
     }
 
     @Override
-    public void execute(InstrumentList instrumentList, Ui ui) throws incorrectAddInstrumentException {
-            String[] userInput = cmdparser.separateNMY(this.Name.trim());
+    public void execute(InstrumentList instrumentList, Ui ui) throws IncorrectAddInstrumentException {
+            String[] userInput = cmdparser.separate(this.Name.trim());
 
             String instrument = cmdparser.instrumentName(userInput);
             String model = cmdparser.modelName(userInput);

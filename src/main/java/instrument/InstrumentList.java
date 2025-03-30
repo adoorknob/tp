@@ -68,7 +68,7 @@ public class InstrumentList {
         }
         Instrument instToRent = instruments.get(number - 1);
         instToRent.rent();
-
+        instToRent.rentFromTo(from, to);
     }
 
     public void returnInstrument(int number) {
