@@ -34,5 +34,13 @@
 * *glossary item* - Definition
 
 ## Instructions for manual testing
+Available Commands:
+1. help: list all commands
+2. list: list all instruments
+3. add: adds a new instrument
+4. delete: deletes an existing instrument
+5. reserve: reserves an available instrument
+6. return: returns a reserved instrument
+7. exit: quit SirDukeBox
 
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
