@@ -1,7 +1,6 @@
 package commands;
 
 import instrument.InstrumentList;
-import parser.Parser;
 import ui.Ui;
 
 public class HelpCommand extends Command {
