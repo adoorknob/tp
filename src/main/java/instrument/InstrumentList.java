@@ -72,15 +72,15 @@ public class InstrumentList {
             return;
         }
         Instrument instToRent = instruments.get(number - 1);
-        System.out.println("Would you like to reserve " + instToRent + "? [Y/N]");
-        String userInput = ui.readUserInput().toUpperCase();
-
-        if (userInput.equals("Y")) {
+//        System.out.println("Would you like to reserve " + instToRent + "? [Y/N]");
+//        String userInput = ui.readUserInput().toUpperCase();
+//
+//        if (userInput.equals("Y")) {
             System.out.println("Reserving instrument: " + instToRent);
             instToRent.rent();
-        } else {
-            System.out.println("Reserve cancelled");
-        }
+//        } else {
+//            System.out.println("Reserve cancelled");
+//        }
     }
 
     public void returnInstrument(int number) {
@@ -92,15 +92,15 @@ public class InstrumentList {
             return;
         }
         Instrument instToUnrent = instruments.get(number - 1);
-        System.out.println("Would you like to return " + instToUnrent + "? [Y/N]");
-        String userInput = ui.readUserInput().toUpperCase();
-
-        if (userInput.equals("Y")) {
+//        System.out.println("Would you like to return " + instToUnrent + "? [Y/N]");
+//        String userInput = ui.readUserInput().toUpperCase();
+//
+//        if (userInput.equals("Y")) {
             System.out.println("Returning instrument: " + instToUnrent);
             instToUnrent.unrent();
-        } else {
-            System.out.println("Return cancelled");
-        }
+//        } else {
+//            System.out.println("Return cancelled");
+//        }
     }
 
     public ArrayList<Instrument> getList() {
