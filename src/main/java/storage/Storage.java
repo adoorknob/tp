@@ -20,8 +20,8 @@ public class Storage {
     InstrumentList instrumentList;
     File file;
 
-    public Storage(String outputFilePath) {
-        ui = new Ui();
+    public Storage(Ui ui, String outputFilePath) {
+        this.ui = ui;
         instrumentList = new InstrumentList();
         this.outputFilePath = outputFilePath;
     }
