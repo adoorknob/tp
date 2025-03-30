@@ -1,22 +1,18 @@
 package instrument;
 
 import java.util.ArrayList;
-import ui.Ui;
 import exceptions.EmptyDescriptionException;
 
 public class InstrumentList {
     private static final Integer currYEAR =  2025; // Current
 
-
     private ArrayList<Instrument> instruments;
     private int numberOfInstruments;
 
-    private Ui ui;
 
     public InstrumentList() {
         this.instruments = new ArrayList<>();
         this.numberOfInstruments = 0;
-        ui = new Ui();
     }
 
     public void addInstrument(String[] userInput) {

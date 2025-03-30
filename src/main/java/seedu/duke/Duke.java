@@ -3,6 +3,7 @@ package seedu.duke;
 import commands.Command;
 import ui.Ui;
 import parser.Parser;
+import utils.TimeChecker;
 import instrument.InstrumentList;
 
 public class Duke {
@@ -12,11 +13,13 @@ public class Duke {
     private final Ui ui;
     private final Parser parser;
     private final InstrumentList instrumentList;
+    private final TimeChecker timeChecker;
 
     public Duke() {
         ui = new Ui();
         instrumentList = new InstrumentList();
         parser = new Parser();
+        timeChecker = new TimeChecker();
     }
 
     public void runDuke() {
