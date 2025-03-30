@@ -64,6 +64,7 @@ public class InstrumentList {
         String model = userInput[1];
         int year = Integer.parseInt(userInput[2]);
         assert year >= 1600 && year <= currYEAR : "Invalid year: " + year;
+        LocalDate dueBy = LocalDate.parse(userInput[4]);
 
 
         if (instrument.isBlank() || model.isBlank()) {
@@ -73,15 +74,15 @@ public class InstrumentList {
         try {
             switch (instrument) {
             case "Flute":
-                this.instruments.add(new Flute(instrument, model, year, isRented));
+                this.instruments.add(new Flute(instrument, model, year, dueBy));
                 this.numberOfInstruments++;
                 break;
             case "Piano":
-                this.instruments.add(new Piano(instrument, model, year, isRented));
+                this.instruments.add(new Piano(instrument, model, year, dueBy));
                 this.numberOfInstruments++;
                 break;
             case "Guitar":
-                this.instruments.add(new Guitar(instrument, model, year, isRented));
+                this.instruments.add(new Guitar(instrument, model, year, dueBy));
                 this.numberOfInstruments++;
                 break;
             default:

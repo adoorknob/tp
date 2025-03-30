@@ -1,5 +1,7 @@
 package instrument;
 
+import java.time.LocalDate;
+
 public class Piano extends Instrument {
 
     public Piano(String pianoName, String model, int year) {
@@ -8,11 +10,12 @@ public class Piano extends Instrument {
         this.year = year;
     }
 
-    public Piano(String pianoName, String model, int year, boolean isRented) {
+    public Piano(String pianoName, String model, int year, LocalDate dueBy) {
         this.name = pianoName;
         this.model = model;
         this.year = year;
-        this.isRented = isRented;
+        this.isRented = true;
+        this.dueBy = dueBy;
     }
 
     @Override

@@ -1,5 +1,7 @@
 package instrument;
 
+import java.time.LocalDate;
+
 public class Guitar extends Instrument {
 
     public Guitar(String guitarName, String model, int year) {
@@ -8,11 +10,12 @@ public class Guitar extends Instrument {
         this.year = year;
     }
 
-    public Guitar(String guitarName, String model, int year, boolean isRented) {
+    public Guitar(String guitarName, String model, int year, LocalDate dueBy) {
         this.name = guitarName;
         this.model = model;
         this.year = year;
-        this.isRented = isRented;
+        this.isRented = true;
+        this.dueBy = dueBy;
     }
 
     @Override

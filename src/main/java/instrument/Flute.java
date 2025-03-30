@@ -1,5 +1,7 @@
 package instrument;
 
+import java.time.LocalDate;
+
 public class Flute extends Instrument {
 
     public Flute(String fluteName, String model, int year) {
@@ -8,11 +10,12 @@ public class Flute extends Instrument {
         this.year = year;
     }
 
-    public Flute(String fluteName, String model, int year, boolean isRented) {
+    public Flute(String fluteName, String model, int year, LocalDate dueBy) {
         this.name = fluteName;
         this.model = model;
         this.year = year;
-        this.isRented = isRented;
+        this.isRented = true;
+        this.dueBy = dueBy;
     }
 
     @Override

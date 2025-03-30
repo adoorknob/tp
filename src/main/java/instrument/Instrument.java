@@ -35,6 +35,7 @@ public abstract class Instrument {
     }
 
     public String toFileEntry() {
-        return name + " | " + model + " | " + year + " | " + (isRented ? "X" : "O");
+        return name + " | " + model + " | " + year + " | " + (isRented ? "X" : "O")
+                + (dueBy == null ? "" : " | " + dueBy);
     }
 }
