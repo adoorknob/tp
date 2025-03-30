@@ -15,17 +15,12 @@ public class dateTimeParser {
             DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm")
     );
 
-    /**
-     *  Reformats string to more readable date time format
-     *
-     * @param input, String to be parsed
-     * @return A formated date-time string
-     */
-    public static String parseDateTime(String input) {
+    public static String parseDateTime(String input) throws DateTimeParseException {
         for (DateTimeFormatter format : FORMATS) {
             try {
                 return LocalDateTime.parse(input, format).format(DateTimeFormatter.ofPattern("d/M/yyyy HHmm"));
-            } catch (DateTimeParseException ignored) {
+            } catch (DateTimeParseException e) {
+                System.out.println(e);
             }
         }
         return input;

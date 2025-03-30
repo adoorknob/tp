@@ -67,8 +67,9 @@ public abstract class Instrument {
     }
 
     public String toString() {
-        return name + " | " + model + " | " + year + " | " + (isRented ? "Rented" : "") + (isOverDue ? "| Overdue " : "") +
-                (!rentedFrom.isEmpty() ? " | Rented from: " + rentedFrom : "") + (!rentedTo.isEmpty() ? " | Rented to: " + rentedTo : "");
+        return name + " | " + model + " | " + year + " | " + (isRented ? "Rented" : "") +
+                (isOverDue ? "| Overdue " : "") + (!rentedFrom.isEmpty() ? " | Rented from: "
+                + rentedFrom : "") + (!rentedTo.isEmpty() ? " | Rented to: " + rentedTo : "");
     }
 
     public String toFileEntry() {

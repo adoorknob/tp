@@ -55,34 +55,32 @@ public class AddInstrumentCommand extends Command {
 
     @Override
     public void execute(InstrumentList instrumentList, Ui ui) throws IncorrectAddInstrumentException {
-            String[] userInput = cmdparser.separate(this.Name.trim());
+        String[] userInput = cmdparser.separate(this.Name.trim());
 
-            String instrument = cmdparser.instrumentName(userInput);
-            String model = cmdparser.modelName(userInput);
-            int year = cmdparser.instrumentYear(userInput);
-            boolean isRented =  cmdparser.isRented(userInput);
+        String instrument = cmdparser.instrumentName(userInput);
+        String model = cmdparser.modelName(userInput);
+        int year = cmdparser.instrumentYear(userInput);
+        boolean isRented =  cmdparser.isRented(userInput);
 
-
-
-            // TODO: abstract this into hashmap
-            try {
-                switch (instrument) {
-                case "Flute":
-                    instrumentList.addInstrument(new Flute(instrument, model, year));
-                    break;
-                case "Piano":
-                    instrumentList.addInstrument(new Piano(instrument, model, year));
-                    break;
-                case "Guitar":
-                    instrumentList.addInstrument(new Guitar(instrument, model, year));
-                    break;
-                default:
-                    System.out.println("invalid instrument");
-                }
-            } catch (EmptyDescriptionException e) {
-                System.out.println(e.getMessage());
+        // TODO: abstract this into hashmap
+        try {
+            switch (instrument) {
+            case "Flute":
+                instrumentList.addInstrument(new Flute(instrument, model, year));
+                break;
+            case "Piano":
+                instrumentList.addInstrument(new Piano(instrument, model, year));
+                break;
+            case "Guitar":
+                instrumentList.addInstrument(new Guitar(instrument, model, year));
+                break;
+            default:
+                System.out.println("invalid instrument");
             }
-            ui.printInstrumentList(instrumentList.getList());
+        } catch (EmptyDescriptionException e) {
+            System.out.println(e.getMessage());
+        }
+        ui.printInstrumentList(instrumentList.getList());
     }
 
     @Override

@@ -27,7 +27,7 @@ class PianoTest {
     void toString_rentedPiano_expectCorrectString() {
         Piano piano = new Piano("Piano","Yamaha",2000);
         piano.rent();
-        assertEquals("Piano | Yamaha | 2000 | X", piano.toString());
+        assertEquals("Piano | Yamaha | 2000 | Rented", piano.toString());
     }
 
     @Test
@@ -35,7 +35,7 @@ class PianoTest {
         Piano piano = new Piano("Piano","Yamaha",2000);
         piano.rent();
         piano.unrent();
-        assertEquals("Piano | Yamaha | 2000 | O", piano.toString());
+        assertEquals("Piano | Yamaha | 2000 | ", piano.toString());
     }
 
 

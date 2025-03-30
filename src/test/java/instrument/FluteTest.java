@@ -28,7 +28,7 @@ class FluteTest {
     void toString_rentedFlute_expectCorrectString() {
         Flute flute = new Flute("Flute","Yamaha",2000);
         flute.rent();
-        assertEquals("Flute | Yamaha | 2000 | X",flute.toString());
+        assertEquals("Flute | Yamaha | 2000 | Rented",flute.toString());
     }
 
     @Test
@@ -36,7 +36,7 @@ class FluteTest {
         Flute flute = new Flute("Flute","Yamaha",2000);
         flute.rent();
         flute.unrent();
-        assertEquals("Flute | Yamaha | 2000 | O",flute.toString());
+        assertEquals("Flute | Yamaha | 2000 | ",flute.toString());
     }
 
     @Test

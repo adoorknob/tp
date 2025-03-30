@@ -7,8 +7,8 @@ public class Flute extends Instrument {
     }
 
     public Flute(String name, String model, int year, boolean isRented, boolean isOverDue,
-                      String rentedFrom, String rentedTo) {
-       super(name, model, year, isRented, isOverDue, rentedFrom, rentedTo);
+                 String rentedFrom, String rentedTo) {
+        super(name, model, year, isRented, isOverDue, rentedFrom, rentedTo);
     }
 
     @Override
