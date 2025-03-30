@@ -27,7 +27,7 @@ class GuitarTest {
     void toString_rentedGuitar_expectCorrectString() {
         Guitar guitar = new Guitar("Guitar","Yamaha",2000);
         guitar.rent();
-        assertEquals("Guitar | X", guitar.toString());
+        assertEquals("Guitar | Yamaha | 2000 | X", guitar.toString());
     }
 
     @Test
@@ -35,7 +35,7 @@ class GuitarTest {
         Guitar guitar = new Guitar("Guitar","Yamaha",2000);
         guitar.rent();
         guitar.unrent();
-        assertEquals("Guitar | O", guitar.toString());
+        assertEquals("Guitar | Yamaha | 2000 | O", guitar.toString());
     }
 
     @Test

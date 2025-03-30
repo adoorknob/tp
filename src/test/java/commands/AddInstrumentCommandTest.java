@@ -35,7 +35,7 @@ class AddInstrumentCommandTest {
         addInstrumentCommand = new AddInstrumentCommand("Guitar|Fender|2023");
 
         // Execute the command
-        addInstrumentCommand.execute(instrumentList, ui, parser);
+        addInstrumentCommand.execute(instrumentList, ui);
 
         // Verify that the instrument was added
         assertEquals(1, instrumentList.getList().size(), "Instrument list size should increase by 1.");
@@ -47,7 +47,7 @@ class AddInstrumentCommandTest {
         addInstrumentCommand = new AddInstrumentCommand("Piano|Yamaha|2022");
 
         // Execute the command
-        addInstrumentCommand.execute(instrumentList, ui, parser);
+        addInstrumentCommand.execute(instrumentList, ui);
 
         // Capture output and check if the instrument list was printed
         String output = outputStreamCaptor.toString().trim();

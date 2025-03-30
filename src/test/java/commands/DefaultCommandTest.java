@@ -32,7 +32,7 @@ class DefaultCommandTest {
     @Test
     void testExecutePrintsErrorMessage() {
         // Execute the command
-        defaultCommand.execute(instrumentList, ui, parser);
+        defaultCommand.execute(instrumentList, ui);
 
         // Capture output and check if the correct error message is printed
         String output = outputStreamCaptor.toString().trim();

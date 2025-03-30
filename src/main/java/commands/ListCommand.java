@@ -11,7 +11,7 @@ public class ListCommand extends Command {
     }
 
     @Override
-    public void execute(InstrumentList instrumentList, Ui ui, Parser parser) {
+    public void execute(InstrumentList instrumentList, Ui ui) {
         ui.printInstrumentList(instrumentList.getList());
     }
 

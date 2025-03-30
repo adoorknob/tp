@@ -10,7 +10,7 @@ public class ReserveCommand extends Command {
     }
 
     @Override
-    public void execute(InstrumentList instrumentList, Ui ui, Parser parser) {
+    public void execute(InstrumentList instrumentList, Ui ui) {
         try {
             instrumentList.reserveInstrument(Integer.parseInt(this.Name));
             ui.printInstrumentList(instrumentList.getList());

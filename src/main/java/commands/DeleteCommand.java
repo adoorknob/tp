@@ -10,7 +10,7 @@ public class DeleteCommand extends Command {
     }
 
     @Override
-    public void execute(InstrumentList instrumentList, Ui ui, Parser parser) {
+    public void execute(InstrumentList instrumentList, Ui ui) {
         instrumentList.deleteInstrument(Integer.parseInt(this.Name));
         ui.printInstrumentList(instrumentList.getList());
     }

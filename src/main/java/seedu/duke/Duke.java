@@ -18,15 +18,13 @@ public class Duke {
     private final Parser parser;
     private final InstrumentList instrumentList;
     private final Storage storage;
-    private final TimeChecker timeChecker;
 
     private final String saveFilePath = "./data/SirDukeBox.txt";
 
     public Duke() {
         ui = new Ui();
-        storage = new Storage(ui, saveFilePath);
         parser = new Parser();
-        timeChecker = new TimeChecker();
+        storage = new Storage(ui, parser, saveFilePath);
 
         InstrumentList currentInstrumentList;
         try {
@@ -44,6 +42,7 @@ public class Duke {
 
         while (!isExit) {
             try {
+
                 String userInput = ui.readUserInput();
                 String command = ui.getCommand(userInput);
                 String input = ui.getRemainingWords(userInput);
@@ -52,7 +51,7 @@ public class Duke {
                 assert input != null;
 
                 Command commandObj = parser.parse(command, input);
-                commandObj.execute(instrumentList, ui, parser);
+                commandObj.execute(instrumentList, ui);
                 isExit = commandObj.isExit();
 
             } catch (Exception e) {

@@ -31,7 +31,7 @@ class HelpCommandTest {
     @Test
     void testExecutePrintsHelpMessage() {
         // Run the execute method
-        helpCommand.execute(instrumentList, ui, parser);
+        helpCommand.execute(instrumentList, ui);
 
         // Capture output and check if it contains expected text
         String output = outputStreamCaptor.toString().trim();

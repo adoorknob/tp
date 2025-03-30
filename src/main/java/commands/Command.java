@@ -12,7 +12,7 @@ public abstract class Command {
     }
 
     // Abstract method to execute the command (to be implemented by subclasses)
-    public abstract void execute(InstrumentList instrumentList, Ui ui, Parser parser);
+    public abstract void execute(InstrumentList instrumentList, Ui ui);
 
     // Abstract method to check if the command is an exit command
     public abstract boolean isExit();

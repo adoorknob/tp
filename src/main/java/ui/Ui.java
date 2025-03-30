@@ -113,9 +113,11 @@ public class Ui {
     public void printInstrumentList(ArrayList<Instrument> instruments) {
         System.out.println(TEXTBORDER);
         System.out.println("Here is the list of instruments:");
-        for (Instrument instrument : instruments) {
-            System.out.println(instrument);
+
+        for (int i = 0; i < instruments.size(); i++) {
+            System.out.println((i + 1) + ". " + instruments.get(i).toString());
         }
+
         System.out.println(TEXTBORDER);
     }
 

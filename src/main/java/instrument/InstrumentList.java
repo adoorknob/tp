@@ -15,37 +15,14 @@ public class InstrumentList {
         this.numberOfInstruments = 0;
     }
 
-    public void addInstrument(String[] userInput) {
-        assert userInput.length > 0;
-        String instrument = userInput[0];
-        String model = userInput[1];
-        int year = Integer.parseInt(userInput[2]);
-        assert year >= 1600 && year <= currYEAR : "Invalid year: " + year;
-
-        if (instrument.isBlank() || model.isBlank()) {
+    public void addInstrument(Instrument instrument) {
+        assert instrument != null;
+        assert instrument.year >= 1600 && instrument.year <= currYEAR : "Invalid year: " + instrument.year;
+        if (instrument.name.isBlank() || instrument.model.isBlank()) {
             throw new EmptyDescriptionException("event");
         }
-
-        try {
-            switch (instrument) {
-            case "Flute":
-                this.instruments.add(new Flute(instrument, model, year));
-                this.numberOfInstruments++;
-                break;
-            case "Piano":
-                this.instruments.add(new Piano(instrument, model, year));
-                this.numberOfInstruments++;
-                break;
-            case "Guitar":
-                this.instruments.add(new Guitar(instrument, model, year));
-                this.numberOfInstruments++;
-                break;
-            default:
-                System.out.println("invalid instrument");
-            }
-        } catch (EmptyDescriptionException e) {
-            System.out.println(e.getMessage());
-        }
+        this.instruments.add(instrument);
+        this.numberOfInstruments++;
     }
 
     public void deleteInstrument(int number) {
@@ -101,8 +78,6 @@ public class InstrumentList {
         //        }
     }
 
-    public ArrayList<Instrument> getList() {
-        return this.instruments;
-    }
+    public ArrayList<Instrument> getList() {return this.instruments;}
 
 }

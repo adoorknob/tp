@@ -11,7 +11,7 @@ public class ExitCommand extends Command {
     }
 
     @Override
-    public void execute(InstrumentList instrumentList, Ui ui, Parser parser) {
+    public void execute(InstrumentList instrumentList, Ui ui) {
         ui.printGoodbye();  // Show a goodbye message
     }
 
