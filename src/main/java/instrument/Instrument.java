@@ -4,6 +4,10 @@ public abstract class Instrument {
 
     public String name;
 
+    public String model;
+
+    public int year;
+
     private boolean isRented = false;
 
     public abstract String playInstrument();
@@ -23,5 +27,9 @@ public abstract class Instrument {
 
     public String toString() {
         return name + " | " + (isRented ? "X" : "O");
+    }
+
+    public String toFileEntry() {
+        return name + " | " + model + " | " + year + " | " + (isRented ? "X" : "O");
     }
 }

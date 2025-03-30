@@ -1,66 +1,66 @@
 package seedu.duke;
 
+import commands.Command;
+import exceptions.FileCannotBeFoundException;
+import storage.Storage;
 import ui.Ui;
+import parser.Parser;
 import instrument.InstrumentList;
+
+import java.io.IOException;
 
 public class Duke {
     /**
      * Main entry-point for the java.duke.Duke application.
      */
-    private Ui ui;
-    private InstrumentList instrumentList;
+    private final Ui ui;
+    private final Parser parser;
+    private final InstrumentList instrumentList;
+    private final Storage storage;
+
+    private final String saveFilePath = "./data/SirDukeBox.txt";
 
     public Duke() {
         ui = new Ui();
-        instrumentList = new InstrumentList();
+        storage = new Storage(ui, saveFilePath);
+        parser = new Parser();
+
+        InstrumentList currentInstrumentList;
+        try {
+            currentInstrumentList = storage.loadOldFile();
+        } catch (FileCannotBeFoundException e) {
+            currentInstrumentList = new InstrumentList();
+        }
+        instrumentList = currentInstrumentList;
     }
 
     public void runDuke() {
-        boolean isDone = false;
-
         ui.printStartMessage();
+        boolean isExit = false;
 
-        while (!isDone) {
+        while (!isExit) {
             try {
                 String userInput = ui.readUserInput();
                 String command = ui.getCommand(userInput);
                 String input = ui.getRemainingWords(userInput);
 
-                switch (command) {
-                case "help":
-                    ui.printCommandList();
-                    break;
-                case "list":
-                    ui.printInstrumentList(instrumentList.getList());
-                    break;
-                case "add":
-                    instrumentList.addInstrument(input);
-                    ui.printInstrumentList(instrumentList.getList());
-                    break;
-                case "delete":
-                    instrumentList.deleteInstrument(Integer.parseInt(input));
-                    ui.printInstrumentList(instrumentList.getList());
-                    break;
-                case "reserve":
-                    instrumentList.reserveInstrument(Integer.parseInt(input));
-                    ui.printInstrumentList(instrumentList.getList());
-                    break;
-                case "return":
-                    instrumentList.returnInstrument(Integer.parseInt(input));
-                    ui.printInstrumentList(instrumentList.getList());
-                    break;
-                case "exit":
-                    isDone = true;
-                    break;
-                default:
-                    ui.printNoMatchingCommandError();
-                }
+                assert command != null;
+                assert input != null;
+
+                Command commandObj = parser.parse(command, input);
+                commandObj.execute(instrumentList, ui, parser);
+                isExit = commandObj.isExit();
+
             } catch (Exception e) {
                 System.out.println(e.getMessage());
-                break;
             }
         }
-        ui.printGoodbye();
+
+        try {
+            storage.saveCurrentFile(instrumentList);
+        } catch (IOException e) {
+            throw new FileCannotBeFoundException(saveFilePath);
+        }
     }
 
     public static void main(String[] args) {

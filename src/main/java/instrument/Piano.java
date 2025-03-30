@@ -2,8 +2,10 @@ package instrument;
 
 public class Piano extends Instrument {
 
-    public Piano(String pianoName) {
+    public Piano(String pianoName, String model, int year) {
         this.name = pianoName;
+        this.model = model;
+        this.year = year;
     }
 
     @Override

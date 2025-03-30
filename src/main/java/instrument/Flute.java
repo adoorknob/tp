@@ -2,8 +2,10 @@ package instrument;
 
 public class Flute extends Instrument {
 
-    public Flute(String fluteName) {
+    public Flute(String fluteName, String model, int year) {
         this.name = fluteName;
+        this.model = model;
+        this.year = year;
     }
 
     @Override

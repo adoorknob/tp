@@ -59,28 +59,23 @@ public class Ui {
             
             """;
 
-    private final String TEXTBORDER = "*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+";
+    private static final String TEXTBORDER = "*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+";
 
-    private final String COMMANDLIST = """
+    private static final String COMMANDLIST = """
+            Available Commands:
             help: list all commands
             list: list all instruments
             add: adds a new instrument
             delete: deletes an existing instrument
             reserve: reserves an available instrument
             return: returns a reserved instrument
-            exit: quit SirDukeBox """;;
+            exit: quit SirDukeBox""";;
 
     private Scanner scanner;
-    private Parser parser;
 
-    public Ui() {
-        this.scanner = new Scanner(System.in);
-        this.parser = new Parser();
-    }
+    public Ui() {this.scanner = new Scanner(System.in);}
 
-    public void print(String s) {
-        System.out.println(s);
-    }
+    public void print(String s) {System.out.println(s);}
 
     public void printStartMessage() {
         System.out.println("Welcome to");
@@ -97,11 +92,13 @@ public class Ui {
     }
 
     public String getCommand(String userInput) throws IOException {
+        assert userInput != null : "Input is null";
         String[] parsedInput = userInput.split(" ");
         return parsedInput.length > 0 ? parsedInput[0] : "";
     }
 
     public String getRemainingWords(String userInput) {
+        assert userInput != null : "Input is null";
         String[] parsedInput = userInput.split(" ");
         return String.join(" ", Arrays.copyOfRange(parsedInput, 1, parsedInput.length));
     }
@@ -123,14 +120,32 @@ public class Ui {
     }
 
     public void printGoodbye() {
-        System.out.println(TEXTBORDER);
-        System.out.println("bye bye");
-        System.out.println(TEXTBORDER);
+        printMessageWithTextBorder("bye bye");
     }
 
     public void printNoMatchingCommandError() {
+        printMessageWithTextBorder("No matching command found");
+    }
+
+    public void printDirectoryAlreadyExists() {
+        printMessageWithTextBorder("Directory already exists");
+    }
+
+    public void printFileAlreadyExists() {
+        printMessageWithTextBorder("File already exists");
+    }
+
+    public void printCreatingDirectory(String directory) {
+        printMessageWithTextBorder("Creating directory: " + directory);
+    }
+
+    public void printCreatingFile(String file) {
+        printMessageWithTextBorder("Creating file: " + file);
+    }
+
+    private void printMessageWithTextBorder(String message) {
         System.out.println(TEXTBORDER);
-        System.out.println("No such command");
+        System.out.println(message);
         System.out.println(TEXTBORDER);
     }
 }
