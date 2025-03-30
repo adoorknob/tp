@@ -12,7 +12,7 @@ public abstract class Instrument {
 
     public LocalDate dueBy;
 
-    private boolean isRented = false;
+    public boolean isRented = false;
 
     public abstract String playInstrument();
 

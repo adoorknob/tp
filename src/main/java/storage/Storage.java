@@ -84,7 +84,7 @@ public class Storage {
 
     private void addEntryToSession(String line) {
         String[] newInstrumentData = Parser.parseFileEntryToInstrument(line);
-        instrumentList.addInstrument(newInstrumentData);
+        instrumentList.addExistingInstrument(newInstrumentData);
     }
 
     private void addEntryToOutputText(Instrument instrument) {

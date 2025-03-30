@@ -53,6 +53,45 @@ public class InstrumentList {
         }
     }
 
+    public void addExistingInstrument(String[] userInput) {
+        assert userInput.length > 0;
+        boolean isRented = userInput[3].equals("X");
+        if (!isRented) {
+            addInstrument(userInput);
+            return;
+        }
+        String instrument = userInput[0];
+        String model = userInput[1];
+        int year = Integer.parseInt(userInput[2]);
+        assert year >= 1600 && year <= currYEAR : "Invalid year: " + year;
+
+
+        if (instrument.isBlank() || model.isBlank()) {
+            throw new EmptyDescriptionException("event");
+        }
+
+        try {
+            switch (instrument) {
+            case "Flute":
+                this.instruments.add(new Flute(instrument, model, year, isRented));
+                this.numberOfInstruments++;
+                break;
+            case "Piano":
+                this.instruments.add(new Piano(instrument, model, year, isRented));
+                this.numberOfInstruments++;
+                break;
+            case "Guitar":
+                this.instruments.add(new Guitar(instrument, model, year, isRented));
+                this.numberOfInstruments++;
+                break;
+            default:
+                System.out.println("invalid instrument");
+            }
+        } catch (EmptyDescriptionException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
     public void deleteInstrument(int number) {
         assert number > 0 && number <= numberOfInstruments : "Instrument number out of bounds: " + number;
         if (this.instruments.isEmpty()) {
