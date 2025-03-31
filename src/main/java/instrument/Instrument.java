@@ -1,5 +1,7 @@
 package instrument;
 
+import exceptions.NegativeUsageException;
+
 public abstract class Instrument {
 
     public String name;
@@ -15,6 +17,8 @@ public abstract class Instrument {
     private String rentedFrom;
 
     private String rentedTo;
+
+    private int usage = 0;
 
     public Instrument(String name, String model, int year) {
         this.name = name;
@@ -74,6 +78,23 @@ public abstract class Instrument {
 
     public String toFileEntry() {
         return name + " | " + model + " | " + year + " | " + (isRented) + " | " + (isOverDue) + " | " + rentedFrom
-                + " | " + rentedTo;
+                + " | " + rentedTo + " | " + usage;
     }
+
+    public void setUsage(int usage) throws NegativeUsageException {
+        if (usage<0){
+            throw new NegativeUsageException("Usage set is "+usage+". ");
+        }
+
+        this.usage = usage;
+    }
+
+    public int getUsage() {
+        return usage;
+    }
+
+    public void increaseUsage() {
+        this.usage++;
+    }
+
 }

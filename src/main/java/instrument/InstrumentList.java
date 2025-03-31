@@ -15,7 +15,7 @@ public class InstrumentList {
         this.numberOfInstruments = 0;
     }
 
-    public void addInstrument(Instrument instrument) {
+    public Instrument addInstrument(Instrument instrument) {
         assert instrument != null;
         assert instrument.year >= 1600 && instrument.year <= currYEAR : "Invalid year: " + instrument.year;
         if (instrument.name.isBlank() || instrument.model.isBlank()) {
@@ -23,6 +23,7 @@ public class InstrumentList {
         }
         this.instruments.add(instrument);
         this.numberOfInstruments++;
+        return instrument;
     }
 
     public void deleteInstrument(int number) {
@@ -55,6 +56,10 @@ public class InstrumentList {
         //        if (userInput.equals("Y")) {
         System.out.println("Reserving instrument: " + instToRent);
         instToRent.rent();
+
+        //Increase Usage
+        instToRent.increaseUsage();
+
         //        } else {
         //            System.out.println("Reserve cancelled");
         //        }
@@ -69,6 +74,9 @@ public class InstrumentList {
         Instrument instToRent = instruments.get(number - 1);
         instToRent.rent();
         instToRent.rentFromTo(from, to);
+
+        //Increase usage
+        instToRent.increaseUsage();
     }
 
     public void returnInstrument(int number) {

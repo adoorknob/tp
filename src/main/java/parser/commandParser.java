@@ -21,7 +21,7 @@ public class commandParser {
             Integer.parseInt(split[2]);
             return split;
         } catch (NumberFormatException e) {
-            throw new IncorrectAddInstrumentException("Input year is invalid");
+            throw new IncorrectAddInstrumentException("Input year or usage is invalid");
         }
     }
 
@@ -83,5 +83,16 @@ public class commandParser {
         return (userInput.length > 6 && userInput[6] != null) ? dateTimeParser.parseDateTime(userInput[6]) : "";
     }
 
+    public int usage(String[] userInput) throws IncorrectAddInstrumentException {
+        if (userInput == null || userInput.length <= 7 || userInput[7].isEmpty()) {
+            throw new IncorrectAddInstrumentException("Instrument usage is missing");
+        }
+
+        try {
+            return Integer.parseInt(userInput[7].trim());
+        } catch (NumberFormatException e) {
+            throw new IncorrectAddInstrumentException("Invalid usage: " + userInput[7]);
+        }
+    }
 
 }
