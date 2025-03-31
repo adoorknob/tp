@@ -50,7 +50,7 @@ public class ParserTest {
             cmdparser.separate(invalidInput);
             fail("Expected IOException to be thrown");
         } catch (IncorrectAddInstrumentException e) {
-            assertEquals("Input doesn't look right: Input year is invalid-> " +
+            assertEquals("Input doesn't look right: Input year or usage is invalid-> " +
                     "add [Instrument]|[Model]|[Year]", e.getMessage());
         }
     }
