@@ -4,9 +4,6 @@
 > *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 > Creating file: ./data/SirDukeBox.txt
 > *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
-> Running daily overdue check...
-> Checking overdue instruments...
-> ...Done checking overdue instruments
 > Welcome to
                 _.-'\       /'-._
             _.-'    _\ .-. /_    '-._
