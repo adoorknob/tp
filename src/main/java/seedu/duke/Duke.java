@@ -49,7 +49,6 @@ public class Duke {
      */
     private void startDailyOverdueCheck() {
         scheduler.scheduleAtFixedRate(() -> {
-            System.out.println("Running daily overdue check...");
             IsOverdueChecker.checkAll(instrumentList);
         }, 0, 24, TimeUnit.HOURS); // Runs immediately, then every 24 hours
     }
