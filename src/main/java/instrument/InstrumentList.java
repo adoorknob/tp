@@ -50,6 +50,11 @@ public class InstrumentList {
             return;
         }
         Instrument instToRent = instruments.get(number - 1);
+
+        if (instToRent.isRented()) {
+            System.out.println("Instrument is already reserved");
+            return;
+        }
         //        System.out.println("Would you like to reserve " + instToRent + "? [Y/N]");
         //        String userInput = ui.readUserInput();
         //
@@ -72,6 +77,12 @@ public class InstrumentList {
             return;
         }
         Instrument instToRent = instruments.get(number - 1);
+
+        if (instToRent.isRented()){
+            System.out.println("Instrument is already rented");
+            return;
+        }
+
         instToRent.rent();
         instToRent.rentFromTo(from, to);
 
