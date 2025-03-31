@@ -15,7 +15,7 @@ public class InstrumentList {
         this.numberOfInstruments = 0;
     }
 
-    public void addInstrument(Instrument instrument) {
+    public Instrument addInstrument(Instrument instrument) {
         assert instrument != null;
         assert instrument.year >= 1600 && instrument.year <= currYEAR : "Invalid year: " + instrument.year;
         if (instrument.name.isBlank() || instrument.model.isBlank()) {
@@ -23,6 +23,7 @@ public class InstrumentList {
         }
         this.instruments.add(instrument);
         this.numberOfInstruments++;
+        return instrument;
     }
 
     public void deleteInstrument(int number) {
@@ -49,12 +50,21 @@ public class InstrumentList {
             return;
         }
         Instrument instToRent = instruments.get(number - 1);
+
+        if (instToRent.isRented()) {
+            System.out.println("Instrument is already reserved");
+            return;
+        }
         //        System.out.println("Would you like to reserve " + instToRent + "? [Y/N]");
         //        String userInput = ui.readUserInput();
         //
         //        if (userInput.equals("Y")) {
         System.out.println("Reserving instrument: " + instToRent);
         instToRent.rent();
+
+        //Increase Usage
+        instToRent.increaseUsage();
+
         //        } else {
         //            System.out.println("Reserve cancelled");
         //        }
@@ -67,8 +77,17 @@ public class InstrumentList {
             return;
         }
         Instrument instToRent = instruments.get(number - 1);
+
+        if (instToRent.isRented()){
+            System.out.println("Instrument is already rented");
+            return;
+        }
+
         instToRent.rent();
         instToRent.rentFromTo(from, to);
+
+        //Increase usage
+        instToRent.increaseUsage();
     }
 
     public void returnInstrument(int number) {
@@ -89,6 +108,8 @@ public class InstrumentList {
         //        }
     }
 
-    public ArrayList<Instrument> getList() {return this.instruments;}
+    public ArrayList<Instrument> getList() {
+        return this.instruments;}
+    
 
 }

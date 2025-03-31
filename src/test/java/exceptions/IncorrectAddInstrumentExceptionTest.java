@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class incorrectAddInstrumentExceptionTest {
+public class IncorrectAddInstrumentExceptionTest {
     // Test to check that the exception message is correctly formatted
     @Test
     void testExceptionMessage() {

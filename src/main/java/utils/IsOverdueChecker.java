@@ -7,7 +7,7 @@ import java.time.format.DateTimeParseException;
 import instrument.InstrumentList;
 import instrument.Instrument;
 
-public class isOverdueChecker {
+public class IsOverdueChecker {
     public static boolean isOverdue(String dueDateStr) {
         if (dueDateStr == null || dueDateStr.isBlank()) {
             return false; // Treat empty due dates as not overdue
@@ -26,7 +26,7 @@ public class isOverdueChecker {
         System.out.println("Checking overdue instruments...");
         for (Instrument instrument : list.getList()) {
             String dueDate = instrument.dueDate();
-            if (isOverdueChecker.isOverdue(dueDate)) {
+            if (IsOverdueChecker.isOverdue(dueDate)) {
                 System.out.println("Overdue: " + instrument.toString());
                 instrument.setOverdue(true);
             }

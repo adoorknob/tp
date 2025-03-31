@@ -3,18 +3,18 @@ package ui;
 import exceptions.IncorrectAddInstrumentException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import parser.commandParser;
+import parser.CommandParser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 public class ParserTest {
-    private commandParser cmdparser;
+    private CommandParser cmdparser;
 
     @BeforeEach
     public void setUp() {
-        cmdparser = new commandParser();
+        cmdparser = new CommandParser();
     }
 
     @Test
@@ -50,7 +50,7 @@ public class ParserTest {
             cmdparser.separate(invalidInput);
             fail("Expected IOException to be thrown");
         } catch (IncorrectAddInstrumentException e) {
-            assertEquals("Input doesn't look right: Input year is invalid-> " +
+            assertEquals("Input doesn't look right: Input year or usage is invalid-> " +
                     "add [Instrument]|[Model]|[Year]", e.getMessage());
         }
     }
