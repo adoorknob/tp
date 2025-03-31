@@ -16,11 +16,11 @@ public class ReserveCommand extends Command {
     @Override
     public void execute(InstrumentList instrumentList, Ui ui) {
         try {
-            String[] userInput = parser.splits(this.Name);
+            String[] userInput = parser.splits(this.name);
             int indice = Integer.parseInt(userInput[0]);
             if (userInput.length > 1) {
                 try {
-                    String[] parts = this.Name.split("from: |to: ", 3);
+                    String[] parts = this.name.split("from: |to: ", 3);
                     String from = parts[1];
                     String to = parts[2];
                     instrumentList.reserveInstrumentFromTo(indice, from, to);

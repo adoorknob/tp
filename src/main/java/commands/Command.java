@@ -4,10 +4,10 @@ import instrument.InstrumentList;
 import ui.Ui;
 
 public abstract class Command {
-    public String Name;
+    public String name;
 
     public Command(String name) {
-        this.Name = name;
+        this.name = name;
     }
 
     // Abstract method to execute the command (to be implemented by subclasses)

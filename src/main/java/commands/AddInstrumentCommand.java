@@ -3,20 +3,25 @@ package commands;
 import exceptions.EmptyDescriptionException;
 import exceptions.IncorrectAddInstrumentException;
 import exceptions.NegativeUsageException;
-import instrument.*;
+import instrument.Instrument;
+import instrument.InstrumentList;
+import instrument.Flute;
+import instrument.Guitar;
+import instrument.Piano;
 import parser.commandParser;
+
 import ui.Ui;
 
 public class AddInstrumentCommand extends Command {
     private commandParser cmdparser;
 
-    public AddInstrumentCommand(String Command) {
-        super(Command);
+    public AddInstrumentCommand(String command) {
+        super(command);
         cmdparser = new commandParser();
     }
 
     public void parse(InstrumentList instrumentList, Ui ui) throws IncorrectAddInstrumentException {
-        String[] userInput = cmdparser.separate(this.Name.trim());
+        String[] userInput = cmdparser.separate(this.name.trim());
 
         String instrument = cmdparser.instrumentName(userInput);
         String model = cmdparser.modelName(userInput);
@@ -73,7 +78,7 @@ public class AddInstrumentCommand extends Command {
 
     @Override
     public void execute(InstrumentList instrumentList, Ui ui) throws IncorrectAddInstrumentException {
-        String[] userInput = cmdparser.separate(this.Name.trim());
+        String[] userInput = cmdparser.separate(this.name.trim());
 
         String instrument = cmdparser.instrumentName(userInput);
         String model = cmdparser.modelName(userInput);

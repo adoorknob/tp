@@ -10,7 +10,7 @@ public class ReturnCommand extends Command {
 
     @Override
     public void execute(InstrumentList instrumentList, Ui ui) {
-        instrumentList.returnInstrument(Integer.parseInt(this.Name));
+        instrumentList.returnInstrument(Integer.parseInt(this.name));
         ui.printInstrumentList(instrumentList.getList());
     }
 

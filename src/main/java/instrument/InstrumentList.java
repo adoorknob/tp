@@ -108,6 +108,8 @@ public class InstrumentList {
         //        }
     }
 
-    public ArrayList<Instrument> getList() {return this.instruments;}
+    public ArrayList<Instrument> getList() {
+        return this.instruments;}
+    
 
 }
