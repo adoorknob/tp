@@ -6,7 +6,7 @@ import storage.Storage;
 import ui.Ui;
 import parser.Parser;
 import instrument.InstrumentList;
-import utils.isOverdueChecker;
+import utils.IsOverdueChecker;
 
 import java.io.IOException;
 import java.util.concurrent.Executors;
@@ -50,7 +50,7 @@ public class Duke {
     private void startDailyOverdueCheck() {
         scheduler.scheduleAtFixedRate(() -> {
             System.out.println("Running daily overdue check...");
-            isOverdueChecker.checkAll(instrumentList);
+            IsOverdueChecker.checkAll(instrumentList);
         }, 0, 24, TimeUnit.HOURS); // Runs immediately, then every 24 hours
     }
 

@@ -8,16 +8,16 @@ import instrument.InstrumentList;
 import instrument.Flute;
 import instrument.Guitar;
 import instrument.Piano;
-import parser.commandParser;
+import parser.CommandParser;
 
 import ui.Ui;
 
 public class AddInstrumentCommand extends Command {
-    private commandParser cmdparser;
+    private CommandParser cmdparser;
 
     public AddInstrumentCommand(String command) {
         super(command);
-        cmdparser = new commandParser();
+        cmdparser = new CommandParser();
     }
 
     public void parse(InstrumentList instrumentList, Ui ui) throws IncorrectAddInstrumentException {

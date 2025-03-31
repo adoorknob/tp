@@ -1,15 +1,15 @@
 package commands;
 
 import instrument.InstrumentList;
-import parser.commandParser;
+import parser.CommandParser;
 import ui.Ui;
 
 public class ReserveCommand extends Command {
-    private commandParser parser;
+    private CommandParser parser;
 
     public ReserveCommand(String command) {
         super(command);
-        parser = new commandParser();
+        parser = new CommandParser();
     }
 
     // TODO add features to prevent invalid date/overdue from the start

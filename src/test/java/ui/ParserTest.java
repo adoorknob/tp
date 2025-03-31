@@ -3,18 +3,18 @@ package ui;
 import exceptions.IncorrectAddInstrumentException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import parser.commandParser;
+import parser.CommandParser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 public class ParserTest {
-    private commandParser cmdparser;
+    private CommandParser cmdparser;
 
     @BeforeEach
     public void setUp() {
-        cmdparser = new commandParser();
+        cmdparser = new CommandParser();
     }
 
     @Test

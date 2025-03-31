@@ -1,11 +1,11 @@
 package parser;
 
 import exceptions.IncorrectAddInstrumentException;
-import utils.isOverdueChecker;
-import utils.dateTimeParser;
+import utils.IsOverdueChecker;
+import utils.DateTimeParser;
 
-public class commandParser {
-    public commandParser() {}
+public class CommandParser {
+    public CommandParser() {}
 
     public String[] separate(String input) throws IncorrectAddInstrumentException {
         if (input == null || input.isEmpty()) {
@@ -69,18 +69,18 @@ public class commandParser {
 
     public boolean isOverdue(String[] userInput) {
         if (userInput.length > 6 && !userInput[6].isBlank()) {
-            return isOverdueChecker.isOverdue(userInput[6]);
+            return IsOverdueChecker.isOverdue(userInput[6]);
         }
         return false;
     }
 
 
     public String rentedFrom(String[] userInput) {
-        return (userInput.length > 5 && userInput[5] != null) ? dateTimeParser.parseDateTime(userInput[5]) : "";
+        return (userInput.length > 5 && userInput[5] != null) ? DateTimeParser.parseDateTime(userInput[5]) : "";
     }
 
     public String rentedTo(String[] userInput) {
-        return (userInput.length > 6 && userInput[6] != null) ? dateTimeParser.parseDateTime(userInput[6]) : "";
+        return (userInput.length > 6 && userInput[6] != null) ? DateTimeParser.parseDateTime(userInput[6]) : "";
     }
 
     public int usage(String[] userInput) throws IncorrectAddInstrumentException {

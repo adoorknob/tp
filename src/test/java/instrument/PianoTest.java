@@ -102,6 +102,4 @@ class PianoTest {
         assertEquals("Piano | Yamaha | 2000 | true | false |  |  | 0",piano.toFileEntry());
     }
 
-
-
 }
