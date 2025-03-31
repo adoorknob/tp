@@ -23,14 +23,11 @@ public class IsOverdueChecker {
     }
 
     public static void checkAll(InstrumentList list) {
-        System.out.println("Checking overdue instruments...");
         for (Instrument instrument : list.getList()) {
             String dueDate = instrument.dueDate();
             if (IsOverdueChecker.isOverdue(dueDate)) {
-                System.out.println("Overdue: " + instrument.toString());
                 instrument.setOverdue(true);
             }
         }
-        System.out.println("...Done checking overdue instruments");
     }
 }
