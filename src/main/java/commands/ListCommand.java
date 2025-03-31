@@ -2,7 +2,6 @@ package commands;
 
 import instrument.InstrumentList;
 import ui.Ui;
-import parser.Parser;
 
 public class ListCommand extends Command {
     // Constructor
@@ -11,7 +10,7 @@ public class ListCommand extends Command {
     }
 
     @Override
-    public void execute(InstrumentList instrumentList, Ui ui, Parser parser) {
+    public void execute(InstrumentList instrumentList, Ui ui) {
         ui.printInstrumentList(instrumentList.getList());
     }
 

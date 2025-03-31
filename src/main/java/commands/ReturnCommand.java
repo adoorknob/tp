@@ -1,7 +1,6 @@
 package commands;
 
 import instrument.InstrumentList;
-import parser.Parser;
 import ui.Ui;
 
 public class ReturnCommand extends Command {
@@ -10,8 +9,8 @@ public class ReturnCommand extends Command {
     }
 
     @Override
-    public void execute(InstrumentList instrumentList, Ui ui, Parser parser) {
-        instrumentList.returnInstrument(Integer.parseInt(this.Name));
+    public void execute(InstrumentList instrumentList, Ui ui) {
+        instrumentList.returnInstrument(Integer.parseInt(this.name));
         ui.printInstrumentList(instrumentList.getList());
     }
 

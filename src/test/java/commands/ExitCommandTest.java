@@ -30,7 +30,7 @@ class ExitCommandTest {
     @Test
     void testExecutePrintsGoodbyeMessage() {
         // Execute the command
-        exitCommand.execute(instrumentList, ui, parser);
+        exitCommand.execute(instrumentList, ui);
 
         // Capture output and check if the goodbye message is printed
         String output = outputStreamCaptor.toString().trim();
