@@ -31,7 +31,7 @@ public abstract class Instrument {
     }
 
     public String toString() {
-        return name + " | " + (isRented ? "X" : "O");
+        return name + " | " + (isRented ? "X" : "O") + (dueBy == null ? "" : " | " + dueBy);
     }
 
     public String toFileEntry() {
