@@ -44,6 +44,9 @@ public class Parser {
     }
 
     public static String parseFileDirectories(String outputFilePath) {
+        if (outputFilePath == null || outputFilePath.isEmpty()) {
+            throw new IllegalArgumentException("File path cannot be null or empty");
+        }
         int index = outputFilePath.lastIndexOf("/");
         return outputFilePath.substring(0, index);
     }

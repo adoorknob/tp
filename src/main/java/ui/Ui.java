@@ -149,6 +149,10 @@ public class Ui {
         printMessageWithTextBorder("Creating file: " + file);
     }
 
+    public void printListIsEmpty() {
+        printMessageWithTextBorder("List is empty, let's start adding instruments :)");
+    }
+
     private void printMessageWithTextBorder(String message) {
         System.out.println(TEXTBORDER);
         System.out.println(message);

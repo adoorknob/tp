@@ -29,7 +29,7 @@ public class Duke {
     public Duke() {
         ui = new Ui();
         parser = new Parser();
-        storage = new Storage(ui, parser, saveFilePath);
+        storage = new Storage(ui, saveFilePath);
         scheduler = Executors.newSingleThreadScheduledExecutor();
 
         InstrumentList currentInstrumentList;

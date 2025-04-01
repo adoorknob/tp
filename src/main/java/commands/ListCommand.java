@@ -11,7 +11,13 @@ public class ListCommand extends Command {
 
     @Override
     public void execute(InstrumentList instrumentList, Ui ui) {
-        ui.printInstrumentList(instrumentList.getList());
+        assert instrumentList != null;
+        assert ui != null;
+        if (instrumentList.getList().isEmpty()) {
+            ui.printListIsEmpty();
+        } else {
+            ui.printInstrumentList(instrumentList.getList());
+        }
     }
 
     @Override
