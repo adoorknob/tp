@@ -18,14 +18,13 @@ class ExitCommandTest {
     private Ui ui;
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
     private UserUtils userUtils;
-    private UserList userList;
 
     @BeforeEach
     void setUp() {
         exitCommand = new ExitCommand();
         instrumentList = new InstrumentList();
         ui = new Ui();
-        userList = new UserList(ui);
+        UserList userList = new UserList(ui);
         userUtils = new UserUtils(ui, userList);
 
         // Redirect System.out to capture output

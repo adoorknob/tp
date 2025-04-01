@@ -19,14 +19,13 @@ class DefaultCommandTest {
     private Ui ui;
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
     private UserUtils userUtils;
-    private UserList userList;
 
     @BeforeEach
     void setUp() {
         defaultCommand = new DefaultCommand();
         instrumentList = new InstrumentList();
         ui = new Ui();
-        userList = new UserList(ui);
+        UserList userList = new UserList(ui);
         userUtils = new UserUtils(ui, userList);
 
         // Redirect System.out to capture output

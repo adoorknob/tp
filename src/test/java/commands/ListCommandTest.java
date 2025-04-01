@@ -2,7 +2,6 @@ package commands;
 
 import exceptions.EmptyInstrumentListException;
 import instrument.InstrumentList;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ui.Ui;
 import user.UserList;
@@ -16,10 +15,6 @@ public class ListCommandTest {
     UserList userList = new UserList(ui);
     UserUtils userUtils = new UserUtils(ui, userList);
 
-    @BeforeEach
-    void setUp() {
-
-    }
     @Test
     public void testListCommandEmptyList() {
         ListCommand command = new ListCommand();
