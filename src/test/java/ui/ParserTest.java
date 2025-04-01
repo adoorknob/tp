@@ -1,21 +1,20 @@
 package ui;
 
-import exceptions.incorrectAddInstrumentException;
+import exceptions.IncorrectAddInstrumentException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import parser.commandParser;
-import parser.Parser;
+import parser.CommandParser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 public class ParserTest {
-    private Parser parser;
+    private CommandParser cmdparser;
 
     @BeforeEach
     public void setUp() {
-        parser = new Parser();
+        cmdparser = new CommandParser();
     }
 
     @Test
@@ -23,9 +22,9 @@ public class ParserTest {
         String validInput = "Guitar|PAC112VM|2000";
         String[] intendedOutput = {"Guitar", "PAC112VM", "2000"};
         try {
-            String[] output = commandParser.separateNMY(validInput);
+            String[] output = cmdparser.separate(validInput);
             assertArrayEquals(output, intendedOutput);
-        } catch (incorrectAddInstrumentException e) {
+        } catch (IncorrectAddInstrumentException e) {
             throw new RuntimeException("Failed to parse input", e);
         }
     }
@@ -35,11 +34,11 @@ public class ParserTest {
         String invalidInput = "Guitar|1999";
 
         try {
-            commandParser.separateNMY(invalidInput);
+            cmdparser.separate(invalidInput);
             fail("Expected incorrectAddInstrumentException to be thrown");
-        } catch (incorrectAddInstrumentException e) {
-            assertEquals("Input doesn't look right: Input instrument is invalid-> " +
-                    "add [Instrument]|[Model]|[Year]", e.getMessage());
+        } catch (IncorrectAddInstrumentException e) {
+            assertEquals("Input doesn't look right: " +
+                    "Input format is invalid: missing fields-> add [Instrument]|[Model]|[Year]", e.getMessage());
         }
     }
 
@@ -48,10 +47,10 @@ public class ParserTest {
         String invalidInput = "Guitar|PAC112VM|hehe";
 
         try {
-            commandParser.separateNMY(invalidInput);
+            cmdparser.separate(invalidInput);
             fail("Expected IOException to be thrown");
-        } catch (incorrectAddInstrumentException e) {
-            assertEquals("Input doesn't look right: Input year is invalid-> " +
+        } catch (IncorrectAddInstrumentException e) {
+            assertEquals("Input doesn't look right: Input year or usage is invalid-> " +
                     "add [Instrument]|[Model]|[Year]", e.getMessage());
         }
     }

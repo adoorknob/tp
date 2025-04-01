@@ -1,7 +1,6 @@
 package commands;
 
 import instrument.InstrumentList;
-import parser.Parser;
 import ui.Ui;
 
 public class DefaultCommand extends Command {
@@ -10,7 +9,7 @@ public class DefaultCommand extends Command {
     }
 
     @Override
-    public void execute(InstrumentList instrumentList, Ui ui, Parser parser) {
+    public void execute(InstrumentList instrumentList, Ui ui) {
         ui.printNoMatchingCommandError();
     }
 
