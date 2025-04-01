@@ -5,6 +5,8 @@ import commands.Command;
 import instrument.InstrumentList;
 import org.junit.jupiter.api.Test;
 import ui.Ui;
+import user.UserList;
+import user.UserUtils;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -12,6 +14,9 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.fail;
 
 public class EmptyDescriptionExceptionTest {
+    private final Ui ui = new Ui();
+    private final UserList userList = new UserList(ui);
+    private final UserUtils userUtils = new UserUtils(ui, userList);
 
     @Test
     void testEmptyDescriptionException() {
@@ -30,7 +35,7 @@ public class EmptyDescriptionExceptionTest {
 
         Command c = new AddInstrumentCommand(invalidInput);
         try {
-            c.execute(instrumentList, new Ui());
+            c.execute(instrumentList, new Ui(), userUtils);
             fail("Expected EmptyDescriptionException to be thrown");
         } catch (EmptyDescriptionException e) {
             // Adjust the message to match what your code actually throws
@@ -44,6 +49,6 @@ public class EmptyDescriptionExceptionTest {
         InstrumentList instrumentList = new InstrumentList();
         String validInput = "Flute|Yamaha|2023";
         Command c = new AddInstrumentCommand(validInput);
-        assertDoesNotThrow(() -> c.execute(instrumentList, new Ui()));
+        assertDoesNotThrow(() -> c.execute(instrumentList, new Ui(), userUtils));
     }
 }
