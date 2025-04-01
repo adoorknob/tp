@@ -5,7 +5,6 @@ import parser.Parser;
 import ui.Ui;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import user.User;
 import user.UserList;
 import user.UserUtils;
 
@@ -43,7 +42,6 @@ class AddInstrumentCommandTest {
         addInstrumentCommand = new AddInstrumentCommand("Guitar|Fender|2023");
 
         // Execute the command
-//        addInstrumentCommand.execute(instrumentList, ui, userUtils);
         addInstrumentCommand.addInstrument(instrumentList, ui);
 
         // Verify that the instrument was added
@@ -56,7 +54,6 @@ class AddInstrumentCommandTest {
         addInstrumentCommand = new AddInstrumentCommand("Piano|Yamaha|2022");
 
         // Execute the command
-//        addInstrumentCommand.execute(instrumentList, ui, userUtils);
         addInstrumentCommand.addInstrument(instrumentList, ui);
 
         // Capture output and check if the instrument list was printed

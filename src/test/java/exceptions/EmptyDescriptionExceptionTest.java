@@ -1,12 +1,9 @@
 package exceptions;
 
 import commands.AddInstrumentCommand;
-import commands.Command;
 import instrument.InstrumentList;
 import org.junit.jupiter.api.Test;
 import ui.Ui;
-import user.UserList;
-import user.UserUtils;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -14,8 +11,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.fail;
 
 public class EmptyDescriptionExceptionTest {
-    private final Ui ui = new Ui();
-
     @Test
     void testEmptyDescriptionException() {
         Exception exception = assertThrows(EmptyDescriptionException.class, () -> {

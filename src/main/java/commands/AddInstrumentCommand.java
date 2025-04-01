@@ -79,7 +79,8 @@ public class AddInstrumentCommand extends Command {
     }
 
     @Override
-    public void execute(InstrumentList instrumentList, Ui ui, UserUtils userUtils) throws IncorrectAddInstrumentException {
+    public void execute(InstrumentList instrumentList, Ui ui, UserUtils userUtils)
+            throws IncorrectAddInstrumentException {
         Instrument newInstrument = addInstrument(instrumentList, ui);
         if (newInstrument != null) {
             addUser(newInstrument, userUtils);
