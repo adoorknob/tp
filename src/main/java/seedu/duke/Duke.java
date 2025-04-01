@@ -7,6 +7,7 @@ import ui.Ui;
 import parser.Parser;
 import instrument.InstrumentList;
 import utils.IsOverdueChecker;
+import utils.LowStockChecker;
 
 import java.io.IOException;
 import java.util.concurrent.Executors;
@@ -53,8 +54,13 @@ public class Duke {
         }, 0, 24, TimeUnit.HOURS); // Runs immediately, then every 24 hours
     }
 
+    private void startStockCheck() {
+        LowStockChecker.checkAll(instrumentList.getList());
+    }
+
     public void runDuke() {
         ui.printStartMessage();
+        startStockCheck();
         boolean isExit = false;
 
         while (!isExit) {
