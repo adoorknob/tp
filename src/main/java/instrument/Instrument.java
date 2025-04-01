@@ -43,7 +43,6 @@ public abstract class Instrument {
 
     public abstract String playInstrument();
 
-
     public void rent() {
         isRented = true;
     }
@@ -59,12 +58,20 @@ public abstract class Instrument {
         rentedTo = to;
     }
 
+    public void rentTo(String to) {
+        rentedTo = to;
+    }
+
     public boolean isRented() {
         return isRented;
     }
 
     public String dueDate() {
         return rentedTo;
+    }
+
+    public String getRentedFrom() {
+        return rentedFrom;
     }
 
     public void setOverdue(boolean overDue) {
