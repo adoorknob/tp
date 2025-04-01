@@ -69,7 +69,8 @@ public class Ui {
             delete: deletes an existing instrument
             reserve: reserves an available instrument
             return: returns a reserved instrument
-            exit: quit SirDukeBox""";;
+            exit: quit SirDukeBox""";
+    ;
 
     private Scanner scanner;
 

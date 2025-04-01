@@ -26,15 +26,15 @@ public class AddInstrumentCommand extends Command {
         String instrument = cmdparser.instrumentName(userInput);
         String model = cmdparser.modelName(userInput);
         int year = cmdparser.instrumentYear(userInput);
-        boolean isRented =  cmdparser.isRented(userInput);
+        boolean isRented = cmdparser.isRented(userInput);
         boolean isOverdue = cmdparser.isOverdue(userInput);
         String rentedFrom = cmdparser.rentedFrom(userInput);
         String rentedTo = cmdparser.rentedTo(userInput);
 
         int usage = 0;
-        try{
+        try {
             usage = cmdparser.usage(userInput);
-        } catch(IncorrectAddInstrumentException e){
+        } catch (IncorrectAddInstrumentException e) {
             System.out.println(e.getMessage());
         }
 
@@ -64,11 +64,11 @@ public class AddInstrumentCommand extends Command {
             return;
         }
 
-        try{
+        try {
             if (newInstrument != null) {
                 newInstrument.setUsage(usage);
             }
-        } catch (NegativeUsageException e){
+        } catch (NegativeUsageException e) {
             System.out.println(e.getMessage());
         }
 
@@ -83,7 +83,7 @@ public class AddInstrumentCommand extends Command {
         String instrument = cmdparser.instrumentName(userInput);
         String model = cmdparser.modelName(userInput);
         int year = cmdparser.instrumentYear(userInput);
-        boolean isRented =  cmdparser.isRented(userInput);
+        boolean isRented = cmdparser.isRented(userInput);
 
         // TODO: abstract this into hashmap
         try {
