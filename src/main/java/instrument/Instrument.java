@@ -1,14 +1,16 @@
 package instrument;
 
 import exceptions.NegativeUsageException;
+import user.User;
 
 public abstract class Instrument {
-
     public String name;
 
     public String model;
 
     public int year;
+
+    private User user;
 
     private boolean isRented = false;
 
@@ -97,4 +99,11 @@ public abstract class Instrument {
         this.usage++;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }

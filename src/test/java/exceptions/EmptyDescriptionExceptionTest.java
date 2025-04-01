@@ -1,7 +1,6 @@
 package exceptions;
 
 import commands.AddInstrumentCommand;
-import commands.Command;
 import instrument.InstrumentList;
 import org.junit.jupiter.api.Test;
 import ui.Ui;
@@ -12,7 +11,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.fail;
 
 public class EmptyDescriptionExceptionTest {
-
     @Test
     void testEmptyDescriptionException() {
         Exception exception = assertThrows(EmptyDescriptionException.class, () -> {
@@ -28,9 +26,9 @@ public class EmptyDescriptionExceptionTest {
         InstrumentList instrumentList = new InstrumentList();
         String invalidInput = "Yamaha|2023"; // Missing instrument name, will fail parsing
 
-        Command c = new AddInstrumentCommand(invalidInput);
+        AddInstrumentCommand c = new AddInstrumentCommand(invalidInput);
         try {
-            c.execute(instrumentList, new Ui());
+            c.addInstrument(instrumentList, new Ui());
             fail("Expected EmptyDescriptionException to be thrown");
         } catch (EmptyDescriptionException e) {
             // Adjust the message to match what your code actually throws
@@ -43,7 +41,7 @@ public class EmptyDescriptionExceptionTest {
     void testAddInstrumentValid() {
         InstrumentList instrumentList = new InstrumentList();
         String validInput = "Flute|Yamaha|2023";
-        Command c = new AddInstrumentCommand(validInput);
-        assertDoesNotThrow(() -> c.execute(instrumentList, new Ui()));
+        AddInstrumentCommand c = new AddInstrumentCommand(validInput);
+        assertDoesNotThrow(() -> c.addInstrument(instrumentList, new Ui()));
     }
 }
