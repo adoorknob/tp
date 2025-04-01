@@ -1,14 +1,6 @@
 package parser;
 
-import commands.Command;
-import commands.HelpCommand;
-import commands.AddInstrumentCommand;
-import commands.ExitCommand;
-import commands.ListCommand;
-import commands.DefaultCommand;
-import commands.ReserveCommand;
-import commands.DeleteCommand;
-import commands.ReturnCommand;
+import commands.*;
 
 
 public class Parser {
@@ -17,6 +9,7 @@ public class Parser {
     private static final String ADD = "add";
     private static final String DELETE = "delete";
     private static final String RESERVE = "reserve";
+    private static final String EXTEND = "extend";
     private static final String RETURN = "return";
     private static final String EXIT = "exit";
 
@@ -34,6 +27,8 @@ public class Parser {
             return new DeleteCommand(input);
         case RESERVE:
             return new ReserveCommand(input);
+        case EXTEND:
+            return new ExtendCommand(input);
         case RETURN:
             return new ReturnCommand(input);
         case EXIT:

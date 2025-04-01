@@ -90,6 +90,27 @@ public class InstrumentList {
         instToRent.increaseUsage();
     }
 
+    public void extendInstrumentTo(int number, String to) {
+        assert number > 0 && number <= numberOfInstruments : "Instrument number out of bounds: " + number;
+        if (this.instruments.isEmpty()) {
+            System.out.println("No instruments available for extension");
+            return;
+        }
+        Instrument instToRent = instruments.get(number - 1);
+
+        if (!instToRent.isRented()){
+            System.out.println("Instrument number " + number + " is not yet reserved");
+            System.out.println("Please make a reservation for your instrument before extending the loan period");
+            return;
+        }
+
+        System.out.println("Extending reservation of instrument: " + instToRent.name
+                + " from " + instToRent.getRentedFrom() + " to " + to);
+
+        instToRent.rentTo(to);
+
+    }
+
     public void returnInstrument(int number) {
         assert number > 0 && number <= numberOfInstruments : "Instrument number out of bounds: " + number;
         if (this.instruments.isEmpty()) {
@@ -110,6 +131,6 @@ public class InstrumentList {
 
     public ArrayList<Instrument> getList() {
         return this.instruments;}
-    
+
 
 }
