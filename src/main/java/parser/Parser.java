@@ -20,7 +20,8 @@ public class Parser {
     private static final String RETURN = "return";
     private static final String EXIT = "exit";
 
-    public Parser() {}
+    public Parser() {
+    }
 
     public static Command parse(String command, String input) {
         switch (command) {
@@ -44,12 +45,15 @@ public class Parser {
     }
 
     public static String parseFileDirectories(String outputFilePath) {
+        if (outputFilePath == null || outputFilePath.isEmpty()) {
+            throw new IllegalArgumentException("File path cannot be null or empty");
+        }
         int index = outputFilePath.lastIndexOf("/");
         return outputFilePath.substring(0, index);
     }
 
     public static String[] parseFileEntryToInstrument(String line) {
-        String[] splitInput =  line.split("\\|");
+        String[] splitInput = line.split("\\|");
         for (int i = 0; i < splitInput.length; i++) {
             splitInput[i] = splitInput[i].trim();
         }

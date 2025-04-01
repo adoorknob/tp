@@ -19,11 +19,10 @@ public class Storage {
     String outputFilePath;
     String outputText = "";
     Ui ui;
-    Parser parser;
     InstrumentList instrumentList;
     File file;
 
-    public Storage(Ui ui, Parser parser, String outputFilePath) {
+    public Storage(Ui ui, String outputFilePath) {
         this.ui = ui;
         instrumentList = new InstrumentList();
         this.outputFilePath = outputFilePath;
@@ -60,6 +59,9 @@ public class Storage {
     }
 
     private void validateFileDirectories() {
+        if (!outputFilePath.contains("/")) {
+            return;
+        }
         String directoryName = Parser.parseFileDirectories(outputFilePath);
         ui.printCreatingDirectory(directoryName);
         File directory = new File(directoryName);

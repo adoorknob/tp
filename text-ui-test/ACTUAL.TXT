@@ -2,7 +2,52 @@
 Creating directory: ./data
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
+Directory already exists
+*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
+*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 Creating file: ./data/SirDukeBox.txt
+*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
+*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
+File already exists
+*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
+*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
+Here is the list of instruments:
+1. Guitar | Yamaha | 2000 | 
+*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
+*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
+Here is the list of instruments:
+1. Guitar | Yamaha | 2000 | 
+2. Piano | Yamaha | 2010 | 
+*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
+*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
+Here is the list of instruments:
+1. Guitar | Yamaha | 2000 | 
+2. Piano | Yamaha | 2010 | 
+3. Flute | Yamaha | 2001 | 
+*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
+*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
+Here is the list of instruments:
+1. Guitar | Yamaha | 2000 | 
+2. Piano | Yamaha | 2010 | 
+3. Flute | Yamaha | 2001 | 
+4. Guitar | Yamaha | 2000 | 
+*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
+*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
+Here is the list of instruments:
+1. Guitar | Yamaha | 2000 | 
+2. Piano | Yamaha | 2010 | 
+3. Flute | Yamaha | 2001 | 
+4. Guitar | Yamaha | 2000 | 
+5. Piano | Yamaha | 2010 | 
+*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
+*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
+Here is the list of instruments:
+1. Guitar | Yamaha | 2000 | 
+2. Piano | Yamaha | 2010 | 
+3. Flute | Yamaha | 2001 | 
+4. Guitar | Yamaha | 2000 | 
+5. Piano | Yamaha | 2010 | 
+6. Flute | Yamaha | 2001 | 
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 Welcome to
                 _.-'\       /'-._
@@ -70,17 +115,35 @@ exit: quit SirDukeBox
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 Here is the list of instruments:
 1. Guitar | Yamaha | 2000 | 
-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
-Here is the list of instruments:
-1. Guitar | Yamaha | 2000 | 
 2. Piano | Yamaha | 2010 | 
+3. Flute | Yamaha | 2001 | 
+4. Guitar | Yamaha | 2000 | 
+5. Piano | Yamaha | 2010 | 
+6. Flute | Yamaha | 2001 | 
+7. Guitar | Yamaha | 2000 | 
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 Here is the list of instruments:
 1. Guitar | Yamaha | 2000 | 
 2. Piano | Yamaha | 2010 | 
 3. Flute | Yamaha | 2001 | 
+4. Guitar | Yamaha | 2000 | 
+5. Piano | Yamaha | 2010 | 
+6. Flute | Yamaha | 2001 | 
+7. Guitar | Yamaha | 2000 | 
+8. Piano | Yamaha | 2010 | 
+*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
+*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
+Here is the list of instruments:
+1. Guitar | Yamaha | 2000 | 
+2. Piano | Yamaha | 2010 | 
+3. Flute | Yamaha | 2001 | 
+4. Guitar | Yamaha | 2000 | 
+5. Piano | Yamaha | 2010 | 
+6. Flute | Yamaha | 2001 | 
+7. Guitar | Yamaha | 2000 | 
+8. Piano | Yamaha | 2010 | 
+9. Flute | Yamaha | 2001 | 
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 Reserving instrument: Guitar | Yamaha | 2000 | 
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
@@ -88,6 +151,12 @@ Here is the list of instruments:
 1. Guitar | Yamaha | 2000 | Rented
 2. Piano | Yamaha | 2010 | 
 3. Flute | Yamaha | 2001 | 
+4. Guitar | Yamaha | 2000 | 
+5. Piano | Yamaha | 2010 | 
+6. Flute | Yamaha | 2001 | 
+7. Guitar | Yamaha | 2000 | 
+8. Piano | Yamaha | 2010 | 
+9. Flute | Yamaha | 2001 | 
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 Returning instrument: Guitar | Yamaha | 2000 | Rented
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
@@ -95,6 +164,12 @@ Here is the list of instruments:
 1. Guitar | Yamaha | 2000 | 
 2. Piano | Yamaha | 2010 | 
 3. Flute | Yamaha | 2001 | 
+4. Guitar | Yamaha | 2000 | 
+5. Piano | Yamaha | 2010 | 
+6. Flute | Yamaha | 2001 | 
+7. Guitar | Yamaha | 2000 | 
+8. Piano | Yamaha | 2010 | 
+9. Flute | Yamaha | 2001 | 
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 bye bye
