@@ -1,5 +1,6 @@
 package commands;
 
+import exceptions.EmptyInstrumentListException;
 import instrument.InstrumentList;
 import ui.Ui;
 
@@ -14,7 +15,7 @@ public class ListCommand extends Command {
         assert instrumentList != null;
         assert ui != null;
         if (instrumentList.getList().isEmpty()) {
-            ui.printListIsEmpty();
+            throw new EmptyInstrumentListException("List is empty, let's add some instruments :)");
         } else {
             ui.printInstrumentList(instrumentList.getList());
         }
