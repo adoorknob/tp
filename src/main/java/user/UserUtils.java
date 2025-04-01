@@ -22,9 +22,6 @@ public class UserUtils {
 
     private User assignSpecificUser(Instrument instrument) {
         int userIndex = ui.queryUserIndex(userList);
-
-        System.out.println("User index: " + userIndex);
-
         if (userIndex == 0) {
             return assignNewUser(instrument);
         }
