@@ -2,14 +2,14 @@ package parser;
 
 import commands.Command;
 import commands.HelpCommand;
-import commands.AddInstrumentCommand;
-import commands.ExitCommand;
 import commands.ListCommand;
-import commands.DefaultCommand;
-import commands.ReserveCommand;
+import commands.UserListCommand;
+import commands.AddInstrumentCommand;
 import commands.DeleteCommand;
+import commands.ExitCommand;
+import commands.ReserveCommand;
 import commands.ReturnCommand;
-
+import commands.DefaultCommand;
 
 public class Parser {
     private static final String HELP = "help";
@@ -19,8 +19,10 @@ public class Parser {
     private static final String RESERVE = "reserve";
     private static final String RETURN = "return";
     private static final String EXIT = "exit";
+    private static final String USERLIST = "userlist";
 
-    public Parser() {}
+    public Parser() {
+    }
 
     public static Command parse(String command, String input) {
         switch (command) {
@@ -28,6 +30,8 @@ public class Parser {
             return new HelpCommand();
         case LIST:
             return new ListCommand();
+        case USERLIST:
+            return new UserListCommand();
         case ADD:
             return new AddInstrumentCommand(input);
         case DELETE:
@@ -49,7 +53,7 @@ public class Parser {
     }
 
     public static String[] parseFileEntryToInstrument(String line) {
-        String[] splitInput =  line.split("\\|");
+        String[] splitInput = line.split("\\|");
         for (int i = 0; i < splitInput.length; i++) {
             splitInput[i] = splitInput[i].trim();
         }

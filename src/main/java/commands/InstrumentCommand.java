@@ -4,10 +4,10 @@ import instrument.InstrumentList;
 import ui.Ui;
 import user.UserUtils;
 
-public abstract class Command {
+public abstract class InstrumentCommand {
     public String name;
 
-    public Command(String name) {
+    public InstrumentCommand(String name) {
         this.name = name;
     }
 

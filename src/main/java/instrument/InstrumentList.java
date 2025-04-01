@@ -1,10 +1,11 @@
 package instrument;
 
 import java.util.ArrayList;
+
 import exceptions.EmptyDescriptionException;
 
 public class InstrumentList {
-    private static final Integer currYEAR =  2025; // Current
+    private static final Integer currYEAR = 2025; // Current
 
     private ArrayList<Instrument> instruments;
     private int numberOfInstruments;
@@ -78,7 +79,7 @@ public class InstrumentList {
         }
         Instrument instToRent = instruments.get(number - 1);
 
-        if (instToRent.isRented()){
+        if (instToRent.isRented()) {
             System.out.println("Instrument is already rented");
             return;
         }
@@ -109,7 +110,8 @@ public class InstrumentList {
     }
 
     public ArrayList<Instrument> getList() {
-        return this.instruments;}
-    
+        return this.instruments;
+    }
+
 
 }

@@ -2,6 +2,7 @@ package commands;
 
 import instrument.InstrumentList;
 import ui.Ui;
+import user.UserUtils;
 
 public class HelpCommand extends Command {
     // Constructor
@@ -10,7 +11,7 @@ public class HelpCommand extends Command {
     }
 
     @Override
-    public void execute(InstrumentList instrumentList, Ui ui) {
+    public void execute(InstrumentList instrumentList, Ui ui, UserUtils userUtils) {
         ui.printCommandList();
     }
 
