@@ -80,6 +80,13 @@ public class AddInstrumentCommand extends Command {
 
     @Override
     public void execute(InstrumentList instrumentList, Ui ui, UserUtils userUtils) throws IncorrectAddInstrumentException {
+        Instrument newInstrument = addInstrument(instrumentList, ui);
+        if (newInstrument != null) {
+            addUser(newInstrument, userUtils);
+        }
+    }
+
+    public Instrument addInstrument(InstrumentList instrumentList, Ui ui) {
         String[] userInput = cmdparser.separate(this.name.trim());
 
         String instrument = cmdparser.instrumentName(userInput);
@@ -101,16 +108,15 @@ public class AddInstrumentCommand extends Command {
                 break;
             default:
                 System.out.println("invalid instrument");
-                return;
             }
         } catch (EmptyDescriptionException e) {
             System.out.println(e.getMessage());
         }
         if (newInstrument != null) {
             instrumentList.addInstrument(newInstrument);
-            addUser(newInstrument, userUtils);
         }
         ui.printInstrumentList(instrumentList.getList());
+        return newInstrument;
     }
 
     private void addUser(Instrument newInstrument, UserUtils userUtils) {
