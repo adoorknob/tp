@@ -3,11 +3,23 @@ package ui;
 import instrument.Instrument;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Scanner;
-import java.util.Arrays;
+import java.util.*;
 
 public class Ui {
+
+    // ANSI color codes
+    public static final String RESET = "\u001B[0m";
+    public static final String RED = "\u001B[31m";
+    public static final String GREEN = "\u001B[32m";
+    public static final String YELLOW = "\u001B[33m";
+    public static final String BLUE = "\u001B[34m";
+    public static final String PURPLE = "\u001B[35m";
+    public static final String CYAN = "\u001B[36m";
+    public static final String WHITE = "\u001B[37m";
+
+    public static final Integer CRITICAL_QTY = 2;
+    public static final Integer WARNING_QTY = 5;
+
     public static final String DUKEBOX = """
                             _.-'\\       /'-._
                         _.-'    _\\ .-. /_    '-._
@@ -68,6 +80,7 @@ public class Ui {
             add: adds a new instrument
             delete: deletes an existing instrument
             reserve: reserves an available instrument
+            extend: changes the return date of a reserved instrument
             return: returns a reserved instrument
             exit: quit SirDukeBox""";;
 
@@ -122,6 +135,35 @@ public class Ui {
             System.out.println((i + 1) + ". " + instruments.get(i).toString());
         }
 
+        System.out.println(TEXTBORDER);
+    }
+
+    public void printStockList(ArrayList<Instrument> instruments) {
+        System.out.println(TEXTBORDER);
+        System.out.println("Here is the remaining stock of instruments:");
+
+        HashMap<String, Integer> stockCount = new HashMap<>();
+
+        for (Instrument inst : instruments) {
+            if (stockCount.containsKey(inst.name)) {
+                Integer currCount = stockCount.get(inst.name);
+                stockCount.replace(inst.name, currCount + 1);
+            } else {
+                stockCount.put(inst.name, 1);
+            }
+        }
+
+        for (Map.Entry<String, Integer> entry : stockCount.entrySet()) {
+            String instName = entry.getKey();
+            Integer instCount = entry.getValue();
+            if (instCount < CRITICAL_QTY) { // critical, must replenish soon
+                System.out.println(instName + ": " + RED + instCount + RESET);
+            } else if (instCount < WARNING_QTY) {
+                System.out.println(instName + ": " + YELLOW + instCount + RESET);
+            } else {
+                System.out.println(instName + ": " + instCount);
+            }
+        }
         System.out.println(TEXTBORDER);
     }
 
