@@ -16,6 +16,9 @@ public class DateTimeParser {
     );
 
     public static String parseDateTime(String input) throws DateTimeParseException {
+        if (input == null || input.isEmpty()) {
+            return input;
+        }
         for (DateTimeFormatter format : FORMATS) {
             try {
                 return LocalDateTime.parse(input, format).format(DateTimeFormatter.ofPattern("d/M/yyyy HHmm"));
