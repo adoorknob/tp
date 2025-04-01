@@ -10,6 +10,7 @@ import user.UserUtils;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
@@ -29,7 +30,7 @@ class HelpCommandTest {
         ui = new Ui();
         parser = new Parser();
         userList = new UserList(ui);
-        userUtils = new UserUtils(ui,userList);
+        userUtils = new UserUtils(ui, userList);
 
         // Redirect System.out to capture output
         System.setOut(new PrintStream(outputStreamCaptor));

@@ -13,7 +13,7 @@ public class UserUtils {
     }
 
     public User queryAndAssignUser(Instrument instrument) {
-        if(ui.isInstrumentAssignedToUser()) {
+        if (ui.isInstrumentAssignedToUser()) {
             return assignSpecificUser(instrument);
         } else {
             return assignUnknownUser(instrument);

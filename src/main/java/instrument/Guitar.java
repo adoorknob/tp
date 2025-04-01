@@ -7,7 +7,7 @@ public class Guitar extends Instrument {
     }
 
     public Guitar(String name, String model, int year, boolean isRented, boolean isOverDue,
-                 String rentedFrom, String rentedTo) {
+                  String rentedFrom, String rentedTo) {
         super(name, model, year, isRented, isOverDue, rentedFrom, rentedTo);
     }
 

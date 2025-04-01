@@ -30,7 +30,7 @@ class DefaultCommandTest {
         ui = new Ui();
         parser = new Parser();
         userList = new UserList(ui);
-        userUtils = new UserUtils(ui,userList);
+        userUtils = new UserUtils(ui, userList);
 
         // Redirect System.out to capture output
         System.setOut(new PrintStream(outputStreamCaptor));

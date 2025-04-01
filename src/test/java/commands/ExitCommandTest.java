@@ -10,6 +10,7 @@ import user.UserUtils;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ExitCommandTest {
@@ -28,7 +29,7 @@ class ExitCommandTest {
         ui = new Ui();
         parser = new Parser();
         userList = new UserList(ui);
-        userUtils = new UserUtils(ui,userList);
+        userUtils = new UserUtils(ui, userList);
 
         // Redirect System.out to capture output
         System.setOut(new PrintStream(outputStreamCaptor));

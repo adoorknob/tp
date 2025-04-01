@@ -10,7 +10,7 @@ public class NegativeUsageExceptionTest {
     void negativeUsageException_thrown_expectCorrectErrorMessage() {
         String errorMessage = "Usage is negative. ";
         NegativeUsageException exception = new NegativeUsageException(errorMessage);
-        assertEquals(errorMessage+"Please provide a positive number", exception.getMessage());
+        assertEquals(errorMessage + "Please provide a positive number", exception.getMessage());
     }
 
     @Test

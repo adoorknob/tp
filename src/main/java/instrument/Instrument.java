@@ -84,8 +84,8 @@ public abstract class Instrument {
     }
 
     public void setUsage(int usage) throws NegativeUsageException {
-        if (usage<0){
-            throw new NegativeUsageException("Usage set is "+usage+". ");
+        if (usage < 0) {
+            throw new NegativeUsageException("Usage set is " + usage + ". ");
         }
 
         this.usage = usage;

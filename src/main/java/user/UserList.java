@@ -12,6 +12,7 @@ public class UserList {
 
     /**
      * Constructor for UserList. Initialises 'unassigned' for instruments that are not given a user
+     *
      * @param ui Ui for entire program
      */
     public UserList(Ui ui) {
@@ -40,6 +41,7 @@ public class UserList {
 
     /**
      * Returns the number of users named "Guest"
+     *
      * @return guestCount
      */
 
