@@ -56,6 +56,8 @@ Welcome to
 
 How can I help you?
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
+These stocks are running low: 
+*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 Here is a list of available commands:
 Available Commands:
@@ -64,6 +66,7 @@ list: list all instruments
 add: adds a new instrument
 delete: deletes an existing instrument
 reserve: reserves an available instrument
+extend: changes the return date of a reserved instrument
 return: returns a reserved instrument
 exit: quit SirDukeBox
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+

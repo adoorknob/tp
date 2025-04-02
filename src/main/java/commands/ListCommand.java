@@ -19,6 +19,7 @@ public class ListCommand extends Command {
             throw new EmptyInstrumentListException("List is empty, let's add some instruments :)");
         } else {
             ui.printInstrumentList(instrumentList.getList());
+            ui.printStockList(instrumentList.getList());
         }
     }
 

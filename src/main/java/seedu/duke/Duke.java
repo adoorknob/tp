@@ -9,6 +9,7 @@ import instrument.InstrumentList;
 import user.UserList;
 import user.UserUtils;
 import utils.IsOverdueChecker;
+import utils.LowStockChecker;
 
 import java.io.IOException;
 import java.util.concurrent.Executors;
@@ -19,6 +20,7 @@ import java.util.concurrent.TimeUnit;
 public class Duke {
     /**
      * Main entry-point for the java.duke.Duke application.
+     * hello
      */
     private final Ui ui;
     private final Parser parser;
@@ -59,8 +61,13 @@ public class Duke {
         }, 0, 24, TimeUnit.HOURS); // Runs immediately, then every 24 hours
     }
 
+    private void startStockCheck() {
+        LowStockChecker.checkAll(instrumentList.getList());
+    }
+
     public void runDuke() {
         ui.printStartMessage();
+        startStockCheck();
         boolean isExit = false;
 
         while (!isExit) {

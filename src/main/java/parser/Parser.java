@@ -10,6 +10,7 @@ import commands.ExitCommand;
 import commands.ReserveCommand;
 import commands.ReturnCommand;
 import commands.DefaultCommand;
+import commands.ExtendCommand;
 
 public class Parser {
     private static final String HELP = "help";
@@ -17,6 +18,7 @@ public class Parser {
     private static final String ADD = "add";
     private static final String DELETE = "delete";
     private static final String RESERVE = "reserve";
+    private static final String EXTEND = "extend";
     private static final String RETURN = "return";
     private static final String EXIT = "exit";
     private static final String USERLIST = "userlist";
@@ -38,6 +40,8 @@ public class Parser {
             return new DeleteCommand(input);
         case RESERVE:
             return new ReserveCommand(input);
+        case EXTEND:
+            return new ExtendCommand(input);
         case RETURN:
             return new ReturnCommand(input);
         case EXIT:
