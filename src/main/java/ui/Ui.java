@@ -193,13 +193,13 @@ public class Ui {
             if (instCount < CRITICAL_QTY) {
                 // critical, must replenish soon
                 printTableLines(instName, Integer.toString(instCount),
-                                Integer.toString(rentedCount), RED, longestName);
+                        Integer.toString(rentedCount), RED, longestName);
             } else if (instCount < WARNING_QTY) {
                 printTableLines(instName, Integer.toString(instCount),
-                                Integer.toString(rentedCount), YELLOW, longestName);
+                        Integer.toString(rentedCount), YELLOW, longestName);
             } else {
                 printTableLines(instName, Integer.toString(instCount),
-                                Integer.toString(rentedCount), RESET, longestName);
+                        Integer.toString(rentedCount), RESET, longestName);
             }
         }
         System.out.println(TEXTBORDER);

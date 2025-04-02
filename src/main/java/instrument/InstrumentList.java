@@ -114,6 +114,7 @@ public class InstrumentList {
         System.out.println("Returning instrument: " + instToUnrent);
         instToUnrent.unrent();
     }
+
     public ArrayList<Instrument> getList() {
         return this.instruments;
     }
