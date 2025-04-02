@@ -56,19 +56,11 @@ public class InstrumentList {
             System.out.println("Instrument is already reserved");
             return;
         }
-        //        System.out.println("Would you like to reserve " + instToRent + "? [Y/N]");
-        //        String userInput = ui.readUserInput();
-        //
-        //        if (userInput.equals("Y")) {
         System.out.println("Reserving instrument: " + instToRent);
         instToRent.rent();
 
         //Increase Usage
         instToRent.increaseUsage();
-
-        //        } else {
-        //            System.out.println("Reserve cancelled");
-        //        }
     }
 
     public void reserveInstrumentFromTo(int number, String from, String to) {
@@ -99,7 +91,7 @@ public class InstrumentList {
         }
         Instrument instToRent = instruments.get(number - 1);
 
-        if (!instToRent.isRented()){
+        if (!instToRent.isRented()) {
             System.out.println("Instrument number " + number + " is not yet reserved");
             System.out.println("Please make a reservation for your instrument before extending the loan period");
             return;
@@ -119,20 +111,10 @@ public class InstrumentList {
             return;
         }
         Instrument instToUnrent = instruments.get(number - 1);
-        //        System.out.println("Would you like to return " + instToUnrent + "? [Y/N]");
-        //        String userInput = ui.readUserInput();
-        //
-        //        if (userInput.equals("Y")) {
         System.out.println("Returning instrument: " + instToUnrent);
         instToUnrent.unrent();
-        //        } else {
-        //            System.out.println("Return cancelled");
-        //        }
     }
-
     public ArrayList<Instrument> getList() {
         return this.instruments;
     }
-
-
 }

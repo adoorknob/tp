@@ -5,7 +5,11 @@ import user.User;
 import user.UserList;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Scanner;
+import java.util.Map;
 
 public class Ui {
 
@@ -179,28 +183,23 @@ public class Ui {
             }
         }
 
-
-//        Organise the stocklist into a table
-
-//        String tableBorder = "|" + "-".repeat(longestName.length()) + "-".repeat( PADDING.length())
-//                + "|" + "-".repeat(TABLEHEADER2.length()) + "-".repeat(PADDING.length())
-//                        + "|" + "-".repeat(longestName.length()) + "-".repeat( PADDING.length())
-//                + "|" + "-".repeat(TABLEHEADER2.length()) + "-".repeat(PADDING.length()) + "|";
-//
-//        System.out.println(tableBorder);
+        // Organise the stocklist into a table
         printTableLines(TABLEHEADER1, TABLEHEADER2, TABLEHEADER3, RESET, longestName);
 
         for (Map.Entry<String, Integer> entry : stockCount.entrySet()) {
             String instName = entry.getKey();
             Integer instCount = entry.getValue();
             Integer rentedCount = (rentCount.get(instName) == null ? 0 : rentCount.get(instName));
-            if (instCount < CRITICAL_QTY) { // critical, must replenish soon
-//                System.out.println(instName + ": " + RED + instCount + RESET);
-                printTableLines(instName, Integer.toString(instCount), Integer.toString(rentedCount), RED, longestName);
+            if (instCount < CRITICAL_QTY) {
+                // critical, must replenish soon
+                printTableLines(instName, Integer.toString(instCount),
+                                Integer.toString(rentedCount), RED, longestName);
             } else if (instCount < WARNING_QTY) {
-                printTableLines(instName, Integer.toString(instCount), Integer.toString(rentedCount), YELLOW, longestName);
+                printTableLines(instName, Integer.toString(instCount),
+                                Integer.toString(rentedCount), YELLOW, longestName);
             } else {
-                printTableLines(instName, Integer.toString(instCount), Integer.toString(rentedCount), RESET, longestName);
+                printTableLines(instName, Integer.toString(instCount),
+                                Integer.toString(rentedCount), RESET, longestName);
             }
         }
         System.out.println(TEXTBORDER);
