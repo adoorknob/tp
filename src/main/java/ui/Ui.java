@@ -20,6 +20,7 @@ public class Ui {
     public static final String TABLEHEADER1 = "Instrument:";
     public static final String TABLEHEADER2 = "Total QTY:";
     public static final String TABLEHEADER3 = "Rented QTY:";
+    public static final String TABLEHEADER4 = "Available QTY:";
     public static final String PADDING = "  ";
     public static final Integer CRITICAL_QTY = 2;
     public static final Integer WARNING_QTY = 5;
@@ -177,37 +178,29 @@ public class Ui {
             }
         }
 
-
-//        Organise the stocklist into a table
-
-//        String tableBorder = "|" + "-".repeat(longestName.length()) + "-".repeat( PADDING.length())
-//                + "|" + "-".repeat(TABLEHEADER2.length()) + "-".repeat(PADDING.length())
-//                        + "|" + "-".repeat(longestName.length()) + "-".repeat( PADDING.length())
-//                + "|" + "-".repeat(TABLEHEADER2.length()) + "-".repeat(PADDING.length()) + "|";
-//
-//        System.out.println(tableBorder);
-        printTableLines(TABLEHEADER1, TABLEHEADER2, TABLEHEADER3, RESET, longestName);
+        printTableLines(TABLEHEADER1, TABLEHEADER2, TABLEHEADER3, TABLEHEADER4, RESET, longestName);
 
         for (Map.Entry<String, Integer> entry : stockCount.entrySet()) {
             String instName = entry.getKey();
             Integer instCount = entry.getValue();
             Integer rentedCount = (rentCount.get(instName) == null ? 0 : rentCount.get(instName));
-            if (instCount < CRITICAL_QTY) { // critical, must replenish soon
-//                System.out.println(instName + ": " + RED + instCount + RESET);
-                printTableLines(instName, Integer.toString(instCount), Integer.toString(rentedCount), RED, longestName);
-            } else if (instCount < WARNING_QTY) {
-                printTableLines(instName, Integer.toString(instCount), Integer.toString(rentedCount), YELLOW, longestName);
+            Integer availCount = instCount - rentedCount;
+            if (availCount < CRITICAL_QTY) { // critical, must replenish soon
+                printTableLines(instName, Integer.toString(instCount), Integer.toString(rentedCount), Integer.toString(availCount), RED, longestName);
+            } else if (availCount < WARNING_QTY) {
+                printTableLines(instName, Integer.toString(instCount), Integer.toString(rentedCount), Integer.toString(availCount), YELLOW, longestName);
             } else {
-                printTableLines(instName, Integer.toString(instCount), Integer.toString(rentedCount), RESET, longestName);
+                printTableLines(instName, Integer.toString(instCount), Integer.toString(rentedCount), Integer.toString(availCount), RESET, longestName);
             }
         }
         System.out.println(TEXTBORDER);
     }
 
-    public void printTableLines(String col1, String col2, String col3, String colour, String longestName) {
+    public void printTableLines(String col1, String col2, String col3, String col4, String colour, String longestName) {
         String line = "|" + col1 + " ".repeat(longestName.length() - col1.length()) + PADDING
-                + "|" + colour + col2 + RESET + " ".repeat(TABLEHEADER2.length() - col2.length()) + PADDING
-                + "|" + col3 + " ".repeat(TABLEHEADER3.length() - col3.length()) + PADDING + "|";
+                + "|" + col2 + " ".repeat(TABLEHEADER2.length() - col2.length()) + PADDING
+                + "|" + col3 + " ".repeat(TABLEHEADER3.length() - col3.length()) + PADDING
+                + "|" + colour + col4 + RESET + " ".repeat(TABLEHEADER4.length() - col4.length()) + PADDING + "|";
         System.out.println(line);
     }
 
