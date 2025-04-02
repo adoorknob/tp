@@ -3,6 +3,7 @@ package commands;
 import instrument.InstrumentList;
 import parser.CommandParser;
 import ui.Ui;
+import user.UserUtils;
 
 public class ExtendCommand extends Command {
     private CommandParser parser;
@@ -14,7 +15,7 @@ public class ExtendCommand extends Command {
 
     // TODO add features to prevent invalid date/overdue from the start
     @Override
-    public void execute(InstrumentList instrumentList, Ui ui) {
+    public void execute(InstrumentList instrumentList, Ui ui, UserUtils userUtils) {
         try {
             String[] userInput = parser.splits(this.name);
             int indice = Integer.parseInt(userInput[0]);
