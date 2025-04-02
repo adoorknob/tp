@@ -86,6 +86,8 @@ a print of the `instrumentList` will occur last.
 #### Sequence Diagram
 ![img.png](img.png)
 
+![UserSequenceDiagram.png](UserSequenceDiagram.png)
+
 ## Product scope
 ### Target user profile
 
