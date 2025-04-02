@@ -2,10 +2,10 @@
 
 ## Acknowledgements
 
-{list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+{list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the
+original source as well}
 
 ## Design & implementation
-
 
 ### Add Instrument feature
 
@@ -14,11 +14,12 @@
 The add instrument mechanism is facilitated by `AddInstrumentCommand`. It extends
 `Command` class with execute method, to execute its command. It is initialise by
 the `parser` object's parse() method. Then the `AddInstrumentCommand` object will
-call execute to add instrument into the `instrumentList`. 
+call execute to add instrument into the `instrumentList`.
 
 Given below is an example usage scenario and how the add instrument mechanism behaves at each step.
 
-Step 1: The user launches the application for the first time. `runDuke()` will be called and the user will then be prompted for an input
+Step 1: The user launches the application for the first time. `runDuke()` will be called and the user will then be
+prompted for an input
 
 Step 2: The user will then add an instrument using the `add` command word
 
@@ -46,49 +47,56 @@ public static Command parse(String command, String input) {
         }
     }
 ```
+
 ```angular2html
         Command commandObj = parser.parse(command, input);
-        commandObj.execute(instrumentList, ui);
+commandObj.execute(instrumentList, ui);
 ```
 
-Step 4: The `AddInstrumentCommand` object will then call the `CommandParser` object's `seperate` method to split the user input
+Step 4: The `AddInstrumentCommand` object will then call the `CommandParser` object's `seperate` method to split the
+user input
+
 ```angular2html
         String[] userInput = cmdparser.separate(this.name.trim());
 
-        String instrument = cmdparser.instrumentName(userInput);
-        String model = cmdparser.modelName(userInput);
-        int year = cmdparser.instrumentYear(userInput);
+String instrument = cmdparser.instrumentName(userInput);
+String model = cmdparser.modelName(userInput);
+int year = cmdparser.instrumentYear(userInput);
 ```
 
-Step 5: Depending on the instrument input by the user, the corresponding `Instrument` class will be created and added to the `instrumentList`,
+Step 5: Depending on the instrument input by the user, the corresponding `Instrument` class will be created and added to
+the `instrumentList`,
 a print of the `instrumentList` will occur last.
+
 ```angular2html
         try {
-            switch (instrument) {
-            case "Flute":
-                instrumentList.addInstrument(new Flute(instrument, model, year));
-                break;
-            case "Piano":
-                instrumentList.addInstrument(new Piano(instrument, model, year));
-                break;
-            case "Guitar":
-                instrumentList.addInstrument(new Guitar(instrument, model, year));
-                break;
-            default:
-                System.out.println("invalid instrument");
-            }
+switch (instrument) {
+case "Flute":
+instrumentList.addInstrument(new Flute(instrument, model, year));
+break;
+case "Piano":
+instrumentList.addInstrument(new Piano(instrument, model, year));
+break;
+case "Guitar":
+instrumentList.addInstrument(new Guitar(instrument, model, year));
+break;
+default:
+System.out.println("invalid instrument");
+}
         } catch (EmptyDescriptionException e) {
-            System.out.println(e.getMessage());
-        }
-        ui.printInstrumentList(instrumentList.getList());
+System.out.println(e.getMessage());
+}
+ui.printInstrumentList(instrumentList.getList());
 ```
 
 #### Sequence Diagram
+
 ![img.png](img.png)
 
 ![UserSequenceDiagram.png](UserSequenceDiagram.png)
 
 ## Product scope
+
 ### Target user profile
 
 {Describe the target user profile}
@@ -99,10 +107,10 @@ a print of the `instrumentList` will occur last.
 
 ## User Stories
 
-|Version| As a ... | I want to ... | So that I can ...|
-|--------|----------|---------------|------------------|
-|v1.0|new user|see usage instructions|refer to them when I forget how to use the application|
-|v2.0|user|find a to-do item by name|locate a to-do without having to go through the entire list|
+| Version | As a ... | I want to ...             | So that I can ...                                           |
+|---------|----------|---------------------------|-------------------------------------------------------------|
+| v1.0    | new user | see usage instructions    | refer to them when I forget how to use the application      |
+| v2.0    | user     | find a to-do item by name | locate a to-do without having to go through the entire list |
 
 ## Non-Functional Requirements
 
@@ -113,7 +121,9 @@ a print of the `instrumentList` will occur last.
 * *glossary item* - Definition
 
 ## Instructions for manual testing
+
 Available Commands:
+
 1. help: list all commands
 2. list: list all instruments
 3. add: adds a new instrument
