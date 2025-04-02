@@ -1,0 +1,35 @@
+@startuml
+hide footbox
+actor Player
+participant UserUtils as ":UserUtils"
+participant Ui as ":Ui"
+participant UserList as ":UserList"
+participant UserA as "A:User"
+participant UnassignedUser as "Unassigned:User"
+
+Player -> UserUtils : queryAndAssignUser
+activate UserUtils
+UserUtils -> Ui : isInstrumentAssignedToUser
+UserUtils <-- Ui : isAssigned
+
+alt isAssigned
+    UserUtils -> Ui : getUserIndex
+    UserUtils <-- Ui : userID
+    alt userID == 0
+        UserUtils -> Ui : getUserName
+        UserUtils <-- Ui : UserName
+        create UserB as "B:User"
+        UserUtils -> UserB
+        UserUtils -> UserB : addInstrument
+        UserUtils -> UserList : addUserToList
+    else else
+        UserUtils -> UserList : getUserAtIndex(userID)
+        UserUtils <-- UserList : "UserA"
+        UserUtils -> UserA : addInstrument
+    end
+else else
+    UserUtils -> UserList : getUnassignedUser
+    UserUtils <-- UserList : "Unassigned:User"
+    UserUtils -> UnassignedUser : addInstrument
+end
+@enduml

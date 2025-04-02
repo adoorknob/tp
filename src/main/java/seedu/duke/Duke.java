@@ -6,6 +6,8 @@ import storage.Storage;
 import ui.Ui;
 import parser.Parser;
 import instrument.InstrumentList;
+import user.UserList;
+import user.UserUtils;
 import utils.IsOverdueChecker;
 import utils.LowStockChecker;
 
@@ -18,20 +20,25 @@ import java.util.concurrent.TimeUnit;
 public class Duke {
     /**
      * Main entry-point for the java.duke.Duke application.
+     * hello
      */
     private final Ui ui;
     private final Parser parser;
     private final InstrumentList instrumentList;
     private final Storage storage;
     private final ScheduledExecutorService scheduler;
+    private final UserList userList;
+    private final UserUtils userUtils;
 
     private final String saveFilePath = "./data/SirDukeBox.txt";
 
     public Duke() {
         ui = new Ui();
         parser = new Parser();
-        storage = new Storage(ui, parser, saveFilePath);
+        storage = new Storage(ui, saveFilePath);
         scheduler = Executors.newSingleThreadScheduledExecutor();
+        userList = new UserList(ui);
+        userUtils = new UserUtils(ui, userList);
 
         InstrumentList currentInstrumentList;
         try {
@@ -74,7 +81,7 @@ public class Duke {
                 assert input != null;
 
                 Command commandObj = parser.parse(command, input);
-                commandObj.execute(instrumentList, ui);
+                commandObj.execute(instrumentList, ui, userUtils);
                 isExit = commandObj.isExit();
 
             } catch (Exception e) {

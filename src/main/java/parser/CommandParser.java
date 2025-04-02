@@ -5,7 +5,8 @@ import utils.IsOverdueChecker;
 import utils.DateTimeParser;
 
 public class CommandParser {
-    public CommandParser() {}
+    public CommandParser() {
+    }
 
     public String[] separate(String input) throws IncorrectAddInstrumentException {
         if (input == null || input.isEmpty()) {
@@ -44,7 +45,7 @@ public class CommandParser {
     }
 
     public String modelName(String[] userInput) throws IncorrectAddInstrumentException {
-        if (userInput == null || userInput.length < 1 || userInput[1].isEmpty() ) {
+        if (userInput == null || userInput.length < 1 || userInput[1].isEmpty()) {
             throw new IncorrectAddInstrumentException("Input is Empty");
         }
         return userInput[1];

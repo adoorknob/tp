@@ -1,9 +1,15 @@
 package ui;
 
 import instrument.Instrument;
+import user.User;
+import user.UserList;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Scanner;
+import java.util.Map;
 
 public class Ui {
 
@@ -86,7 +92,7 @@ public class Ui {
             reserve: reserves an available instrument
             extend: changes the return date of a reserved instrument
             return: returns a reserved instrument
-            exit: quit SirDukeBox""";;
+            exit: quit SirDukeBox""";
 
     private Scanner scanner;
 
@@ -177,28 +183,23 @@ public class Ui {
             }
         }
 
-
-//        Organise the stocklist into a table
-
-//        String tableBorder = "|" + "-".repeat(longestName.length()) + "-".repeat( PADDING.length())
-//                + "|" + "-".repeat(TABLEHEADER2.length()) + "-".repeat(PADDING.length())
-//                        + "|" + "-".repeat(longestName.length()) + "-".repeat( PADDING.length())
-//                + "|" + "-".repeat(TABLEHEADER2.length()) + "-".repeat(PADDING.length()) + "|";
-//
-//        System.out.println(tableBorder);
+        // Organise the stocklist into a table
         printTableLines(TABLEHEADER1, TABLEHEADER2, TABLEHEADER3, RESET, longestName);
 
         for (Map.Entry<String, Integer> entry : stockCount.entrySet()) {
             String instName = entry.getKey();
             Integer instCount = entry.getValue();
             Integer rentedCount = (rentCount.get(instName) == null ? 0 : rentCount.get(instName));
-            if (instCount < CRITICAL_QTY) { // critical, must replenish soon
-//                System.out.println(instName + ": " + RED + instCount + RESET);
-                printTableLines(instName, Integer.toString(instCount), Integer.toString(rentedCount), RED, longestName);
+            if (instCount < CRITICAL_QTY) {
+                // critical, must replenish soon
+                printTableLines(instName, Integer.toString(instCount),
+                        Integer.toString(rentedCount), RED, longestName);
             } else if (instCount < WARNING_QTY) {
-                printTableLines(instName, Integer.toString(instCount), Integer.toString(rentedCount), YELLOW, longestName);
+                printTableLines(instName, Integer.toString(instCount),
+                        Integer.toString(rentedCount), YELLOW, longestName);
             } else {
-                printTableLines(instName, Integer.toString(instCount), Integer.toString(rentedCount), RESET, longestName);
+                printTableLines(instName, Integer.toString(instCount),
+                        Integer.toString(rentedCount), RESET, longestName);
             }
         }
         System.out.println(TEXTBORDER);
@@ -233,6 +234,55 @@ public class Ui {
 
     public void printCreatingFile(String file) {
         printMessageWithTextBorder("Creating file: " + file);
+    }
+
+    public int queryUserIndex(UserList userList) {
+        assert userList != null : "userList is null";
+        if (userList.getUserCount() == 0) {
+            printCreatingNewUser();
+            return 0;
+        }
+        printSelectUserFromList(userList.getUsers());
+        String userInput = readUserInput();
+        while (!userInput.matches("-?\\d+")) {
+            userInput = readUserInput();
+        }
+        return Integer.parseInt(userInput);
+    }
+
+    public String queryUserName() {
+        System.out.println("Enter user name (Leave empty if no name): ");
+        return readUserInput();
+    }
+
+    public void printCreatingNewUser() {
+        printMessageWithTextBorder("No users exist currently. Creating new user...");
+    }
+
+    public void printSelectUserFromList(ArrayList<User> userList) {
+        System.out.println(TEXTBORDER);
+        System.out.println("Please select from the following users:");
+        printUserList(userList);
+        System.out.println("...or enter '0' to create a new user");
+        System.out.println(TEXTBORDER);
+    }
+
+    public void printUserListDisplay(ArrayList<User> userList) {
+        System.out.println(TEXTBORDER);
+        System.out.println("Here is a list of registered users:");
+        printUserList(userList);
+        System.out.println(TEXTBORDER);
+    }
+
+    private void printUserList(ArrayList<User> userList) {
+        for (int i = 1; i < userList.size(); i++) {
+            System.out.println((i) + ". " + userList.get(i).getName());
+        }
+    }
+
+    public boolean isInstrumentAssignedToUser() {
+        System.out.println("Would you like to assign this instrument to a user? [Y/N]");
+        return scanner.nextLine().equalsIgnoreCase("y");
     }
 
     private void printMessageWithTextBorder(String message) {
