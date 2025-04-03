@@ -4,7 +4,7 @@ import exceptions.IncorrectAddInstrumentException;
 import utils.IsOverdueChecker;
 import utils.DateTimeParser;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public class CommandParser {
     public CommandParser() {
@@ -81,27 +81,27 @@ public class CommandParser {
 
     public boolean isOverdue(String[] userInput, boolean isParse) {
         if (isParse && userInput.length > 6 && !userInput[6].isBlank()) {
-            LocalDateTime dueDate = DateTimeParser.parseDateTime(userInput[6]);
+            LocalDate dueDate = DateTimeParser.parseDate(userInput[6]);
             return IsOverdueChecker.isOverdue(dueDate);
         }
         return false;
     }
 
 
-    public LocalDateTime rentedFrom(String[] userInput, boolean isParse) {
-        return (isParse && userInput.length > 5 && userInput[5] != null) ? DateTimeParser.parseDateTime(userInput[5])
+    public LocalDate rentedFrom(String[] userInput, boolean isParse) {
+        return (isParse && userInput.length > 5 && userInput[5] != null) ? DateTimeParser.parseDate(userInput[5])
                 : null;
     }
 
-    public LocalDateTime rentedTo(String[] userInput, boolean isParse) {
-        return (isParse && userInput.length > 6 && userInput[6] != null) ? DateTimeParser.parseDateTime(userInput[6])
+    public LocalDate rentedTo(String[] userInput, boolean isParse) {
+        return (isParse && userInput.length > 6 && userInput[6] != null) ? DateTimeParser.parseDate(userInput[6])
                 : null;
     }
 
     public int usage(String[] userInput, boolean isParse) throws IncorrectAddInstrumentException {
        if (isParse) {
            if (userInput == null || userInput.length <= 7 || userInput[7].isEmpty()) {
-               throw new IncorrectAddInstrumentException("Instrument usage is missing"); // TODO is this supposed to be done when cli adding
+               throw new IncorrectAddInstrumentException("Instrument usage is missing");
            }
 
            try {

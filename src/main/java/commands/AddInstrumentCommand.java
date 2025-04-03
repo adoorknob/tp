@@ -15,7 +15,7 @@ import ui.Ui;
 import user.User;
 import user.UserUtils;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public class AddInstrumentCommand extends Command {
     private CommandParser cmdparser;
@@ -61,8 +61,8 @@ public class AddInstrumentCommand extends Command {
 
         boolean isRented = cmdparser.isRented(userInput, isParse);
         boolean isOverdue = cmdparser.isOverdue(userInput, isParse);
-        LocalDateTime rentedFrom = cmdparser.rentedFrom(userInput, isParse);
-        LocalDateTime rentedTo = cmdparser.rentedTo(userInput, isParse);
+        LocalDate rentedFrom = cmdparser.rentedFrom(userInput, isParse);
+        LocalDate rentedTo = cmdparser.rentedTo(userInput, isParse);
         int usage = cmdparser.usage(userInput, isParse);
 
         Instrument newInstrument = null;

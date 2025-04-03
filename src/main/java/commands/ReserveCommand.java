@@ -7,7 +7,7 @@ import user.UserUtils;
 import finance.FinanceManager;
 import utils.DateTimeParser;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public class ReserveCommand extends Command {
     private CommandParser parser;
@@ -32,8 +32,8 @@ public class ReserveCommand extends Command {
             if (userInput.length > 1) {
                 try {
                     String[] parts = this.name.split("from: |to: ", 3);
-                    LocalDateTime from = DateTimeParser.parseDateTime(parts[1]);
-                    LocalDateTime to = DateTimeParser.parseDateTime(parts[2]);
+                    LocalDate from = DateTimeParser.parseDate(parts[1]);
+                    LocalDate to = DateTimeParser.parseDate(parts[2]);
                     instrumentList.reserveInstrumentFromTo(indice, from, to);
                     financeManager.rentalPayment(instrumentList.getInstrument(indice), from, to);
                 } catch (Exception e) {

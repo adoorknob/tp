@@ -43,6 +43,8 @@ public class UiTest {
             reserve: reserves an available instrument
             extend: changes the return date of a reserved instrument
             return: returns a reserved instrument
+            user: choose user commands
+            recommend: recommends a recommended instrument
             finance: Manage finances: (use -h flag to see commands)
             exit: quit SirDukeBox"""));
 
