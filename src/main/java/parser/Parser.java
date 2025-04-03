@@ -35,7 +35,7 @@ public class Parser {
         case HELP:
             return new HelpCommand();
         case LIST:
-            return new ListCommand();
+            return new ListCommand(input);
         case USERLIST:
             return new UserListCommand();
         case ADD:
