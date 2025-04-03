@@ -204,6 +204,72 @@ public class Ui {
         System.out.println(line);
     }
 
+    public void printFilteredList(ArrayList<Instrument> instruments, String filter, String searchTerm) {
+        ArrayList<Instrument> filteredInst;
+        switch (filter) {
+        case "name":
+            filteredInst = filterByName(instruments, searchTerm);
+            break;
+        case "model":
+            filteredInst = filterByModel(instruments, searchTerm);
+            break;
+        case "year":
+            filteredInst = filterByYear(instruments, searchTerm);
+            break;
+        case "reserved":
+            filteredInst = filterByReserved(instruments, true);
+            break;
+        case "available":
+            filteredInst = filterByReserved(instruments, false);
+            break;
+        default:
+            System.out.println("The specified filter does not exist. Please try again");
+            System.out.println(TEXTBORDER);
+            return;
+        }
+        printInstrumentList(filteredInst);
+    }
+
+    public ArrayList<Instrument> filterByName(ArrayList<Instrument> instruments, String searchTerm) {
+        ArrayList<Instrument> filteredInst = new ArrayList<>();
+        for (Instrument inst : instruments) {
+            if (inst.name.equals(searchTerm)) {
+                filteredInst.add(inst);
+            }
+        }
+        return filteredInst;
+    }
+
+    public ArrayList<Instrument> filterByModel(ArrayList<Instrument> instruments, String searchTerm) {
+        ArrayList<Instrument> filteredInst = new ArrayList<>();
+        for (Instrument inst : instruments) {
+            if (inst.model.equals(searchTerm)) {
+                filteredInst.add(inst);
+            }
+        }
+        return filteredInst;
+    }
+
+    public ArrayList<Instrument> filterByYear(ArrayList<Instrument> instruments, String searchTerm) {
+        ArrayList<Instrument> filteredInst = new ArrayList<>();
+        for (Instrument inst : instruments) {
+            if (inst.year == Integer.parseInt(searchTerm)) {
+                filteredInst.add(inst);
+            }
+        }
+        return filteredInst;
+    }
+
+    public ArrayList<Instrument> filterByReserved(ArrayList<Instrument> instruments, boolean status) {
+        ArrayList<Instrument> filteredInst = new ArrayList<>();
+        for (Instrument inst : instruments) {
+            if (inst.isRented() == status) {
+                filteredInst.add(inst);
+            }
+        }
+        return filteredInst;
+    }
+
     public void printGoodbye() {
         printMessageWithTextBorder("bye bye");
     }
