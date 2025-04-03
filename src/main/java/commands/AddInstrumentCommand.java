@@ -3,6 +3,7 @@ package commands;
 import exceptions.EmptyDescriptionException;
 import exceptions.IncorrectAddInstrumentException;
 import exceptions.NegativeUsageException;
+import finance.FinanceManager;
 import instrument.Instrument;
 import instrument.InstrumentList;
 import instrument.Flute;
@@ -13,6 +14,8 @@ import parser.CommandParser;
 import ui.Ui;
 import user.User;
 import user.UserUtils;
+
+import java.time.LocalDateTime;
 
 public class AddInstrumentCommand extends Command {
     private CommandParser cmdparser;
@@ -30,8 +33,8 @@ public class AddInstrumentCommand extends Command {
         int year = cmdparser.instrumentYear(userInput);
         boolean isRented = cmdparser.isRented(userInput);
         boolean isOverdue = cmdparser.isOverdue(userInput);
-        String rentedFrom = cmdparser.rentedFrom(userInput);
-        String rentedTo = cmdparser.rentedTo(userInput);
+        LocalDateTime rentedFrom = cmdparser.rentedFrom(userInput);
+        LocalDateTime rentedTo = cmdparser.rentedTo(userInput);
 
         int usage = 0;
         try {
@@ -42,7 +45,6 @@ public class AddInstrumentCommand extends Command {
 
         Instrument newInstrument = null;
 
-        // TODO: abstract this into hashmap
         try {
             switch (instrument) {
             case "Flute":
@@ -79,7 +81,7 @@ public class AddInstrumentCommand extends Command {
     }
 
     @Override
-    public void execute(InstrumentList instrumentList, Ui ui, UserUtils userUtils)
+    public void execute(InstrumentList instrumentList, Ui ui, UserUtils userUtils, FinanceManager financeManager)
             throws IncorrectAddInstrumentException {
         Instrument newInstrument = addInstrument(instrumentList, ui);
         if (newInstrument != null) {
@@ -93,7 +95,6 @@ public class AddInstrumentCommand extends Command {
         String instrument = cmdparser.instrumentName(userInput);
         String model = cmdparser.modelName(userInput);
         int year = cmdparser.instrumentYear(userInput);
-        boolean isRented = cmdparser.isRented(userInput);
 
         Instrument newInstrument = null;
         try {

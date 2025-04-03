@@ -1,5 +1,6 @@
 package commands;
 
+import finance.FinanceManager;
 import instrument.InstrumentList;
 import ui.Ui;
 import org.junit.jupiter.api.BeforeEach;
@@ -19,6 +20,7 @@ class HelpCommandTest {
     private Ui ui;
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
     private UserUtils userUtils;
+    private FinanceManager financeManager;
 
     @BeforeEach
     void setUp() {
@@ -27,6 +29,7 @@ class HelpCommandTest {
         ui = new Ui();
         UserList userList = new UserList(ui);
         userUtils = new UserUtils(ui, userList);
+        financeManager = new FinanceManager();
 
         // Redirect System.out to capture output
         System.setOut(new PrintStream(outputStreamCaptor));
@@ -35,7 +38,7 @@ class HelpCommandTest {
     @Test
     void testExecutePrintsHelpMessage() {
         // Run the execute method
-        helpCommand.execute(instrumentList, ui, userUtils);
+        helpCommand.execute(instrumentList, ui, userUtils, financeManager);
 
         // Capture output and check if it contains expected text
         String output = outputStreamCaptor.toString().trim();

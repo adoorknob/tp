@@ -1,5 +1,7 @@
 package instrument;
 
+import java.time.LocalDateTime;
+
 public class Piano extends Instrument {
 
     public Piano(String pianoName, String model, int year) {
@@ -7,7 +9,7 @@ public class Piano extends Instrument {
     }
 
     public Piano(String name, String model, int year, boolean isRented, boolean isOverDue,
-                 String rentedFrom, String rentedTo) {
+                 LocalDateTime rentedFrom, LocalDateTime rentedTo) {
         super(name, model, year, isRented, isOverDue, rentedFrom, rentedTo);
     }
 
