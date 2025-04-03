@@ -12,7 +12,9 @@ public class FinanceManager {
 
     public FinanceManager() {
         totalCash = 0;
-    };
+    }
+
+    ;
 
     public void setTotalCash(int totalCash) {
         this.totalCash = totalCash;
@@ -27,7 +29,7 @@ public class FinanceManager {
         if (days <= 0) {
             throw new IllegalArgumentException("Rental period must be at least 1 day.");
         }
-        totalCash += (long)instrument.getRental() * days;
+        totalCash += (long) instrument.getRental() * days;
     }
 
     public void overduePayment(Instrument instrument, LocalDateTime now) {
@@ -35,7 +37,7 @@ public class FinanceManager {
         if (days <= 0) {
             throw new IllegalArgumentException("Rental period must be at least 1 day.");
         }
-        totalCash += (long)instrument.getOverdueRental() * days;
+        totalCash += (long) instrument.getOverdueRental() * days;
     }
 
     public void inflowPayment(int amount) {

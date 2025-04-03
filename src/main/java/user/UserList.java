@@ -7,10 +7,10 @@ import ui.Ui;
 import java.util.ArrayList;
 
 public class UserList {
+    public static final int USERINDEXBUFFER = 0;
     ArrayList<User> users;
     int userCount;
     Ui ui;
-    public static int USERINDEXBUFFER = 0;
 
     /**
      * Constructor for UserList. Initialises 'unassigned' for instruments that are not given a user

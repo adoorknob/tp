@@ -7,7 +7,8 @@ import utils.DateTimeParser;
 import java.time.LocalDateTime;
 
 public class CommandParser {
-    public CommandParser() {}
+    public CommandParser() {
+    }
 
     public String[] separate(String input) throws IncorrectAddInstrumentException {
         if (input == null || input.isEmpty()) {

@@ -91,9 +91,9 @@ public class UserUtils {
     private void executeListPrint(int userId, int listId) {
         User user = userList.getUserByIndex(userId);
         InstrumentList listToPrint = switch (listId) {
-            case 1 -> user.getRentalHistory();
-            case 2 -> user.getCurrentlyRented();
-            default -> throw new IllegalArgumentException("Invalid list id");
+        case 1 -> user.getRentalHistory();
+        case 2 -> user.getCurrentlyRented();
+        default -> throw new IllegalArgumentException("Invalid list id");
         };
         ui.printInstrumentList(listToPrint.getList());
     }
