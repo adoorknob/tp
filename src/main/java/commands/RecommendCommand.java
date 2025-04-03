@@ -22,9 +22,9 @@ public class RecommendCommand extends Command {
     @Override
     public void execute(InstrumentList instrumentList, Ui ui, UserUtils userUtils, FinanceManager financeManager) {
         String userInput = "";
-        try{
+        try {
             userInput = cmdparser.justGetInstrument(this.name);
-        } catch(IncorrectAddInstrumentException e) {
+        } catch (IncorrectAddInstrumentException e) {
             System.out.println(e.getMessage());
             return;
         }
@@ -43,35 +43,36 @@ public class RecommendCommand extends Command {
             userInput = "Piano";
             break;
         default:
-            System.out.println(userInput+" does not exist");
+            System.out.println(userInput + " does not exist");
             return;
         }
 
-        recommendInstrument(userInput,instrumentList, ui);
+        recommendInstrument(userInput, instrumentList, ui);
 
 
     }
 
-    public void recommendInstrument(String userInput,InstrumentList instrumentList, Ui ui) {
+    public void recommendInstrument(String userInput, InstrumentList instrumentList, Ui ui) {
         Instrument recommendedInstrument = null;
         int index = 0;
         int usage = 0;
         for (int i = 0; i < instrumentList.getList().size(); i++) {
-            if (userInput.equals(instrumentList.getList().get(i).name)){
-                if (instrumentList.getList().get(i).getUsage()>=usage && !instrumentList.getList().get(i).isRented()){
+            if (userInput.equals(instrumentList.getList().get(i).name)) {
+                if (instrumentList.getList().get(i).getUsage() >= usage
+                        && !instrumentList.getList().get(i).isRented()) {
                     recommendedInstrument = instrumentList.getList().get(i);
                     usage = instrumentList.getList().get(i).getUsage();
-                    index = i+1;
+                    index = i + 1;
                 }
             }
         }
 
-        if (recommendedInstrument==null){
-            System.out.println("There are no "+userInput+" that are available");
+        if (recommendedInstrument == null) {
+            System.out.println("There are no " + userInput + " that are available");
             return;
         }
 
-        ui.printRecommendation(recommendedInstrument,index);
+        ui.printRecommendation(recommendedInstrument, index);
 
     }
 

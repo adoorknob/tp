@@ -1,7 +1,9 @@
 package commands;
 
+import instrument.Instrument;
 import instrument.InstrumentList;
 import ui.Ui;
+import user.User;
 import user.UserUtils;
 import finance.FinanceManager;
 
@@ -12,8 +14,16 @@ public class DeleteCommand extends Command {
 
     @Override
     public void execute(InstrumentList instrumentList, Ui ui, UserUtils userUtils, FinanceManager financeManager) {
-        instrumentList.deleteInstrument(Integer.parseInt(this.name));
+        int instrumentId = Integer.parseInt(this.name);
+        deleteInstrumentFromUser(instrumentList, instrumentId);
+        instrumentList.deleteInstrument(instrumentId);
         ui.printInstrumentList(instrumentList.getList());
+    }
+
+    private void deleteInstrumentFromUser(InstrumentList instrumentList, int instrumentId) {
+        Instrument instrument = instrumentList.getInstrument(instrumentId);
+        User user = instrument.getUser();
+        user.removeInstrument(instrument);
     }
 
     @Override
