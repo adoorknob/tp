@@ -1,6 +1,7 @@
 package user;
 
 import exceptions.UserListInitiationException;
+import exceptions.UsernameMatchException;
 import ui.Ui;
 
 import java.util.ArrayList;
@@ -9,6 +10,7 @@ public class UserList {
     ArrayList<User> users;
     int userCount;
     Ui ui;
+    public static int USERINDEXBUFFER = 0;
 
     /**
      * Constructor for UserList. Initialises 'unassigned' for instruments that are not given a user
@@ -17,17 +19,20 @@ public class UserList {
      */
     public UserList(Ui ui) {
         users = new ArrayList<>();
-        users.add(new User(ui, "Unassigned"));
+        users.add(new User(ui, this, "Unassigned"));
         this.ui = ui;
     }
 
     public void addUser(User user) {
         users.add(user);
+        user.setParentUserList(this);
+        ui.printAcknowledgementCreatedNewUser(user.getName());
         userCount++;
     }
 
-    public void removeUser(User user) {
-        users.remove(user);
+    public void removeUserById(int userId) {
+        User deletedUser = users.remove(userId - USERINDEXBUFFER);
+        ui.printAcknowledgementDeletedUser(deletedUser.getName());
         userCount--;
     }
 
@@ -67,5 +72,23 @@ public class UserList {
             }
         }
         throw new UserListInitiationException("No unassigned user found, userList not initialized correctly");
+    }
+
+    public User findUserByName(String name) {
+        for (User user : users) {
+            if (user.getName().equals(name)) {
+                return user;
+            }
+        }
+        throw new UsernameMatchException("Username " + name + " not found");
+    }
+
+    public User getUserByIndex(int index) {
+        assert users != null;
+        return users.get(index);
+    }
+
+    public boolean isEmpty() {
+        return userCount == 0;
     }
 }

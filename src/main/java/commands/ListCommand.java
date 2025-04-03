@@ -16,12 +16,8 @@ public class ListCommand extends Command {
     public void execute(InstrumentList instrumentList, Ui ui, UserUtils userUtils, FinanceManager financeManager) {
         assert instrumentList != null;
         assert ui != null;
-        if (instrumentList.getList().isEmpty()) {
-            throw new EmptyInstrumentListException("List is empty, let's add some instruments :)");
-        } else {
-            ui.printInstrumentList(instrumentList.getList());
-            ui.printStockList(instrumentList.getList());
-        }
+        ui.printInstrumentList(instrumentList.getList());
+        ui.printStockList(instrumentList.getList());
     }
 
     @Override

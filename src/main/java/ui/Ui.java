@@ -1,5 +1,6 @@
 package ui;
 
+import exceptions.EmptyInstrumentListException;
 import instrument.Instrument;
 import user.User;
 import user.UserList;
@@ -92,7 +93,19 @@ public class Ui {
             reserve: reserves an available instrument
             extend: changes the return date of a reserved instrument
             return: returns a reserved instrument
+            user: choose user commands
             exit: quit SirDukeBox""";
+
+    private static final String USERLISTCHOICES = """
+            Available List Choices:
+            1. Rental History
+            2. Current Instruments""";
+
+    private static final String USERCOMMANDS = """
+            1. Add User
+            2. Remove User
+            3. Print list of users
+            4. Print list of instruments of specific user""";
 
     private Scanner scanner;
 
@@ -139,6 +152,9 @@ public class Ui {
 
     public void printInstrumentList(ArrayList<Instrument> instruments) {
         System.out.println(TEXTBORDER);
+        if (instruments.size() <= 0) {
+            throw new EmptyInstrumentListException("List is empty, let's add some instruments :)");
+        }
         System.out.println("Here is the list of instruments:");
 
         for (int i = 0; i < instruments.size(); i++) {
@@ -239,27 +255,38 @@ public class Ui {
     public int queryUserIndex(UserList userList) {
         assert userList != null : "userList is null";
         if (userList.getUserCount() == 0) {
-            printCreatingNewUser();
+            printNoCurrentUsersCreatingNewUser();
             return 0;
         }
-        printSelectUserFromList(userList.getUsers());
+        printSelectUserFromListWithCreateOption(userList.getUsers());
+        return getUserInputNumber();
+    }
+
+    private int getUserInputNumber() {
         String userInput = readUserInput();
         while (!userInput.matches("-?\\d+")) {
+            printPleaseInputANumber();
             userInput = readUserInput();
         }
         return Integer.parseInt(userInput);
     }
 
-    public String queryUserName() {
+    public String queryUserNameWithNoNameChoice() {
         System.out.println("Enter user name (Leave empty if no name): ");
         return readUserInput();
     }
 
-    public void printCreatingNewUser() {
+    public int queryUserIndexForDelete(UserList userList) {
+        printUserList(userList.getUsers());
+        System.out.println("Enter user index of the user you want to delete: ");
+        return getUserInputNumber();
+    }
+
+    public void printNoCurrentUsersCreatingNewUser() {
         printMessageWithTextBorder("No users exist currently. Creating new user...");
     }
 
-    public void printSelectUserFromList(ArrayList<User> userList) {
+    public void printSelectUserFromListWithCreateOption(ArrayList<User> userList) {
         System.out.println(TEXTBORDER);
         System.out.println("Please select from the following users:");
         printUserList(userList);
@@ -267,9 +294,46 @@ public class Ui {
         System.out.println(TEXTBORDER);
     }
 
-    public void printUserListDisplay(ArrayList<User> userList) {
+    public void printUserListDisplay(UserList userList) {
+        if (userList.isEmpty()) {
+            printMessageWithTextBorder("No users exist currently.");
+            return;
+        }
         System.out.println(TEXTBORDER);
         System.out.println("Here is a list of registered users:");
+        printUserList(userList.getUsers());
+        System.out.println(TEXTBORDER);
+    }
+
+    public void printAcknowledgementCreatedNewUser(String userName) {
+        printMessageWithTextBorder("Created new user: " + userName);
+    }
+
+    public void printAcknowledgementDeletedUser(String userName) {
+        printMessageWithTextBorder("Deleted user: " + userName);
+    }
+
+    public void printAddInstrumentToUser(Instrument instrument) {
+        printMessageWithTextBorder("Added instrument to user: " + instrument);
+    }
+
+    public void printRemovedInstrumentFromUser(Instrument instrument, User user) {
+        printMessageWithTextBorder("Removed instrument [" + instrument + "] from user [" + user.getName() + "]");
+    }
+
+    public int queryUserInstrumentListUserChoice(ArrayList<User> userList) {
+        printSelectUserFromList(userList);
+        return getUserInputNumber();
+    }
+
+    public int queryUserInstrumentListListChoice() {
+        printMessageWithTextBorder(USERLISTCHOICES);
+        return getUserInputNumber();
+    }
+
+    private void printSelectUserFromList(ArrayList<User> userList) {
+        System.out.println(TEXTBORDER);
+        System.out.println("Please select from the following existing users:");
         printUserList(userList);
         System.out.println(TEXTBORDER);
     }
@@ -280,9 +344,25 @@ public class Ui {
         }
     }
 
+    private void printPleaseInputANumber() {
+        printMessageWithTextBorder("Please input a number");
+    }
+
     public boolean isInstrumentAssignedToUser() {
         System.out.println("Would you like to assign this instrument to a user? [Y/N]");
         return scanner.nextLine().equalsIgnoreCase("y");
+    }
+
+    public int queryPrintUserListOrInstrumentList() {
+        printUserListOrInstrumentList();
+        return getUserInputNumber();
+    }
+
+    private void printUserListOrInstrumentList() {
+        System.out.println(TEXTBORDER);
+        System.out.println("What would you like to do?");
+        System.out.println(USERCOMMANDS);
+        System.out.println(TEXTBORDER);
     }
 
     private void printMessageWithTextBorder(String message) {
