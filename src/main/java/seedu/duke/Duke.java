@@ -96,6 +96,7 @@ public class Duke {
                 Command commandObj = parser.parse(command, input);
                 commandObj.execute(instrumentList, ui, userUtils, financeManager);
                 isExit = commandObj.isExit();
+                ui.printTextBorder();
 
             } catch (Exception e) {
                 System.out.println(e.getMessage());

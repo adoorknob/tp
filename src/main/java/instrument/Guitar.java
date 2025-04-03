@@ -1,6 +1,6 @@
 package instrument;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public class Guitar extends Instrument {
 
@@ -9,7 +9,7 @@ public class Guitar extends Instrument {
     }
 
     public Guitar(String name, String model, int year, boolean isRented, boolean isOverDue,
-                  LocalDateTime rentedFrom, LocalDateTime rentedTo) {
+                  LocalDate rentedFrom, LocalDate rentedTo) {
         super(name, model, year, isRented, isOverDue, rentedFrom, rentedTo);
     }
 

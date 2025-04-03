@@ -102,7 +102,15 @@ public class Ui {
             return: returns a reserved instrument
             user: choose user commands
             recommend: recommends a recommended instrument
+            finance: Manage finances: (use -h flag to see commands)
             exit: quit SirDukeBox""";
+
+    private static final String FINANCECOMMANDLIST = """
+            -h help
+            -a add inflow payment
+            -s subtract outflow payment
+            -g get total cash
+            """;
 
     private static final String USERLISTCHOICES = """
             Available List Choices:
@@ -119,10 +127,6 @@ public class Ui {
 
     public Ui() {
         this.scanner = new Scanner(System.in);
-    }
-
-    public void print(String s) {
-        System.out.println(s);
     }
 
     public void printStartMessage() {
@@ -142,7 +146,7 @@ public class Ui {
     public String getCommand(String userInput) throws IOException {
         assert userInput != null : "Input is null";
         String[] parsedInput = userInput.split(" ");
-        return parsedInput.length > 0 ? parsedInput[0] : "";
+        return (parsedInput.length > 0) ? parsedInput[0] : "";
     }
 
     public String getRemainingWords(String userInput) {
@@ -155,7 +159,17 @@ public class Ui {
         System.out.println(TEXTBORDER);
         System.out.println("Here is a list of available commands:");
         System.out.println(COMMANDLIST);
+    }
+
+    public void printFinanceCommandList() {
         System.out.println(TEXTBORDER);
+        System.out.println("Here is a list of available finance commands:");
+        System.out.println(FINANCECOMMANDLIST);
+    }
+
+    public void printEmptyList() {
+        System.out.println(TEXTBORDER);
+        System.out.println("List is empty, let's add some instruments :)");
     }
 
     public void printRecommendation(Instrument instrument, int index) {
@@ -178,7 +192,6 @@ public class Ui {
             System.out.println((i + 1) + ". " + instruments.get(i).toString());
         }
 
-        System.out.println(TEXTBORDER);
     }
 
     public void printStockList(ArrayList<Instrument> instruments) {
@@ -234,7 +247,6 @@ public class Ui {
                         Integer.toString(availCount), RESET, longestName);
             }
         }
-        System.out.println(TEXTBORDER);
     }
 
     public void printTableLines(String col1, String col2, String col3, String col4, String colour, String longestName) {
@@ -374,7 +386,6 @@ public class Ui {
         System.out.println("Please select from the following users:");
         printUserList(userList);
         System.out.println("...or enter '0' to create a new user");
-        System.out.println(TEXTBORDER);
     }
 
     public void printUserListDisplay(UserList userList) {
@@ -418,7 +429,6 @@ public class Ui {
         System.out.println(TEXTBORDER);
         System.out.println("Please select from the following existing users:");
         printUserList(userList);
-        System.out.println(TEXTBORDER);
     }
 
     private void printUserList(ArrayList<User> userList) {
@@ -457,18 +467,19 @@ public class Ui {
     public void printAmount(long amount) {
         System.out.println(TEXTBORDER);
         System.out.println("Total Amount is " + amount);
-        System.out.println(TEXTBORDER);
     }
 
     public void printReceivedAmount(long amount) {
         System.out.println(TEXTBORDER);
         System.out.println("Received payment of: " + amount);
-        System.out.println(TEXTBORDER);
     }
 
     public void printPaymentAmount(long amount) {
         System.out.println(TEXTBORDER);
         System.out.println("Transferred payment of: " + amount);
+    }
+
+    public void printTextBorder() {
         System.out.println(TEXTBORDER);
     }
 }

@@ -11,6 +11,7 @@ public class FinanceCommand extends Command {
     private static final String ADD = "-a";
     private static final String SUB = "-s";
     private static final String GET = "-g";
+    private static final String HELP = "-h";
 
 
     private CommandParser parser;
@@ -27,6 +28,9 @@ public class FinanceCommand extends Command {
             int amount;
             String command = userInput[0];
             switch (command) {
+            case HELP:
+                ui.printFinanceCommandList();
+                break;
             case ADD:
                 amount = Integer.parseInt(userInput[1]);
                 financeManager.inflowPayment(amount);
@@ -41,6 +45,7 @@ public class FinanceCommand extends Command {
                 ui.printAmount(financeManager.getTotalCash());
                 break;
             default:
+                ui.printNoMatchingCommandError();
                 break;
             }
 

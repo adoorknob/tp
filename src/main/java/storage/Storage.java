@@ -88,8 +88,8 @@ public class Storage {
     }
 
     private void addEntryToSession(String line) {
-        AddInstrumentCommand c = new AddInstrumentCommand(line);
-        c.parse(instrumentList, ui);
+        AddInstrumentCommand c = new AddInstrumentCommand(line, true);
+        c.addInstrument(instrumentList, ui);
     }
 
     private void addEntryToOutputText(Instrument instrument) {

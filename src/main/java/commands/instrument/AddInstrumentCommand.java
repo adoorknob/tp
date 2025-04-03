@@ -16,80 +16,43 @@ import ui.Ui;
 import user.User;
 import user.UserUtils;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public class AddInstrumentCommand extends Command {
     private CommandParser cmdparser;
+    private boolean isParse;
 
-    public AddInstrumentCommand(String command) {
+    public AddInstrumentCommand(String command, boolean isParse) {
         super(command);
         cmdparser = new CommandParser();
+        this.isParse = isParse;
     }
 
-    public void parse(InstrumentList instrumentList, Ui ui) throws IncorrectAddInstrumentException {
-        String[] userInput = cmdparser.separate(this.name.trim());
-
-        String instrument = cmdparser.instrumentName(userInput);
-        String model = cmdparser.modelName(userInput);
-        int year = cmdparser.instrumentYear(userInput);
-        boolean isRented = cmdparser.isRented(userInput);
-        boolean isOverdue = cmdparser.isOverdue(userInput);
-        LocalDateTime rentedFrom = cmdparser.rentedFrom(userInput);
-        LocalDateTime rentedTo = cmdparser.rentedTo(userInput);
-
-        int usage = 0;
-        try {
-            usage = cmdparser.usage(userInput);
-        } catch (IncorrectAddInstrumentException e) {
-            System.out.println(e.getMessage());
-        }
-
-        Instrument newInstrument = null;
-
-        try {
-            switch (instrument) {
-            case "Flute":
-                newInstrument = instrumentList.addInstrument(new Flute(instrument, model, year,
-                        isRented, isOverdue, rentedFrom, rentedTo));
-                break;
-            case "Piano":
-                newInstrument = instrumentList.addInstrument(new Piano(instrument, model, year,
-                        isRented, isOverdue, rentedFrom, rentedTo));
-                break;
-            case "Guitar":
-                newInstrument = instrumentList.addInstrument(new Guitar(instrument, model, year,
-                        isRented, isOverdue, rentedFrom, rentedTo));
-                break;
-            default:
-                System.out.println("invalid instrument");
-            }
-        } catch (EmptyDescriptionException e) {
-            System.out.println(e.getMessage());
-            ui.printInstrumentList(instrumentList.getList());
-            return;
-        }
-
-        try {
-            if (newInstrument != null) {
-                newInstrument.setUsage(usage);
-            }
-        } catch (NegativeUsageException e) {
-            System.out.println(e.getMessage());
-        }
-
-        ui.printInstrumentList(instrumentList.getList());
-
-    }
 
     @Override
     public void execute(InstrumentList instrumentList, Ui ui, UserUtils userUtils, FinanceManager financeManager)
             throws IncorrectAddInstrumentException {
-        Instrument newInstrument = addInstrument(instrumentList, ui);
-        if (newInstrument != null) {
-            addUser(newInstrument, userUtils);
+
+
+        Instrument newInstrument;
+        if (this.isParse) {
+            newInstrument = addInstrument(instrumentList, ui);
+        } else {
+            newInstrument = addInstrument(instrumentList, ui);
+            if (newInstrument != null && !this.isParse) {
+                addUser(newInstrument, userUtils);
+            }
+            instrumentList.addInstrument(newInstrument);
         }
+        ui.printInstrumentList(instrumentList.getList());
     }
 
+    /**
+     *  Add instrument to the instrument list
+     * @param instrumentList
+     * @param ui
+     * @return instrument
+     */
     public Instrument addInstrument(InstrumentList instrumentList, Ui ui) {
         String[] userInput = cmdparser.separate(this.name.trim());
 
@@ -97,28 +60,43 @@ public class AddInstrumentCommand extends Command {
         String model = cmdparser.modelName(userInput);
         int year = cmdparser.instrumentYear(userInput);
 
+        boolean isRented = cmdparser.isRented(userInput, isParse);
+        boolean isOverdue = cmdparser.isOverdue(userInput, isParse);
+        LocalDate rentedFrom = cmdparser.rentedFrom(userInput, isParse);
+        LocalDate rentedTo = cmdparser.rentedTo(userInput, isParse);
+        int usage = cmdparser.usage(userInput, isParse);
+
         Instrument newInstrument = null;
+
         try {
             switch (instrument) {
             case "Flute":
-                newInstrument = new Flute(instrument, model, year);
+                newInstrument = new Flute(instrument, model, year, isRented, isOverdue, rentedFrom, rentedTo);
                 break;
             case "Piano":
-                newInstrument = new Piano(instrument, model, year);
+                newInstrument = new Piano(instrument, model, year, isRented, isOverdue, rentedFrom, rentedTo);
                 break;
             case "Guitar":
-                newInstrument = new Guitar(instrument, model, year);
+                newInstrument = new Guitar(instrument, model, year, isRented, isOverdue, rentedFrom, rentedTo);
                 break;
             default:
                 System.out.println("invalid instrument");
             }
         } catch (EmptyDescriptionException e) {
             System.out.println(e.getMessage());
+            ui.printInstrumentList(instrumentList.getList());
         }
-        if (newInstrument != null) {
-            instrumentList.addInstrument(newInstrument);
+
+        try {
+            if (!isParse && newInstrument != null) {
+                newInstrument.setUsage(usage);
+            } else {
+                instrumentList.addInstrument(newInstrument);
+            }
+        } catch (NegativeUsageException e) {
+            System.out.println(e.getMessage());
         }
-        ui.printInstrumentList(instrumentList.getList());
+
         return newInstrument;
     }
 

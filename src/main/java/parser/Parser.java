@@ -39,7 +39,7 @@ public class Parser {
         case USER:
             return new UserCommand();
         case ADD:
-            return new AddInstrumentCommand(input);
+            return new AddInstrumentCommand(input, false);
         case DELETE:
             return new DeleteCommand(input);
         case RESERVE:

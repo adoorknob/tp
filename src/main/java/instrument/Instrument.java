@@ -3,11 +3,11 @@ package instrument;
 import exceptions.instrument.NegativeUsageException;
 import user.User;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public abstract class Instrument {
-    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("d/M/yyyy HHmm");
+    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("d/M/yyyy");
     public String name;
     public String model;
     public int year;
@@ -17,8 +17,8 @@ public abstract class Instrument {
     private boolean isRented = false;
     private boolean isOverDue = false;
 
-    private LocalDateTime rentedTo;
-    private LocalDateTime rentedFrom;
+    private LocalDate rentedTo;
+    private LocalDate rentedFrom;
 
     // Rental per day
     private int rental = 20;
@@ -39,7 +39,7 @@ public abstract class Instrument {
     }
 
     public Instrument(String name, String model, int year, boolean isRented, boolean isOverDue,
-                      LocalDateTime rentedFrom, LocalDateTime rentedTo) {
+                      LocalDate rentedFrom, LocalDate rentedTo) {
         this.name = name;
         this.model = model;
         this.year = year;
@@ -61,12 +61,12 @@ public abstract class Instrument {
         rentedTo = null;
     }
 
-    public void rentFromTo(LocalDateTime from, LocalDateTime to) {
+    public void rentFromTo(LocalDate from, LocalDate to) {
         rentedFrom = from;
         rentedTo = to;
     }
 
-    public void rentTo(LocalDateTime to) {
+    public void rentTo(LocalDate to) {
         rentedTo = to;
     }
 
@@ -74,11 +74,11 @@ public abstract class Instrument {
         return isRented;
     }
 
-    public LocalDateTime getdueDate() {
+    public LocalDate getdueDate() {
         return rentedTo;
     }
 
-    public LocalDateTime getRentedFrom() {
+    public LocalDate getRentedFrom() {
         return rentedFrom;
     }
 
