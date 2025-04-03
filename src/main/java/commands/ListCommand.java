@@ -1,8 +1,11 @@
 package commands;
 
+import exceptions.EmptyInstrumentListException;
 import instrument.InstrumentList;
 import parser.CommandParser;
 import ui.Ui;
+import user.UserUtils;
+import finance.FinanceManager;
 
 import static ui.Ui.TEXTBORDER;
 
@@ -18,8 +21,16 @@ public class ListCommand extends Command {
         parser = new CommandParser();
     }
 
-
     @Override
+    public void execute(InstrumentList instrumentList, Ui ui, UserUtils userUtils, FinanceManager financeManager) {
+        assert instrumentList != null;
+        assert ui != null;
+        if (instrumentList.getList().isEmpty()) {
+            throw new EmptyInstrumentListException("List is empty, let's add some instruments :)");
+        } else {
+            ui.printInstrumentList(instrumentList.getList());
+            ui.printStockList(instrumentList.getList());
+        }
     public void execute(InstrumentList instrumentList, Ui ui) {
 
         try {

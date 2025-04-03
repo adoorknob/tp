@@ -1,22 +1,29 @@
 package instrument;
 
 import exceptions.NegativeUsageException;
+import user.User;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public abstract class Instrument {
-
+    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("d/M/yyyy HHmm");
     public String name;
-
     public String model;
-
     public int year;
 
-    private boolean isRented = false;
+    private User user;
 
+    private boolean isRented = false;
     private boolean isOverDue = false;
 
-    private String rentedFrom;
+    private LocalDateTime rentedTo;
+    private LocalDateTime rentedFrom;
 
-    private String rentedTo;
+    // Rental per day
+    private int rental = 20;
+
+    // Overdue rental
+    private int overdueRate = 50;
 
     private int usage = 0;
 
@@ -26,12 +33,12 @@ public abstract class Instrument {
         this.year = year;
         this.isRented = false;
         this.isOverDue = false;
-        this.rentedFrom = "";
-        this.rentedTo = "";
+        this.rentedFrom = null;
+        this.rentedTo = null;
     }
 
     public Instrument(String name, String model, int year, boolean isRented, boolean isOverDue,
-                      String rentedFrom, String rentedTo) {
+                      LocalDateTime rentedFrom, LocalDateTime rentedTo) {
         this.name = name;
         this.model = model;
         this.year = year;
@@ -49,16 +56,16 @@ public abstract class Instrument {
 
     public void unrent() {
         isRented = false;
-        rentedFrom = "";
-        rentedTo = "";
+        rentedFrom = null;
+        rentedTo = null;
     }
 
-    public void rentFromTo(String from, String to) {
+    public void rentFromTo(LocalDateTime from, LocalDateTime to) {
         rentedFrom = from;
         rentedTo = to;
     }
 
-    public void rentTo(String to) {
+    public void rentTo(LocalDateTime to) {
         rentedTo = to;
     }
 
@@ -66,11 +73,11 @@ public abstract class Instrument {
         return isRented;
     }
 
-    public String dueDate() {
+    public LocalDateTime getdueDate() {
         return rentedTo;
     }
 
-    public String getRentedFrom() {
+    public LocalDateTime getRentedFrom() {
         return rentedFrom;
     }
 
@@ -80,18 +87,20 @@ public abstract class Instrument {
 
     public String toString() {
         return name + " | " + model + " | " + year + " | " + (isRented ? "Rented" : "") +
-                (isOverDue ? "| Overdue " : "") + (!rentedFrom.isEmpty() ? " | Rented from: "
-                + rentedFrom : "") + (!rentedTo.isEmpty() ? " | Rented to: " + rentedTo : "");
+                (isOverDue ? " | Overdue" : "") +
+                (rentedFrom != null ? " | Rented from: " + rentedFrom.format(DATE_TIME_FORMATTER) : "") +
+                (rentedTo != null ? " | Rented to: " + rentedTo.format(DATE_TIME_FORMATTER) : "");
     }
 
     public String toFileEntry() {
-        return name + " | " + model + " | " + year + " | " + (isRented) + " | " + (isOverDue) + " | " + rentedFrom
-                + " | " + rentedTo + " | " + usage;
+        return name + " | " + model + " | " + year + " | " + isRented + " | " + isOverDue + " | " +
+                (rentedFrom != null ? rentedFrom.format(DATE_TIME_FORMATTER) : "null") + " | " +
+                (rentedTo != null ? rentedTo.format(DATE_TIME_FORMATTER) : "null") + " | " + usage;
     }
 
     public void setUsage(int usage) throws NegativeUsageException {
-        if (usage<0){
-            throw new NegativeUsageException("Usage set is "+usage+". ");
+        if (usage < 0) {
+            throw new NegativeUsageException("Usage set is " + usage + ". ");
         }
 
         this.usage = usage;
@@ -104,5 +113,23 @@ public abstract class Instrument {
     public void increaseUsage() {
         this.usage++;
     }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public int getRental() {
+        return rental;
+    }
+
+    public int getOverdueRental() {
+        return overdueRate;
+    }
+
+    public boolean isOverDue() { return isOverDue; }
 
 }

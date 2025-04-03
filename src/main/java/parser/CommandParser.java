@@ -4,6 +4,8 @@ import exceptions.IncorrectAddInstrumentException;
 import utils.IsOverdueChecker;
 import utils.DateTimeParser;
 
+import java.time.LocalDateTime;
+
 public class CommandParser {
     public CommandParser() {}
 
@@ -11,7 +13,7 @@ public class CommandParser {
         if (input == null || input.isEmpty()) {
             throw new IncorrectAddInstrumentException("Input is Empty");
         }
-        String[] split = Parser.parseFileEntryToInstrument(input); // TODO fix this
+        String[] split = Parser.parseFileEntryToInstrument(input);
 
         if (split.length < 3) {
             throw new IncorrectAddInstrumentException("Input format is invalid: missing fields");
@@ -44,7 +46,7 @@ public class CommandParser {
     }
 
     public String modelName(String[] userInput) throws IncorrectAddInstrumentException {
-        if (userInput == null || userInput.length < 1 || userInput[1].isEmpty() ) {
+        if (userInput == null || userInput.length < 1 || userInput[1].isEmpty()) {
             throw new IncorrectAddInstrumentException("Input is Empty");
         }
         return userInput[1];
@@ -69,18 +71,19 @@ public class CommandParser {
 
     public boolean isOverdue(String[] userInput) {
         if (userInput.length > 6 && !userInput[6].isBlank()) {
-            return IsOverdueChecker.isOverdue(userInput[6]);
+            LocalDateTime dueDate = DateTimeParser.parseDateTime(userInput[6]);
+            return IsOverdueChecker.isOverdue(dueDate);
         }
         return false;
     }
 
 
-    public String rentedFrom(String[] userInput) {
-        return (userInput.length > 5 && userInput[5] != null) ? DateTimeParser.parseDateTime(userInput[5]) : "";
+    public LocalDateTime rentedFrom(String[] userInput) {
+        return (userInput.length > 5 && userInput[5] != null) ? DateTimeParser.parseDateTime(userInput[5]) : null;
     }
 
-    public String rentedTo(String[] userInput) {
-        return (userInput.length > 6 && userInput[6] != null) ? DateTimeParser.parseDateTime(userInput[6]) : "";
+    public LocalDateTime rentedTo(String[] userInput) {
+        return (userInput.length > 6 && userInput[6] != null) ? DateTimeParser.parseDateTime(userInput[6]) : null;
     }
 
     public int usage(String[] userInput) throws IncorrectAddInstrumentException {

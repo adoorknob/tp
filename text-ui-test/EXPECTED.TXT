@@ -4,6 +4,9 @@ Creating directory: ./data
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 Creating file: ./data/SirDukeBox.txt
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
+*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
+Creating file: ./data/DukeFinance.txt
+*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 Welcome to
                 _.-'\       /'-._
             _.-'    _\ .-. /_    '-._
@@ -56,6 +59,8 @@ Welcome to
 
 How can I help you?
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
+These stocks are running low: 
+*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 Here is a list of available commands:
 Available Commands:
@@ -64,6 +69,7 @@ list: list all instruments
 add: adds a new instrument
 delete: deletes an existing instrument
 reserve: reserves an available instrument
+extend: changes the return date of a reserved instrument
 return: returns a reserved instrument
 exit: quit SirDukeBox
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
@@ -71,10 +77,21 @@ exit: quit SirDukeBox
 Here is the list of instruments:
 1. Guitar | Yamaha | 2000 | 
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
+Would you like to assign this instrument to a user? [Y/N]
+*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
+No users exist currently. Creating new user...
+*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
+Enter user name (Leave empty if no name): 
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 Here is the list of instruments:
 1. Guitar | Yamaha | 2000 | 
 2. Piano | Yamaha | 2010 | 
+*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
+Would you like to assign this instrument to a user? [Y/N]
+*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
+Please select from the following users:
+1. UserName
+...or enter '0' to create a new user
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 Here is the list of instruments:
@@ -82,6 +99,7 @@ Here is the list of instruments:
 2. Piano | Yamaha | 2010 | 
 3. Flute | Yamaha | 2001 | 
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
+Would you like to assign this instrument to a user? [Y/N]
 Reserving instrument: Guitar | Yamaha | 2000 | 
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 Here is the list of instruments:

@@ -1,14 +1,19 @@
 package utils;
 
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import instrument.InstrumentList;
 import instrument.Instrument;
 
-import static ui.Ui.*;
+import static ui.Ui.CRITICAL_QTY;
+import static ui.Ui.RED;
+import static ui.Ui.YELLOW;
+import static ui.Ui.RESET;
+import static ui.Ui.TEXTBORDER;
+import static ui.Ui.WARNING_QTY;
+
+//import static ui.Ui.*;
 
 public class LowStockChecker {
     public static void printLowStock(Map.Entry<String, Integer> entry, HashMap<String, Integer> rentCount) {

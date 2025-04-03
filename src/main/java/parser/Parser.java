@@ -1,7 +1,17 @@
 package parser;
 
-import commands.*;
-
+import commands.Command;
+import commands.HelpCommand;
+import commands.ListCommand;
+import commands.UserListCommand;
+import commands.AddInstrumentCommand;
+import commands.DeleteCommand;
+import commands.ExitCommand;
+import commands.ReserveCommand;
+import commands.ReturnCommand;
+import commands.DefaultCommand;
+import commands.ExtendCommand;
+import commands.FinanceCommand;
 
 public class Parser {
     private static final String HELP = "help";
@@ -12,8 +22,11 @@ public class Parser {
     private static final String EXTEND = "extend";
     private static final String RETURN = "return";
     private static final String EXIT = "exit";
+    private static final String USERLIST = "userlist";
+    private static final String FINANCE = "finance";
 
-    public Parser() {}
+    public Parser() {
+    }
 
     public static Command parse(String command, String input) {
         switch (command) {
@@ -21,6 +34,8 @@ public class Parser {
             return new HelpCommand();
         case LIST:
             return new ListCommand(input);
+        case USERLIST:
+            return new UserListCommand();
         case ADD:
             return new AddInstrumentCommand(input);
         case DELETE:
@@ -31,6 +46,8 @@ public class Parser {
             return new ExtendCommand(input);
         case RETURN:
             return new ReturnCommand(input);
+        case FINANCE:
+            return new FinanceCommand(input);
         case EXIT:
             return new ExitCommand();
         default:
@@ -39,12 +56,15 @@ public class Parser {
     }
 
     public static String parseFileDirectories(String outputFilePath) {
+        if (outputFilePath == null || outputFilePath.isEmpty()) {
+            throw new IllegalArgumentException("File path cannot be null or empty");
+        }
         int index = outputFilePath.lastIndexOf("/");
         return outputFilePath.substring(0, index);
     }
 
     public static String[] parseFileEntryToInstrument(String line) {
-        String[] splitInput =  line.split("\\|");
+        String[] splitInput = line.split("\\|");
         for (int i = 0; i < splitInput.length; i++) {
             splitInput[i] = splitInput[i].trim();
         }

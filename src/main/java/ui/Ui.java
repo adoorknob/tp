@@ -1,9 +1,15 @@
 package ui;
 
 import instrument.Instrument;
+import user.User;
+import user.UserList;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Scanner;
+import java.util.Map;
 
 public class Ui {
 
@@ -87,7 +93,8 @@ public class Ui {
             reserve: reserves an available instrument
             extend: changes the return date of a reserved instrument
             return: returns a reserved instrument
-            exit: quit SirDukeBox""";;
+            exit: quit SirDukeBox""";
+
     public static final String FILTERNAME = "name";
     public static final String FILTERMODEL = "model";
     public static final String FILTERYEAR = "year";
@@ -299,9 +306,76 @@ public class Ui {
         printMessageWithTextBorder("Creating file: " + file);
     }
 
+    public int queryUserIndex(UserList userList) {
+        assert userList != null : "userList is null";
+        if (userList.getUserCount() == 0) {
+            printCreatingNewUser();
+            return 0;
+        }
+        printSelectUserFromList(userList.getUsers());
+        String userInput = readUserInput();
+        while (!userInput.matches("-?\\d+")) {
+            userInput = readUserInput();
+        }
+        return Integer.parseInt(userInput);
+    }
+
+    public String queryUserName() {
+        System.out.println("Enter user name (Leave empty if no name): ");
+        return readUserInput();
+    }
+
+    public void printCreatingNewUser() {
+        printMessageWithTextBorder("No users exist currently. Creating new user...");
+    }
+
+    public void printSelectUserFromList(ArrayList<User> userList) {
+        System.out.println(TEXTBORDER);
+        System.out.println("Please select from the following users:");
+        printUserList(userList);
+        System.out.println("...or enter '0' to create a new user");
+        System.out.println(TEXTBORDER);
+    }
+
+    public void printUserListDisplay(ArrayList<User> userList) {
+        System.out.println(TEXTBORDER);
+        System.out.println("Here is a list of registered users:");
+        printUserList(userList);
+        System.out.println(TEXTBORDER);
+    }
+
+    private void printUserList(ArrayList<User> userList) {
+        for (int i = 1; i < userList.size(); i++) {
+            System.out.println((i) + ". " + userList.get(i).getName());
+        }
+    }
+
+    public boolean isInstrumentAssignedToUser() {
+        System.out.println("Would you like to assign this instrument to a user? [Y/N]");
+        return scanner.nextLine().equalsIgnoreCase("y");
+    }
+
     private void printMessageWithTextBorder(String message) {
         System.out.println(TEXTBORDER);
         System.out.println(message);
+        System.out.println(TEXTBORDER);
+    }
+
+    public void printAmount(long amount) {
+        System.out.println(TEXTBORDER);
+        System.out.println("Total Amount is " + amount);
+        System.out.println(TEXTBORDER);
+    }
+
+    public void printReceivedAmount(long amount) {
+        System.out.println(TEXTBORDER);
+        System.out.println("Received payment of: " + amount);
+        System.out.println(TEXTBORDER);
+    }
+
+    public void printPaymentAmount(long amount) {
+        System.out.println(TEXTBORDER);
+        System.out.println("Transferred payment of: " + amount);
         System.out.println(TEXTBORDER);
     }
 }
