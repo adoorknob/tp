@@ -6,7 +6,6 @@
 
 ## Quick Start
 
-{Give steps to get started quickly}
 
 1. Ensure that you have Java 17 or above installed.
 1. Down the latest version of `SirDukeBox` from [here](http://link.to/duke).
@@ -70,7 +69,7 @@ Here is the list of instruments:
 Would you like to assign this instrument to a user? [Y/N]
 ```
 
-Adding an instrument allows you to assign it to a `user` // rmb to include link to user section
+Adding an instrument allows you to assign it to a `user` 
 
 ### Deleting an Instrument: `delete`
 
@@ -288,7 +287,7 @@ Here is the list of instruments:
 
 ### User commands
 
-user will bring up a list of commands that pertains to users:
+User will bring up a list of commands that pertains to users:
 1. Adding a user
 2. Removing a user
 3. Listing all users
@@ -371,5 +370,6 @@ SirDukeBox data are saved automatically as .txt files in the same directory as t
 The files are saved as `SirDukeBox.txt` and `DukeFinance.txt`
 > NOTE: Any changes made to the .txt files outside of the 
 > functionalities of SirDukeBox (e.g. editing the .txt file manually in notepad)
-> may render its format invalid. 
+> may render its format invalid. This may result in `SirDukeBox` being unable
+> to load an existing .txt file 
 
