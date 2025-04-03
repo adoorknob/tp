@@ -91,10 +91,6 @@ public class Ui {
 
     public static final String TEXTBORDER = "*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+";
 
-    public void printTextBorder() {
-        System.out.println(TEXTBORDER);
-    }
-
     private static final String COMMANDLIST = """
             Available Commands:
             help: list all commands
@@ -481,5 +477,9 @@ public class Ui {
     public void printPaymentAmount(long amount) {
         System.out.println(TEXTBORDER);
         System.out.println("Transferred payment of: " + amount);
+    }
+
+    public void printTextBorder() {
+        System.out.println(TEXTBORDER);
     }
 }

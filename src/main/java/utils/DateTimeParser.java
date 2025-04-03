@@ -40,23 +40,4 @@ public class DateTimeParser {
         return date.format(DATE_FORMATTER);
     }
 
-    public static void main(String[] args) {
-        String[] testInputs = {
-                "01/01/2023",   // Expected: 2023-01-01
-                "Jul 04 2023",   // Expected: 2023-07-04
-                "31/12/99",      // Expected: 1999-12-31
-                "5 Jun 2023",    // Expected: 2023-06-05
-                "2023-07-01",    // Expected: 2023-07-01
-                "invalid_date"   // Expected: Error message
-        };
-
-        for (String input : testInputs) {
-            try {
-                LocalDate parsedDate = parseDate(input);
-                System.out.println("Input: " + input + " -> Parsed: " + parsedDate);
-            } catch (DateTimeParseException e) {
-                System.out.println("Final failure: Unable to parse '" + input + "'");
-            }
-        }
-    }
 }

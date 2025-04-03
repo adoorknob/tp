@@ -99,17 +99,17 @@ public class CommandParser {
     }
 
     public int usage(String[] userInput, boolean isParse) throws IncorrectAddInstrumentException {
-       if (isParse) {
-           if (userInput == null || userInput.length <= 7 || userInput[7].isEmpty()) {
-               throw new IncorrectAddInstrumentException("Instrument usage is missing");
-           }
+        if (isParse) {
+            if (userInput == null || userInput.length <= 7 || userInput[7].isEmpty()) {
+                throw new IncorrectAddInstrumentException("Instrument usage is missing");
+            }
 
-           try {
-               return Integer.parseInt(userInput[7].trim());
-           } catch (NumberFormatException e) {
-               throw new IncorrectAddInstrumentException("Invalid usage: " + userInput[7]);
-           }
-       }
-       return 0;
+            try {
+                return Integer.parseInt(userInput[7].trim());
+            } catch (NumberFormatException e) {
+                throw new IncorrectAddInstrumentException("Invalid usage: " + userInput[7]);
+            }
+        }
+        return 0;
     }
 }
