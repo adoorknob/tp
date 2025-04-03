@@ -20,7 +20,7 @@ public class ListCommandTest {
 
     @Test
     public void testListCommandEmptyList() {
-        ListCommand command = new ListCommand();
+        ListCommand command = new ListCommand("stock");
 
         try {
             command.execute(new InstrumentList(), ui, userUtils, financeManager);
