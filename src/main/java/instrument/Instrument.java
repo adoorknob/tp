@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public abstract class Instrument {
+    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("d/M/yyyy HHmm");
     public String name;
     public String model;
     public int year;
@@ -17,7 +18,6 @@ public abstract class Instrument {
 
     private LocalDateTime rentedTo;
     private LocalDateTime rentedFrom;
-    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("d/M/yyyy HHmm");
 
     // Rental per day
     private int rental = 20;
