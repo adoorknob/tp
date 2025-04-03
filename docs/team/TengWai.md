@@ -8,4 +8,3 @@
 * **Feature:** `Ui` for main functionality
 * **Feature:** `Storage` for saving data
 * **Testing:** for relevant classes and methods
-
