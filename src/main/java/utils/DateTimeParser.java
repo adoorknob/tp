@@ -18,7 +18,7 @@ public class DateTimeParser {
     private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("d/M/yyyy HHmm");
 
     public static LocalDateTime parseDateTime(String input) throws DateTimeParseException {
-        if (input == null || input.isEmpty()) {
+        if (input == null || input.isEmpty() || input.equals("null")) {
             return null;
         }
         for (DateTimeFormatter format : FORMATS) {

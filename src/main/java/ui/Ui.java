@@ -83,6 +83,10 @@ public class Ui {
 
     public static final String TEXTBORDER = "*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+";
 
+    public void printTextBorder() {
+        System.out.println(TEXTBORDER);
+    }
+
     private static final String COMMANDLIST = """
             Available Commands:
             help: list all commands
@@ -92,16 +96,20 @@ public class Ui {
             reserve: reserves an available instrument
             extend: changes the return date of a reserved instrument
             return: returns a reserved instrument
+            finance: Manage finances: (use -h flag to see commands)
             exit: quit SirDukeBox""";
+
+    private static final String FINANCECOMMANDLIST = """
+            -h help
+            -a add inflow payment
+            -s subtract outflow payment
+            -g get total cash
+            """;
 
     private Scanner scanner;
 
     public Ui() {
         this.scanner = new Scanner(System.in);
-    }
-
-    public void print(String s) {
-        System.out.println(s);
     }
 
     public void printStartMessage() {
@@ -121,7 +129,7 @@ public class Ui {
     public String getCommand(String userInput) throws IOException {
         assert userInput != null : "Input is null";
         String[] parsedInput = userInput.split(" ");
-        return parsedInput.length > 0 ? parsedInput[0] : "";
+        return (parsedInput.length > 0) ? parsedInput[0] : "";
     }
 
     public String getRemainingWords(String userInput) {
@@ -134,7 +142,17 @@ public class Ui {
         System.out.println(TEXTBORDER);
         System.out.println("Here is a list of available commands:");
         System.out.println(COMMANDLIST);
+    }
+
+    public void printFinanceCommandList() {
         System.out.println(TEXTBORDER);
+        System.out.println("Here is a list of available finance commands:");
+        System.out.println(FINANCECOMMANDLIST);
+    }
+
+    public void printEmptyList() {
+        System.out.println(TEXTBORDER);
+        System.out.println("List is empty, let's add some instruments :)");
     }
 
     public void printInstrumentList(ArrayList<Instrument> instruments) {
@@ -145,7 +163,6 @@ public class Ui {
             System.out.println((i + 1) + ". " + instruments.get(i).toString());
         }
 
-        System.out.println(TEXTBORDER);
     }
 
     public void printStockList(ArrayList<Instrument> instruments) {
@@ -202,7 +219,6 @@ public class Ui {
                         Integer.toString(rentedCount), RESET, longestName);
             }
         }
-        System.out.println(TEXTBORDER);
     }
 
     public void printTableLines(String col1, String col2, String col3, String colour, String longestName) {
@@ -264,14 +280,12 @@ public class Ui {
         System.out.println("Please select from the following users:");
         printUserList(userList);
         System.out.println("...or enter '0' to create a new user");
-        System.out.println(TEXTBORDER);
     }
 
     public void printUserListDisplay(ArrayList<User> userList) {
         System.out.println(TEXTBORDER);
         System.out.println("Here is a list of registered users:");
         printUserList(userList);
-        System.out.println(TEXTBORDER);
     }
 
     private void printUserList(ArrayList<User> userList) {
@@ -288,24 +302,20 @@ public class Ui {
     private void printMessageWithTextBorder(String message) {
         System.out.println(TEXTBORDER);
         System.out.println(message);
-        System.out.println(TEXTBORDER);
     }
 
     public void printAmount(long amount) {
         System.out.println(TEXTBORDER);
         System.out.println("Total Amount is " + amount);
-        System.out.println(TEXTBORDER);
     }
 
     public void printReceivedAmount(long amount) {
         System.out.println(TEXTBORDER);
         System.out.println("Received payment of: " + amount);
-        System.out.println(TEXTBORDER);
     }
 
     public void printPaymentAmount(long amount) {
         System.out.println(TEXTBORDER);
         System.out.println("Transferred payment of: " + amount);
-        System.out.println(TEXTBORDER);
     }
 }

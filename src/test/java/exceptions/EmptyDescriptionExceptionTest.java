@@ -26,7 +26,7 @@ public class EmptyDescriptionExceptionTest {
         InstrumentList instrumentList = new InstrumentList();
         String invalidInput = "Yamaha|2023"; // Missing instrument name, will fail parsing
 
-        AddInstrumentCommand c = new AddInstrumentCommand(invalidInput);
+        AddInstrumentCommand c = new AddInstrumentCommand(invalidInput, false);
         try {
             c.addInstrument(instrumentList, new Ui());
             fail("Expected EmptyDescriptionException to be thrown");
@@ -41,7 +41,7 @@ public class EmptyDescriptionExceptionTest {
     void testAddInstrumentValid() {
         InstrumentList instrumentList = new InstrumentList();
         String validInput = "Flute|Yamaha|2023";
-        AddInstrumentCommand c = new AddInstrumentCommand(validInput);
+        AddInstrumentCommand c = new AddInstrumentCommand(validInput, false);
         assertDoesNotThrow(() -> c.addInstrument(instrumentList, new Ui()));
     }
 }

@@ -17,7 +17,13 @@ public class ReserveCommand extends Command {
         parser = new CommandParser();
     }
 
-    // TODO add features to prevent invalid date/overdue from the start
+    /**
+     *  Reserves item on instrument list
+     * @param instrumentList list of instruments
+     * @param ui UI object from SirDuke
+     * @param userUtils userUtils from SirDuke
+     * @param financeManager financeManger from SirDuke
+     */
     @Override
     public void execute(InstrumentList instrumentList, Ui ui, UserUtils userUtils, FinanceManager financeManager) {
         try {

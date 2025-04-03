@@ -65,12 +65,12 @@ public class CommandParser {
     }
 
 
-    public boolean isRented(String[] userInput) {
-        return userInput.length > 3 && Boolean.parseBoolean(userInput[3]);
+    public boolean isRented(String[] userInput, boolean isParse) {
+        return isParse && userInput.length > 3 && Boolean.parseBoolean(userInput[3]);
     }
 
-    public boolean isOverdue(String[] userInput) {
-        if (userInput.length > 6 && !userInput[6].isBlank()) {
+    public boolean isOverdue(String[] userInput, boolean isParse) {
+        if (isParse && userInput.length > 6 && !userInput[6].isBlank()) {
             LocalDateTime dueDate = DateTimeParser.parseDateTime(userInput[6]);
             return IsOverdueChecker.isOverdue(dueDate);
         }
@@ -78,24 +78,28 @@ public class CommandParser {
     }
 
 
-    public LocalDateTime rentedFrom(String[] userInput) {
-        return (userInput.length > 5 && userInput[5] != null) ? DateTimeParser.parseDateTime(userInput[5]) : null;
+    public LocalDateTime rentedFrom(String[] userInput, boolean isParse) {
+        return (isParse && userInput.length > 5 && userInput[5] != null) ? DateTimeParser.parseDateTime(userInput[5])
+                : null;
     }
 
-    public LocalDateTime rentedTo(String[] userInput) {
-        return (userInput.length > 6 && userInput[6] != null) ? DateTimeParser.parseDateTime(userInput[6]) : null;
+    public LocalDateTime rentedTo(String[] userInput, boolean isParse) {
+        return (isParse && userInput.length > 6 && userInput[6] != null) ? DateTimeParser.parseDateTime(userInput[6])
+                : null;
     }
 
-    public int usage(String[] userInput) throws IncorrectAddInstrumentException {
-        if (userInput == null || userInput.length <= 7 || userInput[7].isEmpty()) {
-            throw new IncorrectAddInstrumentException("Instrument usage is missing");
-        }
+    public int usage(String[] userInput, boolean isParse) throws IncorrectAddInstrumentException {
+       if (isParse) {
+           if (userInput == null || userInput.length <= 7 || userInput[7].isEmpty()) {
+               throw new IncorrectAddInstrumentException("Instrument usage is missing"); // TODO is this supposed to be done when cli adding
+           }
 
-        try {
-            return Integer.parseInt(userInput[7].trim());
-        } catch (NumberFormatException e) {
-            throw new IncorrectAddInstrumentException("Invalid usage: " + userInput[7]);
-        }
+           try {
+               return Integer.parseInt(userInput[7].trim());
+           } catch (NumberFormatException e) {
+               throw new IncorrectAddInstrumentException("Invalid usage: " + userInput[7]);
+           }
+       }
+       return 0;
     }
-
 }
