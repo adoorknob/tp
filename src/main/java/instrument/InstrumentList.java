@@ -3,7 +3,7 @@ package instrument;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-import exceptions.EmptyDescriptionException;
+import exceptions.instrument.EmptyDescriptionException;
 
 public class InstrumentList {
     private static final Integer currYEAR = 2025; // Current

@@ -1,6 +1,6 @@
 package storage;
 
-import exceptions.FileCannotBeMadeException;
+import exceptions.storage.FileCannotBeMadeException;
 import org.junit.jupiter.api.Test;
 import ui.Ui;
 

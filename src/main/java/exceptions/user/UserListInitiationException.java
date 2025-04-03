@@ -1,4 +1,4 @@
-package exceptions;
+package exceptions.user;
 
 public class UserListInitiationException extends RuntimeException {
     public UserListInitiationException(String message) {

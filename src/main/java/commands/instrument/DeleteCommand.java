@@ -1,5 +1,6 @@
-package commands;
+package commands.instrument;
 
+import commands.Command;
 import instrument.Instrument;
 import instrument.InstrumentList;
 import ui.Ui;

@@ -1,4 +1,4 @@
-package exceptions;
+package exceptions.instrument;
 
 public class NegativeUsageException extends RuntimeException {
     public NegativeUsageException(String message) {
