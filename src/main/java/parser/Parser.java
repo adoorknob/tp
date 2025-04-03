@@ -20,7 +20,7 @@ public class Parser {
         case HELP:
             return new HelpCommand();
         case LIST:
-            return new ListCommand();
+            return new ListCommand(input);
         case ADD:
             return new AddInstrumentCommand(input);
         case DELETE:
