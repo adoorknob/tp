@@ -3,11 +3,13 @@ package seedu.duke;
 import commands.Command;
 import exceptions.FileCannotBeFoundException;
 import storage.Storage;
+import storage.FinanceStorage;
 import ui.Ui;
 import parser.Parser;
 import instrument.InstrumentList;
 import user.UserList;
 import user.UserUtils;
+import finance.FinanceManager;
 import utils.IsOverdueChecker;
 import utils.LowStockChecker;
 
@@ -20,22 +22,25 @@ import java.util.concurrent.TimeUnit;
 public class Duke {
     /**
      * Main entry-point for the java.duke.Duke application.
-     * hello
      */
     private final Ui ui;
     private final Parser parser;
     private final InstrumentList instrumentList;
     private final Storage storage;
+    private final FinanceStorage financeStorage;
     private final ScheduledExecutorService scheduler;
     private final UserList userList;
     private final UserUtils userUtils;
+    private final FinanceManager financeManager;
 
     private final String saveFilePath = "./data/SirDukeBox.txt";
+    private final String saveFilePathFinance = "./data/DukeFinance.txt";
 
     public Duke() {
         ui = new Ui();
         parser = new Parser();
         storage = new Storage(ui, saveFilePath);
+        financeStorage = new FinanceStorage(ui, saveFilePathFinance);
         scheduler = Executors.newSingleThreadScheduledExecutor();
         userList = new UserList(ui);
         userUtils = new UserUtils(ui, userList);
@@ -47,6 +52,14 @@ public class Duke {
             currentInstrumentList = new InstrumentList();
         }
         instrumentList = currentInstrumentList;
+
+        FinanceManager currentFinanceManager;
+        try {
+            currentFinanceManager = financeStorage.loadOldFile();
+        } catch (FileCannotBeFoundException e) {
+            currentFinanceManager = new FinanceManager();
+        }
+        financeManager = currentFinanceManager;
 
         startDailyOverdueCheck();
     }
@@ -81,7 +94,7 @@ public class Duke {
                 assert input != null;
 
                 Command commandObj = parser.parse(command, input);
-                commandObj.execute(instrumentList, ui, userUtils);
+                commandObj.execute(instrumentList, ui, userUtils, financeManager);
                 isExit = commandObj.isExit();
 
             } catch (Exception e) {
@@ -91,6 +104,7 @@ public class Duke {
 
         try {
             storage.saveCurrentFile(instrumentList);
+            financeStorage.saveCurrentFile(financeManager);
         } catch (IOException e) {
             throw new FileCannotBeFoundException(saveFilePath);
         } finally {

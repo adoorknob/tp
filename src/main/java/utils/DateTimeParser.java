@@ -15,17 +15,23 @@ public class DateTimeParser {
             DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm")
     );
 
-    public static String parseDateTime(String input) throws DateTimeParseException {
+    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("d/M/yyyy HHmm");
+
+    public static LocalDateTime parseDateTime(String input) throws DateTimeParseException {
         if (input == null || input.isEmpty()) {
-            return input;
+            return null;
         }
         for (DateTimeFormatter format : FORMATS) {
             try {
-                return LocalDateTime.parse(input, format).format(DateTimeFormatter.ofPattern("d/M/yyyy HHmm"));
+                return LocalDateTime.parse(input, format);
             } catch (DateTimeParseException e) {
                 System.out.println(e);
             }
         }
-        return input;
+        throw new DateTimeParseException("Unable to parse date-time: " + input, input, 0);
+    }
+
+    public static String formatDateTime(LocalDateTime dateTime) {
+        return dateTime.format(DATE_TIME_FORMATTER);
     }
 }

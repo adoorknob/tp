@@ -290,4 +290,22 @@ public class Ui {
         System.out.println(message);
         System.out.println(TEXTBORDER);
     }
+
+    public void printAmount(long amount) {
+        System.out.println(TEXTBORDER);
+        System.out.println("Total Amount is " + amount);
+        System.out.println(TEXTBORDER);
+    }
+
+    public void printReceivedAmount(long amount) {
+        System.out.println(TEXTBORDER);
+        System.out.println("Received payment of: " + amount);
+        System.out.println(TEXTBORDER);
+    }
+
+    public void printPaymentAmount(long amount) {
+        System.out.println(TEXTBORDER);
+        System.out.println("Transferred payment of: " + amount);
+        System.out.println(TEXTBORDER);
+    }
 }

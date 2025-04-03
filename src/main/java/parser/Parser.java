@@ -11,6 +11,7 @@ import commands.ReserveCommand;
 import commands.ReturnCommand;
 import commands.DefaultCommand;
 import commands.ExtendCommand;
+import commands.FinanceCommand;
 
 public class Parser {
     private static final String HELP = "help";
@@ -22,6 +23,7 @@ public class Parser {
     private static final String RETURN = "return";
     private static final String EXIT = "exit";
     private static final String USERLIST = "userlist";
+    private static final String FINANCE = "finance";
 
     public Parser() {
     }
@@ -44,6 +46,8 @@ public class Parser {
             return new ExtendCommand(input);
         case RETURN:
             return new ReturnCommand(input);
+        case FINANCE:
+            return new FinanceCommand(input);
         case EXIT:
             return new ExitCommand();
         default:

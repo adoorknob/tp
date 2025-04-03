@@ -1,5 +1,6 @@
 package instrument;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import exceptions.EmptyDescriptionException;
@@ -63,7 +64,7 @@ public class InstrumentList {
         instToRent.increaseUsage();
     }
 
-    public void reserveInstrumentFromTo(int number, String from, String to) {
+    public void reserveInstrumentFromTo(int number, LocalDateTime from, LocalDateTime to) {
         assert number > 0 && number <= numberOfInstruments : "Instrument number out of bounds: " + number;
         if (this.instruments.isEmpty()) {
             System.out.println("No instruments available for reservation");
@@ -83,7 +84,7 @@ public class InstrumentList {
         instToRent.increaseUsage();
     }
 
-    public void extendInstrumentTo(int number, String to) {
+    public void extendInstrumentTo(int number, LocalDateTime to) {
         assert number > 0 && number <= numberOfInstruments : "Instrument number out of bounds: " + number;
         if (this.instruments.isEmpty()) {
             System.out.println("No instruments available for extension");
@@ -113,6 +114,15 @@ public class InstrumentList {
         Instrument instToUnrent = instruments.get(number - 1);
         System.out.println("Returning instrument: " + instToUnrent);
         instToUnrent.unrent();
+    }
+
+    public Instrument getInstrument(int number) {
+        assert number > 0 && number <= numberOfInstruments : "Instrument number out of bounds: " + number;
+        if (this.instruments.isEmpty()) {
+            System.out.println("No instruments available for reservation");
+            throw new EmptyDescriptionException("event"); // TODO change this exception
+        }
+        return instruments.get(number - 1);
     }
 
     public ArrayList<Instrument> getList() {
