@@ -31,6 +31,12 @@ public class Ui {
     public static final Integer CRITICAL_QTY = 2;
     public static final Integer WARNING_QTY = 5;
 
+    public static final String FILTERNAME = "name";
+    public static final String FILTERMODEL = "model";
+    public static final String FILTERYEAR = "year";
+    public static final String FILTERRESERVED = "reserved";
+    public static final String FILTERAVAILABLE = "available";
+
     public static final String DUKEBOX = """
                             _.-'\\       /'-._
                         _.-'    _\\ .-. /_    '-._
@@ -95,11 +101,6 @@ public class Ui {
             return: returns a reserved instrument
             exit: quit SirDukeBox""";
 
-    public static final String FILTERNAME = "name";
-    public static final String FILTERMODEL = "model";
-    public static final String FILTERYEAR = "year";
-    public static final String FILTERRESERVED = "reserved";
-    public static final String FILTERAVAILABLE = "available";
 
     private Scanner scanner;
 
@@ -198,11 +199,14 @@ public class Ui {
             Integer rentedCount = (rentCount.get(instName) == null ? 0 : rentCount.get(instName));
             Integer availCount = instCount - rentedCount;
             if (availCount < CRITICAL_QTY) { // critical, must replenish soon
-                printTableLines(instName, Integer.toString(instCount), Integer.toString(rentedCount), Integer.toString(availCount), RED, longestName);
+                printTableLines(instName, Integer.toString(instCount), Integer.toString(rentedCount),
+                        Integer.toString(availCount), RED, longestName);
             } else if (availCount < WARNING_QTY) {
-                printTableLines(instName, Integer.toString(instCount), Integer.toString(rentedCount), Integer.toString(availCount), YELLOW, longestName);
+                printTableLines(instName, Integer.toString(instCount), Integer.toString(rentedCount),
+                        Integer.toString(availCount), YELLOW, longestName);
             } else {
-                printTableLines(instName, Integer.toString(instCount), Integer.toString(rentedCount), Integer.toString(availCount), RESET, longestName);
+                printTableLines(instName, Integer.toString(instCount), Integer.toString(rentedCount),
+                        Integer.toString(availCount), RESET, longestName);
             }
         }
         System.out.println(TEXTBORDER);

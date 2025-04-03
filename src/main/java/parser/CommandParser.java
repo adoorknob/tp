@@ -97,5 +97,4 @@ public class CommandParser {
             throw new IncorrectAddInstrumentException("Invalid usage: " + userInput[7]);
         }
     }
-
 }
