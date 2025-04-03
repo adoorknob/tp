@@ -1,8 +1,10 @@
 package ui;
 
 import exceptions.IncorrectAddInstrumentException;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import parser.CommandParser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

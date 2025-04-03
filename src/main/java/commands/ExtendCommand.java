@@ -7,7 +7,7 @@ import user.UserUtils;
 import finance.FinanceManager;
 import utils.DateTimeParser;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public class ExtendCommand extends Command {
     private CommandParser parser;
@@ -25,7 +25,7 @@ public class ExtendCommand extends Command {
             int indice = Integer.parseInt(userInput[0]);
             try {
                 String[] parts = this.name.split("to: ", 3);
-                LocalDateTime to = DateTimeParser.parseDateTime(parts[1]);
+                LocalDate to = DateTimeParser.parseDate(parts[1]);
                 instrumentList.extendInstrumentTo(indice, to);
             } catch (Exception e) {
                 throw new RuntimeException(e);
