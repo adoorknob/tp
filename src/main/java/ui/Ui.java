@@ -88,6 +88,11 @@ public class Ui {
             extend: changes the return date of a reserved instrument
             return: returns a reserved instrument
             exit: quit SirDukeBox""";;
+    public static final String FILTERNAME = "name";
+    public static final String FILTERMODEL = "model";
+    public static final String FILTERYEAR = "year";
+    public static final String FILTERRESERVED = "reserved";
+    public static final String FILTERAVAILABLE = "available";
 
     private Scanner scanner;
 
@@ -207,19 +212,19 @@ public class Ui {
     public void printFilteredList(ArrayList<Instrument> instruments, String filter, String searchTerm) {
         ArrayList<Instrument> filteredInst;
         switch (filter) {
-        case "name":
+        case FILTERNAME:
             filteredInst = filterByName(instruments, searchTerm);
             break;
-        case "model":
+        case FILTERMODEL:
             filteredInst = filterByModel(instruments, searchTerm);
             break;
-        case "year":
+        case FILTERYEAR:
             filteredInst = filterByYear(instruments, searchTerm);
             break;
-        case "reserved":
+        case FILTERRESERVED:
             filteredInst = filterByReserved(instruments, true);
             break;
-        case "available":
+        case FILTERAVAILABLE:
             filteredInst = filterByReserved(instruments, false);
             break;
         default:

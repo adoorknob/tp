@@ -7,6 +7,10 @@ import ui.Ui;
 import static ui.Ui.TEXTBORDER;
 
 public class ListCommand extends Command {
+    public static final String STOCK = "stock";
+    public static final String FILTER = "filter";
+    public static final String RESERVED = "reserved";
+    public static final String AVAILABLE = "available";
     private CommandParser parser;
     // Constructor
     public ListCommand(String command) {
@@ -25,13 +29,13 @@ public class ListCommand extends Command {
             }
             String[] userInput = parser.splits(this.name);
             String subCmd = userInput[0];
-            if (subCmd.equals("stock")) {
+            if (subCmd.equals(STOCK)) {
                 ui.printStockList(instrumentList.getList());
-            } else if (subCmd.equals("filter")) { // search for a specific instrument name
+            } else if (subCmd.equals(FILTER)) { // search for a specific instrument name
                 String[] parts = this.name.split("by: ", 3);
                 String[] filterSearch = parts[1].split(" ");
                 String filter = filterSearch[0].trim();
-                if (filter.equals("reserved") || filter.equals("available")) {
+                if (filter.equals(RESERVED) || filter.equals(AVAILABLE)) {
                     ui.printFilteredList(instrumentList.getList(), filter, "");
                     return;
                 }
