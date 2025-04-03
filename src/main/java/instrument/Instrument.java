@@ -130,6 +130,8 @@ public abstract class Instrument {
         return overdueRate;
     }
 
-    public boolean isOverDue() { return isOverDue; }
+    public boolean isOverDue() {
+        return isOverDue;
+    }
 
 }

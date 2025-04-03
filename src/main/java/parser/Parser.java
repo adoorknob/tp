@@ -12,6 +12,7 @@ import commands.ReturnCommand;
 import commands.DefaultCommand;
 import commands.ExtendCommand;
 import commands.FinanceCommand;
+import commands.RecommendCommand;
 
 public class Parser {
     private static final String HELP = "help";
@@ -24,6 +25,7 @@ public class Parser {
     private static final String EXIT = "exit";
     private static final String USER = "user";
     private static final String FINANCE = "finance";
+    private static final String RECOMMEND = "recommend";
 
     public Parser() {
     }
@@ -33,7 +35,7 @@ public class Parser {
         case HELP:
             return new HelpCommand();
         case LIST:
-            return new ListCommand();
+            return new ListCommand(input);
         case USER:
             return new UserCommand();
         case ADD:
@@ -50,6 +52,8 @@ public class Parser {
             return new FinanceCommand(input);
         case EXIT:
             return new ExitCommand();
+        case RECOMMEND:
+            return new RecommendCommand(input);
         default:
             return new DefaultCommand();
         }

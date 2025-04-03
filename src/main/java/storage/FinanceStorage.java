@@ -28,8 +28,8 @@ public class FinanceStorage {
     public FinanceManager loadOldFile() throws FileCannotBeFoundException {
         validateOutputFilepath();
         try {
-            int Cash = loadEntry();
-            financeManager.setTotalCash(Cash);
+            int cash = loadEntry();
+            financeManager.setTotalCash(cash);
             return financeManager;
         } catch (FileNotFoundException e) {
             throw new FileCannotBeFoundException(outputFilePath);

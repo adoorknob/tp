@@ -27,6 +27,15 @@ public class CommandParser {
         }
     }
 
+    public String justGetInstrument(String input) throws IncorrectAddInstrumentException {
+        if (input == null || input.isEmpty()) {
+            throw new IncorrectAddInstrumentException("Input is Empty");
+        }
+
+        String instrument = input.trim();
+        return instrument;
+    }
+
     public String[] splits(String input) {
         String[] splitInput = input.split("\\s+");
 
@@ -97,5 +106,4 @@ public class CommandParser {
             throw new IncorrectAddInstrumentException("Invalid usage: " + userInput[7]);
         }
     }
-
 }
