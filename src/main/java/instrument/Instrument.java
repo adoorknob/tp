@@ -2,6 +2,7 @@ package instrument;
 
 import exceptions.NegativeUsageException;
 import user.User;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -130,6 +131,8 @@ public abstract class Instrument {
         return overdueRate;
     }
 
-    public boolean isOverDue() { return isOverDue; }
+    public boolean isOverDue() {
+        return isOverDue;
+    }
 
 }

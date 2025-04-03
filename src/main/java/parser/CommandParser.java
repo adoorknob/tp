@@ -7,7 +7,8 @@ import utils.DateTimeParser;
 import java.time.LocalDateTime;
 
 public class CommandParser {
-    public CommandParser() {}
+    public CommandParser() {
+    }
 
     public String[] separate(String input) throws IncorrectAddInstrumentException {
         if (input == null || input.isEmpty()) {
@@ -25,6 +26,15 @@ public class CommandParser {
         } catch (NumberFormatException e) {
             throw new IncorrectAddInstrumentException("Input year or usage is invalid");
         }
+    }
+
+    public String justGetInstrument(String input) throws IncorrectAddInstrumentException {
+        if (input == null || input.isEmpty()) {
+            throw new IncorrectAddInstrumentException("Input is Empty");
+        }
+
+        String instrument = input.trim();
+        return instrument;
     }
 
     public String[] splits(String input) {

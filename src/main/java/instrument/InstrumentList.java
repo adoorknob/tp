@@ -42,6 +42,7 @@ public class InstrumentList {
             System.out.println("Now you have " + numberOfInstruments + " instruments");
         } catch (Exception e) {
             System.out.println("Error in deleting instrument: " + (number));
+            System.out.println(e.getMessage());
         }
     }
 

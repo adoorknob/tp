@@ -1,5 +1,6 @@
 package ui;
 
+import exceptions.EmptyInstrumentListException;
 import instrument.Instrument;
 import user.User;
 import user.UserList;
@@ -26,9 +27,16 @@ public class Ui {
     public static final String TABLEHEADER1 = "Instrument:";
     public static final String TABLEHEADER2 = "Total QTY:";
     public static final String TABLEHEADER3 = "Rented QTY:";
+    public static final String TABLEHEADER4 = "Available QTY:";
     public static final String PADDING = "  ";
     public static final Integer CRITICAL_QTY = 2;
     public static final Integer WARNING_QTY = 5;
+
+    public static final String FILTERNAME = "name";
+    public static final String FILTERMODEL = "model";
+    public static final String FILTERYEAR = "year";
+    public static final String FILTERRESERVED = "reserved";
+    public static final String FILTERAVAILABLE = "available";
 
     public static final String DUKEBOX = """
                             _.-'\\       /'-._
@@ -96,6 +104,8 @@ public class Ui {
             reserve: reserves an available instrument
             extend: changes the return date of a reserved instrument
             return: returns a reserved instrument
+            user: choose user commands
+            recommend: recommends a recommended instrument
             finance: Manage finances: (use -h flag to see commands)
             exit: quit SirDukeBox""";
 
@@ -105,6 +115,17 @@ public class Ui {
             -s subtract outflow payment
             -g get total cash
             """;
+
+    private static final String USERLISTCHOICES = """
+            Available List Choices:
+            1. Rental History
+            2. Current Instruments""";
+
+    private static final String USERCOMMANDS = """
+            1. Add User
+            2. Remove User
+            3. Print list of users
+            4. Print list of instruments of specific user""";
 
     private Scanner scanner;
 
@@ -155,8 +176,20 @@ public class Ui {
         System.out.println("List is empty, let's add some instruments :)");
     }
 
+    public void printRecommendation(Instrument instrument, int index) {
+        System.out.println(TEXTBORDER);
+
+        System.out.println("Here is our recommendation: ");
+        System.out.println(index + ". " + instrument.toString());
+
+        System.out.println(TEXTBORDER);
+    }
+
     public void printInstrumentList(ArrayList<Instrument> instruments) {
         System.out.println(TEXTBORDER);
+        if (instruments.size() <= 0) {
+            throw new EmptyInstrumentListException("List is empty, let's add some instruments :)");
+        }
         System.out.println("Here is the list of instruments:");
 
         for (int i = 0; i < instruments.size(); i++) {
@@ -200,32 +233,98 @@ public class Ui {
             }
         }
 
-        // Organise the stocklist into a table
-        printTableLines(TABLEHEADER1, TABLEHEADER2, TABLEHEADER3, RESET, longestName);
+        printTableLines(TABLEHEADER1, TABLEHEADER2, TABLEHEADER3, TABLEHEADER4, RESET, longestName);
 
         for (Map.Entry<String, Integer> entry : stockCount.entrySet()) {
             String instName = entry.getKey();
             Integer instCount = entry.getValue();
             Integer rentedCount = (rentCount.get(instName) == null ? 0 : rentCount.get(instName));
-            if (instCount < CRITICAL_QTY) {
-                // critical, must replenish soon
-                printTableLines(instName, Integer.toString(instCount),
-                        Integer.toString(rentedCount), RED, longestName);
-            } else if (instCount < WARNING_QTY) {
-                printTableLines(instName, Integer.toString(instCount),
-                        Integer.toString(rentedCount), YELLOW, longestName);
+            Integer availCount = instCount - rentedCount;
+            if (availCount < CRITICAL_QTY) { // critical, must replenish soon
+                printTableLines(instName, Integer.toString(instCount), Integer.toString(rentedCount),
+                        Integer.toString(availCount), RED, longestName);
+            } else if (availCount < WARNING_QTY) {
+                printTableLines(instName, Integer.toString(instCount), Integer.toString(rentedCount),
+                        Integer.toString(availCount), YELLOW, longestName);
             } else {
-                printTableLines(instName, Integer.toString(instCount),
-                        Integer.toString(rentedCount), RESET, longestName);
+                printTableLines(instName, Integer.toString(instCount), Integer.toString(rentedCount),
+                        Integer.toString(availCount), RESET, longestName);
             }
         }
     }
 
-    public void printTableLines(String col1, String col2, String col3, String colour, String longestName) {
+    public void printTableLines(String col1, String col2, String col3, String col4, String colour, String longestName) {
         String line = "|" + col1 + " ".repeat(longestName.length() - col1.length()) + PADDING
-                + "|" + colour + col2 + RESET + " ".repeat(TABLEHEADER2.length() - col2.length()) + PADDING
-                + "|" + col3 + " ".repeat(TABLEHEADER3.length() - col3.length()) + PADDING + "|";
+                + "|" + col2 + " ".repeat(TABLEHEADER2.length() - col2.length()) + PADDING
+                + "|" + col3 + " ".repeat(TABLEHEADER3.length() - col3.length()) + PADDING
+                + "|" + colour + col4 + RESET + " ".repeat(TABLEHEADER4.length() - col4.length()) + PADDING + "|";
         System.out.println(line);
+    }
+
+    public void printFilteredList(ArrayList<Instrument> instruments, String filter, String searchTerm) {
+        ArrayList<Instrument> filteredInst;
+        switch (filter) {
+        case FILTERNAME:
+            filteredInst = filterByName(instruments, searchTerm);
+            break;
+        case FILTERMODEL:
+            filteredInst = filterByModel(instruments, searchTerm);
+            break;
+        case FILTERYEAR:
+            filteredInst = filterByYear(instruments, searchTerm);
+            break;
+        case FILTERRESERVED:
+            filteredInst = filterByReserved(instruments, true);
+            break;
+        case FILTERAVAILABLE:
+            filteredInst = filterByReserved(instruments, false);
+            break;
+        default:
+            System.out.println("The specified filter does not exist. Please try again");
+            System.out.println(TEXTBORDER);
+            return;
+        }
+        printInstrumentList(filteredInst);
+    }
+
+    public ArrayList<Instrument> filterByName(ArrayList<Instrument> instruments, String searchTerm) {
+        ArrayList<Instrument> filteredInst = new ArrayList<>();
+        for (Instrument inst : instruments) {
+            if (inst.name.equals(searchTerm)) {
+                filteredInst.add(inst);
+            }
+        }
+        return filteredInst;
+    }
+
+    public ArrayList<Instrument> filterByModel(ArrayList<Instrument> instruments, String searchTerm) {
+        ArrayList<Instrument> filteredInst = new ArrayList<>();
+        for (Instrument inst : instruments) {
+            if (inst.model.equals(searchTerm)) {
+                filteredInst.add(inst);
+            }
+        }
+        return filteredInst;
+    }
+
+    public ArrayList<Instrument> filterByYear(ArrayList<Instrument> instruments, String searchTerm) {
+        ArrayList<Instrument> filteredInst = new ArrayList<>();
+        for (Instrument inst : instruments) {
+            if (inst.year == Integer.parseInt(searchTerm)) {
+                filteredInst.add(inst);
+            }
+        }
+        return filteredInst;
+    }
+
+    public ArrayList<Instrument> filterByReserved(ArrayList<Instrument> instruments, boolean status) {
+        ArrayList<Instrument> filteredInst = new ArrayList<>();
+        for (Instrument inst : instruments) {
+            if (inst.isRented() == status) {
+                filteredInst.add(inst);
+            }
+        }
+        return filteredInst;
     }
 
     public void printGoodbye() {
@@ -255,36 +354,84 @@ public class Ui {
     public int queryUserIndex(UserList userList) {
         assert userList != null : "userList is null";
         if (userList.getUserCount() == 0) {
-            printCreatingNewUser();
+            printNoCurrentUsersCreatingNewUser();
             return 0;
         }
-        printSelectUserFromList(userList.getUsers());
+        printSelectUserFromListWithCreateOption(userList.getUsers());
+        return getUserInputNumber();
+    }
+
+    private int getUserInputNumber() {
         String userInput = readUserInput();
         while (!userInput.matches("-?\\d+")) {
+            printPleaseInputANumber();
             userInput = readUserInput();
         }
         return Integer.parseInt(userInput);
     }
 
-    public String queryUserName() {
+    public String queryUserNameWithNoNameChoice() {
         System.out.println("Enter user name (Leave empty if no name): ");
         return readUserInput();
     }
 
-    public void printCreatingNewUser() {
+    public int queryUserIndexForDelete(UserList userList) {
+        printUserList(userList.getUsers());
+        System.out.println("Enter user index of the user you want to delete: ");
+        return getUserInputNumber();
+    }
+
+    public void printNoCurrentUsersCreatingNewUser() {
         printMessageWithTextBorder("No users exist currently. Creating new user...");
     }
 
-    public void printSelectUserFromList(ArrayList<User> userList) {
+    public void printSelectUserFromListWithCreateOption(ArrayList<User> userList) {
         System.out.println(TEXTBORDER);
         System.out.println("Please select from the following users:");
         printUserList(userList);
         System.out.println("...or enter '0' to create a new user");
     }
 
-    public void printUserListDisplay(ArrayList<User> userList) {
+    public void printUserListDisplay(UserList userList) {
+        if (userList.isEmpty()) {
+            printMessageWithTextBorder("No users exist currently.");
+            return;
+        }
         System.out.println(TEXTBORDER);
         System.out.println("Here is a list of registered users:");
+        printUserList(userList.getUsers());
+        System.out.println(TEXTBORDER);
+    }
+
+    public void printAcknowledgementCreatedNewUser(String userName) {
+        printMessageWithTextBorder("Created new user: " + userName);
+    }
+
+    public void printAcknowledgementDeletedUser(String userName) {
+        printMessageWithTextBorder("Deleted user: " + userName);
+    }
+
+    public void printAddInstrumentToUser(Instrument instrument) {
+        printMessageWithTextBorder("Added instrument to user: " + instrument);
+    }
+
+    public void printRemovedInstrumentFromUser(Instrument instrument, User user) {
+        printMessageWithTextBorder("Removed instrument [" + instrument + "] from user [" + user.getName() + "]");
+    }
+
+    public int queryUserInstrumentListUserChoice(ArrayList<User> userList) {
+        printSelectUserFromList(userList);
+        return getUserInputNumber();
+    }
+
+    public int queryUserInstrumentListListChoice() {
+        printMessageWithTextBorder(USERLISTCHOICES);
+        return getUserInputNumber();
+    }
+
+    private void printSelectUserFromList(ArrayList<User> userList) {
+        System.out.println(TEXTBORDER);
+        System.out.println("Please select from the following existing users:");
         printUserList(userList);
     }
 
@@ -294,14 +441,31 @@ public class Ui {
         }
     }
 
+    private void printPleaseInputANumber() {
+        printMessageWithTextBorder("Please input a number");
+    }
+
     public boolean isInstrumentAssignedToUser() {
         System.out.println("Would you like to assign this instrument to a user? [Y/N]");
         return scanner.nextLine().equalsIgnoreCase("y");
     }
 
+    public int queryPrintUserListOrInstrumentList() {
+        printUserListOrInstrumentList();
+        return getUserInputNumber();
+    }
+
+    private void printUserListOrInstrumentList() {
+        System.out.println(TEXTBORDER);
+        System.out.println("What would you like to do?");
+        System.out.println(USERCOMMANDS);
+        System.out.println(TEXTBORDER);
+    }
+
     private void printMessageWithTextBorder(String message) {
         System.out.println(TEXTBORDER);
         System.out.println(message);
+        System.out.println(TEXTBORDER);
     }
 
     public void printAmount(long amount) {
