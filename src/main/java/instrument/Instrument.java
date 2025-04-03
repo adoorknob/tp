@@ -15,11 +15,9 @@ public abstract class Instrument {
     private boolean isRented = false;
     private boolean isOverDue = false;
 
-    private LocalDateTime rentedFrom;
     private LocalDateTime rentedTo;
+    private LocalDateTime rentedFrom;
     private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("d/M/yyyy HHmm");
-
-
 
     // Rental per day
     private int rental = 20;

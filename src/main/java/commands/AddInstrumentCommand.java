@@ -106,7 +106,7 @@ public class AddInstrumentCommand extends Command {
                 newInstrument = new Piano(instrument, model, year);
                 break;
             case "Guitar":
-                    newInstrument = new Guitar(instrument, model, year);
+                newInstrument = new Guitar(instrument, model, year);
                 break;
             default:
                 System.out.println("invalid instrument");

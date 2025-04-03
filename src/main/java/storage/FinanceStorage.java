@@ -3,7 +3,6 @@ package storage;
 import exceptions.FileCannotBeFoundException;
 import exceptions.FileCannotBeMadeException;
 import finance.FinanceManager;
-import parser.Parser;
 import ui.Ui;
 
 import java.io.File;
