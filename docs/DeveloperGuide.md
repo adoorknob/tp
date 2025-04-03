@@ -240,16 +240,16 @@ on; testers are expected to do more _exploratory_ testing.
 
 ### Deleting an instrument
 
-  1. Deleting an instrument while all persons are being shown
+  1. Deleting an instrument while all instruments are being shown
 
-    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1. Prerequisites: List all instruments using the `list` command. Multiple persons in the list.
 
     2. Test case: `delete 1`  
 Expected: First instrument is deleted from the list. Details of the deleted
 contact shown in the status message. 
 
     3. Test case: `delete 0`  
-Expected: No insttrument is deleted. Error details shown in the status message.
+Expected: No instrument is deleted. Error details shown in the status message.
 
     4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)  
 Expected: Similar to previous.
