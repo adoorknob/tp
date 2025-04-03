@@ -1,12 +1,13 @@
 package commands;
 
 import instrument.InstrumentList;
-import parser.Parser;
 import ui.Ui;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -16,14 +17,12 @@ class AddInstrumentCommandTest {
     private AddInstrumentCommand addInstrumentCommand;
     private InstrumentList instrumentList;
     private Ui ui;
-    private Parser parser;
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
 
     @BeforeEach
     void setUp() {
         instrumentList = new InstrumentList();
         ui = new Ui();
-        parser = new Parser();
 
         // Redirect System.out to capture output
         System.setOut(new PrintStream(outputStreamCaptor));
@@ -35,7 +34,7 @@ class AddInstrumentCommandTest {
         addInstrumentCommand = new AddInstrumentCommand("Guitar|Fender|2023");
 
         // Execute the command
-        addInstrumentCommand.execute(instrumentList, ui);
+        addInstrumentCommand.addInstrument(instrumentList, ui);
 
         // Verify that the instrument was added
         assertEquals(1, instrumentList.getList().size(), "Instrument list size should increase by 1.");
@@ -47,7 +46,7 @@ class AddInstrumentCommandTest {
         addInstrumentCommand = new AddInstrumentCommand("Piano|Yamaha|2022");
 
         // Execute the command
-        addInstrumentCommand.execute(instrumentList, ui);
+        addInstrumentCommand.addInstrument(instrumentList, ui);
 
         // Capture output and check if the instrument list was printed
         String output = outputStreamCaptor.toString().trim();

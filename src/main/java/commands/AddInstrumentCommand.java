@@ -3,6 +3,7 @@ package commands;
 import exceptions.EmptyDescriptionException;
 import exceptions.IncorrectAddInstrumentException;
 import exceptions.NegativeUsageException;
+import finance.FinanceManager;
 import instrument.Instrument;
 import instrument.InstrumentList;
 import instrument.Flute;
@@ -11,6 +12,10 @@ import instrument.Piano;
 import parser.CommandParser;
 
 import ui.Ui;
+import user.User;
+import user.UserUtils;
+
+import java.time.LocalDateTime;
 
 public class AddInstrumentCommand extends Command {
     private CommandParser cmdparser;
@@ -26,21 +31,20 @@ public class AddInstrumentCommand extends Command {
         String instrument = cmdparser.instrumentName(userInput);
         String model = cmdparser.modelName(userInput);
         int year = cmdparser.instrumentYear(userInput);
-        boolean isRented =  cmdparser.isRented(userInput);
+        boolean isRented = cmdparser.isRented(userInput);
         boolean isOverdue = cmdparser.isOverdue(userInput);
-        String rentedFrom = cmdparser.rentedFrom(userInput);
-        String rentedTo = cmdparser.rentedTo(userInput);
+        LocalDateTime rentedFrom = cmdparser.rentedFrom(userInput);
+        LocalDateTime rentedTo = cmdparser.rentedTo(userInput);
 
         int usage = 0;
-        try{
+        try {
             usage = cmdparser.usage(userInput);
-        } catch(IncorrectAddInstrumentException e){
+        } catch (IncorrectAddInstrumentException e) {
             System.out.println(e.getMessage());
         }
 
         Instrument newInstrument = null;
 
-        // TODO: abstract this into hashmap
         try {
             switch (instrument) {
             case "Flute":
@@ -64,11 +68,11 @@ public class AddInstrumentCommand extends Command {
             return;
         }
 
-        try{
+        try {
             if (newInstrument != null) {
                 newInstrument.setUsage(usage);
             }
-        } catch (NegativeUsageException e){
+        } catch (NegativeUsageException e) {
             System.out.println(e.getMessage());
         }
 
@@ -77,25 +81,32 @@ public class AddInstrumentCommand extends Command {
     }
 
     @Override
-    public void execute(InstrumentList instrumentList, Ui ui) throws IncorrectAddInstrumentException {
+    public void execute(InstrumentList instrumentList, Ui ui, UserUtils userUtils, FinanceManager financeManager)
+            throws IncorrectAddInstrumentException {
+        Instrument newInstrument = addInstrument(instrumentList, ui);
+        if (newInstrument != null) {
+            addUser(newInstrument, userUtils);
+        }
+    }
+
+    public Instrument addInstrument(InstrumentList instrumentList, Ui ui) {
         String[] userInput = cmdparser.separate(this.name.trim());
 
         String instrument = cmdparser.instrumentName(userInput);
         String model = cmdparser.modelName(userInput);
         int year = cmdparser.instrumentYear(userInput);
-        boolean isRented =  cmdparser.isRented(userInput);
 
-        // TODO: abstract this into hashmap
+        Instrument newInstrument = null;
         try {
             switch (instrument) {
             case "Flute":
-                instrumentList.addInstrument(new Flute(instrument, model, year));
+                newInstrument = new Flute(instrument, model, year);
                 break;
             case "Piano":
-                instrumentList.addInstrument(new Piano(instrument, model, year));
+                newInstrument = new Piano(instrument, model, year);
                 break;
             case "Guitar":
-                instrumentList.addInstrument(new Guitar(instrument, model, year));
+                newInstrument = new Guitar(instrument, model, year);
                 break;
             default:
                 System.out.println("invalid instrument");
@@ -103,7 +114,16 @@ public class AddInstrumentCommand extends Command {
         } catch (EmptyDescriptionException e) {
             System.out.println(e.getMessage());
         }
+        if (newInstrument != null) {
+            instrumentList.addInstrument(newInstrument);
+        }
         ui.printInstrumentList(instrumentList.getList());
+        return newInstrument;
+    }
+
+    private void addUser(Instrument newInstrument, UserUtils userUtils) {
+        User user = userUtils.queryAndAssignUser(newInstrument);
+        newInstrument.setUser(user);
     }
 
     @Override

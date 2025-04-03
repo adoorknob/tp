@@ -1,10 +1,12 @@
 package instrument;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+
 import exceptions.EmptyDescriptionException;
 
 public class InstrumentList {
-    private static final Integer currYEAR =  2025; // Current
+    private static final Integer currYEAR = 2025; // Current
 
     private ArrayList<Instrument> instruments;
     private int numberOfInstruments;
@@ -55,22 +57,14 @@ public class InstrumentList {
             System.out.println("Instrument is already reserved");
             return;
         }
-        //        System.out.println("Would you like to reserve " + instToRent + "? [Y/N]");
-        //        String userInput = ui.readUserInput();
-        //
-        //        if (userInput.equals("Y")) {
         System.out.println("Reserving instrument: " + instToRent);
         instToRent.rent();
 
         //Increase Usage
         instToRent.increaseUsage();
-
-        //        } else {
-        //            System.out.println("Reserve cancelled");
-        //        }
     }
 
-    public void reserveInstrumentFromTo(int number, String from, String to) {
+    public void reserveInstrumentFromTo(int number, LocalDateTime from, LocalDateTime to) {
         assert number > 0 && number <= numberOfInstruments : "Instrument number out of bounds: " + number;
         if (this.instruments.isEmpty()) {
             System.out.println("No instruments available for reservation");
@@ -78,7 +72,7 @@ public class InstrumentList {
         }
         Instrument instToRent = instruments.get(number - 1);
 
-        if (instToRent.isRented()){
+        if (instToRent.isRented()) {
             System.out.println("Instrument is already rented");
             return;
         }
@@ -90,6 +84,27 @@ public class InstrumentList {
         instToRent.increaseUsage();
     }
 
+    public void extendInstrumentTo(int number, LocalDateTime to) {
+        assert number > 0 && number <= numberOfInstruments : "Instrument number out of bounds: " + number;
+        if (this.instruments.isEmpty()) {
+            System.out.println("No instruments available for extension");
+            return;
+        }
+        Instrument instToRent = instruments.get(number - 1);
+
+        if (!instToRent.isRented()) {
+            System.out.println("Instrument number " + number + " is not yet reserved");
+            System.out.println("Please make a reservation for your instrument before extending the loan period");
+            return;
+        }
+
+        System.out.println("Extending reservation of instrument: " + instToRent.name
+                + " from " + instToRent.getRentedFrom() + " to " + to);
+
+        instToRent.rentTo(to);
+
+    }
+
     public void returnInstrument(int number) {
         assert number > 0 && number <= numberOfInstruments : "Instrument number out of bounds: " + number;
         if (this.instruments.isEmpty()) {
@@ -97,19 +112,20 @@ public class InstrumentList {
             return;
         }
         Instrument instToUnrent = instruments.get(number - 1);
-        //        System.out.println("Would you like to return " + instToUnrent + "? [Y/N]");
-        //        String userInput = ui.readUserInput();
-        //
-        //        if (userInput.equals("Y")) {
         System.out.println("Returning instrument: " + instToUnrent);
         instToUnrent.unrent();
-        //        } else {
-        //            System.out.println("Return cancelled");
-        //        }
+    }
+
+    public Instrument getInstrument(int number) {
+        assert number > 0 && number <= numberOfInstruments : "Instrument number out of bounds: " + number;
+        if (this.instruments.isEmpty()) {
+            System.out.println("No instruments available for reservation");
+            throw new EmptyDescriptionException("event"); // TODO change this exception
+        }
+        return instruments.get(number - 1);
     }
 
     public ArrayList<Instrument> getList() {
-        return this.instruments;}
-    
-
+        return this.instruments;
+    }
 }
