@@ -1,6 +1,6 @@
 package parser;
 
-import exceptions.IncorrectAddInstrumentException;
+import exceptions.instrument.IncorrectAddInstrumentException;
 import utils.IsOverdueChecker;
 import utils.DateTimeParser;
 

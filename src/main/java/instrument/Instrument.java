@@ -1,6 +1,6 @@
 package instrument;
 
-import exceptions.NegativeUsageException;
+import exceptions.instrument.NegativeUsageException;
 import user.User;
 
 import java.time.LocalDateTime;

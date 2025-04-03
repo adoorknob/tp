@@ -1,6 +1,6 @@
 package ui;
 
-import exceptions.IncorrectAddInstrumentException;
+import exceptions.instrument.IncorrectAddInstrumentException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import parser.CommandParser;

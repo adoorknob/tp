@@ -1,7 +1,7 @@
 package storage;
 
-import exceptions.FileCannotBeFoundException;
-import exceptions.FileCannotBeMadeException;
+import exceptions.storage.FileCannotBeFoundException;
+import exceptions.storage.FileCannotBeMadeException;
 import finance.FinanceManager;
 import ui.Ui;
 

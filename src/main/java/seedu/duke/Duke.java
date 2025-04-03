@@ -1,7 +1,7 @@
 package seedu.duke;
 
 import commands.Command;
-import exceptions.FileCannotBeFoundException;
+import exceptions.storage.FileCannotBeFoundException;
 import storage.Storage;
 import storage.FinanceStorage;
 import ui.Ui;

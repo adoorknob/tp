@@ -1,4 +1,4 @@
-package exceptions;
+package exceptions.storage;
 
 public class FileCannotBeMadeException extends RuntimeException {
     public FileCannotBeMadeException(String message) {

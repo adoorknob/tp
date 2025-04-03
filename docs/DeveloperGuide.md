@@ -93,7 +93,7 @@ ui.printInstrumentList(instrumentList.getList());
 
 ![img.png](img.png)
 
-![UserSequenceDiagram.png](UserSequenceDiagram.png)
+![UserSequenceDiagram.png](uml-diagrams/UserSequenceDiagram.png)
 
 ## Product scope
 

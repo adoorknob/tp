@@ -1,13 +1,13 @@
 package storage;
 
 
-import exceptions.FileCannotBeFoundException;
-import exceptions.FileCannotBeMadeException;
+import exceptions.storage.FileCannotBeFoundException;
+import exceptions.storage.FileCannotBeMadeException;
 import instrument.Instrument;
 import instrument.InstrumentList;
 import parser.Parser;
 import ui.Ui;
-import commands.AddInstrumentCommand;
+import commands.instrument.AddInstrumentCommand;
 
 import java.io.File;
 import java.io.FileNotFoundException;

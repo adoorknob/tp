@@ -1,6 +1,7 @@
-package commands;
+package commands.instrument;
 
-import exceptions.EmptyInstrumentListException;
+import commands.Command;
+import exceptions.instrument.EmptyInstrumentListException;
 import instrument.InstrumentList;
 import parser.CommandParser;
 import ui.Ui;

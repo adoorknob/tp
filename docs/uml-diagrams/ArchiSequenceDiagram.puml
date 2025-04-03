@@ -1,0 +1,30 @@
+@startuml
+hide footbox
+participant Duke as ":Duke"
+activate Duke
+participant Ui as ":Ui"
+participant Parser as ":Parser"
+
+    Duke -> Ui : getUserInput
+    activate Ui
+    deactivate Ui
+    Duke -> Parser : getCommand
+    activate Parser
+    Parser -> ":XYZCommand" ** : create
+    activate ":XYZCommand"
+    Duke <-- Parser : command object
+    deactivate Parser
+    Duke -> ":XYZCommand" : execute()
+    ":XYZCommand" -> ":Flute" **
+    activate ":Flute"
+    ":XYZCommand" -> InstrumentList : addInstrument
+    activate InstrumentList
+    deactivate InstrumentList
+    Duke -> Ui : print acknowledgment
+    activate Ui
+    deactivate Ui
+    Duke -> ":XYZCommand" : isExit()
+    Duke <-- ":XYZCommand" : false
+    destroy ":XYZCommand"
+
+@enduml

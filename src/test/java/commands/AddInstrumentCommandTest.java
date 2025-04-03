@@ -1,5 +1,6 @@
 package commands;
 
+import commands.instrument.AddInstrumentCommand;
 import instrument.InstrumentList;
 import ui.Ui;
 import org.junit.jupiter.api.BeforeEach;
