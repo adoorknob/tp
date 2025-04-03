@@ -71,6 +71,7 @@ delete: deletes an existing instrument
 reserve: reserves an available instrument
 extend: changes the return date of a reserved instrument
 return: returns a reserved instrument
+recommend: recommends a recommended instrument
 exit: quit SirDukeBox
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+

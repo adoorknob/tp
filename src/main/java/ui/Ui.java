@@ -99,6 +99,7 @@ public class Ui {
             reserve: reserves an available instrument
             extend: changes the return date of a reserved instrument
             return: returns a reserved instrument
+            recommend: recommends a recommended instrument
             exit: quit SirDukeBox""";
 
 
@@ -142,6 +143,15 @@ public class Ui {
         System.out.println(TEXTBORDER);
         System.out.println("Here is a list of available commands:");
         System.out.println(COMMANDLIST);
+        System.out.println(TEXTBORDER);
+    }
+
+    public void printRecommendation(Instrument instrument, int index) {
+        System.out.println(TEXTBORDER);
+
+        System.out.println("Here is our recommendation: ");
+        System.out.println(index + ". " + instrument.toString());
+
         System.out.println(TEXTBORDER);
     }
 
