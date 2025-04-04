@@ -6,6 +6,9 @@ import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ *   Class for handling Date Parsing for SirDukeBox
+ */
 public class DateTimeParser {
     private static final List<DateTimeFormatter> DATE_FORMATS = Arrays.asList(
             DateTimeFormatter.ofPattern("d/M/yyyy"),     // Day/Month/Year with 4-digit year
@@ -21,11 +24,18 @@ public class DateTimeParser {
 
     private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("d/M/yyyy");
 
+    /**
+     *
+     * @param input String containing the date
+     * @return the Date in localDate format
+     * @throws DateTimeParseException When incorrect or invalid date is given
+     */
     public static LocalDate parseDate(String input) throws DateTimeParseException {
         if (input == null || input.equals("null") || input.isEmpty()) {
             return null;
         }
         input = input.trim();
+
         for (DateTimeFormatter format : DATE_FORMATS) {
             try {
                 return LocalDate.parse(input, format);
