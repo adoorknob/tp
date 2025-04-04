@@ -268,7 +268,7 @@ on; testers are expected to do more _exploratory_ testing.
 
     1. Prerequisites: List all instruments using the `list` command. Multiple persons in the list.
 
-    2. Test case: `delete 1`  
+    2. Test case: `delete 1`
 
 Expected: First instrument is deleted from the list. Details of the deleted
 contact shown in the status message.
