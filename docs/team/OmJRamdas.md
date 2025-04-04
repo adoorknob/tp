@@ -2,6 +2,9 @@
 
 ## Overview
 
+Manage instrument rentals faster than a typical mouse/GUI driven app! Keep track of stock, user rental history, and
+instrument-related finances in an all-in-one tracking app.
+
 ### Summary of Contributions
 
 1. Commands Package
