@@ -99,13 +99,21 @@ How the `Parser` component works:
    is executed by the `Duke`.
 3. The command's `execute()` method is called and the specific behaviour of the command is executed.
 
+### Instrument component
+
+**Classes**: [`InstrumentClasses`](https://github.com/AY2425S2-CS2113-W11-1/tp/tree/master/src/main/java/instrument)
+
+![InstrumentClasses.png](uml-diagrams/InstrumentClasses.png)
+
+* Represents a real-life instrument object, to be played, rented, returned, etc.
+
 ### Command component
 
 **Classes**: [`CommandClasses`](https://github.com/AY2425S2-CS2113-W11-1/tp/tree/master/src/main/java/commands)
 
 ![CommandClass.png](uml-diagrams/CommandClass-0.png)
 
-The command component comprises of command classes that all inherit from the common abstract class `Command`. Execution
+The command component comprises command classes that all inherit from the common abstract class `Command`. Execution
 of commands is achieved through calling the `execute()` method, which defines each command's specific behaviour. This
 implementation simpifies extension and maintenance across the codebase.
 
