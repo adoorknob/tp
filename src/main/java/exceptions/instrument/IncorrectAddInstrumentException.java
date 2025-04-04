@@ -1,4 +1,4 @@
-package exceptions;
+package exceptions.instrument;
 
 public class IncorrectAddInstrumentException extends EmptyDescriptionException {
     public IncorrectAddInstrumentException(String message) {

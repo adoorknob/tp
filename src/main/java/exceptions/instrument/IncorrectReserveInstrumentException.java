@@ -1,4 +1,4 @@
-package exceptions;
+package exceptions.instrument;
 
 public class IncorrectReserveInstrumentException extends EmptyDescriptionException {
     public IncorrectReserveInstrumentException(String message) {

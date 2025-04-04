@@ -1,6 +1,7 @@
 package exceptions;
 
-import commands.AddInstrumentCommand;
+import commands.instrument.AddInstrumentCommand;
+import exceptions.instrument.EmptyDescriptionException;
 import instrument.InstrumentList;
 import org.junit.jupiter.api.Test;
 import ui.Ui;

@@ -2,17 +2,17 @@ package parser;
 
 import commands.Command;
 import commands.HelpCommand;
-import commands.ListCommand;
-import commands.UserCommand;
-import commands.AddInstrumentCommand;
-import commands.DeleteCommand;
+import commands.instrument.ListCommand;
+import commands.user.UserCommand;
+import commands.instrument.AddInstrumentCommand;
+import commands.instrument.DeleteCommand;
 import commands.ExitCommand;
-import commands.ReserveCommand;
-import commands.ReturnCommand;
+import commands.instrument.ReserveCommand;
+import commands.instrument.ReturnCommand;
 import commands.DefaultCommand;
-import commands.ExtendCommand;
-import commands.FinanceCommand;
-import commands.RecommendCommand;
+import commands.datetime.ExtendCommand;
+import commands.finance.FinanceCommand;
+import commands.recommend.RecommendCommand;
 
 public class Parser {
     private static final String HELP = "help";

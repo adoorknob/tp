@@ -1,0 +1,15 @@
+@startuml
+abstract class Command {
++name: String
++execute(InstrumentList, Ui, UserUtils, FinanceManager) : void
++isExit(): boolean
+}
+
+class XYZCommand
+
+Command <|-- XYZCommand
+
+note "XYZCommand acts as a placeholder for all *Command classes" as N1
+
+XYZCommand .. N1
+@enduml

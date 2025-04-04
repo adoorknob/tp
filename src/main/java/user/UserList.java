@@ -1,7 +1,7 @@
 package user;
 
-import exceptions.UserListInitiationException;
-import exceptions.UsernameMatchException;
+import exceptions.user.UserListInitiationException;
+import exceptions.user.UsernameMatchException;
 import ui.Ui;
 
 import java.util.ArrayList;

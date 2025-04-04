@@ -1,5 +1,6 @@
-package commands;
+package commands.user;
 
+import commands.Command;
 import finance.FinanceManager;
 import instrument.InstrumentList;
 import ui.Ui;

@@ -1,6 +1,6 @@
 package ui;
 
-import exceptions.EmptyInstrumentListException;
+import exceptions.instrument.EmptyInstrumentListException;
 import instrument.Instrument;
 import user.User;
 import user.UserList;

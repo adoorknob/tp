@@ -1,6 +1,7 @@
-package commands;
+package commands.recommend;
 
-import exceptions.IncorrectAddInstrumentException;
+import commands.Command;
+import exceptions.instrument.IncorrectAddInstrumentException;
 import finance.FinanceManager;
 import instrument.Instrument;
 import instrument.InstrumentList;

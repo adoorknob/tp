@@ -1,6 +1,6 @@
 package user;
 
-import exceptions.InstrumentFindException;
+import exceptions.instrument.InstrumentFindException;
 import instrument.Instrument;
 import instrument.InstrumentList;
 import ui.Ui;

@@ -1,4 +1,4 @@
-package commands;
+package commands.instrument;
 
 import instrument.InstrumentList;
 import ui.Ui;
