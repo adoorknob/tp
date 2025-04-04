@@ -1,6 +1,6 @@
 package instrument;
 
-import exceptions.NegativeUsageException;
+import exceptions.instrument.NegativeUsageException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;

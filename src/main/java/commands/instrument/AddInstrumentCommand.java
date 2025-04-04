@@ -1,8 +1,9 @@
-package commands;
+package commands.instrument;
 
-import exceptions.EmptyDescriptionException;
-import exceptions.IncorrectAddInstrumentException;
-import exceptions.NegativeUsageException;
+import commands.Command;
+import exceptions.instrument.EmptyDescriptionException;
+import exceptions.instrument.IncorrectAddInstrumentException;
+import exceptions.instrument.NegativeUsageException;
 import finance.FinanceManager;
 import instrument.Instrument;
 import instrument.InstrumentList;
