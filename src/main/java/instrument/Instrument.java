@@ -14,8 +14,8 @@ public abstract class Instrument {
 
     private User user;
 
-    private boolean isRented = false;
-    private boolean isOverDue = false;
+    private boolean isRented;
+    private boolean isOverDue;
 
     private LocalDate rentedTo;
     private LocalDate rentedFrom;
@@ -39,7 +39,7 @@ public abstract class Instrument {
     }
 
     public Instrument(String name, String model, int year, boolean isRented, boolean isOverDue,
-                      LocalDate rentedFrom, LocalDate rentedTo) {
+                      LocalDate rentedFrom, LocalDate rentedTo, int usage) {
         this.name = name;
         this.model = model;
         this.year = year;
@@ -47,6 +47,10 @@ public abstract class Instrument {
         this.isOverDue = isOverDue;
         this.rentedFrom = rentedFrom;
         this.rentedTo = rentedTo;
+        if (usage < 0) {
+            throw new NegativeUsageException("Invalid usage: " + usage);
+        }
+        this.usage = usage;
     }
 
     public abstract String playInstrument();
@@ -74,7 +78,7 @@ public abstract class Instrument {
         return isRented;
     }
 
-    public LocalDate getdueDate() {
+    public LocalDate getDueDate() {
         return rentedTo;
     }
 
@@ -96,7 +100,8 @@ public abstract class Instrument {
     public String toFileEntry() {
         return name + " | " + model + " | " + year + " | " + isRented + " | " + isOverDue + " | " +
                 (rentedFrom != null ? rentedFrom.format(DATE_TIME_FORMATTER) : "null") + " | " +
-                (rentedTo != null ? rentedTo.format(DATE_TIME_FORMATTER) : "null") + " | " + usage;
+                (rentedTo != null ? rentedTo.format(DATE_TIME_FORMATTER) : "null") + " | " +
+                user.getName() + " | " + usage;
     }
 
     public void setUsage(int usage) throws NegativeUsageException {

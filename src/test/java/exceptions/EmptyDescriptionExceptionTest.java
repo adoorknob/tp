@@ -29,7 +29,7 @@ public class EmptyDescriptionExceptionTest {
 
         AddInstrumentCommand c = new AddInstrumentCommand(invalidInput, false);
         try {
-            c.addInstrument(instrumentList, new Ui());
+            c.createInstrument(instrumentList, new Ui());
             fail("Expected EmptyDescriptionException to be thrown");
         } catch (IncorrectDescriptionException e) {
             // Adjust the message to match what your code actually throws
@@ -43,6 +43,6 @@ public class EmptyDescriptionExceptionTest {
         InstrumentList instrumentList = new InstrumentList();
         String validInput = "Flute|Yamaha|2023";
         AddInstrumentCommand c = new AddInstrumentCommand(validInput, false);
-        assertDoesNotThrow(() -> c.addInstrument(instrumentList, new Ui()));
+        assertDoesNotThrow(() -> c.createInstrument(instrumentList, new Ui()));
     }
 }

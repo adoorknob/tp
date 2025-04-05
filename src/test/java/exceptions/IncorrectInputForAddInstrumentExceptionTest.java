@@ -1,19 +1,19 @@
 package exceptions;
 
 import exceptions.instrument.IncorrectDescriptionException;
-import exceptions.instrument.IncorrectAddInstrumentException;
+import exceptions.instrument.IncorrectInputForAddInstrumentException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class IncorrectAddInstrumentExceptionTest {
+public class IncorrectInputForAddInstrumentExceptionTest {
     // Test to check that the exception message is correctly formatted
     @Test
     void testExceptionMessage() {
         String errorMessage = "Invalid input";
-        IncorrectAddInstrumentException exception = new IncorrectAddInstrumentException(errorMessage);
+        IncorrectInputForAddInstrumentException exception = new IncorrectInputForAddInstrumentException(errorMessage);
 
         // Check if the exception message contains the provided message and the expected format
         String expectedMessage = "Input doesn't look right: " + errorMessage + "-> add [Instrument]|[Model]|[Year]";
@@ -23,7 +23,7 @@ public class IncorrectAddInstrumentExceptionTest {
     // Test to check if the exception inherits from EmptyDescriptionException
     @Test
     void testExceptionInheritance() {
-        IncorrectAddInstrumentException exception = new IncorrectAddInstrumentException("Test");
+        IncorrectInputForAddInstrumentException exception = new IncorrectInputForAddInstrumentException("Test");
 
         // Check if the exception is an instance of EmptyDescriptionException
         assertTrue(exception instanceof IncorrectDescriptionException);
@@ -35,8 +35,8 @@ public class IncorrectAddInstrumentExceptionTest {
         String errorMessage = "Invalid input";
 
         // Check if the exception is thrown with the expected message
-        Exception exception = assertThrows(IncorrectAddInstrumentException.class, () -> {
-            throw new IncorrectAddInstrumentException(errorMessage);
+        Exception exception = assertThrows(IncorrectInputForAddInstrumentException.class, () -> {
+            throw new IncorrectInputForAddInstrumentException(errorMessage);
         });
 
         String expectedMessage = "Input doesn't look right: " + errorMessage + "-> add [Instrument]|[Model]|[Year]";
