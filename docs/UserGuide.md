@@ -388,7 +388,8 @@ Here is our recommendation:
 
 Finance commands pertain to managing the finances related to instruments
 
-1. Track incoming payment `add`
+1. List all finance commands `help`
+2. Track incoming payment `add`
 2. Track outgoing payment `sub`
 3. Get current balance `get`
 

@@ -106,10 +106,10 @@ public class Ui {
             exit: quit SirDukeBox""";
 
     private static final String FINANCECOMMANDLIST = """
-            help: help
-            add: add inflow payment
-            subtract: subtract outflow payment
-            get get total cash
+            `help` help
+            `add:` add inflow payment
+            `subtract:` subtract outflow payment
+            `get` get total cash
             """;
 
     private static final String USERLISTCHOICES = """
