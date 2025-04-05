@@ -5,7 +5,9 @@ import org.junit.jupiter.api.Test;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 class DateTimeParserTest {
 
@@ -24,7 +26,8 @@ class DateTimeParserTest {
 
     @Test
     void testParseDate_trimsInput() {
-        assertEquals(LocalDate.of(2023, 3, 15), DateTimeParser.parseDate("   15/3/2023  "));
+        assertEquals(LocalDate.of(2023, 3, 15),
+                DateTimeParser.parseDate("   15/3/2023  "));
     }
 
     @Test
@@ -37,8 +40,8 @@ class DateTimeParserTest {
     @Test
     void testParseDate_invalidFormat_throwsException() {
         assertThrows(DateTimeParseException.class, () -> DateTimeParser.parseDate("15th March 2023"));
-        assertThrows(DateTimeParseException.class, () -> DateTimeParser.parseDate("03/15/2023")); // US-style not supported
-        assertThrows(DateTimeParseException.class, () -> DateTimeParser.parseDate("2023/03/15")); // unsupported
+        assertThrows(DateTimeParseException.class, () -> DateTimeParser.parseDate("03/15/2023"));
+        assertThrows(DateTimeParseException.class, () -> DateTimeParser.parseDate("2023/03/15"));
         assertThrows(DateTimeParseException.class, () -> DateTimeParser.parseDate("random string"));
     }
 

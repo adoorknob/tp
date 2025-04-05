@@ -25,7 +25,7 @@ public class DateTimeParser {
     private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("d/M/yyyy");
 
     /**
-     *
+     * Parses date
      * @param input String containing the date
      * @return the Date in localDate format
      * @throws DateTimeParseException When incorrect or invalid date is given
