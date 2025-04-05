@@ -21,7 +21,7 @@ public class InstrumentList {
         assert instrument != null;
         assert instrument.year >= 1600 && instrument.year <= currYEAR : "Invalid year: " + instrument.year;
         if (instrument.name.isBlank() || instrument.model.isBlank()) {
-            throw new IncorrectDescriptionException("event");
+            throw new IncorrectDescriptionException("No name or model found");
         }
         this.instruments.add(instrument);
         this.numberOfInstruments++;
@@ -113,6 +113,12 @@ public class InstrumentList {
             return;
         }
         Instrument instToUnrent = instruments.get(number - 1);
+
+        if (!instToUnrent.isRented()) {
+            System.out.println("Instrument is cannot be returned as it is not reserved");
+            return;
+        }
+
         System.out.println("Returning instrument: " + instToUnrent);
         instToUnrent.unrent();
     }
@@ -121,7 +127,7 @@ public class InstrumentList {
         assert number > 0 && number <= numberOfInstruments : "Instrument number out of bounds: " + number;
         if (this.instruments.isEmpty()) {
             System.out.println("No instruments available for reservation");
-            throw new IncorrectDescriptionException("event"); // TODO change this exception
+            throw new IncorrectDescriptionException("No instruments available for reservation"); // TODO change this exception
         }
         return instruments.get(number - 1);
     }
