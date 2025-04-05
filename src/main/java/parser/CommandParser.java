@@ -53,6 +53,9 @@ public class CommandParser {
         if (userInput == null || userInput.length == 0 || userInput[0].isEmpty()) {
             throw new IncorrectAddInstrumentException(" is Empty");
         }
+        String instrument = userInput[0].trim();
+        instrument = instrument.toLowerCase();
+
         return userInput[0];
     }
 
