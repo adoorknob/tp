@@ -2,23 +2,12 @@ package utils;
 
 import java.time.LocalDate;
 
-import instrument.InstrumentList;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
-public class IsOverdueCheckerTest {
-    private InstrumentList instrumentList;
-
-
-    @BeforeEach
-    void setUp() {
-        instrumentList = new InstrumentList();
-
-
-    }
+class IsOverdueCheckerTest {
 
     @Test
     void testisOverdue() {
@@ -39,5 +28,4 @@ public class IsOverdueCheckerTest {
         LocalDate futureDate = LocalDate.now().plusDays(2);
         assertFalse(IsOverdueChecker.isOverdue(futureDate));
     }
-
 }

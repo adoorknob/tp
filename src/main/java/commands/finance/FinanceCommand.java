@@ -7,6 +7,8 @@ import parser.CommandParser;
 import ui.Ui;
 import user.UserUtils;
 
+import exceptions.finance.IncorrectFinanceInstructionException;
+
 public class FinanceCommand extends Command {
     private static final String ADD = "add:";
     private static final String SUB = "subtract:";
@@ -23,8 +25,8 @@ public class FinanceCommand extends Command {
 
     @Override
     public void execute(InstrumentList instrumentList, Ui ui, UserUtils userUtils, FinanceManager financeManager) {
-        String[] userInput = parser.splits(this.name);
         try {
+            String[] userInput = parser.splits(this.name);
             int amount;
             String command = userInput[0];
             switch (command) {
@@ -34,12 +36,12 @@ public class FinanceCommand extends Command {
             case ADD:
                 amount = Integer.parseInt(userInput[1]);
                 financeManager.inflowPayment(amount);
-                ui.printReceivedAmount(financeManager.getTotalCash());
+                ui.printReceivedAmount(amount);
                 break;
             case SUB:
                 amount = Integer.parseInt(userInput[1]);
                 financeManager.outflowPayment(amount);
-                ui.printPaymentAmount(financeManager.getTotalCash());
+                ui.printPaymentAmount(amount);
                 break;
             case GET:
                 ui.printAmount(financeManager.getTotalCash());
@@ -50,9 +52,8 @@ public class FinanceCommand extends Command {
             }
 
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            throw new IncorrectFinanceInstructionException(e.getMessage());
         }
-
     }
 
     @Override

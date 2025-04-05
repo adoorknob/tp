@@ -7,9 +7,9 @@ import utils.DateTimeParser;
 import java.time.LocalDate;
 
 public class CommandParser {
+    int currentYear = LocalDate.now().getYear();
 
-    public CommandParser() {
-    }
+    public CommandParser() {}
 
     public String[] separate(String input) throws IncorrectAddInstrumentException {
         if (input == null || input.isEmpty()) {
@@ -69,9 +69,14 @@ public class CommandParser {
         }
 
         try {
-            return Integer.parseInt(userInput[2].trim());
+            int output = Integer.parseInt(userInput[2].trim());
+            assert output > 0 : "Output year must be greater than zero";
+            assert output <= currentYear : "Output year must not be greater than current year";
+            return output;
         } catch (NumberFormatException e) {
             throw new IncorrectAddInstrumentException("Invalid instrument year: " + userInput[2]);
+        } catch (AssertionError e) {
+            throw new IncorrectAddInstrumentException("Invalid instrument year: " + e.getMessage());
         }
     }
 
@@ -98,6 +103,7 @@ public class CommandParser {
         return (isParse && userInput.length > 6 && userInput[6] != null) ? DateTimeParser.parseDate(userInput[6])
                 : null;
     }
+
 
     public int usage(String[] userInput, boolean isParse) throws IncorrectAddInstrumentException {
         if (isParse) {

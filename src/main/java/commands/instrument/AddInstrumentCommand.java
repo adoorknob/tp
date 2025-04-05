@@ -1,7 +1,7 @@
 package commands.instrument;
 
 import commands.Command;
-import exceptions.instrument.EmptyDescriptionException;
+import exceptions.instrument.IncorrectDescriptionException;
 import exceptions.instrument.IncorrectAddInstrumentException;
 import exceptions.instrument.NegativeUsageException;
 import finance.FinanceManager;
@@ -81,7 +81,7 @@ public class AddInstrumentCommand extends Command {
             default:
                 System.out.println("invalid instrument");
             }
-        } catch (EmptyDescriptionException e) {
+        } catch (IncorrectDescriptionException e) {
             System.out.println(e.getMessage());
             ui.printInstrumentList(instrumentList.getList());
         }

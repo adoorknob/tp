@@ -102,14 +102,14 @@ public class Ui {
             return: returns a reserved instrument
             user: choose user commands
             recommend: recommends a recommended instrument
-            finance: Manage finances: (use -h flag to see commands)
+            finance: Manage finances: (use help flag to see commands)
             exit: quit SirDukeBox""";
 
     private static final String FINANCECOMMANDLIST = """
-            help: help
-            add: add inflow payment
-            subtract: subtract outflow payment
-            get get total cash
+            `help` help
+            `add:` add inflow payment
+            `subtract:` subtract outflow payment
+            `get` get total cash
             """;
 
     private static final String USERLISTCHOICES = """
