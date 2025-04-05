@@ -8,10 +8,10 @@ import ui.Ui;
 import user.UserUtils;
 
 public class FinanceCommand extends Command {
-    private static final String ADD = "-a";
-    private static final String SUB = "-s";
-    private static final String GET = "-g";
-    private static final String HELP = "-h";
+    private static final String ADD = "add:";
+    private static final String SUB = "subtract:";
+    private static final String GET = "get";
+    private static final String HELP = "help";
 
 
     private CommandParser parser;
