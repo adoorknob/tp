@@ -384,7 +384,25 @@ Here is our recommendation:
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 ```
+### Finance commands
 
+Finance commands pertain to managing the finances related to instruments
+
+1. Track incoming payment `add`
+2. Track outgoing payment `sub`
+3. Get current balance `get`
+
+...which is selected by inputting the index of the command and following onscreen instructions
+
+When reserving items balance will increase, when returning overdue items the application will automatically calculate 
+and add how much the user owes you.\
+
+Example of usage:
+Input:
+
+```
+finance add 50
+```
 ### Exiting the Program: `exit`
 
 Exits the program

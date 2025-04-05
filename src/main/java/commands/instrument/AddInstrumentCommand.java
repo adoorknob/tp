@@ -28,7 +28,6 @@ public class AddInstrumentCommand extends Command {
         this.isParse = isParse;
     }
 
-
     @Override
     public void execute(InstrumentList instrumentList, Ui ui, UserUtils userUtils, FinanceManager financeManager)
             throws IncorrectAddInstrumentException {
@@ -36,7 +35,7 @@ public class AddInstrumentCommand extends Command {
 
         Instrument newInstrument;
         if (this.isParse) {
-            newInstrument = addInstrument(instrumentList, ui);
+            addInstrument(instrumentList, ui);
         } else {
             newInstrument = addInstrument(instrumentList, ui);
             if (newInstrument != null && !this.isParse) {
