@@ -1,6 +1,7 @@
 package commands.instrument;
 
 import commands.Command;
+import exceptions.instrument.IncorrectReserveInstrumentException;
 import instrument.InstrumentList;
 import parser.CommandParser;
 import ui.Ui;
@@ -35,10 +36,13 @@ public class ReserveCommand extends Command {
                     String[] parts = this.name.split("from: |to: ", 3);
                     LocalDate from = DateTimeParser.parseDate(parts[1]);
                     LocalDate to = DateTimeParser.parseDate(parts[2]);
+                    assert from.isBefore(to) : "from: date must be before to: date";
                     instrumentList.reserveInstrumentFromTo(indice, from, to);
                     financeManager.rentalPayment(instrumentList.getInstrument(indice), from, to);
+                } catch (AssertionError e) {
+                    throw new IncorrectReserveInstrumentException(e.getMessage());
                 } catch (Exception e) {
-                    throw new RuntimeException(e);
+                    throw new IncorrectReserveInstrumentException(e.getMessage());
                 }
             } else {
                 instrumentList.reserveInstrument(indice);
