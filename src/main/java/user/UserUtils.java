@@ -89,7 +89,7 @@ public class UserUtils {
     }
 
     private void printInstrumentListOfUser() {
-        int userId = ui.queryUserInstrumentListUserChoice(userList.getUsers());
+        int userId = ui.queryUserInstrumentListUserChoice(userList);
         int listId = ui.queryUserInstrumentListListChoice();
         executeListPrint(userId, listId);
     }
