@@ -1,7 +1,7 @@
 package exceptions;
 
 import commands.instrument.AddInstrumentCommand;
-import exceptions.instrument.EmptyDescriptionException;
+import exceptions.instrument.IncorrectDescriptionException;
 import instrument.InstrumentList;
 import org.junit.jupiter.api.Test;
 import ui.Ui;
@@ -14,8 +14,8 @@ import static org.junit.jupiter.api.Assertions.fail;
 public class EmptyDescriptionExceptionTest {
     @Test
     void testEmptyDescriptionException() {
-        Exception exception = assertThrows(EmptyDescriptionException.class, () -> {
-            throw new EmptyDescriptionException("Input");
+        Exception exception = assertThrows(IncorrectDescriptionException.class, () -> {
+            throw new IncorrectDescriptionException("Input");
         });
 
         // Check if the message is correctly formatted
@@ -31,7 +31,7 @@ public class EmptyDescriptionExceptionTest {
         try {
             c.addInstrument(instrumentList, new Ui());
             fail("Expected EmptyDescriptionException to be thrown");
-        } catch (EmptyDescriptionException e) {
+        } catch (IncorrectDescriptionException e) {
             // Adjust the message to match what your code actually throws
             assertEquals("Input doesn't look right: Input format is invalid:" +
                     " missing fields-> add [Instrument]|[Model]|[Year]", e.getMessage());

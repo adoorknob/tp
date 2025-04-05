@@ -7,7 +7,7 @@ import utils.DateTimeParser;
 import java.time.LocalDate;
 
 public class CommandParser {
-    int currentYear = java.time.LocalDate.now().getYear();
+    int currentYear = LocalDate.now().getYear();
 
     public CommandParser() {}
 

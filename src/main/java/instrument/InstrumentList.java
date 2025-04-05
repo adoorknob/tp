@@ -3,10 +3,10 @@ package instrument;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-import exceptions.instrument.EmptyDescriptionException;
+import exceptions.instrument.IncorrectDescriptionException;
 
 public class InstrumentList {
-    private static final Integer currYEAR = 2025; // Current
+    private static final Integer currYEAR = LocalDate.now().getYear(); // Current
 
     private ArrayList<Instrument> instruments;
     private int numberOfInstruments;
@@ -21,7 +21,7 @@ public class InstrumentList {
         assert instrument != null;
         assert instrument.year >= 1600 && instrument.year <= currYEAR : "Invalid year: " + instrument.year;
         if (instrument.name.isBlank() || instrument.model.isBlank()) {
-            throw new EmptyDescriptionException("event");
+            throw new IncorrectDescriptionException("event");
         }
         this.instruments.add(instrument);
         this.numberOfInstruments++;
@@ -121,7 +121,7 @@ public class InstrumentList {
         assert number > 0 && number <= numberOfInstruments : "Instrument number out of bounds: " + number;
         if (this.instruments.isEmpty()) {
             System.out.println("No instruments available for reservation");
-            throw new EmptyDescriptionException("event"); // TODO change this exception
+            throw new IncorrectDescriptionException("event"); // TODO change this exception
         }
         return instruments.get(number - 1);
     }

@@ -1,6 +1,6 @@
 package exceptions;
 
-import exceptions.instrument.EmptyDescriptionException;
+import exceptions.instrument.IncorrectDescriptionException;
 import exceptions.instrument.IncorrectAddInstrumentException;
 import org.junit.jupiter.api.Test;
 
@@ -26,7 +26,7 @@ public class IncorrectAddInstrumentExceptionTest {
         IncorrectAddInstrumentException exception = new IncorrectAddInstrumentException("Test");
 
         // Check if the exception is an instance of EmptyDescriptionException
-        assertTrue(exception instanceof EmptyDescriptionException);
+        assertTrue(exception instanceof IncorrectDescriptionException);
     }
 
     // Test to ensure that the exception is correctly thrown
