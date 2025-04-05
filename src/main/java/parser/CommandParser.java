@@ -1,6 +1,6 @@
 package parser;
 
-import exceptions.instrument.IncorrectInputForAddInstrumentException;
+import exceptions.instrument.IncorrectAddInstrumentException;
 import exceptions.instrument.InvalidAddInstrumentException;
 import utils.IsOverdueChecker;
 import utils.DateTimeParser;
@@ -12,27 +12,27 @@ public class CommandParser {
 
     public CommandParser() {}
 
-    public String[] separate(String input) throws IncorrectInputForAddInstrumentException {
+    public String[] separate(String input) throws IncorrectAddInstrumentException {
         if (input == null || input.isEmpty()) {
-            throw new IncorrectInputForAddInstrumentException("Input is Empty");
+            throw new IncorrectAddInstrumentException("Input is Empty");
         }
         String[] split = Parser.parseFileEntryToInstrument(input);
 
         if (split.length < 3) {
-            throw new IncorrectInputForAddInstrumentException("Input format is invalid: missing fields");
+            throw new IncorrectAddInstrumentException("Input format is invalid: missing fields");
         }
 
         try {
             Integer.parseInt(split[2]);
             return split;
         } catch (NumberFormatException e) {
-            throw new IncorrectInputForAddInstrumentException("Input year or usage is invalid");
+            throw new IncorrectAddInstrumentException("Input year or usage is invalid");
         }
     }
 
-    public String justGetInstrument(String input) throws IncorrectInputForAddInstrumentException {
+    public String justGetInstrument(String input) throws IncorrectAddInstrumentException {
         if (input == null || input.isEmpty()) {
-            throw new IncorrectInputForAddInstrumentException("Input is Empty");
+            throw new IncorrectAddInstrumentException("Input is Empty");
         }
 
         String instrument = input.trim();
@@ -50,23 +50,26 @@ public class CommandParser {
         return splitInput;
     }
 
-    public String instrumentName(String[] userInput) throws IncorrectInputForAddInstrumentException {
+    public String instrumentName(String[] userInput) throws IncorrectAddInstrumentException {
         if (userInput == null || userInput.length == 0 || userInput[0].isEmpty()) {
-            throw new IncorrectInputForAddInstrumentException(" is Empty");
+            throw new IncorrectAddInstrumentException(" is Empty");
         }
+        String instrument = userInput[0].trim();
+        instrument = instrument.toLowerCase();
+
         return userInput[0];
     }
 
-    public String modelName(String[] userInput) throws IncorrectInputForAddInstrumentException {
+    public String modelName(String[] userInput) throws IncorrectAddInstrumentException {
         if (userInput == null || userInput.length < 1 || userInput[1].isEmpty()) {
-            throw new IncorrectInputForAddInstrumentException("Input is Empty");
+            throw new IncorrectAddInstrumentException("Input is Empty");
         }
         return userInput[1];
     }
 
-    public int instrumentYear(String[] userInput) throws IncorrectInputForAddInstrumentException {
+    public int instrumentYear(String[] userInput) throws IncorrectAddInstrumentException {
         if (userInput == null || userInput.length <= 2 || userInput[2].isEmpty()) {
-            throw new IncorrectInputForAddInstrumentException("Instrument year is missing");
+            throw new IncorrectAddInstrumentException("Instrument year is missing");
         }
 
         try {
@@ -75,9 +78,9 @@ public class CommandParser {
             assert output <= currentYear : "Output year must not be greater than current year";
             return output;
         } catch (NumberFormatException e) {
-            throw new IncorrectInputForAddInstrumentException("Invalid instrument year: " + userInput[2]);
+            throw new IncorrectAddInstrumentException("Invalid instrument year: " + userInput[2]);
         } catch (AssertionError e) {
-            throw new IncorrectInputForAddInstrumentException("Invalid instrument year: " + e.getMessage());
+            throw new IncorrectAddInstrumentException("Invalid instrument year: " + e.getMessage());
         }
     }
 
@@ -106,7 +109,7 @@ public class CommandParser {
     }
 
 
-    public int usage(String[] userInput, boolean isStorageInstrument) throws IncorrectInputForAddInstrumentException {
+    public int usage(String[] userInput, boolean isStorageInstrument) throws IncorrectAddInstrumentException {
         if (isStorageInstrument) {
             if (userInput == null || userInput.length <= 8 || userInput[8].isEmpty()) {
                 throw new InvalidAddInstrumentException("Instrument usage is missing");

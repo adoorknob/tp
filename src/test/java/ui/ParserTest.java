@@ -1,6 +1,6 @@
 package ui;
 
-import exceptions.instrument.IncorrectInputForAddInstrumentException;
+import exceptions.instrument.IncorrectAddInstrumentException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -37,9 +37,8 @@ public class ParserTest {
         try {
             cmdparser.separate(invalidInput);
             fail("Expected incorrectAddInstrumentException to be thrown");
-        } catch (IncorrectInputForAddInstrumentException e) {
-            assertEquals("Input doesn't look right: " +
-                    "Input format is invalid: missing fields-> add [Instrument]|[Model]|[Year]", e.getMessage());
+        } catch (IncorrectAddInstrumentException e) {
+            assertEquals("Input format is invalid: missing fields-> add [Instrument]|[Model]|[Year]", e.getMessage());
         }
     }
 
@@ -50,8 +49,8 @@ public class ParserTest {
         try {
             cmdparser.separate(invalidInput);
             fail("Expected IOException to be thrown");
-        } catch (IncorrectInputForAddInstrumentException e) {
-            assertEquals("Input doesn't look right: Input year or usage is invalid-> " +
+        } catch (IncorrectAddInstrumentException e) {
+            assertEquals("Input year or usage is invalid-> " +
                     "add [Instrument]|[Model]|[Year]", e.getMessage());
         }
     }

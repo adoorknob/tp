@@ -2,7 +2,7 @@ package commands.instrument;
 
 import commands.Command;
 import exceptions.instrument.IncorrectDescriptionException;
-import exceptions.instrument.IncorrectInputForAddInstrumentException;
+import exceptions.instrument.IncorrectAddInstrumentException;
 import finance.FinanceManager;
 import instrument.Instrument;
 import instrument.InstrumentList;
@@ -14,6 +14,7 @@ import parser.CommandParser;
 import ui.Ui;
 import user.User;
 import user.UserUtils;
+import utils.CasingStandardiser;
 
 import java.time.LocalDate;
 
@@ -30,7 +31,7 @@ public class AddInstrumentCommand extends Command {
 
     @Override
     public void execute(InstrumentList instrumentList, Ui ui, UserUtils userUtils, FinanceManager financeManager)
-            throws IncorrectInputForAddInstrumentException {
+            throws IncorrectAddInstrumentException {
         addInstrumentToSession(instrumentList, ui, userUtils);
     }
 
@@ -54,6 +55,7 @@ public class AddInstrumentCommand extends Command {
         String[] userInput = cmdParser.separate(this.name.trim());
 
         String instrument = cmdParser.instrumentName(userInput);
+        instrument = CasingStandardiser.casingStandardise(instrument);
         String model = cmdParser.modelName(userInput);
         int year = cmdParser.instrumentYear(userInput);
 

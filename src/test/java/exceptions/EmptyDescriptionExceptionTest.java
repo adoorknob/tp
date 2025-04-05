@@ -19,7 +19,7 @@ public class EmptyDescriptionExceptionTest {
         });
 
         // Check if the message is correctly formatted
-        assertEquals("Input doesn't look right: Input", exception.getMessage());
+        assertEquals("Input", exception.getMessage());
     }
 
     @Test
@@ -33,7 +33,7 @@ public class EmptyDescriptionExceptionTest {
             fail("Expected EmptyDescriptionException to be thrown");
         } catch (IncorrectDescriptionException e) {
             // Adjust the message to match what your code actually throws
-            assertEquals("Input doesn't look right: Input format is invalid:" +
+            assertEquals("Input format is invalid:" +
                     " missing fields-> add [Instrument]|[Model]|[Year]", e.getMessage());
         }
     }
