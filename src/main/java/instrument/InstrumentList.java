@@ -127,7 +127,8 @@ public class InstrumentList {
         assert number > 0 && number <= numberOfInstruments : "Instrument number out of bounds: " + number;
         if (this.instruments.isEmpty()) {
             System.out.println("No instruments available for reservation");
-            throw new IncorrectDescriptionException("No instruments available for reservation"); // TODO change this exception
+            // TODO change this exception below
+            throw new IncorrectDescriptionException("No instruments available for reservation");
         }
         return instruments.get(number - 1);
     }
