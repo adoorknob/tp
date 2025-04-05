@@ -45,7 +45,7 @@ public class UiTest {
             return: returns a reserved instrument
             user: choose user commands
             recommend: recommends a recommended instrument
-            finance: Manage finances: (use -h flag to see commands)
+            finance: Manage finances: (use help flag to see commands)
             exit: quit SirDukeBox"""));
 
     }
