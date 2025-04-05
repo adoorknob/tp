@@ -30,6 +30,9 @@ public class User {
     }
 
     public String getName() {
+        if (this.name == null) {
+            return "Invalid";
+        }
         return name;
     }
 

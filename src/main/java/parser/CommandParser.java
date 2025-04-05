@@ -1,6 +1,7 @@
 package parser;
 
 import exceptions.instrument.IncorrectAddInstrumentException;
+import exceptions.instrument.InvalidAddInstrumentException;
 import utils.IsOverdueChecker;
 import utils.DateTimeParser;
 
@@ -84,12 +85,12 @@ public class CommandParser {
     }
 
 
-    public boolean isRented(String[] userInput, boolean isParse) {
-        return isParse && userInput.length > 3 && Boolean.parseBoolean(userInput[3]);
+    public boolean isRented(String[] userInput, boolean isStorageInstrument) {
+        return isStorageInstrument && userInput.length > 3 && Boolean.parseBoolean(userInput[3]);
     }
 
-    public boolean isOverdue(String[] userInput, boolean isParse) {
-        if (isParse && userInput.length > 6 && !userInput[6].isBlank()) {
+    public boolean isOverdue(String[] userInput, boolean isStorageInstrument) {
+        if (isStorageInstrument && userInput.length > 6 && !userInput[6].isBlank()) {
             LocalDate dueDate = DateTimeParser.parseDate(userInput[6]);
             return IsOverdueChecker.isOverdue(dueDate);
         }
@@ -97,29 +98,36 @@ public class CommandParser {
     }
 
 
-    public LocalDate rentedFrom(String[] userInput, boolean isParse) {
-        return (isParse && userInput.length > 5 && userInput[5] != null) ? DateTimeParser.parseDate(userInput[5])
-                : null;
+    public LocalDate rentedFrom(String[] userInput, boolean isStorageInstrument) {
+        return (isStorageInstrument && userInput.length > 5 && userInput[5] != null) ?
+                DateTimeParser.parseDate(userInput[5]) : null;
     }
 
-    public LocalDate rentedTo(String[] userInput, boolean isParse) {
-        return (isParse && userInput.length > 6 && userInput[6] != null) ? DateTimeParser.parseDate(userInput[6])
-                : null;
+    public LocalDate rentedTo(String[] userInput, boolean isStorageInstrument) {
+        return (isStorageInstrument && userInput.length > 6 && userInput[6] != null) ?
+                DateTimeParser.parseDate(userInput[6]) : null;
     }
 
 
-    public int usage(String[] userInput, boolean isParse) throws IncorrectAddInstrumentException {
-        if (isParse) {
-            if (userInput == null || userInput.length <= 7 || userInput[7].isEmpty()) {
-                throw new IncorrectAddInstrumentException("Instrument usage is missing");
+    public int usage(String[] userInput, boolean isStorageInstrument) throws IncorrectAddInstrumentException {
+        if (isStorageInstrument) {
+            if (userInput == null || userInput.length <= 8 || userInput[8].isEmpty()) {
+                throw new InvalidAddInstrumentException("Instrument usage is missing");
             }
 
             try {
-                return Integer.parseInt(userInput[7].trim());
+                return Integer.parseInt(userInput[8].trim());
             } catch (NumberFormatException e) {
-                throw new IncorrectAddInstrumentException("Invalid usage: " + userInput[7]);
+                throw new InvalidAddInstrumentException("Invalid usage: " + userInput[8]);
             }
         }
         return 0;
+    }
+
+    public String user(String[] userInput, boolean isStorageInstrument) {
+        if (isStorageInstrument && userInput.length > 7 && !userInput[7].isEmpty()) {
+            return userInput[7].trim();
+        }
+        return null;
     }
 }

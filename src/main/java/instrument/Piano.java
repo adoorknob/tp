@@ -9,8 +9,8 @@ public class Piano extends Instrument {
     }
 
     public Piano(String name, String model, int year, boolean isRented, boolean isOverDue,
-                 LocalDate rentedFrom, LocalDate rentedTo) {
-        super(name, model, year, isRented, isOverDue, rentedFrom, rentedTo);
+                 LocalDate rentedFrom, LocalDate rentedTo, int usage) {
+        super(name, model, year, isRented, isOverDue, rentedFrom, rentedTo, usage);
     }
 
     @Override

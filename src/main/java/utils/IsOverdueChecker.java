@@ -45,7 +45,7 @@ public class IsOverdueChecker {
         // Iterate over each instrument in the list
         for (Instrument instrument : list.getList()) {
             // Get the due date for the instrument
-            LocalDate dueDate = instrument.getdueDate();
+            LocalDate dueDate = instrument.getDueDate();
             // Check if the instrument is overdue
             if (IsOverdueChecker.isOverdue(dueDate)) {
                 // Mark the instrument as overdue if the due date is past

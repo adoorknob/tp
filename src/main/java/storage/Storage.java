@@ -1,6 +1,5 @@
 package storage;
 
-
 import exceptions.storage.FileCannotBeFoundException;
 import exceptions.storage.FileCannotBeMadeException;
 import instrument.Instrument;
@@ -8,6 +7,7 @@ import instrument.InstrumentList;
 import parser.Parser;
 import ui.Ui;
 import commands.instrument.AddInstrumentCommand;
+import user.UserUtils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -21,9 +21,11 @@ public class Storage {
     Ui ui;
     InstrumentList instrumentList;
     File file;
+    UserUtils userUtils;
 
-    public Storage(Ui ui, String outputFilePath) {
+    public Storage(Ui ui, UserUtils userUtils, String outputFilePath) {
         this.ui = ui;
+        this.userUtils = userUtils;
         instrumentList = new InstrumentList();
         this.outputFilePath = outputFilePath;
     }
@@ -79,7 +81,7 @@ public class Storage {
     }
 
     private void loadOldEntries() throws FileNotFoundException {
-        // format: Instrument|Model|Year|LoanDate|LoanDuration
+        // format: Instrument|Model|Year|LoanDate|LoanDuration|Usage|UserName
         Scanner scanner = new Scanner(file);
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
@@ -89,7 +91,7 @@ public class Storage {
 
     private void addEntryToSession(String line) {
         AddInstrumentCommand c = new AddInstrumentCommand(line, true);
-        c.addInstrument(instrumentList, ui);
+        c.addInstrumentToSession(instrumentList, ui, userUtils);
     }
 
     private void addEntryToOutputText(Instrument instrument) {

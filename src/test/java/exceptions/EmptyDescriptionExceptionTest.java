@@ -3,8 +3,11 @@ package exceptions;
 import commands.instrument.AddInstrumentCommand;
 import exceptions.instrument.IncorrectDescriptionException;
 import instrument.InstrumentList;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ui.Ui;
+import user.UserList;
+import user.UserUtils;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -12,6 +15,17 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.fail;
 
 public class EmptyDescriptionExceptionTest {
+    Ui ui;
+    UserList userList;
+    UserUtils userUtils;
+
+    @BeforeEach
+    void setUp() {
+        ui = new Ui();
+        userList = new UserList(ui);
+        userUtils = new UserUtils(ui, userList);
+    }
+
     @Test
     void testEmptyDescriptionException() {
         Exception exception = assertThrows(IncorrectDescriptionException.class, () -> {
@@ -29,7 +43,7 @@ public class EmptyDescriptionExceptionTest {
 
         AddInstrumentCommand c = new AddInstrumentCommand(invalidInput, false);
         try {
-            c.addInstrument(instrumentList, new Ui());
+            c.addInstrumentToSession(instrumentList, ui, userUtils);
             fail("Expected EmptyDescriptionException to be thrown");
         } catch (IncorrectDescriptionException e) {
             // Adjust the message to match what your code actually throws
@@ -43,6 +57,6 @@ public class EmptyDescriptionExceptionTest {
         InstrumentList instrumentList = new InstrumentList();
         String validInput = "Flute|Yamaha|2023";
         AddInstrumentCommand c = new AddInstrumentCommand(validInput, false);
-        assertDoesNotThrow(() -> c.addInstrument(instrumentList, new Ui()));
+        assertDoesNotThrow(() -> c.createInstrument(instrumentList, ui));
     }
 }

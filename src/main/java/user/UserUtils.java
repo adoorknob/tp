@@ -13,6 +13,12 @@ public class UserUtils {
         this.ui = ui;
     }
 
+    public User addKnownUser(String userName) {
+        User newUser = new User(ui, userList, userName);
+        this.userList.addUser(newUser);
+        return newUser;
+    }
+
     public User queryAndAssignUser(Instrument instrument) {
         if (ui.isInstrumentAssignedToUser()) {
             return assignSpecificUser(instrument);
@@ -83,7 +89,7 @@ public class UserUtils {
     }
 
     private void printInstrumentListOfUser() {
-        int userId = ui.queryUserInstrumentListUserChoice(userList.getUsers());
+        int userId = ui.queryUserInstrumentListUserChoice(userList);
         int listId = ui.queryUserInstrumentListListChoice();
         executeListPrint(userId, listId);
     }

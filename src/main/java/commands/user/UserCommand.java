@@ -13,7 +13,7 @@ public class UserCommand extends Command {
 
     @Override
     public void execute(InstrumentList instrumentList, Ui ui, UserUtils userUtils, FinanceManager financeManager) {
-        int userChoice = ui.queryPrintUserListOrInstrumentList();
+        int userChoice = ui.queryUserCommandChoice();
         userUtils.executeUserCommand(userChoice);
     }
 
