@@ -33,16 +33,17 @@ Example of usage:
 Expected output:
 
 ```
-Available Commands:  
-help: list all commands  
-list: list all instruments  
-add: adds a new instrument  
-delete: deletes an existing instrument  
-reserve: reserves an available instrument  
-extend: changes the return date of a reserved instrument  
-return: returns a reserved instrument  
-user: choose user commands  
-recommend: recommends a recommended instrument  
+Available Commands:
+help: list all commands
+list: list all instruments
+add: adds a new instrument
+delete: deletes an existing instrument
+reserve: reserves an available instrument
+extend: changes the return date of a reserved instrument
+return: returns a reserved instrument
+user: choose user commands
+recommend: recommends a recommended instrument
+finance: Manage finances: (use help flag to see commands)
 exit: quit SirDukeBox
 ```
 
