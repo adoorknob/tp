@@ -91,14 +91,14 @@ class PianoTest {
     @Test
     void toFileEntry_unrentedPiano_returnsCorrectValue() {
         Piano piano = new Piano("Piano", "Yamaha", 2000);
-        assertEquals("Piano | Yamaha | 2000 | false | false | null | null | 0", piano.toFileEntry());
+        assertEquals("Piano | Yamaha | 2000 | false | false | null | null | Invalid | 0", piano.toFileEntry());
     }
 
     @Test
     void toFileEntry_rentedPiano_returnsCorrectValue() {
         Piano piano = new Piano("Piano", "Yamaha", 2000);
         piano.rent();
-        assertEquals("Piano | Yamaha | 2000 | true | false | null | null | 0", piano.toFileEntry());
+        assertEquals("Piano | Yamaha | 2000 | true | false | null | null | Invalid | 0", piano.toFileEntry());
     }
 
 }

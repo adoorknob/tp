@@ -101,7 +101,7 @@ public abstract class Instrument {
         return name + " | " + model + " | " + year + " | " + isRented + " | " + isOverDue + " | " +
                 (rentedFrom != null ? rentedFrom.format(DATE_TIME_FORMATTER) : "null") + " | " +
                 (rentedTo != null ? rentedTo.format(DATE_TIME_FORMATTER) : "null") + " | " +
-                user.getName() + " | " + usage;
+                (user != null ? user.getName() : "Invalid") + " | " + usage;
     }
 
     public void setUsage(int usage) throws NegativeUsageException {

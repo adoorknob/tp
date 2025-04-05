@@ -51,7 +51,7 @@ public class AddInstrumentCommand extends Command {
      * @param ui
      * @return instrument
      */
-    private Instrument createInstrument(InstrumentList instrumentList, Ui ui) {
+    public Instrument createInstrument(InstrumentList instrumentList, Ui ui) {
         String[] userInput = cmdParser.separate(this.name.trim());
 
         String instrument = cmdParser.instrumentName(userInput);

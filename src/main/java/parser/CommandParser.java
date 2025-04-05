@@ -99,13 +99,13 @@ public class CommandParser {
 
 
     public LocalDate rentedFrom(String[] userInput, boolean isStorageInstrument) {
-        return (isStorageInstrument && userInput.length > 5 && userInput[5] != null) ? DateTimeParser.parseDate(userInput[5])
-                : null;
+        return (isStorageInstrument && userInput.length > 5 && userInput[5] != null) ?
+                DateTimeParser.parseDate(userInput[5]) : null;
     }
 
     public LocalDate rentedTo(String[] userInput, boolean isStorageInstrument) {
-        return (isStorageInstrument && userInput.length > 6 && userInput[6] != null) ? DateTimeParser.parseDate(userInput[6])
-                : null;
+        return (isStorageInstrument && userInput.length > 6 && userInput[6] != null) ?
+                DateTimeParser.parseDate(userInput[6]) : null;
     }
 
 

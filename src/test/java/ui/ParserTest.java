@@ -25,7 +25,7 @@ public class ParserTest {
         try {
             String[] output = cmdparser.separate(validInput);
             assertArrayEquals(output, intendedOutput);
-        } catch (IncorrectInputForAddInstrumentException e) {
+        } catch (IncorrectAddInstrumentException e) {
             throw new RuntimeException("Failed to parse input", e);
         }
     }

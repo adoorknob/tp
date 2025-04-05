@@ -4,7 +4,6 @@ import exceptions.storage.FileCannotBeMadeException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ui.Ui;
-import user.User;
 import user.UserList;
 import user.UserUtils;
 
