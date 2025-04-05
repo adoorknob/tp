@@ -15,6 +15,7 @@ import parser.CommandParser;
 import ui.Ui;
 import user.User;
 import user.UserUtils;
+import utils.CasingStandardiser;
 
 import java.time.LocalDate;
 
@@ -56,6 +57,7 @@ public class AddInstrumentCommand extends Command {
         String[] userInput = cmdparser.separate(this.name.trim());
 
         String instrument = cmdparser.instrumentName(userInput);
+        instrument = CasingStandardiser.casingStandardise(instrument);
         String model = cmdparser.modelName(userInput);
         int year = cmdparser.instrumentYear(userInput);
 
