@@ -1,6 +1,7 @@
 package commands;
 
 
+import commands.datetime.ExtendCommand;
 import commands.instrument.AddInstrumentCommand;
 import commands.instrument.ReserveCommand;
 import commands.instrument.ReturnCommand;
@@ -93,4 +94,9 @@ class ReturnCommandTest {
         assertEquals(3, rentedCount);
     }
 
+    @Test
+    void testIsExit() {
+        returnCommand = new ReturnCommand(VALIDINSTNUM);
+        assertFalse(returnCommand.isExit());
+    }
 }
