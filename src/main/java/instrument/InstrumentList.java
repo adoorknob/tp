@@ -3,11 +3,8 @@ package instrument;
 import java.util.ArrayList;
 import java.time.LocalDate;
 
-import exceptions.instrument.OutOfRangeException;
+import exceptions.instrument.*;
 import utils.TimeChecker;
-
-import exceptions.instrument.IncorrectDescriptionException;
-import exceptions.instrument.InvalidExtendDateException;
 
 public class InstrumentList {
     private static final Integer currYEAR = TimeChecker.getCurrentYear();
@@ -27,9 +24,11 @@ public class InstrumentList {
             assert instrument != null;
             assert instrument.year >= minYEAR && instrument.year <= currYEAR
                     : "Invalid year (" + minYEAR + " to " + currYEAR + ") ->"  + instrument.year;
+
             if (instrument.name.isBlank() || instrument.model.isBlank()) {
                 throw new IncorrectDescriptionException("No name or model found");
             }
+
             this.instruments.add(instrument);
             this.numberOfInstruments++;
             return instrument;
@@ -40,99 +39,113 @@ public class InstrumentList {
 
     public void deleteInstrument(int number) {
         try {
+
             assert number > 0 && number <= numberOfInstruments : "Instrument number out of bounds: " + number;
             assert !instruments.isEmpty() : "No instruments to delete";
             System.out.println("Deleting instrument: " + instruments.get(number - 1));
             instruments.remove(number - 1);
             numberOfInstruments--;
             System.out.println("Now you have " + numberOfInstruments + " instruments");
+
         } catch (Exception | AssertionError e) {
-            System.err.println("Error in deleting instrument: " + (number));
             System.out.println(e.getMessage());
         }
     }
 
     public void reserveInstrument(int number) {
-        assert number > 0 && number <= numberOfInstruments : "Instrument number out of bounds: " + number;
-        if (this.instruments.isEmpty()) {
-            System.out.println("No instruments available for reservation");
-            return;
-        }
-        Instrument instToRent = instruments.get(number - 1);
 
-        if (instToRent.isRented()) {
-            System.out.println("Instrument is already reserved");
-            return;
-        }
-        System.out.println("Reserving instrument: " + instToRent);
-        instToRent.rent();
+        try {
+            assert number > 0 && number <= numberOfInstruments : "Instrument number out of bounds: " + number;
 
-        //Increase Usage
-        instToRent.increaseUsage();
+            if (this.instruments.isEmpty()) {
+                throw new EmptyInstrumentListException("No instruments available for reservation");
+            }
+
+            Instrument instToRent = instruments.get(number - 1);
+
+            if (instToRent.isRented()) {
+                throw new IncorrectReserveInstrumentException("Instrument is already reserved");
+            }
+
+            System.out.println("Reserving instrument: " + instToRent);
+            instToRent.rent();
+
+            //Increase Usage
+            instToRent.increaseUsage();
+        } catch (Exception | AssertionError e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public void reserveInstrumentFromTo(int number, LocalDate from, LocalDate to) {
-        assert number > 0 && number <= numberOfInstruments : "Instrument number out of bounds: " + number;
-        if (this.instruments.isEmpty()) {
-            System.out.println("No instruments available for reservation");
-            return;
+        try {
+            assert number > 0 && number <= numberOfInstruments : "Instrument number out of bounds: " + number;
+            if (this.instruments.isEmpty()) {
+                throw new EmptyInstrumentListException("No instruments available for reservation");
+            }
+            Instrument instToRent = instruments.get(number - 1);
+
+            if (instToRent.isRented()) {
+                throw new IncorrectReserveInstrumentException("Instrument is already reserved");
+            }
+
+
+            instToRent.rent();
+            instToRent.rentFromTo(from, to);
+
+            //Increase usage
+            instToRent.increaseUsage();
+        } catch (Exception | AssertionError e) {
+            System.out.println(e.getMessage());
         }
-        Instrument instToRent = instruments.get(number - 1);
-
-        if (instToRent.isRented()) {
-            System.out.println("Instrument is already rented");
-            return;
-        }
-
-        instToRent.rent();
-        instToRent.rentFromTo(from, to);
-
-        //Increase usage
-        instToRent.increaseUsage();
     }
 
     public void extendInstrumentTo(int number, LocalDate to) {
-        assert number > 0 && number <= numberOfInstruments : "Instrument number out of bounds: " + number;
-        if (this.instruments.isEmpty()) {
-            System.out.println("No instruments available for extension");
-            return;
+        try {
+            assert number > 0 && number <= numberOfInstruments : "Instrument number out of bounds: " + number;
+            if (this.instruments.isEmpty()) {
+                throw new EmptyInstrumentListException("No instruments available for extension");
+            }
+            Instrument instToRent = instruments.get(number - 1);
+
+            if (!instToRent.isRented()) {
+                throw new IncorrectReserveInstrumentException("Please make a reservation for your instrument" +
+                        " before extending the loan period");
+            }
+
+            LocalDate prevTo = instToRent.getRentedTo();
+
+            if (to.isBefore(prevTo)) {
+                throw new InvalidExtendDateException("Invalid date: ");
+            }
+
+            System.out.println("Extending reservation of instrument: " + instToRent.name
+                    + " from " + instToRent.getRentedFrom() + " to " + to);
+
+            instToRent.rentTo(to);
+        } catch (Exception | AssertionError e) {
+            System.out.println(e.getMessage());
         }
-        Instrument instToRent = instruments.get(number - 1);
-
-        if (!instToRent.isRented()) {
-            System.out.println("Instrument number " + number + " is not yet reserved");
-            System.out.println("Please make a reservation for your instrument before extending the loan period");
-            return;
-        }
-
-        LocalDate prevTo = instToRent.getRentedTo();
-
-        if (to.isBefore(prevTo)) {
-            throw new InvalidExtendDateException("Invalid date: ");
-        }
-
-        System.out.println("Extending reservation of instrument: " + instToRent.name
-                + " from " + instToRent.getRentedFrom() + " to " + to);
-
-        instToRent.rentTo(to);
-
     }
 
     public void returnInstrument(int number) {
-        assert number > 0 && number <= numberOfInstruments : "Instrument number out of bounds: " + number;
-        if (this.instruments.isEmpty()) {
-            System.out.println("No instruments to return");
-            return;
-        }
-        Instrument instToUnrent = instruments.get(number - 1);
+        try {
+            assert number > 0 && number <= numberOfInstruments : "Instrument number out of bounds: " + number;
+            if (this.instruments.isEmpty()) {
+                throw new EmptyInstrumentListException("No instruments available for extension");
+            }
 
-        if (!instToUnrent.isRented()) {
-            System.out.println("Instrument is cannot be returned as it is not reserved");
-            return;
-        }
+            Instrument instToUnrent = instruments.get(number - 1);
 
-        System.out.println("Returning instrument: " + instToUnrent);
-        instToUnrent.unrent();
+            if (!instToUnrent.isRented()) {
+                throw new IncorrectReserveInstrumentException("Instrument is cannot be returned as it is not reserved");
+            }
+
+            System.out.println("Returning instrument: " + instToUnrent);
+            instToUnrent.unrent();
+        } catch (Exception | AssertionError e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public Instrument getInstrument(int number) {
