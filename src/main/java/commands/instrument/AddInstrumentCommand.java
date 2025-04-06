@@ -1,8 +1,8 @@
 package commands.instrument;
 
 import commands.Command;
-import exceptions.instrument.IncorrectDescriptionException;
 import exceptions.instrument.IncorrectAddInstrumentException;
+import exceptions.storage.CorruptStorageException;
 import finance.FinanceManager;
 import instrument.Instrument;
 import instrument.InstrumentList;
@@ -23,6 +23,18 @@ public class AddInstrumentCommand extends Command {
     private boolean isStorageInstrument;
     private String instrumentUserName;
 
+
+    private String[] userInput;
+    private String instrument;
+    private String model;
+    private int year;
+
+    private boolean isRented;
+    private boolean isOverdue;
+    private LocalDate rentedFrom;
+    private LocalDate rentedTo;
+    private int usage;
+
     public AddInstrumentCommand(String command, boolean isStorageInstrument) {
         super(command);
         this.cmdParser = new CommandParser();
@@ -35,6 +47,12 @@ public class AddInstrumentCommand extends Command {
         addInstrumentToSession(instrumentList, ui, userUtils);
     }
 
+    /**
+     *  Add instrument from storage
+     * @param instrumentList List of instruments instantiated in Duke
+     * @param ui UI object handling UI
+     * @param userUtils userUtilities which handles user related commands
+     */
     public void addInstrumentToSession(InstrumentList instrumentList, Ui ui, UserUtils userUtils) {
         Instrument newInstrument;
         newInstrument = createInstrument(instrumentList, ui);
@@ -54,20 +72,26 @@ public class AddInstrumentCommand extends Command {
     public Instrument createInstrument(InstrumentList instrumentList, Ui ui) {
         String[] userInput = cmdParser.separate(this.name.trim());
 
-        String instrument = cmdParser.instrumentName(userInput);
-        instrument = CasingStandardiser.casingStandardise(instrument);
-        String model = cmdParser.modelName(userInput);
-        int year = cmdParser.instrumentYear(userInput);
+        try {
+            this.instrument = cmdParser.instrumentName(userInput);
+            this.instrument = CasingStandardiser.casingStandardise(instrument);
+            this.model = cmdParser.modelName(userInput);
+            this.year = cmdParser.instrumentYear(userInput);
 
-        boolean isRented = cmdParser.isRented(userInput, isStorageInstrument);
-        boolean isOverdue = cmdParser.isOverdue(userInput, isStorageInstrument);
-        LocalDate rentedFrom = cmdParser.rentedFrom(userInput, isStorageInstrument);
-        LocalDate rentedTo = cmdParser.rentedTo(userInput, isStorageInstrument);
-        this.instrumentUserName = cmdParser.getUser(userInput, isStorageInstrument);
-        int usage = cmdParser.getUsage(userInput, isStorageInstrument);
+            this.isRented = cmdParser.isRented(userInput, isStorageInstrument);
+            this.isOverdue = cmdParser.isOverdue(userInput, isStorageInstrument);
+            this.rentedFrom = cmdParser.rentedFrom(userInput, isStorageInstrument);
+            this.rentedTo = cmdParser.rentedTo(userInput, isStorageInstrument);
+            this.instrumentUserName = cmdParser.getUser(userInput, isStorageInstrument);
+            this.usage = cmdParser.getUsage(userInput, isStorageInstrument);
+        } catch (RuntimeException e) {
+            if (isStorageInstrument) {
+                throw new CorruptStorageException(e.getMessage());
+            }
+            throw new IncorrectAddInstrumentException(e.getMessage());
+        }
 
         Instrument newInstrument = null;
-
         try {
             switch (instrument) {
             case "Flute":
@@ -85,14 +109,18 @@ public class AddInstrumentCommand extends Command {
             default:
                 System.out.println("invalid instrument");
             }
-        } catch (IncorrectDescriptionException e) {
+        } catch (Exception e) {
             System.out.println(e.getMessage());
-            ui.printInstrumentList(instrumentList.getList());
         }
 
         return newInstrument;
     }
 
+    /**
+     *  Add user to instrument and updates instrument and userList
+     * @param newInstrument New instrument that is to be tagged
+     * @param userUtils Utility object that handles Users and User List
+     */
     private void addUser(Instrument newInstrument, UserUtils userUtils) {
         if (this.isStorageInstrument) {
             addKnownUser(newInstrument, userUtils);
@@ -102,6 +130,11 @@ public class AddInstrumentCommand extends Command {
         newInstrument.setUser(user);
     }
 
+    /**
+     *  If the user is a known user
+     * @param newInstrument New instrument that is to be tagged
+     * @param userUtils Utility object that handles Users and User List
+     */
     private void addKnownUser(Instrument newInstrument, UserUtils userUtils) {
         User knownUser = userUtils.addKnownUser(this.instrumentUserName);
         newInstrument.setUser(knownUser);

@@ -38,7 +38,7 @@ public class ParserTest {
             cmdparser.separate(invalidInput);
             fail("Expected incorrectAddInstrumentException to be thrown");
         } catch (IncorrectAddInstrumentException e) {
-            assertEquals("Input format is invalid: missing fields-> add [Instrument]|[Model]|[Year]", e.getMessage());
+            assertEquals("Input format is invalid: missing fields -> add [Instrument]|[Model]|[Year]", e.getMessage());
         }
     }
 
@@ -50,7 +50,7 @@ public class ParserTest {
             cmdparser.separate(invalidInput);
             fail("Expected IOException to be thrown");
         } catch (IncorrectAddInstrumentException e) {
-            assertEquals("Input year or usage is invalid-> " +
+            assertEquals("Input year or usage is invalid -> " +
                     "add [Instrument]|[Model]|[Year]", e.getMessage());
         }
     }

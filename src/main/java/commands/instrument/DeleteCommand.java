@@ -15,20 +15,28 @@ public class DeleteCommand extends Command {
 
     @Override
     public void execute(InstrumentList instrumentList, Ui ui, UserUtils userUtils, FinanceManager financeManager) {
-        int instrumentId = Integer.parseInt(this.name);
-        deleteInstrumentFromUser(instrumentList, instrumentId);
-        instrumentList.deleteInstrument(instrumentId);
-        ui.printInstrumentList(instrumentList.getList());
+        try {
+            int instrumentId = Integer.parseInt(this.name);
+            Instrument instrument = instrumentList.getInstrument(instrumentId);
+            deleteInstrumentFromUser(instrument);
+            instrumentList.deleteInstrument(instrumentId);
+            ui.printInstrumentList(instrumentList.getList());
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
     }
 
-    private void deleteInstrumentFromUser(InstrumentList instrumentList, int instrumentId) {
-        Instrument instrument = instrumentList.getInstrument(instrumentId);
-        User user = instrument.getUser();
-        user.removeInstrument(instrument);
+    private void deleteInstrumentFromUser(Instrument instrument) {
+        try {
+            User user = instrument.getUser();
+            user.removeInstrument(instrument);
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
     }
 
     @Override
-    public boolean isExit() {
+        public boolean isExit() {
         return false;
     }
 }

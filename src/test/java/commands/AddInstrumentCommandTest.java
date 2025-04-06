@@ -2,6 +2,7 @@ package commands;
 
 import commands.instrument.AddInstrumentCommand;
 import exceptions.instrument.IncorrectAddInstrumentException;
+import exceptions.storage.CorruptStorageException;
 import instrument.InstrumentList;
 import instrument.Instrument;
 import user.UserUtils;
@@ -113,9 +114,7 @@ class AddInstrumentCommandTest {
         addInstrumentCommand = new AddInstrumentCommand(
                 "Guitar | yamaha | -500 | false | false | null | null | Unassigned | 0",
                 true);
-        addInstrumentCommand.execute(instrumentList,ui, userUtils, financeManager);
-        assertEquals(1, instrumentList.getList().size(), "Instrument list size should increase by 1.");
+        assertThrows(CorruptStorageException.class, () ->
+                addInstrumentCommand.execute(instrumentList,ui, userUtils, financeManager));
     }
-
-
 }

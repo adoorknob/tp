@@ -44,11 +44,11 @@ public class EmptyDescriptionExceptionTest {
         AddInstrumentCommand c = new AddInstrumentCommand(invalidInput, false);
         try {
             c.addInstrumentToSession(instrumentList, ui, userUtils);
-            fail("Expected EmptyDescriptionException to be thrown");
+            fail("Expected RuntimeException to be thrown");
         } catch (IncorrectDescriptionException e) {
             // Adjust the message to match what your code actually throws
             assertEquals("Input format is invalid:" +
-                    " missing fields-> add [Instrument]|[Model]|[Year]", e.getMessage());
+                    " missing fields -> add [Instrument]|[Model]|[Year]", e.getMessage());
         }
     }
 
@@ -59,4 +59,6 @@ public class EmptyDescriptionExceptionTest {
         AddInstrumentCommand c = new AddInstrumentCommand(validInput, false);
         assertDoesNotThrow(() -> c.createInstrument(instrumentList, ui));
     }
+
+
 }

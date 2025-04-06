@@ -3,6 +3,7 @@ package instrument;
 import java.util.ArrayList;
 import java.time.LocalDate;
 
+import exceptions.instrument.OutOfRangeException;
 import utils.TimeChecker;
 
 import exceptions.instrument.IncorrectDescriptionException;
@@ -37,19 +38,15 @@ public class InstrumentList {
     }
 
     public void deleteInstrument(int number) {
-        assert number > 0 && number <= numberOfInstruments : "Instrument number out of bounds: " + number;
-        if (this.instruments.isEmpty()) {
-            System.out.println("No instruments to delete");
-            return;
-        }
-
         try {
+            assert number > 0 && number <= numberOfInstruments : "Instrument number out of bounds: " + number;
+            assert !instruments.isEmpty() : "No instruments to delete";
             System.out.println("Deleting instrument: " + instruments.get(number - 1));
             instruments.remove(number - 1);
             numberOfInstruments--;
             System.out.println("Now you have " + numberOfInstruments + " instruments");
-        } catch (Exception e) {
-            System.out.println("Error in deleting instrument: " + (number));
+        } catch (Exception | AssertionError e) {
+            System.err.println("Error in deleting instrument: " + (number));
             System.out.println(e.getMessage());
         }
     }
@@ -132,13 +129,17 @@ public class InstrumentList {
     }
 
     public Instrument getInstrument(int number) {
-        assert number > 0 && number <= numberOfInstruments : "Instrument number out of bounds: " + number;
-        if (this.instruments.isEmpty()) {
-            System.out.println("No instruments available for reservation");
-            // TODO change this exception below
-            throw new IncorrectDescriptionException("No instruments available for reservation");
+        try {
+            if (this.instruments.isEmpty()) {
+                throw new OutOfRangeException("Instrument List is empty");
+            }
+            assert number > 0 && number <= numberOfInstruments : "Instrument number out of bounds: " + number;
+            return instruments.get(number - 1);
+        } catch (RuntimeException e) {
+            throw new RuntimeException(e);
+        } catch (AssertionError e) {
+            throw new OutOfRangeException(e.getMessage());
         }
-        return instruments.get(number - 1);
     }
 
     public ArrayList<Instrument> getList() {
