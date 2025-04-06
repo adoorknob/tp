@@ -25,44 +25,43 @@ public class ListCommand extends Command {
 
     @Override
     public void execute(InstrumentList instrumentList, Ui ui, UserUtils userUtils, FinanceManager financeManager) {
-        assert instrumentList != null;
-        assert ui != null;
-        if (instrumentList.getList().isEmpty()) {
-            throw new EmptyInstrumentListException("List is empty, let's add some instruments :)");
-        } else {
-            try {
-                if (this.name.isEmpty()) {
-                    ui.printInstrumentList(instrumentList.getList());
+        try {
+            assert instrumentList != null : "Program not initialized properly";
+            assert ui != null : "Program not initialized properly";
+            if (instrumentList.getList().isEmpty()) {
+                throw new EmptyInstrumentListException("List is empty, let's add some instruments :)");
+            }
+
+            if (this.name.isEmpty()) {
+                ui.printInstrumentList(instrumentList.getList());
+                return;
+            }
+
+            String[] userInput = parser.splits(this.name);
+            String subCmd = userInput[0];
+            if (subCmd.equals(STOCK)) {
+                ui.printStockList(instrumentList.getList());
+            } else if (subCmd.equals(FILTER)) { // search for a specific instrument name
+                String[] parts = this.name.split("by: ", 3);
+                String[] filterSearch = parts[1].split(" ");
+                String filter = filterSearch[0].trim();
+                if (filter.equals(RESERVED) || filter.equals(AVAILABLE)) {
+                    ui.printFilteredList(instrumentList.getList(), filter, "");
                     return;
                 }
-                String[] userInput = parser.splits(this.name);
-                String subCmd = userInput[0];
-                if (subCmd.equals(STOCK)) {
-                    ui.printStockList(instrumentList.getList());
-                } else if (subCmd.equals(FILTER)) { // search for a specific instrument name
-                    String[] parts = this.name.split("by: ", 3);
-                    String[] filterSearch = parts[1].split(" ");
-                    String filter = filterSearch[0].trim();
-                    if (filter.equals(RESERVED) || filter.equals(AVAILABLE)) {
-                        ui.printFilteredList(instrumentList.getList(), filter, "");
-                        return;
-                    }
-                    try {
-                        String searchTerm = filterSearch[1].trim();
-                        ui.printFilteredList(instrumentList.getList(), filter, searchTerm);
-                    } catch (ArrayIndexOutOfBoundsException a) {
-                        System.out.println("The specified filter does not exist. Please try again");
-                        System.out.println(TEXTBORDER);
-                    }
-                } else {
-                    System.out.println("The specified subcommand does not exist. Please try again");
+                try {
+                    String searchTerm = filterSearch[1].trim();
+                    ui.printFilteredList(instrumentList.getList(), filter, searchTerm);
+                } catch (ArrayIndexOutOfBoundsException a) {
+                    System.out.println("The specified filter does not exist. Please try again");
                     System.out.println(TEXTBORDER);
                 }
-            } catch (EmptyInstrumentListException m) {
-                System.out.println(m.getMessage());
-            } catch (Exception e) {
-                e.printStackTrace();
+            } else {
+                System.out.println("The specified subcommand does not exist. Please try again");
+                System.out.println(TEXTBORDER);
             }
+        } catch (EmptyInstrumentListException m) {
+            System.out.println(m.getMessage());
         }
     }
 
