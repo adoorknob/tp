@@ -1,7 +1,6 @@
-package exceptions;
+package exceptions.instrument;
 
 import commands.instrument.AddInstrumentCommand;
-import exceptions.instrument.IncorrectDescriptionException;
 import instrument.InstrumentList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.fail;
 
-public class EmptyDescriptionExceptionTest {
+public class IncorrectDescriptionExceptionTest {
     Ui ui;
     UserList userList;
     UserUtils userUtils;
