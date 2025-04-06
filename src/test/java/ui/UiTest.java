@@ -13,10 +13,12 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
-import java.util.Arrays;
 
-import static org.junit.jupiter.api.Assertions.*;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class UiTest {
     private Ui ui;
@@ -159,7 +161,7 @@ public class UiTest {
     }
 
     @Test
-    void printInstrumentList_2Instruments_expectRecommendation() {
+    void printInstrumentList_twoInstruments_expectRecommendation() {
         Flute flute = new Flute("Flute","Model",2005);
         Guitar guitar = new Guitar("Guitar","Model",2005);
         ArrayList<Instrument> instruments = new ArrayList<>();
@@ -173,7 +175,7 @@ public class UiTest {
     }
 
     @Test
-    void printInstrumentList_1Instruments_expectRecommendation() {
+    void printInstrumentList_oneInstruments_expectRecommendation() {
         Flute flute = new Flute("Flute","Model",2005);
         ArrayList<Instrument> instruments = new ArrayList<>();
         instruments.add(flute);
@@ -271,7 +273,7 @@ public class UiTest {
     }
 
     @Test
-    void  filterByName_2SameNames_expectFilteredList() {
+    void  filterByName_twoSameNames_expectFilteredList() {
         Flute flute = new Flute("Flute", "Model", 2002);
         Guitar guitar = new Guitar("Guitar", "Model", 2005);
         Guitar guitar2 = new Guitar("Guitar", "Model", 2012);
@@ -289,7 +291,7 @@ public class UiTest {
     }
 
     @Test
-    void  filterByName_3SameModels_expectFilteredList() {
+    void  filterByName_threeSameModels_expectFilteredList() {
         Flute flute = new Flute("Flute", "Model", 2002);
         Guitar guitar = new Guitar("Guitar", "Model", 2005);
         Guitar guitar2 = new Guitar("Guitar", "Model", 2012);
@@ -307,7 +309,7 @@ public class UiTest {
     }
 
     @Test
-    void  filterByReserved_2NotReserved_expectFilteredList() {
+    void  filterByReserved_twoNotReserved_expectFilteredList() {
         Flute flute = new Flute("Flute", "Model", 2002);
         Guitar guitar = new Guitar("Guitar", "Model", 2005);
         Guitar guitar2 = new Guitar("Guitar", "Model", 2012);
@@ -326,7 +328,7 @@ public class UiTest {
     }
 
     @Test
-    void  filterByReserved_1Reserved_expectFilteredList() {
+    void  filterByReserved_oneReserved_expectFilteredList() {
         Flute flute = new Flute("Flute", "Model", 2002);
         Guitar guitar = new Guitar("Guitar", "Model", 2005);
         Guitar guitar2 = new Guitar("Guitar", "Model", 2012);
@@ -487,7 +489,7 @@ public class UiTest {
     }
 
     @Test
-    void queryUserIndexForDelete_userListSizeOf3_expect2() {
+    void queryUserIndexForDelete_userListSizeOfThree_expect2() {
         String input = "2\n";
         System.setIn(new ByteArrayInputStream(input.getBytes()));
 
@@ -509,7 +511,7 @@ public class UiTest {
     }
 
     @Test
-    void printSelectUserFromListWithCreateOption_userListOf3_expectUserListOf3() {
+    void printSelectUserFromListWithCreateOption_userListOfThree_expectUserListOf3() {
         ArrayList<User> userList = new ArrayList<>();
         UserList userList2 = new UserList(ui);
         userList.add(new User(ui, userList2, "Bobby"));
@@ -524,7 +526,7 @@ public class UiTest {
     }
 
     @Test
-    void printUserListDisplay_userListOf3_expectCorrectHeader() {
+    void printUserListDisplay_userListOfThree_expectCorrectHeader() {
         UserList userList = new UserList(ui);
         userList.addUser(new User(ui, userList, "Bobby"));
         userList.addUser(new User(ui, userList, "Jobby"));
@@ -587,7 +589,7 @@ public class UiTest {
     }
 
     @Test
-    void printAddInstrumentToUser_Flute_expectAddFlute() {
+    void printAddInstrumentToUser_flute_expectAddFlute() {
 
         Flute flute = new Flute("Flute","Model",2005);
 
@@ -597,7 +599,7 @@ public class UiTest {
     }
 
     @Test
-    void printRemovedInstrumentFromUser_Flute_expectRemovedFlute() {
+    void printRemovedInstrumentFromUser_flute_expectRemovedFlute() {
 
         Flute flute = new Flute("Flute","Model",2005);
 
@@ -638,7 +640,7 @@ public class UiTest {
     }
 
     @Test
-    void printUserList_userListSizeOf3_expectUserListSizeOf3() {
+    void printUserList_userListSizeOfThree_expectUserListSizeOf3() {
         ArrayList<User> userList = new ArrayList<>();
         UserList userList2 = new UserList(ui);
         userList.add(new User(ui, userList2, "Bobby"));
@@ -662,7 +664,7 @@ public class UiTest {
     }
 
     @Test
-    void isInstrumentAssignedToUser_Y_expectTrue() {
+    void isInstrumentAssignedToUser_yes_expectTrue() {
         String input = "Y\n";
         System.setIn(new ByteArrayInputStream(input.getBytes()));
         Ui ui = new Ui();
@@ -676,7 +678,7 @@ public class UiTest {
 
 
     @Test
-    void isInstrumentAssignedToUser_N_expectFalse() {
+    void isInstrumentAssignedToUser_no_expectFalse() {
         String input = "N\n";
         System.setIn(new ByteArrayInputStream(input.getBytes()));
         Ui ui = new Ui();
@@ -689,7 +691,7 @@ public class UiTest {
     }
 
     @Test
-    void isInstrumentAssignedToUser_RandomInput_expectFalse() {
+    void isInstrumentAssignedToUser_randomInput_expectFalse() {
         String input = "dawdaiwujdnaw\n";
         System.setIn(new ByteArrayInputStream(input.getBytes()));
         Ui ui = new Ui();
@@ -702,7 +704,7 @@ public class UiTest {
     }
 
     @Test
-    void queryUserCommandChoice_1_expect1() {
+    void queryUserCommandChoice_one_expect1() {
         String input = "1\n";
         System.setIn(new ByteArrayInputStream(input.getBytes()));
         Ui ui = new Ui();
@@ -742,7 +744,7 @@ public class UiTest {
     }
 
     @Test
-    void printAmount_100_expectTotalAmountIs100() {
+    void printAmount_oneHundred_expectTotalAmountIs100() {
         long input = 100;
         ui.printAmount(input);
         String output = outputStream.toString();
@@ -751,7 +753,7 @@ public class UiTest {
     }
 
     @Test
-    void printReceivedAmount_100_expectReceivedPaymentOf100() {
+    void printReceivedAmount_oneHundred_expectReceivedPaymentOf100() {
         long input = 100;
         ui.printReceivedAmount(input);
         String output = outputStream.toString();
@@ -760,7 +762,7 @@ public class UiTest {
     }
 
     @Test
-    void printPaymentAmount_100_expectTransferredPaymentOf100() {
+    void printPaymentAmount_oneHundred_expectTransferredPaymentOf100() {
         long input = 100;
         ui.printPaymentAmount(input);
         String output = outputStream.toString();
