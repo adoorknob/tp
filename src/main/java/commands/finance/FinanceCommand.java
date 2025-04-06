@@ -50,7 +50,6 @@ public class FinanceCommand extends Command {
                 ui.printNoMatchingCommandError();
                 break;
             }
-
         } catch (Exception e) {
             throw new IncorrectFinanceInstructionException(e.getMessage());
         }

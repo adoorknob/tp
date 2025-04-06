@@ -5,7 +5,6 @@
 `SirDukeBox` is a **desktop app for managing instrument inventory, reservations, and finances.**
 
 ## Quick Start
-
 1. Ensure that you have Java 17 or above installed.
 1. Down the latest version of `SirDukeBox` from [here](http://link.to/duke).
 2. Copy the downloaded file to the folder you wish to use as the _home folder_ for `SirDukeBox`
@@ -397,13 +396,13 @@ Finance commands pertain to managing the finances related to instruments
 ...which is selected by inputting the index of the command and following onscreen instructions
 
 When reserving items balance will increase, when returning overdue items the application will automatically calculate 
-and add how much the user owes you.\
+and add how much the user owes you.
 
 Example of usage:
 Input:
 
 ```
-finance add 50
+finance add: 50
 ```
 ### Exiting the Program: `exit`
 
