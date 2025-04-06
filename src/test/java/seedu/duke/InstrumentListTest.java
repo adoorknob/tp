@@ -1,13 +1,14 @@
 package seedu.duke;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
+import exceptions.instrument.IncorrectReserveInstrumentException;
 import instrument.Guitar;
 import instrument.Instrument;
 import instrument.InstrumentList;
 import org.junit.jupiter.api.Test;
+
+import java.time.LocalDate;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class InstrumentListTest {
 
@@ -47,6 +48,33 @@ public class InstrumentListTest {
         assertFalse(instrumentList.getList().get(0).isRented());
     }
 
+    @Test
+    void extend_validExtendInstrument_expectTrue() {
+        InstrumentList instrumentList = new InstrumentList();
+        LocalDate today = LocalDate.now();
+        LocalDate tomorrow = today.plusDays(1);
+        Guitar newGuitar = new Guitar("Guitar", "Yamaha", 2004,
+                true, false, today, tomorrow, 1);
+        instrumentList.addInstrument(newGuitar);
+        LocalDate date = LocalDate.of(2025, 12, 1);
+        instrumentList.extendInstrumentTo(1, date);
+        assertEquals(newGuitar.getRentedTo(), date, "Rent date not correctly extended");
+    }
+
+    @Test
+    void reserveFromTo_validReserveInstrument_expectTrue() {
+        InstrumentList instrumentList = new InstrumentList();
+        LocalDate today = LocalDate.now();
+        LocalDate tomorrow = today.plusDays(1);
+        Guitar newGuitar = new Guitar("Guitar", "Yamaha", 2004);
+        instrumentList.addInstrument(newGuitar);
+        instrumentList.reserveInstrumentFromTo(1, today, tomorrow);
+        assertTrue(instrumentList.getList().get(0).isRented());
+        assertEquals(newGuitar.getRentedTo(), tomorrow,
+                "Rent date not correctly extended");
+        assertEquals(newGuitar.getRentedFrom(), today,
+                "Rent date not correctly extended");
+    }
 
     public void sampleTest() {
         assertTrue(true);
