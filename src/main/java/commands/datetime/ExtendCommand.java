@@ -34,7 +34,7 @@ public class ExtendCommand extends Command {
                 System.out.println(e.getMessage());
                 return;
             } catch (DateTimeException d) {
-                System.out.println("Please input a valid date.");
+                System.out.println("Please input a valid date (dd/MM/yyyy).");
                 return;
             } catch (Exception | AssertionError f) {
                 System.out.println(f.getMessage());

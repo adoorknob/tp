@@ -9,6 +9,7 @@ import user.UserUtils;
 import finance.FinanceManager;
 import utils.DateTimeParser;
 
+import java.time.DateTimeException;
 import java.time.LocalDate;
 
 public class ReserveCommand extends Command {
@@ -39,6 +40,9 @@ public class ReserveCommand extends Command {
                     assert from.isBefore(to) : "from: date must be before to: date";
                     instrumentList.reserveInstrumentFromTo(indice, from, to);
                     financeManager.rentalPayment(instrumentList.getInstrument(indice), from, to);
+                } catch (DateTimeException d) {
+                    System.out.println("Please input a valid date (dd/MM/yyyy).");
+                    return;
                 } catch (Exception | AssertionError e) {
                     throw new IncorrectReserveInstrumentException(e.getMessage());
                 }
