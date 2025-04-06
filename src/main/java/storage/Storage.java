@@ -36,7 +36,8 @@ public class Storage {
             loadOldEntries();
             return instrumentList;
         } catch (FileNotFoundException e) {
-            throw new FileCannotBeFoundException(outputFilePath);
+            System.err.println(e.getMessage());
+            return instrumentList;
         }
     }
 
@@ -90,6 +91,9 @@ public class Storage {
     }
 
     private void addEntryToSession(String line) {
+        if (line.isEmpty()) {
+            return;
+        }
         AddInstrumentCommand c = new AddInstrumentCommand(line, true);
         c.addInstrumentToSession(instrumentList, ui, userUtils);
     }

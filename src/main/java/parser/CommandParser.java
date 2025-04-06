@@ -4,11 +4,14 @@ import exceptions.instrument.IncorrectAddInstrumentException;
 import exceptions.instrument.InvalidAddInstrumentException;
 import utils.IsOverdueChecker;
 import utils.DateTimeParser;
+import utils.TimeChecker;
 
 import java.time.LocalDate;
 
 public class CommandParser {
-    int currentYear = LocalDate.now().getYear();
+    private static Integer currYEAR = TimeChecker.getCurrentYear();
+    private static Integer minYEAR = 1600;
+
 
     public CommandParser() {}
 
@@ -75,7 +78,8 @@ public class CommandParser {
         try {
             int output = Integer.parseInt(userInput[2].trim());
             assert output > 0 : "Output year must be greater than zero";
-            assert output <= currentYear : "Output year must not be greater than current year";
+            assert output <= currYEAR : "Output year must not be greater than current year";
+            assert output > minYEAR : "Output year must be greater than min year";
             return output;
         } catch (NumberFormatException e) {
             throw new IncorrectAddInstrumentException("Invalid instrument year: " + userInput[2]);
@@ -108,13 +112,8 @@ public class CommandParser {
                 DateTimeParser.parseDate(userInput[6]) : null;
     }
 
-
-    public int usage(String[] userInput, boolean isStorageInstrument) throws IncorrectAddInstrumentException {
-        if (isStorageInstrument) {
-            if (userInput == null || userInput.length <= 8 || userInput[8].isEmpty()) {
-                throw new InvalidAddInstrumentException("Instrument usage is missing");
-            }
-
+    public int getUsage(String[] userInput, boolean isStorageInstrument) throws IncorrectAddInstrumentException {
+        if (isStorageInstrument &&  userInput.length > 8 && userInput[8].isEmpty()) {
             try {
                 return Integer.parseInt(userInput[8].trim());
             } catch (NumberFormatException e) {
@@ -124,7 +123,7 @@ public class CommandParser {
         return 0;
     }
 
-    public String user(String[] userInput, boolean isStorageInstrument) {
+    public String getUser(String[] userInput, boolean isStorageInstrument) {
         if (isStorageInstrument && userInput.length > 7 && !userInput[7].isEmpty()) {
             return userInput[7].trim();
         }

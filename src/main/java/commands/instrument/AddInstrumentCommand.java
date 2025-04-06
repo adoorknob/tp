@@ -25,7 +25,7 @@ public class AddInstrumentCommand extends Command {
 
     public AddInstrumentCommand(String command, boolean isStorageInstrument) {
         super(command);
-        cmdParser = new CommandParser();
+        this.cmdParser = new CommandParser();
         this.isStorageInstrument = isStorageInstrument;
     }
 
@@ -63,8 +63,8 @@ public class AddInstrumentCommand extends Command {
         boolean isOverdue = cmdParser.isOverdue(userInput, isStorageInstrument);
         LocalDate rentedFrom = cmdParser.rentedFrom(userInput, isStorageInstrument);
         LocalDate rentedTo = cmdParser.rentedTo(userInput, isStorageInstrument);
-        this.instrumentUserName = cmdParser.user(userInput, isStorageInstrument);
-        int usage = cmdParser.usage(userInput, isStorageInstrument);
+        this.instrumentUserName = cmdParser.getUser(userInput, isStorageInstrument);
+        int usage = cmdParser.getUsage(userInput, isStorageInstrument);
 
         Instrument newInstrument = null;
 

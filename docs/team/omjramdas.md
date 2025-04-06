@@ -18,4 +18,3 @@ Use this app as a one stop application to managing your inventory of instruments
 7. Contributed to UG
 8. Contributed to DG 
 9. Worked at being a good team player :)
-10. 

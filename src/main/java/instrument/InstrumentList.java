@@ -1,12 +1,15 @@
 package instrument;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
+import java.time.LocalDate;
+
+import utils.TimeChecker;
 
 import exceptions.instrument.IncorrectDescriptionException;
 
 public class InstrumentList {
-    private static final Integer currYEAR = LocalDate.now().getYear(); // Current
+    private static final Integer currYEAR = TimeChecker.getCurrentYear();
+    private static final Integer minYEAR = 1600;
 
     private ArrayList<Instrument> instruments;
     private int numberOfInstruments;
@@ -18,14 +21,19 @@ public class InstrumentList {
     }
 
     public Instrument addInstrument(Instrument instrument) {
-        assert instrument != null;
-        assert instrument.year >= 1600 && instrument.year <= currYEAR : "Invalid year: " + instrument.year;
-        if (instrument.name.isBlank() || instrument.model.isBlank()) {
-            throw new IncorrectDescriptionException("No name or model found");
+        try {
+            assert instrument != null;
+            assert instrument.year >= minYEAR && instrument.year <= currYEAR
+                    : "Invalid year (" + minYEAR + " to " + currYEAR + ") ->"  + instrument.year;
+            if (instrument.name.isBlank() || instrument.model.isBlank()) {
+                throw new IncorrectDescriptionException("No name or model found");
+            }
+            this.instruments.add(instrument);
+            this.numberOfInstruments++;
+            return instrument;
+        } catch (Exception | AssertionError e) {
+            throw new IncorrectDescriptionException(e.getMessage());
         }
-        this.instruments.add(instrument);
-        this.numberOfInstruments++;
-        return instrument;
     }
 
     public void deleteInstrument(int number) {

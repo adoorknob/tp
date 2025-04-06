@@ -2,6 +2,8 @@ package utils;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.ScheduledExecutorService;
 
 import instrument.InstrumentList;
 import instrument.Instrument;
@@ -51,6 +53,26 @@ public class IsOverdueChecker {
                 // Mark the instrument as overdue if the due date is past
                 instrument.setOverdue(true);
             }
+        }
+    }
+
+    /**
+     * Starts a scheduled task to check for overdue instruments once per day.
+     */
+    public static void startDailyOverdueCheck(ScheduledExecutorService scheduler, InstrumentList list) {
+        scheduler.scheduleAtFixedRate(() -> {
+            checkAll(list);
+        }, 0, 24, TimeUnit.HOURS);
+    }
+
+    public static void shutdownScheduler(ScheduledExecutorService scheduler) {
+        scheduler.shutdown();
+        try {
+            if (!scheduler.awaitTermination(3, TimeUnit.SECONDS)) {
+                scheduler.shutdownNow();
+            }
+        } catch (InterruptedException e) {
+            scheduler.shutdownNow();
         }
     }
 }

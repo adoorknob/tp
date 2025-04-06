@@ -32,7 +32,8 @@ public class FinanceStorage {
             financeManager.setTotalCash(cash);
             return financeManager;
         } catch (FileNotFoundException e) {
-            throw new FileCannotBeFoundException(outputFilePath);
+            System.err.println(e.getMessage());
+            return financeManager;
         }
     }
 
@@ -55,7 +56,6 @@ public class FinanceStorage {
         }
     }
 
-
     private void validateFile() throws IOException {
         file = new File(outputFilePath);
         ui.printCreatingFile(outputFilePath);
@@ -65,7 +65,7 @@ public class FinanceStorage {
     }
 
     private int loadEntry() throws FileNotFoundException {
-        try (Scanner scanner = new Scanner(file)) {  // Auto-close scanner
+        try (Scanner scanner = new Scanner(file)) {
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine().trim();
                 if (line.startsWith("Cash:")) {

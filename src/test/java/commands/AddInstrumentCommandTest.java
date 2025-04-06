@@ -1,6 +1,7 @@
 package commands;
 
 import commands.instrument.AddInstrumentCommand;
+import exceptions.instrument.IncorrectAddInstrumentException;
 import instrument.InstrumentList;
 import instrument.Instrument;
 import ui.Ui;
@@ -14,6 +15,7 @@ import java.io.PrintStream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
 class AddInstrumentCommandTest {
@@ -65,4 +67,28 @@ class AddInstrumentCommandTest {
         addInstrumentCommand = new AddInstrumentCommand("add Violin|Stradivarius|1700", false);
         assertFalse(addInstrumentCommand.isExit(), "AddInstrumentCommand should not trigger exit.");
     }
+
+    @Test
+    void testInvalidLateModelDate() {
+        addInstrumentCommand = new AddInstrumentCommand("add Violin|Stradivarius|3200", false);
+        assertThrows(IncorrectAddInstrumentException.class, () ->
+                addInstrumentCommand.createInstrument(instrumentList, ui));
+    }
+
+    @Test
+    void testNegativeModelDate() {
+        addInstrumentCommand = new AddInstrumentCommand("add Violin|Stradivarius|-320", false);
+        assertThrows(IncorrectAddInstrumentException.class, () ->
+                addInstrumentCommand.createInstrument(instrumentList, ui));
+    }
+
+
+    @Test
+    void testInvalidEarlyModelDate() {
+        addInstrumentCommand = new AddInstrumentCommand("add Violin|Stradivarius|1", false);
+        assertThrows(IncorrectAddInstrumentException.class, () ->
+                addInstrumentCommand.createInstrument(instrumentList, ui));
+    }
+
+
 }
