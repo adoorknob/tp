@@ -1,6 +1,7 @@
 package commands.instrument;
 
 import commands.Command;
+import exceptions.instrument.IncorrectRecommendInstrumentException;
 import exceptions.instrument.IncorrectReserveInstrumentException;
 import instrument.InstrumentList;
 import parser.CommandParser;
@@ -35,6 +36,9 @@ public class ReserveCommand extends Command {
             if (userInput.length > 1) {
                 try {
                     String[] parts = this.name.split("from: |to: ", 3);
+                    if (parts.length < 2) {
+                        throw new IncorrectReserveInstrumentException("Invalid format: ");
+                    }
                     LocalDate from = DateTimeParser.parseDate(parts[1]);
                     LocalDate to = DateTimeParser.parseDate(parts[2]);
                     assert from.isBefore(to) : "from: date must be before to: date";
@@ -43,8 +47,11 @@ public class ReserveCommand extends Command {
                 } catch (DateTimeException d) {
                     System.out.println("Please input a valid date (dd/MM/yyyy).");
                     return;
+                } catch (IncorrectReserveInstrumentException r) {
+                    System.out.println(r.getMessage());
+                    return;
                 } catch (Exception | AssertionError e) {
-                    throw new IncorrectReserveInstrumentException(e.getMessage());
+                    System.out.println(e.getMessage());
                 }
             } else {
                 try {
