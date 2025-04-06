@@ -2,14 +2,16 @@ package parser;
 
 import exceptions.instrument.IncorrectAddInstrumentException;
 import exceptions.instrument.IncorrectRecommendInstrumentException;
-import exceptions.instrument.InvalidAddInstrumentException;
 import utils.IsOverdueChecker;
 import utils.DateTimeParser;
+import utils.TimeChecker;
 
 import java.time.LocalDate;
 
 public class CommandParser {
-    int currentYear = LocalDate.now().getYear();
+    private static Integer currYEAR = TimeChecker.getCurrentYear();
+    private static Integer minYEAR = 1600;
+
 
     public CommandParser() {}
 
@@ -36,7 +38,6 @@ public class CommandParser {
             // currently only used for recommend feature
             throw new IncorrectRecommendInstrumentException("Input is Empty");
         }
-
         String instrument = input.trim();
         return instrument;
     }
@@ -52,9 +53,9 @@ public class CommandParser {
         return splitInput;
     }
 
-    public String instrumentName(String[] userInput) throws IncorrectAddInstrumentException {
+    public String instrumentName(String[] userInput) throws RuntimeException {
         if (userInput == null || userInput.length == 0 || userInput[0].isEmpty()) {
-            throw new IncorrectAddInstrumentException(" is Empty");
+            throw new RuntimeException(" is Empty");
         }
         String instrument = userInput[0].trim();
         instrument = instrument.toLowerCase();
@@ -62,27 +63,28 @@ public class CommandParser {
         return userInput[0];
     }
 
-    public String modelName(String[] userInput) throws IncorrectAddInstrumentException {
+    public String modelName(String[] userInput) throws RuntimeException {
         if (userInput == null || userInput.length < 1 || userInput[1].isEmpty()) {
-            throw new IncorrectAddInstrumentException("Input is Empty");
+            throw new RuntimeException("Input is Empty");
         }
         return userInput[1];
     }
 
-    public int instrumentYear(String[] userInput) throws IncorrectAddInstrumentException {
+    public int instrumentYear(String[] userInput) throws RuntimeException {
         if (userInput == null || userInput.length <= 2 || userInput[2].isEmpty()) {
-            throw new IncorrectAddInstrumentException("Instrument year is missing");
+            throw new RuntimeException("Instrument year is missing");
         }
 
         try {
             int output = Integer.parseInt(userInput[2].trim());
             assert output > 0 : "Output year must be greater than zero";
-            assert output <= currentYear : "Output year must not be greater than current year";
+            assert output <= currYEAR : "Output year must not be greater than current year";
+            assert output > minYEAR : "Output year must be greater than min year";
             return output;
         } catch (NumberFormatException e) {
-            throw new IncorrectAddInstrumentException("Invalid instrument year: " + userInput[2]);
+            throw new RuntimeException("Invalid instrument year: " + userInput[2]);
         } catch (AssertionError e) {
-            throw new IncorrectAddInstrumentException("Invalid instrument year: " + e.getMessage());
+            throw new RuntimeException("Invalid instrument year: " + e.getMessage());
         }
     }
 
@@ -110,23 +112,18 @@ public class CommandParser {
                 DateTimeParser.parseDate(userInput[6]) : null;
     }
 
-
-    public int usage(String[] userInput, boolean isStorageInstrument) throws IncorrectAddInstrumentException {
-        if (isStorageInstrument) {
-            if (userInput == null || userInput.length <= 8 || userInput[8].isEmpty()) {
-                throw new InvalidAddInstrumentException("Instrument usage is missing");
-            }
-
+    public int getUsage(String[] userInput, boolean isStorageInstrument) throws RuntimeException {
+        if (isStorageInstrument &&  userInput.length > 8 && userInput[8].isEmpty()) {
             try {
                 return Integer.parseInt(userInput[8].trim());
             } catch (NumberFormatException e) {
-                throw new InvalidAddInstrumentException("Invalid usage: " + userInput[8]);
+                throw new RuntimeException("Invalid usage: " + userInput[8]);
             }
         }
         return 0;
     }
 
-    public String user(String[] userInput, boolean isStorageInstrument) {
+    public String getUser(String[] userInput, boolean isStorageInstrument) {
         if (isStorageInstrument && userInput.length > 7 && !userInput[7].isEmpty()) {
             return userInput[7].trim();
         }

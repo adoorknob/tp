@@ -30,7 +30,6 @@ public class RecommendCommand extends Command {
             return;
         }
 
-
         userInput = userInput.toLowerCase();
 
         switch (userInput) {

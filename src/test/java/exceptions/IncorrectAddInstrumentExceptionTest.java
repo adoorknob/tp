@@ -16,7 +16,7 @@ public class IncorrectAddInstrumentExceptionTest {
         IncorrectAddInstrumentException exception = new IncorrectAddInstrumentException(errorMessage);
 
         // Check if the exception message contains the provided message and the expected format
-        String expectedMessage = errorMessage + "-> add [Instrument]|[Model]|[Year]";
+        String expectedMessage = errorMessage + " -> add [Instrument]|[Model]|[Year]";
         assertEquals(expectedMessage, exception.getMessage());
     }
 
@@ -39,7 +39,7 @@ public class IncorrectAddInstrumentExceptionTest {
             throw new IncorrectAddInstrumentException(errorMessage);
         });
 
-        String expectedMessage = errorMessage + "-> add [Instrument]|[Model]|[Year]";
+        String expectedMessage = errorMessage + " -> add [Instrument]|[Model]|[Year]";
         assertEquals(expectedMessage, exception.getMessage());
     }
 }

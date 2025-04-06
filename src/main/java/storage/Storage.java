@@ -1,5 +1,7 @@
 package storage;
 
+import exceptions.instrument.IncorrectAddInstrumentException;
+import exceptions.storage.CorruptStorageException;
 import exceptions.storage.FileCannotBeFoundException;
 import exceptions.storage.FileCannotBeMadeException;
 import instrument.Instrument;
@@ -36,7 +38,11 @@ public class Storage {
             loadOldEntries();
             return instrumentList;
         } catch (FileNotFoundException e) {
-            throw new FileCannotBeFoundException(outputFilePath);
+            System.err.println(e.getMessage());
+            return instrumentList;
+        } catch (CorruptStorageException e) {
+            System.err.println("Storage is corrupted: " + e.getMessage());
+            return new InstrumentList();
         }
     }
 
@@ -82,16 +88,29 @@ public class Storage {
 
     private void loadOldEntries() throws FileNotFoundException {
         // format: Instrument|Model|Year|LoanDate|LoanDuration|Usage|UserName
-        Scanner scanner = new Scanner(file);
-        while (scanner.hasNextLine()) {
-            String line = scanner.nextLine();
-            addEntryToSession(line);
+        try {
+            Scanner scanner = new Scanner(file);
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                addEntryToSession(line);
+            }
+        } catch (CorruptStorageException e) {
+            throw e;
         }
+
     }
 
     private void addEntryToSession(String line) {
-        AddInstrumentCommand c = new AddInstrumentCommand(line, true);
-        c.addInstrumentToSession(instrumentList, ui, userUtils);
+        try {
+            if (line.isEmpty()) {
+                return;
+            }
+            AddInstrumentCommand c = new AddInstrumentCommand(line, true);
+            c.addInstrumentToSession(instrumentList, ui, userUtils);
+        } catch (IncorrectAddInstrumentException e) {
+            throw new CorruptStorageException(e.getMessage());
+        }
+
     }
 
     private void addEntryToOutputText(Instrument instrument) {

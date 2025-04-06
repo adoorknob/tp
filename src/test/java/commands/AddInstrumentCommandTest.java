@@ -1,11 +1,17 @@
 package commands;
 
 import commands.instrument.AddInstrumentCommand;
+import exceptions.instrument.IncorrectAddInstrumentException;
+import exceptions.storage.CorruptStorageException;
 import instrument.InstrumentList;
 import instrument.Instrument;
+import user.UserUtils;
+import user.UserList;
+import finance.FinanceManager;
 import ui.Ui;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 
 
 import java.io.ByteArrayOutputStream;
@@ -14,12 +20,16 @@ import java.io.PrintStream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
 class AddInstrumentCommandTest {
     private AddInstrumentCommand addInstrumentCommand;
     private InstrumentList instrumentList;
     private Ui ui;
+    private UserList userList;
+    private UserUtils userUtils;
+    private FinanceManager financeManager;
 
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
 
@@ -27,6 +37,9 @@ class AddInstrumentCommandTest {
     void setUp() {
         instrumentList = new InstrumentList();
         ui = new Ui();
+        userList = new UserList(ui);
+        userUtils = new UserUtils(ui, userList);
+        financeManager = new FinanceManager();
 
         // Redirect System.out to capture output
         System.setOut(new PrintStream(outputStreamCaptor));
@@ -62,7 +75,46 @@ class AddInstrumentCommandTest {
 
     @Test
     void testIsExitReturnsFalse() {
-        addInstrumentCommand = new AddInstrumentCommand("add Violin|Stradivarius|1700", false);
+        addInstrumentCommand = new AddInstrumentCommand("Violin|Stradivarius|1700", false);
         assertFalse(addInstrumentCommand.isExit(), "AddInstrumentCommand should not trigger exit.");
+    }
+
+    @Test
+    void testInvalidLateModelDate() {
+        addInstrumentCommand = new AddInstrumentCommand("Piano|Stradivarius|3200", false);
+        assertThrows(IncorrectAddInstrumentException.class, () ->
+                addInstrumentCommand.createInstrument(instrumentList, ui));
+    }
+
+    @Test
+    void testNegativeModelDate() {
+        addInstrumentCommand = new AddInstrumentCommand("Piano|Stradivarius|-320", false);
+        assertThrows(IncorrectAddInstrumentException.class, () ->
+                addInstrumentCommand.createInstrument(instrumentList, ui));
+    }
+
+    @Test
+    void testInvalidEarlyModelDate() {
+        addInstrumentCommand = new AddInstrumentCommand("Piano|Stradivarius|1", false);
+        assertThrows(IncorrectAddInstrumentException.class, () ->
+                addInstrumentCommand.createInstrument(instrumentList, ui));
+    }
+
+    @Test
+    void testExecute() {
+        addInstrumentCommand = new AddInstrumentCommand(
+                "Guitar | yamaha | 2011 | false | false | null | null | Unassigned | 0",
+                true);
+        addInstrumentCommand.execute(instrumentList,ui, userUtils, financeManager);
+        assertEquals(1, instrumentList.getList().size(), "Instrument list size should increase by 1.");
+    }
+
+    @Test
+    void testCorruptedStorageExecute() {
+        addInstrumentCommand = new AddInstrumentCommand(
+                "Guitar | yamaha | -500 | false | false | null | null | Unassigned | 0",
+                true);
+        assertThrows(CorruptStorageException.class, () ->
+                addInstrumentCommand.execute(instrumentList,ui, userUtils, financeManager));
     }
 }

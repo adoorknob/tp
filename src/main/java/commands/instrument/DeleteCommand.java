@@ -17,7 +17,8 @@ public class DeleteCommand extends Command {
     public void execute(InstrumentList instrumentList, Ui ui, UserUtils userUtils, FinanceManager financeManager) {
         try {
             int instrumentId = Integer.parseInt(this.name);
-            deleteInstrumentFromUser(instrumentList, instrumentId);
+            Instrument instrument = instrumentList.getInstrument(instrumentId);
+            deleteInstrumentFromUser(instrument);
             instrumentList.deleteInstrument(instrumentId);
         } catch (Exception | AssertionError f) {
             System.out.println(f.getMessage());
@@ -27,14 +28,17 @@ public class DeleteCommand extends Command {
 
     }
 
-    private void deleteInstrumentFromUser(InstrumentList instrumentList, int instrumentId) {
-        Instrument instrument = instrumentList.getInstrument(instrumentId);
-        User user = instrument.getUser();
-        user.removeInstrument(instrument);
+    private void deleteInstrumentFromUser(Instrument instrument) {
+        try {
+            User user = instrument.getUser();
+            user.removeInstrument(instrument);
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
     }
 
     @Override
-    public boolean isExit() {
+        public boolean isExit() {
         return false;
     }
 }

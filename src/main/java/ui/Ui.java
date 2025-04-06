@@ -155,8 +155,12 @@ public class Ui {
 
     public String getRemainingWords(String userInput) {
         assert userInput != null : "Input is null";
-        String[] parsedInput = userInput.split(" ");
-        return String.join(" ", Arrays.copyOfRange(parsedInput, 1, parsedInput.length));
+        try {
+            String[] parsedInput = userInput.split(" ");
+            return String.join(" ", Arrays.copyOfRange(parsedInput, 1, parsedInput.length));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void printCommandList() {
