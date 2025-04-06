@@ -287,6 +287,10 @@ public class Ui {
             System.out.println(TEXTBORDER);
             return;
         }
+        if (filteredInst.isEmpty()) {
+            System.out.println("No instruments found when filtered by " + filter + " " + searchTerm);
+            return;
+        }
         printInstrumentList(filteredInst);
     }
 
