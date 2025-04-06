@@ -3,11 +3,8 @@ package instrument;
 import java.util.ArrayList;
 import java.time.LocalDate;
 
-import exceptions.instrument.OutOfRangeException;
+import exceptions.instrument.*;
 import utils.TimeChecker;
-
-import exceptions.instrument.IncorrectDescriptionException;
-import exceptions.instrument.InvalidExtendDateException;
 
 public class InstrumentList {
     private static final Integer currYEAR = TimeChecker.getCurrentYear();
@@ -72,16 +69,14 @@ public class InstrumentList {
     }
 
     public void reserveInstrumentFromTo(int number, LocalDate from, LocalDate to) {
-        assert number > 0 && number <= numberOfInstruments : "Instrument number out of bounds: " + number;
         if (this.instruments.isEmpty()) {
-            System.out.println("No instruments available for reservation");
-            return;
+            throw new EmptyInstrumentListException("List is empty, no instruments to reserve");
         }
+        assert number > 0 && number <= numberOfInstruments : "Instrument number out of bounds: " + number;
         Instrument instToRent = instruments.get(number - 1);
 
         if (instToRent.isRented()) {
-            System.out.println("Instrument is already rented");
-            return;
+            throw new InvalidReserveInstrumentException("Instrument is already reserved");
         }
 
         instToRent.rent();

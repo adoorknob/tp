@@ -59,7 +59,6 @@ public class ReserveCommand extends Command {
                     throw new IncorrectReserveInstrumentException(e.getMessage());
                 }
             }
-
             ui.printInstrumentList(instrumentList.getList());
         } catch (Exception e) {
             e.printStackTrace();

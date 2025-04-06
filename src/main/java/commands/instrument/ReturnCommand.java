@@ -30,7 +30,7 @@ public class ReturnCommand extends Command {
             instrumentList.returnInstrument(number);
             ui.printInstrumentList(instrumentList.getList());
         } catch (Exception | AssertionError e) {
-            throw new IncorrectReturnInstructionException(e.getMessage());
+            System.err.println(e.getMessage());
         }
     }
 
