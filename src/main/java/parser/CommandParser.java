@@ -1,6 +1,8 @@
 package parser;
 
 import exceptions.instrument.IncorrectAddInstrumentException;
+import exceptions.instrument.IncorrectRecommendInstrumentException;
+import exceptions.instrument.InvalidAddInstrumentException;
 import utils.IsOverdueChecker;
 import utils.DateTimeParser;
 import utils.TimeChecker;
@@ -32,11 +34,11 @@ public class CommandParser {
         }
     }
 
-    public String justGetInstrument(String input) throws RuntimeException {
+    public String justGetInstrument(String input) throws IncorrectRecommendInstrumentException {
         if (input == null || input.isEmpty()) {
-            throw new RuntimeException("Input is Empty");
+            // currently only used for recommend feature
+            throw new IncorrectRecommendInstrumentException("Input is Empty");
         }
-
         String instrument = input.trim();
         return instrument;
     }

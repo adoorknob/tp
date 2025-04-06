@@ -17,13 +17,14 @@ public class DeleteCommand extends Command {
     public void execute(InstrumentList instrumentList, Ui ui, UserUtils userUtils, FinanceManager financeManager) {
         try {
             int instrumentId = Integer.parseInt(this.name);
-            Instrument instrument = instrumentList.getInstrument(instrumentId);
-            deleteInstrumentFromUser(instrument);
+            deleteInstrumentFromUser(instrumentList, instrumentId);
             instrumentList.deleteInstrument(instrumentId);
-            ui.printInstrumentList(instrumentList.getList());
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
+        } catch (Exception | AssertionError f) {
+            System.out.println(f.getMessage());
+            return;
         }
+        ui.printInstrumentList(instrumentList.getList());
+
     }
 
     private void deleteInstrumentFromUser(Instrument instrument) {

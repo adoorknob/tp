@@ -58,6 +58,8 @@ public class ListCommand extends Command {
                     System.out.println("The specified subcommand does not exist. Please try again");
                     System.out.println(TEXTBORDER);
                 }
+            } catch (EmptyInstrumentListException m) {
+                System.out.println(m.getMessage());
             } catch (Exception e) {
                 e.printStackTrace();
             }

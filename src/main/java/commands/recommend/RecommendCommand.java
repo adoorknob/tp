@@ -1,6 +1,7 @@
 package commands.recommend;
 
 import commands.Command;
+import exceptions.instrument.IncorrectRecommendInstrumentException;
 import finance.FinanceManager;
 import instrument.Instrument;
 import instrument.InstrumentList;
@@ -24,7 +25,7 @@ public class RecommendCommand extends Command {
         String userInput = "";
         try {
             userInput = cmdparser.justGetInstrument(this.name);
-        } catch (RuntimeException e) {
+        } catch (IncorrectRecommendInstrumentException e) {
             System.out.println(e.getMessage());
             return;
         }
