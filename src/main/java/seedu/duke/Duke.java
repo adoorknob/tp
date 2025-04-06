@@ -99,7 +99,7 @@ public class Duke {
                 ui.printTextBorder();
 
             } catch (Exception e) {
-                System.out.println(e.getMessage());
+                System.out.println("Invalid Input" + e.getMessage());
             }
         }
 
