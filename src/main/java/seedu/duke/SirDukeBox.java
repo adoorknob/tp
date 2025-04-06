@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 
-public class Duke {
+public class SirDukeBox {
     private final Ui ui;
     private final Parser parser;
     private final InstrumentList instrumentList;
@@ -31,7 +31,7 @@ public class Duke {
     private final String saveFilePath = "./data/SirDukeBox.txt";
     private final String saveFilePathFinance = "./data/DukeFinance.txt";
 
-    public Duke() {
+    public SirDukeBox() {
         ui = new Ui();
         parser = new Parser();
         financeStorage = new FinanceStorage(ui, saveFilePathFinance);
@@ -83,6 +83,6 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-        new Duke().runDuke();
+        new SirDukeBox().runDuke();
     }
 }
