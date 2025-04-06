@@ -28,7 +28,7 @@ class ExitCommandTest {
         ui = new Ui();
         UserList userList = new UserList(ui);
         userUtils = new UserUtils(ui, userList);
-        financeManager = new FinanceManager();
+        financeManager = new FinanceManager(ui);
 
         // Redirect System.out to capture output
         System.setOut(new PrintStream(outputStreamCaptor));

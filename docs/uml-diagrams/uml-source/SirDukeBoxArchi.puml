@@ -1,0 +1,34 @@
+@startuml
+
+actor user
+
+package "SirDukeBox" {
+  [UI] --> [Parser]
+  [Parser] --> [Command Handler]
+  [Parser] ..> [UI]
+  [Command Handler] --> [Duke_Data]
+  [Command Handler] --> [UI]
+  [Duke_Data] ..> [UI]
+  [Command Handler] --> [User Utilities]
+  [Command Handler] --> [Finance Manager]
+  [User Utilities] --> [Duke_Data]
+  [Finance Manager] --> [Duke_Data]
+  [Scheduler] --> [Command Handler]
+
+
+}
+
+package "Duke_Data" {
+
+}
+
+package "Local Save Files" {
+    [Instrument Data]
+    [Finance Data]
+    [User Data]
+}
+
+user <..> UI
+[Duke_Data] <--> [Local Save Files]
+
+@enduml

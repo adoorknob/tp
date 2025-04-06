@@ -114,14 +114,14 @@ Here is the list of instruments:
 2. Piano | Yamaha | 2010 | 
 3. Flute | Yamaha | 2001 | 
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
-Reserving instrument: Guitar | Yamaha | 2000 | 
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 Here is the list of instruments:
-1. Guitar | Yamaha | 2000 | Rented
+1. Guitar | Yamaha | 2000 | Rented | Rented from: 6/4/2025
 2. Piano | Yamaha | 2010 | 
 3. Flute | Yamaha | 2001 | 
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
-Returning instrument: Guitar | Yamaha | 2000 | Rented
+Received Rental Amount: 20
+Returning instrument: Guitar | Yamaha | 2000 | Rented | Rented from: 6/4/2025
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 Here is the list of instruments:
 1. Guitar | Yamaha | 2000 | 

@@ -20,7 +20,6 @@ public class ExtendCommand extends Command {
         parser = new CommandParser();
     }
 
-    // TODO add features to prevent invalid date/overdue from the start
     @Override
     public void execute(InstrumentList instrumentList, Ui ui, UserUtils userUtils, FinanceManager financeManager) {
         try {

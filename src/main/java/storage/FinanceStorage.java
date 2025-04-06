@@ -17,7 +17,7 @@ public class FinanceStorage {
     String outputFilePath;
     String outputText = "";
     Ui ui;
-    FinanceManager financeManager = new FinanceManager();
+    FinanceManager financeManager = new FinanceManager(ui);
     File file;
 
     public FinanceStorage(Ui ui, String outputFilePath) {
@@ -32,7 +32,6 @@ public class FinanceStorage {
             financeManager.setTotalCash(cash);
             return financeManager;
         } catch (FileNotFoundException e) {
-            System.err.println(e.getMessage());
             return financeManager;
         }
     }

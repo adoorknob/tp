@@ -34,7 +34,7 @@ class DeleteCommandTest {
         ui = new Ui();
         userList = new UserList(ui);
         userUtils = new UserUtils(ui, userList);
-        financeManager = new FinanceManager();
+        financeManager = new FinanceManager(ui);
         System.setOut(new PrintStream(outputStreamCaptor));
 
         // Add 3 instruments

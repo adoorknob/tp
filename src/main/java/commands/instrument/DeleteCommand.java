@@ -13,6 +13,13 @@ public class DeleteCommand extends Command {
         super(command);
     }
 
+    /**
+     * Delete instrument from instrument List
+     * @param instrumentList instrument list initialised in main
+     * @param ui UI object initialised in main
+     * @param userUtils User utilities to manage user list
+     * @param financeManager Finance manager used to manage finance
+     */
     @Override
     public void execute(InstrumentList instrumentList, Ui ui, UserUtils userUtils, FinanceManager financeManager) {
         try {
@@ -28,6 +35,10 @@ public class DeleteCommand extends Command {
 
     }
 
+    /**
+     * Deletes instrument from user list
+     * @param instrument
+     */
     private void deleteInstrumentFromUser(Instrument instrument) {
         try {
             User user = instrument.getUser();

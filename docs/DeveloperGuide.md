@@ -1,4 +1,4 @@
-# Developer Guide
+    # Developer Guide
 
 * **Acknowledgements**
 * **[Design](#design)**
@@ -42,11 +42,12 @@ each other.
 
 **Main components of the architecture**
 
-**`Duke`** ([`Duke`](https://github.com/AY2425S2-CS2113-W11-1/tp/blob/master/src/main/java/seedu/duke/Duke.java)) is in
-charge of
-the app launch and shut down.
+**`SirDukeBox`** ([`Duke`](https://github.com/AY2425S2-CS2113-W11-1/tp/blob/master/src/main/java/seedu/duke/Duke.java)) is the main class and is in
+charge of the app launch and shut down.
 
 * At app launch, it initializes the other components in the correct sequence, and connects them up with each other.
+* Loads or creates the plaintext save files in the docs folder.
+* Populates the `Duke_Data` which includes the Instrument Data, Finance Data and User Data.
 * At shut down, it shuts down the other components and invokes cleanup methods where necessary.
 
 The bulk of the app’s work is done by the following four components:
@@ -54,8 +55,9 @@ The bulk of the app’s work is done by the following four components:
 * **`Duke`**: The logic manager of the app.
 * **`UI`**: The UI of the App.
 * **`Parser`**: The command parser and caller.
-* **`Command`**: The command executor
+* **`Command Handler`**: The command executor
 * **`Storage`**: Reads data from, and writes data to, the hard disk.
+* **`Finance Manager`** Manages the finance of the application 
 
 **`Commons`** represents a collection of classes used by multiple other
 components.
@@ -87,16 +89,22 @@ Upon exit,
 
 The `UI` component,
 
-* handles all user input and system output to the command line
-* is kept as a input to most classes to maintain the use of one `Ui` object throughout the operation of the program
+![UI.png](uml-diagrams/Ui.png)
+
+* Handles all user input and system output to the command line.
+* Is kept as an input to most classes to maintain the use of one `Ui` object throughout the operation of the program
 
 ### Parser component
+
+The `Parser` component, 
+
+![Parser.png](uml-diagrams/Parser.png)
 
 How the `Parser` component works:
 
 1. When the user enters a command, the `Parser` will match the input to any of the known commands.
 2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `DeleteCommand`) which
-   is executed by the `Duke`.
+   is executed by the `SirDukeBox`.
 3. The command's `execute()` method is called and the specific behaviour of the command is executed.
 
 ### Instrument component
@@ -136,6 +144,16 @@ the `instrumentList`,
 a print of the `instrumentList` will occur last.
 
 ### Storage component
+
+**API** : [`FinanceManager.java`](https://github.com/AY2425S2-CS2113-W11-1/tp/blob/master/src/main/java/finance/FinanceManager)
+
+The `Finance Manager` component,
+
+* can save instrument data (`name`, `model`, `year`, `rentFrom`, `rentTo`, `reserved`) in external external save file
+  `data/SirDukeBox.txt`
+* reads entries back into current session when program is run again
+
+### Finance Manager component
 
 **API** : [`Storage.java`](https://github.com/AY2425S2-CS2113-W11-1/tp/blob/master/src/main/java/storage/Storage.java)
 

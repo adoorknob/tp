@@ -1,0 +1,92 @@
+@startuml
+
+
+
+class Parser {
+    - static final String CommandXYZ
+
+    + Parser()
+    + static Command parse(String command, String input)
+    + static String parseFileDirectories(String outputFilePath)
+    + static String[] parseFileEntryToInstrument(String line)
+}
+
+note right of Parser::CommandXYZ
+    Shortened reference to all Commands
+end note
+
+
+class HelpCommand {
+    - String helpMessage
+    + execute(): void
+}
+
+class ListCommand {
+    - String input
+    + execute(): void
+}
+
+class UserCommand {
+    + execute(): void
+}
+
+class AddInstrumentCommand {
+    - String input
+    - boolean isParser
+    + execute(): void
+}
+
+class DeleteCommand {
+    - String input
+    + execute(): void
+}
+
+class ReserveCommand {
+    - String input
+    + execute(): void
+}
+
+class ExtendCommand {
+    - String input
+    + execute(): void
+}
+
+class ReturnCommand {
+    - String input
+    + execute(): void
+}
+
+class ExitCommand {
+    + execute(): void
+}
+
+class FinanceCommand {
+    - String input
+    + execute(): void
+}
+
+class RecommendCommand {
+    - String input
+    + execute(): void
+}
+
+class DefaultCommand {
+    + execute(): void
+}
+
+Parser  *-- HelpCommand : creates
+Parser *-- ListCommand : creates
+Parser  *-- UserCommand : creates
+Parser  *-- AddInstrumentCommand : creates
+Parser  *-- DeleteCommand : creates
+Parser  *-- ReserveCommand : creates
+Parser  *-- ExtendCommand : creates
+Parser  *-- ReturnCommand : creates
+Parser  *-- ExitCommand : creates
+Parser  *-- FinanceCommand : creates
+Parser  *-- RecommendCommand : creates
+Parser *--  DefaultCommand : creates
+
+UI --> Parser
+
+@enduml

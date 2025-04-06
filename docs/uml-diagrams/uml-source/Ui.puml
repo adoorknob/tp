@@ -1,0 +1,37 @@
+@startuml
+
+SirDukeBox --> Ui
+Commands --> Ui
+
+class Ui {
+    - Scanner scanner
+    - String DASH
+    - String LOGO
+
+    + Ui()
+    + void showWelcomeMessage()
+    + String readUserCommand()
+    + void showExitMessage()
+    + void printDukeLogo()
+    + void printLine()
+    + void printBordered(String message)
+    + void printMenu()
+    + void showInvalidChoiceMessage()
+    + void showFilterChoice()
+    + void showFilterInputPrompt()
+    + void showFilteredInventory()
+}
+
+
+
+Ui <--> InstrumentList
+Ui <--> UserList
+Ui <--> FinanceManager
+
+
+note right of Ui
+    Other printing methods
+    have been omitted for brevity.
+end note
+
+@enduml
