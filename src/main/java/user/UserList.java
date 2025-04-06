@@ -74,15 +74,6 @@ public class UserList {
         throw new UserListInitiationException("No unassigned user found, userList not initialized correctly");
     }
 
-    public User findUserByName(String name) {
-        for (User user : users) {
-            if (user.getName().equals(name)) {
-                return user;
-            }
-        }
-        throw new UsernameMatchException("Username " + name + " not found");
-    }
-
     public User getUserByIndex(int index) {
         assert users != null;
         return users.get(index);
