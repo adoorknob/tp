@@ -3,7 +3,12 @@ package instrument;
 import java.util.ArrayList;
 import java.time.LocalDate;
 
-import exceptions.instrument.*;
+import exceptions.instrument.EmptyInstrumentListException;
+import exceptions.instrument.IncorrectReserveInstrumentException;
+import exceptions.instrument.IncorrectDescriptionException;
+import exceptions.instrument.InvalidExtendDateException;
+import exceptions.instrument.OutOfRangeException;
+
 import utils.TimeChecker;
 
 public class InstrumentList {
