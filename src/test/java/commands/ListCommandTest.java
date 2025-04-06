@@ -16,7 +16,7 @@ public class ListCommandTest {
     Ui ui = new Ui();
     UserList userList = new UserList(ui);
     UserUtils userUtils = new UserUtils(ui, userList);
-    FinanceManager financeManager = new FinanceManager();
+    FinanceManager financeManager = new FinanceManager(ui);
 
 
     @Test

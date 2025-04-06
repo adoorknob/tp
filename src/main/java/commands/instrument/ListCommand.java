@@ -61,7 +61,7 @@ public class ListCommand extends Command {
                 System.out.println(TEXTBORDER);
             }
         } catch (EmptyInstrumentListException m) {
-            System.out.println(m.getMessage());
+            throw m;
         }
     }
 

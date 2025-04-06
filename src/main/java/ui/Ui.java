@@ -5,7 +5,6 @@ import instrument.Instrument;
 import user.User;
 import user.UserList;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -147,7 +146,7 @@ public class Ui {
         return null;
     }
 
-    public String getCommand(String userInput) throws IOException {
+    public String getCommand(String userInput) {
         assert userInput != null : "Input is null";
         String[] parsedInput = userInput.split(" ");
         return (parsedInput.length > 0) ? parsedInput[0] : "";

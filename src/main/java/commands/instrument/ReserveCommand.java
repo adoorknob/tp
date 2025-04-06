@@ -11,6 +11,7 @@ import utils.DateTimeParser;
 
 import java.time.DateTimeException;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 public class ReserveCommand extends Command {
     private CommandParser parser;
@@ -41,20 +42,19 @@ public class ReserveCommand extends Command {
                     LocalDate from = DateTimeParser.parseDate(parts[1]);
                     LocalDate to = DateTimeParser.parseDate(parts[2]);
                     assert from.isBefore(to) : "from: date must be before to: date";
+                    assert from.isAfter(LocalDate.now().minus(1, ChronoUnit.DAYS)) :
+                            "from: date must be either today or a date in the future";
                     instrumentList.reserveInstrumentFromTo(indice, from, to);
-                    financeManager.rentalPayment(instrumentList.getInstrument(indice), from, to);
                 } catch (DateTimeException d) {
-                    System.out.println("Please input a valid date (dd/MM/yyyy).");
-                    return;
-                } catch (IncorrectReserveInstrumentException r) {
-                    System.out.println(r.getMessage());
+                    System.err.println("Please input a valid date (dd/MM/yyyy).");
                     return;
                 } catch (Exception | AssertionError e) {
-                    System.out.println(e.getMessage());
+                    System.err.println(e.getMessage());
+                    return;
                 }
             } else {
                 try {
-                    instrumentList.reserveInstrument(indice);
+                    instrumentList.reserveInstrumentFromTo(indice, LocalDate.now(), null);
                 } catch (Exception | AssertionError e) {
                     throw new IncorrectReserveInstrumentException(e.getMessage());
                 }

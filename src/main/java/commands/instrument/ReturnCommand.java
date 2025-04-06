@@ -19,11 +19,15 @@ public class ReturnCommand extends Command {
     public void execute(InstrumentList instrumentList, Ui ui, UserUtils userUtils, FinanceManager financeManager) {
         try {
             int number = Integer.parseInt(this.name);
-            instrumentList.returnInstrument(number);
             Instrument instrument = instrumentList.getInstrument(Integer.parseInt(this.name));
-            if (instrument != null && instrument.isOverDue()) {
-                financeManager.overduePayment(instrument, LocalDate.now());
+
+            if (instrument != null ) {
+                financeManager.rentalPayment(instrument, LocalDate.now());
+                if (instrument.isOverDue()) {
+                    financeManager.overduePayment(instrument, LocalDate.now());
+                }
             }
+            instrumentList.returnInstrument(number);
             ui.printInstrumentList(instrumentList.getList());
         } catch (Exception | AssertionError e) {
             throw new IncorrectReturnInstructionException(e.getMessage());
