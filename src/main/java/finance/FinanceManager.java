@@ -32,7 +32,7 @@ public class FinanceManager {
     }
 
     public void overduePayment(Instrument instrument, LocalDate now) {
-        long days = ChronoUnit.DAYS.between(instrument.getdueDate(), now); // Calculate rental duration in days
+        long days = ChronoUnit.DAYS.between(instrument.getDueDate(), now); // Calculate rental duration in days
         if (days <= 0) {
             throw new IllegalArgumentException("Rental period must be at least 1 day.");
         }

@@ -91,14 +91,14 @@ class GuitarTest {
     @Test
     void toFileEntry_unrentedGuitar_returnsCorrectValue() {
         Guitar guitar = new Guitar("Guitar", "Yamaha", 2000);
-        assertEquals("Guitar | Yamaha | 2000 | false | false | null | null | 0", guitar.toFileEntry());
+        assertEquals("Guitar | Yamaha | 2000 | false | false | null | null | Invalid | 0", guitar.toFileEntry());
     }
 
     @Test
     void toFileEntry_rentedGuitar_returnsCorrectValue() {
         Guitar guitar = new Guitar("Guitar", "Yamaha", 2000);
         guitar.rent();
-        assertEquals("Guitar | Yamaha | 2000 | true | false | null | null | 0", guitar.toFileEntry());
+        assertEquals("Guitar | Yamaha | 2000 | true | false | null | null | Invalid | 0", guitar.toFileEntry());
     }
 
 

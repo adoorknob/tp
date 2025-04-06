@@ -38,7 +38,7 @@ class AddInstrumentCommandTest {
         addInstrumentCommand = new AddInstrumentCommand("Guitar|Fender|2023", false);
 
         // Execute the command
-        Instrument output = addInstrumentCommand.addInstrument(instrumentList, ui);
+        Instrument output = addInstrumentCommand.createInstrument(instrumentList, ui);
         instrumentList.addInstrument(output);
 
         // Verify that the instrument was added
@@ -51,7 +51,7 @@ class AddInstrumentCommandTest {
         addInstrumentCommand = new AddInstrumentCommand("Piano|Yamaha|2022", false);
 
         // Execute the command
-        Instrument instrument = addInstrumentCommand.addInstrument(instrumentList, ui);
+        Instrument instrument = addInstrumentCommand.createInstrument(instrumentList, ui);
         instrumentList.addInstrument(instrument);
         ui.printInstrumentList(instrumentList.getList());
 

@@ -91,14 +91,14 @@ class FluteTest {
     @Test
     void toFileEntry_unrentedFlute_returnsCorrectValue() {
         Flute flute = new Flute("Flute", "Yamaha", 2000);
-        assertEquals("Flute | Yamaha | 2000 | false | false | null | null | 0", flute.toFileEntry());
+        assertEquals("Flute | Yamaha | 2000 | false | false | null | null | Invalid | 0", flute.toFileEntry());
     }
 
     @Test
     void toFileEntry_rentedFlute_returnsCorrectValue() {
         Flute flute = new Flute("Flute", "Yamaha", 2000);
         flute.rent();
-        assertEquals("Flute | Yamaha | 2000 | true | false | null | null | 0", flute.toFileEntry());
+        assertEquals("Flute | Yamaha | 2000 | true | false | null | null | Invalid | 0", flute.toFileEntry());
     }
 
 

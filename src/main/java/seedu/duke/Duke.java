@@ -39,11 +39,11 @@ public class Duke {
     public Duke() {
         ui = new Ui();
         parser = new Parser();
-        storage = new Storage(ui, saveFilePath);
         financeStorage = new FinanceStorage(ui, saveFilePathFinance);
         scheduler = Executors.newSingleThreadScheduledExecutor();
         userList = new UserList(ui);
         userUtils = new UserUtils(ui, userList);
+        storage = new Storage(ui, userUtils, saveFilePath);
 
         InstrumentList currentInstrumentList;
         try {

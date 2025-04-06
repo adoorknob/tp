@@ -117,11 +117,15 @@ public class Ui {
             1. Rental History
             2. Current Instruments""";
 
+    private static final int USERLISTCHOICES_LENGTH = 2;
+
     private static final String USERCOMMANDS = """
             1. Add User
             2. Remove User
             3. Print list of users
             4. Print list of instruments of specific user""";
+
+    private static final int USERCOMMANDS_LENGTH = 4;
 
     private Scanner scanner;
 
@@ -358,16 +362,31 @@ public class Ui {
             return 0;
         }
         printSelectUserFromListWithCreateOption(userList.getUsers());
-        return getUserInputNumber();
+        int maxValue = userList.getUserCount();
+        return getUserInputNumber(1, maxValue);
     }
 
-    private int getUserInputNumber() {
+    private int getUserInputNumber(int minValue, int maxValue) {
         String userInput = readUserInput();
-        while (!userInput.matches("-?\\d+")) {
-            printPleaseInputANumber();
+        while (!isUserIntInputValid(userInput, minValue, maxValue)) {
             userInput = readUserInput();
         }
         return Integer.parseInt(userInput);
+    }
+
+    private boolean isUserIntInputValid(String input, int minValue, int maxValue) {
+        if (!input.matches("-?\\d+")) {
+            printPleaseInputANumber();
+        } else if (Integer.parseInt(input) < minValue || Integer.parseInt(input) > maxValue) {
+            printPleaseInputValidNumber(minValue, maxValue);
+        } else {
+            return true;
+        }
+        return false;
+    }
+
+    private void printPleaseInputValidNumber(int minValue, int maxValue) {
+        printMessageWithTextBorder("Please input a number between " + minValue + " and " + maxValue);
     }
 
     public String queryUserNameWithNoNameChoice() {
@@ -377,8 +396,9 @@ public class Ui {
 
     public int queryUserIndexForDelete(UserList userList) {
         printUserList(userList.getUsers());
+        int maxValue = userList.getUserCount();
         System.out.println("Enter user index of the user you want to delete: ");
-        return getUserInputNumber();
+        return getUserInputNumber(1, maxValue);
     }
 
     public void printNoCurrentUsersCreatingNewUser() {
@@ -419,14 +439,15 @@ public class Ui {
         printMessageWithTextBorder("Removed instrument [" + instrument + "] from user [" + user.getName() + "]");
     }
 
-    public int queryUserInstrumentListUserChoice(ArrayList<User> userList) {
-        printSelectUserFromList(userList);
-        return getUserInputNumber();
+    public int queryUserInstrumentListUserChoice(UserList userList) {
+        printSelectUserFromList(userList.getUsers());
+        int maxValue = userList.getUserCount();
+        return getUserInputNumber(1, maxValue);
     }
 
     public int queryUserInstrumentListListChoice() {
         printMessageWithTextBorder(USERLISTCHOICES);
-        return getUserInputNumber();
+        return getUserInputNumber(1, USERLISTCHOICES_LENGTH);
     }
 
     private void printSelectUserFromList(ArrayList<User> userList) {
@@ -450,12 +471,12 @@ public class Ui {
         return scanner.nextLine().equalsIgnoreCase("y");
     }
 
-    public int queryPrintUserListOrInstrumentList() {
-        printUserListOrInstrumentList();
-        return getUserInputNumber();
+    public int queryUserCommandChoice() {
+        printListOfUserCommands();
+        return getUserInputNumber(1, USERCOMMANDS_LENGTH);
     }
 
-    private void printUserListOrInstrumentList() {
+    private void printListOfUserCommands() {
         System.out.println(TEXTBORDER);
         System.out.println("What would you like to do?");
         System.out.println(USERCOMMANDS);
