@@ -161,7 +161,7 @@ public class Ui {
         return null;
     }
 
-    public String getCommand(String userInput) {
+    public static String getCommand(String userInput) {
         assert userInput != null : "Input is null";
         String[] parsedInput = userInput.split(" ");
         return (parsedInput.length > 0) ? parsedInput[0] : "";
@@ -206,7 +206,6 @@ public class Ui {
         System.out.println("Here is our recommendation: ");
         System.out.println(index + ". " + instrument.toString());
 
-        System.out.println(TEXTBORDER);
     }
 
     public void printInstrumentList(ArrayList<Instrument> instruments) {
@@ -284,6 +283,7 @@ public class Ui {
                 + "|" + colour + col4 + RESET + " ".repeat(TABLEHEADER4.length() - col4.length()) + PADDING + "|";
         System.out.println(line);
     }
+
 
     public void printFilteredList(ArrayList<Instrument> instruments, String filter, String searchTerm) {
         ArrayList<Instrument> filteredInst;
@@ -390,7 +390,7 @@ public class Ui {
         return getUserInputNumber(1, maxValue);
     }
 
-    private int getUserInputNumber(int minValue, int maxValue) {
+    public int getUserInputNumber(int minValue, int maxValue) {
         String userInput = readUserInput();
         while (!isUserIntInputValid(userInput, minValue, maxValue)) {
             userInput = readUserInput();
@@ -398,7 +398,7 @@ public class Ui {
         return Integer.parseInt(userInput);
     }
 
-    private boolean isUserIntInputValid(String input, int minValue, int maxValue) {
+    public boolean isUserIntInputValid(String input, int minValue, int maxValue) {
         if (!input.matches("-?\\d+")) {
             printPleaseInputANumber();
         } else if (Integer.parseInt(input) < minValue || Integer.parseInt(input) > maxValue) {
@@ -409,7 +409,7 @@ public class Ui {
         return false;
     }
 
-    private void printPleaseInputValidNumber(int minValue, int maxValue) {
+    public void printPleaseInputValidNumber(int minValue, int maxValue) {
         printMessageWithTextBorder("Please input a number between " + minValue + " and " + maxValue);
     }
 
@@ -474,19 +474,19 @@ public class Ui {
         return getUserInputNumber(1, USERLISTCHOICES_LENGTH);
     }
 
-    private void printSelectUserFromList(ArrayList<User> userList) {
+    public void printSelectUserFromList(ArrayList<User> userList) {
         System.out.println(TEXTBORDER);
         System.out.println("Please select from the following existing users:");
         printUserList(userList);
     }
 
-    private void printUserList(ArrayList<User> userList) {
+    public void printUserList(ArrayList<User> userList) {
         for (int i = 1; i < userList.size(); i++) {
             System.out.println((i) + ". " + userList.get(i).getName());
         }
     }
 
-    private void printPleaseInputANumber() {
+    public void printPleaseInputANumber() {
         printMessageWithTextBorder("Please input a number");
     }
 
@@ -500,14 +500,14 @@ public class Ui {
         return getUserInputNumber(1, USERCOMMANDS_LENGTH);
     }
 
-    private void printListOfUserCommands() {
+    public void printListOfUserCommands() {
         System.out.println(TEXTBORDER);
         System.out.println("What would you like to do?");
         System.out.println(USERCOMMANDS);
         System.out.println(TEXTBORDER);
     }
 
-    private void printMessageWithTextBorder(String message) {
+    public void printMessageWithTextBorder(String message) {
         System.out.println(TEXTBORDER);
         System.out.println(message);
         System.out.println(TEXTBORDER);
