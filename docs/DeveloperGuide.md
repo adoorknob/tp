@@ -143,17 +143,23 @@ added to
 the `instrumentList`,
 a print of the `instrumentList` will occur last.
 
-### Storage component
+### Finance Manager component
 
 **API** : [`FinanceManager.java`](https://github.com/AY2425S2-CS2113-W11-1/tp/blob/master/src/main/java/finance/FinanceManager)
 
+![FinanceManager.png](uml-diagrams/FinanceManager.png)
+
 The `Finance Manager` component,
 
-* can save instrument data (`name`, `model`, `year`, `rentFrom`, `rentTo`, `reserved`) in external external save file
-  `data/SirDukeBox.txt`
-* reads entries back into current session when program is run again
+* Interacts with finance data through following commands
+  1. `add:`
+  2. `subtract:`
+  3. `get:`
+  
+* Upon returning of item will automatically calculate the amount owed based on rental fee of 20 and daily overdue 
+fee of 50  
 
-### Finance Manager component
+### Storage component
 
 **API** : [`Storage.java`](https://github.com/AY2425S2-CS2113-W11-1/tp/blob/master/src/main/java/storage/Storage.java)
 
@@ -165,9 +171,7 @@ The `Storage` component,
 
 ### Other notable classes
 
-**`FinanceManager`**
 
-* Manages the financial logic of the instruments and rental
 
 **`UserUtils`**
 

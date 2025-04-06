@@ -1,7 +1,5 @@
-package exceptions;
+package exceptions.instrument;
 
-import exceptions.instrument.IncorrectDescriptionException;
-import exceptions.instrument.IncorrectAddInstrumentException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
