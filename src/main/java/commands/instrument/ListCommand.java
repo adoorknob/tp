@@ -7,6 +7,7 @@ import parser.CommandParser;
 import ui.Ui;
 import user.UserUtils;
 import finance.FinanceManager;
+import utils.CasingStandardiser;
 
 import static ui.Ui.TEXTBORDER;
 
@@ -50,7 +51,7 @@ public class ListCommand extends Command {
                     return;
                 }
                 try {
-                    String searchTerm = filterSearch[1].trim();
+                    String searchTerm = CasingStandardiser.casingStandardise(filterSearch[1].trim());
                     ui.printFilteredList(instrumentList.getList(), filter, searchTerm);
                 } catch (ArrayIndexOutOfBoundsException a) {
                     System.out.println("The specified filter does not exist. Please try again");
