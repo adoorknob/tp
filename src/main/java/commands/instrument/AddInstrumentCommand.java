@@ -47,6 +47,9 @@ public class AddInstrumentCommand extends Command {
         try {
             addInstrumentToSession(instrumentList, ui, userUtils);
         } catch (Exception | AssertionError e) {
+            if (isStorageInstrument) {
+                throw new CorruptStorageException(e.getMessage());
+            }
             System.out.println(e.getMessage());
             System.out.println("Instrument was not added.");
         }
