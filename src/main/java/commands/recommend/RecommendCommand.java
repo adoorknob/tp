@@ -1,7 +1,6 @@
 package commands.recommend;
 
 import commands.Command;
-import exceptions.instrument.IncorrectAddInstrumentException;
 import exceptions.instrument.IncorrectRecommendInstrumentException;
 import finance.FinanceManager;
 import instrument.Instrument;
