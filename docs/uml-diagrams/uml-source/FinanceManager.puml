@@ -1,0 +1,21 @@
+@startuml
+class FinanceManager {
+    - long totalCash
+    --
+    + FinanceManager(Ui ui)
+    + void setTotalCash(int totalCash)
+    + long getTotalCash()
+    + void rentalPayment(Instrument instrument, LocalDate to)
+    + void overduePayment(Instrument instrument, LocalDate now)
+    + void inflowPayment(int amount)
+    + void outflowPayment(int amount)
+    + String toFileEntry()
+}
+
+class Ui
+class InstrumentList
+
+FinanceManager <--> Ui
+FinanceManager --> InstrumentList
+
+@enduml
