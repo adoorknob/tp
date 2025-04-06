@@ -9,6 +9,7 @@ import user.UserUtils;
 import finance.FinanceManager;
 import utils.DateTimeParser;
 
+import java.time.DateTimeException;
 import java.time.LocalDate;
 
 public class ExtendCommand extends Command {
@@ -31,6 +32,9 @@ public class ExtendCommand extends Command {
                 instrumentList.extendInstrumentTo(indice, to);
             } catch (InvalidExtendDateException e) {
                 System.out.println(e.getMessage());
+                return;
+            } catch (DateTimeException d) {
+                System.out.println("Please input a valid date.");
                 return;
             } catch (Exception | AssertionError f) {
                 System.out.println(f.getMessage());
