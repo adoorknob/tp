@@ -1,7 +1,6 @@
 package commands.instrument;
 
 import commands.Command;
-import exceptions.instrument.IncorrectRecommendInstrumentException;
 import exceptions.instrument.IncorrectReserveInstrumentException;
 import instrument.InstrumentList;
 import parser.CommandParser;
