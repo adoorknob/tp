@@ -7,6 +7,7 @@ import parser.CommandParser;
 import ui.Ui;
 import user.UserUtils;
 import finance.FinanceManager;
+import utils.CasingStandardiser;
 
 import static ui.Ui.TEXTBORDER;
 
@@ -15,6 +16,7 @@ public class ListCommand extends Command {
     public static final String FILTER = "filter";
     public static final String RESERVED = "reserved";
     public static final String AVAILABLE = "available";
+    public static final String HELP = "help";
     private CommandParser parser;
 
     // Constructor
@@ -39,31 +41,49 @@ public class ListCommand extends Command {
 
             String[] userInput = parser.splits(this.name);
             String subCmd = userInput[0];
-            if (subCmd.equals(STOCK)) {
+
+            switch (subCmd) {
+            case HELP:
+                ui.printListSubcommandList();
+                break;
+            case STOCK:
                 ui.printStockList(instrumentList.getList());
-            } else if (subCmd.equals(FILTER)) { // search for a specific instrument name
+                break;
+            case FILTER:
                 String[] parts = this.name.split("by: ", 3);
-                String[] filterSearch = parts[1].split(" ");
-                String filter = filterSearch[0].trim();
-                if (filter.equals(RESERVED) || filter.equals(AVAILABLE)) {
-                    ui.printFilteredList(instrumentList.getList(), filter, "");
-                    return;
-                }
-                try {
-                    String searchTerm = filterSearch[1].trim();
-                    ui.printFilteredList(instrumentList.getList(), filter, searchTerm);
-                } catch (ArrayIndexOutOfBoundsException a) {
-                    System.out.println("The specified filter does not exist. Please try again");
-                    System.out.println(TEXTBORDER);
-                }
-            } else {
-                System.out.println("The specified subcommand does not exist. Please try again");
-                System.out.println(TEXTBORDER);
+                searchByFilter(instrumentList, ui, parts);
+                break;
+            default:
+                System.out.println("The specified subcommand does not exist.");
+                System.out.println("use `list help` to view available subcommands for `list`");
             }
+
         } catch (EmptyInstrumentListException m) {
             throw m;
         }
     }
+
+    public void searchByFilter(InstrumentList instrumentList, Ui ui, String[] parts) {
+        String[] filterSearch = parts[1].split(" ");
+        String filter = filterSearch[0].trim();
+        switch (filter) {
+        case RESERVED:
+            ui.printFilteredList(instrumentList.getList(), filter, "");
+            return;
+        case AVAILABLE:
+            ui.printFilteredList(instrumentList.getList(), filter, "");
+            return;
+        default:
+            try {
+                String searchTerm = CasingStandardiser.casingStandardise(filterSearch[1].trim());
+                ui.printFilteredList(instrumentList.getList(), filter, searchTerm);
+            } catch (ArrayIndexOutOfBoundsException a) {
+                System.out.println("The specified filter does not exist. Please try again");
+                System.out.println(TEXTBORDER);
+            }
+        }
+    }
+
 
     @Override
     public boolean isExit() {
