@@ -17,7 +17,8 @@ public class DeleteCommand extends Command {
     public void execute(InstrumentList instrumentList, Ui ui, UserUtils userUtils, FinanceManager financeManager) {
         try {
             int instrumentId = Integer.parseInt(this.name);
-            deleteInstrumentFromUser(instrumentList, instrumentId);
+            Instrument instrument = instrumentList.getInstrument(instrumentId);
+            deleteInstrumentFromUser(instrument);
             instrumentList.deleteInstrument(instrumentId);
         } catch (Exception | AssertionError f) {
             System.out.println(f.getMessage());
