@@ -16,6 +16,7 @@ public class ListCommand extends Command {
     public static final String FILTER = "filter";
     public static final String RESERVED = "reserved";
     public static final String AVAILABLE = "available";
+    public static final String HELP = "help";
     private CommandParser parser;
 
     // Constructor
@@ -42,6 +43,9 @@ public class ListCommand extends Command {
             String subCmd = userInput[0];
 
             switch (subCmd) {
+            case HELP:
+                ui.printListSubcommandList();
+                break;
             case STOCK:
                 ui.printStockList(instrumentList.getList());
                 break;
@@ -50,8 +54,8 @@ public class ListCommand extends Command {
                 searchByFilter(instrumentList, ui, parts);
                 break;
             default:
-                System.out.println("The specified subcommand does not exist. Please try again");
-                System.out.println(TEXTBORDER);
+                System.out.println("The specified subcommand does not exist.");
+                System.out.println("use `list help` to view available subcommands for `list`");
             }
 
         } catch (EmptyInstrumentListException m) {
@@ -79,6 +83,7 @@ public class ListCommand extends Command {
             }
         }
     }
+
 
     @Override
     public boolean isExit() {
