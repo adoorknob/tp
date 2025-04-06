@@ -1,8 +1,6 @@
-package commands;
+package commands.instrument;
 
 
-import commands.instrument.AddInstrumentCommand;
-import commands.instrument.DeleteCommand;
 import instrument.InstrumentList;
 import user.UserUtils;
 import user.UserList;

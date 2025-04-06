@@ -1,6 +1,5 @@
-package commands;
+package commands.instrument;
 
-import commands.instrument.AddInstrumentCommand;
 import exceptions.instrument.IncorrectAddInstrumentException;
 import exceptions.storage.CorruptStorageException;
 import instrument.InstrumentList;
