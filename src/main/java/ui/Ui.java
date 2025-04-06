@@ -111,6 +111,21 @@ public class Ui {
             `get` get total cash
             """;
 
+    private static final String LISTSUBCOMMANDLIST = """
+            Available Subcommands:
+            
+            help: list all subcommands for `list`
+            stock: list total, available and reserved quantities for each instrument
+            filter by <FILTER> <SEARCH_TERM>: list instruments according to FILTER and SEARCH_TERM
+            
+            Available FILTERs and SEARCHTERMs: 
+            
+            FILTER: name, SEARCH_TERM: INSTRUMENT_NAME
+            FILTER: model, SEARCH_TERM: INSTRUMENT_MODEL
+            FILTER: year, SEARCH_TERM: INSTRUMENT_YEAR
+            FILTER: reserved (SEARCH_TERM is not required)
+            FILTER: available (SEARCH_TERM is not required)""";
+
     private static final String USERLISTCHOICES = """
             Available List Choices:
             1. Rental History
@@ -166,6 +181,12 @@ public class Ui {
         System.out.println(TEXTBORDER);
         System.out.println("Here is a list of available commands:");
         System.out.println(COMMANDLIST);
+    }
+
+    public void printListSubcommandList() {
+        System.out.println(TEXTBORDER);
+        System.out.println("Here is a list of available subcommands:");
+        System.out.println(LISTSUBCOMMANDLIST);
     }
 
     public void printFinanceCommandList() {
@@ -285,6 +306,10 @@ public class Ui {
         default:
             System.out.println("The specified filter does not exist. Please try again");
             System.out.println(TEXTBORDER);
+            return;
+        }
+        if (filteredInst.isEmpty()) {
+            System.out.println("No instruments found when filtered by " + filter + " " + searchTerm);
             return;
         }
         printInstrumentList(filteredInst);
