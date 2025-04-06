@@ -188,7 +188,7 @@ public class Ui {
     public void printInstrumentList(ArrayList<Instrument> instruments) {
         System.out.println(TEXTBORDER);
         if (instruments.size() <= 0) {
-            throw new EmptyInstrumentListException("List is empty, let's add some instruments :)");
+            throw new EmptyInstrumentListException("This list is empty :(");
         }
         System.out.println("Here is the list of instruments:");
 
