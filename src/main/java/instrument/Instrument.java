@@ -86,6 +86,10 @@ public abstract class Instrument {
         return rentedFrom;
     }
 
+    public LocalDate getRentedTo() {
+        return rentedTo;
+    }
+
     public void setOverdue(boolean overDue) {
         isOverDue = overDue;
     }

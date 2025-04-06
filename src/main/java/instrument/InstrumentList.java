@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 import exceptions.instrument.IncorrectDescriptionException;
+import exceptions.instrument.InvalidExtendDateException;
 
 public class InstrumentList {
     private static final Integer currYEAR = LocalDate.now().getYear(); // Current
@@ -97,6 +98,12 @@ public class InstrumentList {
             System.out.println("Instrument number " + number + " is not yet reserved");
             System.out.println("Please make a reservation for your instrument before extending the loan period");
             return;
+        }
+
+        LocalDate prevTo = instToRent.getRentedTo();
+
+        if (to.isBefore(prevTo)) {
+            throw new InvalidExtendDateException("Invalid date: ");
         }
 
         System.out.println("Extending reservation of instrument: " + instToRent.name

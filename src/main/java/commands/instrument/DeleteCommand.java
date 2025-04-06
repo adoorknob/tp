@@ -15,10 +15,16 @@ public class DeleteCommand extends Command {
 
     @Override
     public void execute(InstrumentList instrumentList, Ui ui, UserUtils userUtils, FinanceManager financeManager) {
-        int instrumentId = Integer.parseInt(this.name);
-        deleteInstrumentFromUser(instrumentList, instrumentId);
-        instrumentList.deleteInstrument(instrumentId);
+        try {
+            int instrumentId = Integer.parseInt(this.name);
+            deleteInstrumentFromUser(instrumentList, instrumentId);
+            instrumentList.deleteInstrument(instrumentId);
+        } catch (Exception | AssertionError f) {
+            System.out.println(f.getMessage());
+            return;
+        }
         ui.printInstrumentList(instrumentList.getList());
+
     }
 
     private void deleteInstrumentFromUser(InstrumentList instrumentList, int instrumentId) {
