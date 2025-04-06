@@ -39,13 +39,15 @@ public class ReserveCommand extends Command {
                     assert from.isBefore(to) : "from: date must be before to: date";
                     instrumentList.reserveInstrumentFromTo(indice, from, to);
                     financeManager.rentalPayment(instrumentList.getInstrument(indice), from, to);
-                } catch (AssertionError e) {
-                    throw new IncorrectReserveInstrumentException(e.getMessage());
-                } catch (Exception e) {
+                } catch (Exception | AssertionError e) {
                     throw new IncorrectReserveInstrumentException(e.getMessage());
                 }
             } else {
-                instrumentList.reserveInstrument(indice);
+                try {
+                    instrumentList.reserveInstrument(indice);
+                } catch (Exception | AssertionError e) {
+                    throw new IncorrectReserveInstrumentException(e.getMessage());
+                }
             }
 
             ui.printInstrumentList(instrumentList.getList());
