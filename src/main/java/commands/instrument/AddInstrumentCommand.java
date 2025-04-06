@@ -3,6 +3,7 @@ package commands.instrument;
 import commands.Command;
 import exceptions.instrument.IncorrectDescriptionException;
 import exceptions.instrument.IncorrectAddInstrumentException;
+import exceptions.instrument.IncorrectReturnInstructionException;
 import finance.FinanceManager;
 import instrument.Instrument;
 import instrument.InstrumentList;
@@ -32,7 +33,12 @@ public class AddInstrumentCommand extends Command {
     @Override
     public void execute(InstrumentList instrumentList, Ui ui, UserUtils userUtils, FinanceManager financeManager)
             throws IncorrectAddInstrumentException {
-        addInstrumentToSession(instrumentList, ui, userUtils);
+        try {
+            addInstrumentToSession(instrumentList, ui, userUtils);
+        } catch (Exception | AssertionError e) {
+            System.out.println(e.getMessage());
+            System.out.println("Instrument was not added.");
+        }
     }
 
     public void addInstrumentToSession(InstrumentList instrumentList, Ui ui, UserUtils userUtils) {
