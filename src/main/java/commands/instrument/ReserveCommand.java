@@ -9,6 +9,7 @@ import user.UserUtils;
 import finance.FinanceManager;
 import utils.DateTimeParser;
 
+import java.time.DateTimeException;
 import java.time.LocalDate;
 
 public class ReserveCommand extends Command {
@@ -34,13 +35,22 @@ public class ReserveCommand extends Command {
             if (userInput.length > 1) {
                 try {
                     String[] parts = this.name.split("from: |to: ", 3);
+                    if (parts.length < 2) {
+                        throw new IncorrectReserveInstrumentException("Invalid format: ");
+                    }
                     LocalDate from = DateTimeParser.parseDate(parts[1]);
                     LocalDate to = DateTimeParser.parseDate(parts[2]);
                     assert from.isBefore(to) : "from: date must be before to: date";
                     instrumentList.reserveInstrumentFromTo(indice, from, to);
                     financeManager.rentalPayment(instrumentList.getInstrument(indice), from, to);
+                } catch (DateTimeException d) {
+                    System.out.println("Please input a valid date (dd/MM/yyyy).");
+                    return;
+                } catch (IncorrectReserveInstrumentException r) {
+                    System.out.println(r.getMessage());
+                    return;
                 } catch (Exception | AssertionError e) {
-                    throw new IncorrectReserveInstrumentException(e.getMessage());
+                    System.out.println(e.getMessage());
                 }
             } else {
                 try {
