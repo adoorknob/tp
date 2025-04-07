@@ -12,7 +12,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 
-
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
@@ -104,7 +103,7 @@ class AddInstrumentCommandTest {
         addInstrumentCommand = new AddInstrumentCommand(
                 "Guitar | yamaha | 2011 | false | false | null | null | Unassigned | 0",
                 true);
-        addInstrumentCommand.execute(instrumentList,ui, userUtils, financeManager);
+        addInstrumentCommand.execute(instrumentList, ui, userUtils, financeManager);
         assertEquals(1, instrumentList.getList().size(), "Instrument list size should increase by 1.");
     }
 
@@ -114,6 +113,6 @@ class AddInstrumentCommandTest {
                 "Guitar | yamaha | -500 | false | false | null | null | Unassigned | 0",
                 true);
         assertThrows(CorruptStorageException.class, () ->
-                addInstrumentCommand.execute(instrumentList,ui, userUtils, financeManager));
+                addInstrumentCommand.execute(instrumentList, ui, userUtils, financeManager));
     }
 }
