@@ -16,20 +16,20 @@ import static ui.Ui.WARNING_QTY;
 //import static ui.Ui.*;
 
 public class LowStockChecker {
-    public static void printLowStock(Map.Entry<String, Integer> entry, HashMap<String, Integer> rentCount) {
+    public static String printLowStock(Map.Entry<String, Integer> entry, HashMap<String, Integer> rentCount) {
         String instName = entry.getKey();
         Integer instCount = entry.getValue();
         Integer rentedCount = (rentCount.get(instName) == null ? 0 : rentCount.get(instName));
         Integer availCount = instCount - rentedCount;
         if (availCount < CRITICAL_QTY) { // critical, must replenish soon
-            System.out.println(instName + ": " + RED + availCount + RESET + " available");
+            return (instName + ": " + RED + availCount + RESET + " available\n") ;
         } else if (availCount < WARNING_QTY) {
-            System.out.println(instName + ": " + YELLOW + availCount + RESET + " available");
+            return (instName + ": " + YELLOW + availCount + RESET + " available\n");
         }
+        return "";
     }
 
     public static void checkAll(ArrayList<Instrument> instruments) {
-        System.out.println("These stocks are running low: ");
 
         HashMap<String, Integer> stockCount = new HashMap<>();
         HashMap<String, Integer> rentCount = new HashMap<>();
@@ -54,8 +54,16 @@ public class LowStockChecker {
             }
         }
 
+        String output = "";
+
         for (Map.Entry<String, Integer> entry : stockCount.entrySet()) {
-            printLowStock(entry, rentCount);
+            output += printLowStock(entry, rentCount);
+        }
+        if (output.isEmpty()) {
+            System.out.println("Low Stock Checker: All instruments sufficiently stocked");
+        } else {
+            System.out.println("These stocks are running low: ");
+            System.out.println(output);
         }
         System.out.println(TEXTBORDER);
     }
