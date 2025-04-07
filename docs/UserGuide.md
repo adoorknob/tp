@@ -4,6 +4,46 @@
 
 `SirDukeBox` is a **desktop app for managing instrument inventory, reservations, and finances.**
 
+## Table of Contents
+
+1. [Quick Start](#quick-start)
+2. [Command summary](#command-summary)
+3. [Features](#features)
+    + [Instrument Commands](#instrument-commands)
+    + [`list` - Listing all instruments](#list-instruments:-list)
+    + [`list stock` - Listing instrument stock quantities](#list-stock---listing-instrument-stock-quantities)
+    + [`list filter by:` - Filtering instruments](#list-filter-by---filtering-instruments)
+    + [`list help` - Listing all list commands](#list-help---listing-all-list-commands)
+    + [`add` - Adding an instrument](#add---adding-an-instrument)
+    + [`delete` - Deleting an instrument](#delete---deleting-an-instrument)
+    + [`reserve` - Reserving an instrument](#reserve---reserving-an-instrument)
+    + [`reserve with date` - Reserving with date range](#reserve-with-date---reserving-with-date-range)
+    + [`extend` - Extending a reservation](#extend---extending-a-reservation)
+    + [`return` - Returning a reserved instrument](#return---returning-a-reserved-instrument)
+
++ [User Commands](#user-commands)
+    + [`user` - Show user command menu](#user---show-user-command-menu)
+    + [`user` - Add a user](#user---add-a-user)
+    + [`user` - Remove a user](#user---remove-a-user)
+    + [`user` - List all users](#user---list-all-users)
+    + [`user` - List instruments for a user](#user---list-instruments-for-a-user)
+
++ [Recommendation Commands](#recommendation-commands)
+    + [`recommend` - Recommending an instrument](#recommend---recommending-an-instrument)
+
++ [Finance Commands](#finance-commands)
+    + [`finance help` - Show finance command menu](#finance-help---show-finance-command-menu)
+    + [`finance add` - Add income](#finance-add---add-income)
+    + [`finance sub` - Subtract expense](#finance-sub---subtract-expense)
+    + [`finance get` - Get current balance](#finance-get---get-current-balance)
+
++ [Utility Commands](#utility-commands)
+    + [`help` - Viewing all commands](#help---viewing-all-commands)
+    + [`exit` - Exiting the program](#exit---exiting-the-program)
+
+4. [FAQ](#faq)
+
+
 ## Quick Start
 
 1. Ensure that you have Java 17 or above installed.
@@ -17,6 +57,36 @@
     * `list`: Lists all items currently in the database
     * `exit`: Exits the app
 6. Refer to **Features** below for a detailed list of all commands
+
+## Command Summary
+
+|                Action                 |                            Format                             |
+|:-------------------------------------:|:--------------------------------------------------------------:|
+|           List out Commands           | `help`                                                         |
+|            Add Instrument             | `add INSTRUMENT_NAME\|INSTRUMENT_MODEL\|INSTRUMENT_YEAR`       |
+|           Delete Instrument           | `delete INSTRUMENT_NUMBER`                                     |
+|           List Instruments            | `list`                                                         |
+|        List Instrument Stocks         | `list stock`                                                   |
+|     Filtered List of Instruments      | `list filter by: FILTER SEARCH_TERM`                           |
+|       List All `list` Features        | `list help`                                                    |
+| Reserve Instrument (without deadline) | `reserve INSTRUMENT_NUMBER`                                    |
+|  Reserve Instrument (with deadline)   | `reserve INSTRUMENT_NUMBER from: START_DATE to: END_DATE`      |
+|          Extend Reservation           | `extend INSTRUMENT_NUMBER to: END_DATE`                        |
+|           Return Instrument           | `return INSTRUMENT_NUMBER`                                     |
+|          User Commands Menu           | `user`                                                         |
+|         Recommend Instrument          | `recommend INSTRUMENT_NAME`                                    |
+|         Finance Commands Menu         | `finance`                                                      |
+|             Exit Program              | `exit`                                                         |
+
+> Notes about the command format:
+> + Words in `UPPER_CASE` are the parameters to be supplied by the user.
+> > e.g. in `return INSTRUMENT_NUMBER`, `INSTRUMENT_NUMBER` is a parameter that can be used as `return 2`.
+> + `START_DATE`s and `END_DATE`s should be input in the format `dd/MM/yyyy`.
+> > e.g. `extend 2 to: 07/08/2025` extends the deadline for reservation of instrument 2 to 7 August 2025.
+> + Instruments that have been reserved prior cannot be reserved again. 
+> + Instruments that are not currently reserved cannot be returned. 
+> + `INSTRUMENT_NUMBER` can be obtained by using `list`.
+> + By default, all newly added instruments are not reserved.
 
 ## Features
 
@@ -95,6 +165,9 @@ Now you have 0 instruments
 Removed instrument [Guitar | Yamaha | 1989 | ] from user [Kash]
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 ```
+### Listing Features
+
+`SirDukeBox` provides several listing functionalities to help navigate the `SirDukeBox` inventory more easily.
 
 ### List Instruments: `list`
 
@@ -176,7 +249,34 @@ Here is the list of instruments:
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 ```
 
-### Reserving an Instrument: `reserve`
+### List all `list` functionalities: `list help`
+
+Lists all available `list` functionalities. A brief description for each command is included.
+
+Format: `list help`
+
+Expected output: 
+```
+list help
+*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
+Here is a list of available subcommands:
+Available Subcommands:
+
+help: list all subcommands for `list`
+stock: list total, available and reserved quantities for each instrument
+filter by <FILTER> <SEARCH_TERM>: list instruments according to FILTER and SEARCH_TERM
+
+Available FILTERs and SEARCHTERMs:
+
+FILTER: name, SEARCH_TERM: INSTRUMENT_NAME
+FILTER: model, SEARCH_TERM: INSTRUMENT_MODEL
+FILTER: year, SEARCH_TERM: INSTRUMENT_YEAR
+FILTER: reserved (SEARCH_TERM is not required)
+FILTER: available (SEARCH_TERM is not required)
+*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
+```
+
+### Reserving an Instrument (without deadline): `reserve`
 
 Reserves an unreserved instrument in the database.
 
@@ -184,10 +284,12 @@ Format: `reserve INSTRUMENT_NUMBER`
 
 * `INSTRUMENT_NUMBER` refers to the number assigned to the
   particular instrument. Use `list` to view each instrument's `INSTRUMENT_NUMBER`
+* `SirDukeBox` will set the `START_DATE`as today's date
+* * `START_DATE` refers to the date at which the reservation commences
 
 Example of usage:
 
-`reserve 6`
+`reserve 6` (suppose today's date is 07/04/2025)
 
 Expected output:
 
@@ -200,7 +302,7 @@ Here is the list of instruments:
 3. Flute | Yamaha | 2023 |
 4. Guitar | Fender | 1962 |
 5. Guitar | Fender | 2020 |
-6. Piano | Bosendorfer | 2023 | Rented
+6. Piano | Bosendorfer | 2023 | Rented | Rented from: 7/4/2025
 7. Piano | Steinway & Sons | 2020 |
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 ```
@@ -231,7 +333,7 @@ Here is the list of instruments:
 3. Flute | Yamaha | 2023 | 
 4. Guitar | Fender | 1962 | 
 5. Guitar | Fender | 2020 | Rented | Rented from: 1/4/2025 | Rented to: 2/4/2025
-6. Piano | Bosendorfer | 2023 | Rented
+6. Piano | Bosendorfer | 2023 | Rented | Rented from: 7/4/2025
 7. Piano | Steinway & Sons | 2020 | 
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 ```
