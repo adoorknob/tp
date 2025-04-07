@@ -215,6 +215,7 @@ Format: `add INSTRUMENT_NAME|INSTRUMENT_MODEL|INSTRUMENT_YEAR`
 * `INSTRUMENT_NAME` refers to the type of instrument being added (e.g. "Guitar")
 * `INSTRUMENT_MODEL` refers to the brand/model of the specific instrument being added (e.g. "Yamaha")
 * `INSTRUMENT_YEAR` refers to the year of production of the instrument being added (e.g. "1989")
+  * lowest value for `INSTRUMENT_YEAR` is set to 1600 - any year before that is invalid
 
 Example of usage:
 

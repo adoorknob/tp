@@ -73,4 +73,123 @@ Class Diagram:
 Sequence Diagram:
 ![UserSequenceDiagram](../uml-diagrams/user/UserSequenceDiagram.png)
 
+**IsOverdueChecker**
+![IsOverdueCheckerSequenceDiagram](../uml-diagrams/scheduler/IsOverdueCheckerSequenceDiagram.png)
+
 ### Contributions to the User Guide
+
+**User**
+
+> ### User commands - `user`
+> 
+> User will bring up a list of commands that pertains to users:
+> 
+> 1. Adding a user
+> 2. Removing a user
+> 3. Listing all users
+> 4. Listing a user's instruments
+>    ...which is selected by inputting the index of the command and>  following onscreen instructions
+> 
+> For option `4`, the user will be able to choose from 2 lists:
+> 
+> 1. `Rental History`
+> * This is the list of all instruments that have been added to the user during the current session (including deleted
+>   instruments)
+> 2. `Currently Instruments`
+> * This is the list of instruments still allocated to the user > (modified after deleting)
+> 
+> For example, if the current list of instruments assigned to the user is:
+> 
+> ```
+> 1. Guitar | Yamaha | 2000
+> 2. Piano | Yamaha | 2000
+> ```
+> 
+> ...and `delete 2` is inputted,
+> `CurrentInstruments` will be:
+> 
+> ```
+> 1. Guitar | Yamaha | 2000
+> ```
+> 
+> ...while `RentalHistory` will be:
+> 
+> ```
+> 1. Guitar | Yamaha | 2000
+> 2. Piano | Yamaha | 2000
+> ```
+> 
+> **Example of usage:** \
+> Input:
+> 
+> ```
+> user
+> ```
+> 
+> Expected output:
+> 
+> ```
+> *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
+> What would you like to do?
+> 1. Add User
+> 2. Remove User
+> 3. Print list of users
+> 4. Print list of instruments of specific user
+> *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
+> ```
+> 
+> Input:
+> 
+> ```
+> 4
+> ```
+> 
+> Expected output:
+> 
+> ```
+> *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
+> Please select from the following existing users:
+> 1. Teng Wai
+> 2. Om
+> 3. Kashfy
+> 4. Jason
+> ```
+> 
+> Input:
+> 
+> ```
+> 1
+> ```
+> 
+> Expected output:
+> 
+> ```
+> *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
+> Available List Choices:
+> 1. Rental History
+> 2. Current Instruments
+> ```
+> 
+> Input:
+> 
+> ```
+> 1
+> ```
+> 
+> Expected output:
+> 
+> ```
+> *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
+> Here is the list of instruments:
+> 1. Piano | Yamaha | 2000 | 
+> *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
+> ```
+> 
+> ...or if list is empty:
+> 
+> ```
+> *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
+> This list is empty :(
+> *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
+> ```
+

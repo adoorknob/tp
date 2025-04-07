@@ -7,8 +7,10 @@
     * [Logic Component](#sirdukebox-logic-component)
     * [UI Component](#ui-component)
     * [Parser Component](#parser-component)
+    * [Instrument Component](#instrument-component)
     * [Command Component](#command-component)
     * [Storage Component](#storage-component)
+    * [Other Notable Classes](#other-notable-classes)
 * **[Appendix:Requirements](#appendix-requirements)**
     * [Product scope](#product-scope)
     * [User stories](#user-stories)
@@ -56,6 +58,7 @@ The bulk of the app’s work is done by the following five components:
 * **`SirDukeBox`**: The logic manager of the app.
 * **`UI`**: The UI of the App.
 * **`Parser`**: The command parser and caller.
+* **`Instrument`**: The abtract class that represents an instrument, the object that our app is centred around.
 * **`Command Handler`**: The command executor
 * **`Storage`**: Reads data from, and writes data to, the hard disk.
 
@@ -213,9 +216,15 @@ The _sequence diagram_ above shows the process of adding a user to the session w
     - If user does not exist (`userID == 0`), create a new user
     - If user exists, assign the instrument to the existing user
 
-**`Scheduler`**
+**`IsOverdueChecker`**
 
-* Manages the `datetime` checking feature of the return dates of rentals
+* Static class that manages the `datetime` checking feature of the return dates of rentals.
+* Does a daily check of instrument rentals to automate marking instruments as overdue
+
+![IsOverdueCheckerSequenceDiagram](uml-diagrams/scheduler/IsOverdueCheckerSequenceDiagram.png)
+
+Above is the _sequence diagram_ illustrating how the `IsOverdueChecker` static class methods are called to begin the scheduled checking,
+and cleanup the scheduler on termination of the program. 
 
 * * *
 
