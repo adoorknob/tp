@@ -62,8 +62,14 @@ public class ReserveCommand extends Command {
             LocalDate from = DateTimeParser.parseDate(parts[1]);
             LocalDate to = DateTimeParser.parseDate(parts[2]);
             assert from.isBefore(to) : "from: date must be before to: date";
-            assert from.isAfter(LocalDate.now().minus(1, ChronoUnit.DAYS)) :
+            assert from.isAfter(LocalDate.now().minusDays(1)) :
                     "from: date must be either today or a date in the future";
+            if (from.isAfter(to)) {
+                throw new IncorrectReserveInstrumentException("from: date must be after to: date");
+            } else if (from.isBefore(LocalDate.now().minusDays(1))) {
+                throw new IncorrectReserveInstrumentException("from: date must be either today " +
+                        "or a date in the future");
+            }
             instrumentList.reserveInstrumentFromTo(indice, from, to);
         } catch (Exception | AssertionError e) {
             throw new IncorrectReserveInstrumentException(e.getMessage());
