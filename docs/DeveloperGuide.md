@@ -58,7 +58,6 @@ The bulk of the app’s work is done by the following five components:
 * **`Parser`**: The command parser and caller.
 * **`Command Handler`**: The command executor
 * **`Storage`**: Reads data from, and writes data to, the hard disk.
-* **`Finance Manager`** Manages the finance of the application
 
 **`Commons`** represents a collection of classes used by multiple other
 components.
@@ -144,7 +143,21 @@ added to
 the `instrumentList`,
 a print of the `instrumentList` will occur last.
 
-### Finance Manager component
+
+### Storage component
+
+**API** : [`Storage.java`](https://github.com/AY2425S2-CS2113-W11-1/tp/blob/master/src/main/java/storage/Storage.java)
+
+The `Storage` component,
+
+* can save instrument data (`name`, `model`, `year`, `rentFrom`, `rentTo`, `reserved`) in external external save file
+  `data/SirDukeBox.txt`
+* reads entries back into current session when program is run again
+
+* * *
+### Other notable classes
+
+**`FinanceManager`**
 
 **API** : [
 `FinanceManager.java`](https://github.com/AY2425S2-CS2113-W11-1/tp/blob/master/src/main/java/finance/FinanceManager)
@@ -161,21 +174,32 @@ The `Finance Manager` component,
 * Upon returning of item will automatically calculate the amount owed based on rental fee of 20 and daily overdue
   fee of 50
 
-### Storage component
+**`User`, `UserList`, and `UserUtils`**
 
-**API** : [`Storage.java`](https://github.com/AY2425S2-CS2113-W11-1/tp/blob/master/src/main/java/storage/Storage.java)
+`User`
+* Represents a user that the rental owner wants to keep track of
 
-The `Storage` component,
+`UserList`
+* Represents a list of `User`s
 
-* can save instrument data (`name`, `model`, `year`, `rentFrom`, `rentTo`, `reserved`) in external external save file
-  `data/SirDukeBox.txt`
-* reads entries back into current session when program is run again
-
-### Other notable classes
-
-**`UserUtils`**
-
+`UserUtils`
 * Common methods used to implement the `User` and `UserList` feature
+
+![UseClassDiagram](uml-diagrams/UserClassDiagram.png)
+
+The _class diagram_ above shows how `User`, `UserList`, `UserUtils` and `Ui` are related.
+`SirDukeBox` functionality typically calls methods from `UserUtils`, which handles the interaction between `UserList` and `Ui`
+
+![UserSequenceDiagram](uml-diagrams/UserSequenceDiagram.png)
+
+The _sequence diagram_ above shows the process of adding a user to the session when an instrument is added. 
+`queryAndAssignUser()` is called to:
+1. Query if the instrument should be assigned to a user
+   - If `isAssigned`, move to step 2
+   - `else`, assign the instrument to `Unassigned` user and end
+2. Query if the user to assign the instrument to already exists (if `userID != 0`)
+   - If user does not exist (`userID == 0`), create a new user
+   - If user exists, assign the instrument to the existing user
 
 **`Scheduler`**
 
