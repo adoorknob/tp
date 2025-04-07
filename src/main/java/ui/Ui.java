@@ -36,6 +36,7 @@ public class Ui {
     public static final String FILTERYEAR = "year";
     public static final String FILTERRESERVED = "reserved";
     public static final String FILTERAVAILABLE = "available";
+    public static final String FILTEROVERDUE = "overdue";
 
     public static final String DUKEBOX = """
                             _.-'\\       /'-._
@@ -306,6 +307,9 @@ public class Ui {
         case FILTERAVAILABLE:
             filteredInst = filterByReserved(instruments, false);
             break;
+        case FILTEROVERDUE:
+            filteredInst = filterByOverdue(instruments);
+            break;
         default:
             System.out.println("The specified filter does not exist. Please try again");
             System.out.println(TEXTBORDER);
@@ -352,6 +356,16 @@ public class Ui {
         ArrayList<Instrument> filteredInst = new ArrayList<>();
         for (Instrument inst : instruments) {
             if (inst.isRented() == status) {
+                filteredInst.add(inst);
+            }
+        }
+        return filteredInst;
+    }
+
+    public ArrayList<Instrument> filterByOverdue(ArrayList<Instrument> instruments) {
+        ArrayList<Instrument> filteredInst = new ArrayList<>();
+        for (Instrument inst : instruments) {
+            if (inst.isOverDue()) {
                 filteredInst.add(inst);
             }
         }
