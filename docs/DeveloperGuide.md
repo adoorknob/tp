@@ -9,7 +9,7 @@
     * Parser Component
     * Command Component
     * Storage Component
-* **[Appendix:Requirements](#appendix)**
+* **[Appendix:Requirements](#appendix-requirements)**
     * Product scope
     * User stories
     * Use cases
@@ -33,7 +33,7 @@ SirDukeBox uses the following tools for development:
 
 ### Architecture
 
-![SirDukeBoxArchitextureDiagram](uml-diagrams/SirDukeBoxArchi.png)
+![SirDukeBoxArchitextureDiagram](uml-diagrams/overall/SirDukeBoxArchi.png)
 
 The **_Architecture Diagram_** given above explains the high-level design of SirDukeBox.
 
@@ -48,49 +48,45 @@ charge of the app launch and shut down.
 
 * At app launch, it initializes the other components in the correct sequence, and connects them up with each other.
 * Loads or creates the plaintext save files in the docs folder.
-* Populates the `Duke_Data` which includes the Instrument Data, Finance Data and User Data.
+* Populates the `SirDukeBox_Data` which includes the Instrument Data, Finance Data and User Data.
 * At shut down, it shuts down the other components and invokes cleanup methods where necessary.
 
 The bulk of the app’s work is done by the following five components:
 
-* **`Duke`**: The logic manager of the app.
+* **`SirDukeBox`**: The logic manager of the app.
 * **`UI`**: The UI of the App.
 * **`Parser`**: The command parser and caller.
 * **`Command Handler`**: The command executor
 * **`Storage`**: Reads data from, and writes data to, the hard disk.
-* **`Finance Manager`** Manages the finance of the application
 
 **`Commons`** represents a collection of classes used by multiple other
 components.
 
 **How the architecture components interact with each other**
 
-![ArchiSequenceDiagram](uml-diagrams/ArchiSequenceDiagram-0.png)
+![ArchiSequenceDiagram](uml-diagrams/command/ArchiSequenceDiagram.png)
 
 The _Sequence Diagram_ below shows how the components interact with each other
 for the scenario where the user issues the command `add Flute|ModelName|2004`.
 
 ## **Implementation**
 
-### Duke Logic component
+### SirDukeBox Logic component
 
 How the logic component works:
 
 1. After initialising the necessary components (`Storage`, `Ui`, `UserUtils`, `Parser`), the logic will call `Ui` to
    read the user input.
-2. `Duke` will then call `Parser` to parse the user input to a executable.
-3. `Duke` executes the resulting command.
-4. `Duke` then checks if it is an exit command, and exits the program if so.
-
-Upon exit,
-
-5. `Duke` calls on `Storage` to save the working information from the current session and terminates.
+2. `SirDukeBox` will then call `Parser` to parse the user input to a executable.
+3. `SirDukeBox` executes the resulting command.
+4. `SirDukeBox` then checks if it is an exit command, and exits the program if so.
+5. Upon exit, `SirDukeBox` calls on `Storage` to save the working information from the current session and terminates.
 
 ### UI component
 
 The `UI` component,
 
-![UI.png](uml-diagrams/Ui.png)
+![UI.png](uml-diagrams/ui/Ui.png)
 
 * Handles all user input and system output to the command line.
 * Is kept as an input to most classes to maintain the use of one `Ui` object throughout the operation of the program
@@ -99,7 +95,7 @@ The `UI` component,
 
 The `Parser` component,
 
-![Parser.png](uml-diagrams/Parser.png)
+![Parser.png](uml-diagrams/parser/Parser.png)
 
 How the `Parser` component works:
 
@@ -112,7 +108,7 @@ How the `Parser` component works:
 
 **Classes**: [`InstrumentClasses`](https://github.com/AY2425S2-CS2113-W11-1/tp/tree/master/src/main/java/instrument)
 
-![InstrumentClasses.png](uml-diagrams/InstrumentClasses.png)
+![InstrumentClasses.png](uml-diagrams/instrument/InstrumentClasses.png)
 
 * Represents a real-life instrument object, to be played, rented, returned, etc.
 
@@ -120,7 +116,7 @@ How the `Parser` component works:
 
 **Classes**: [`CommandClasses`](https://github.com/AY2425S2-CS2113-W11-1/tp/tree/master/src/main/java/commands)
 
-![CommandClass.png](uml-diagrams/CommandClass-0.png)
+![CommandClass.png](uml-diagrams/command/CommandClass-0.png)
 
 The command component comprises command classes that all inherit from the common abstract class `Command`. Execution
 of commands is achieved through calling the `execute()` method, which defines each command's specific behaviour. This
@@ -129,7 +125,7 @@ implementation simpifies extension and maintenance across the codebase.
 Given below is an example usage scenario of the `AddInstrumentCommand` class and how the add instrument mechanism
 behaves at each step.
 
-**Step 1**: The user launches the application for the first time. `runDuke()` will be called and the user will then be
+**Step 1**: The user launches the application for the first time. `runSirDukeBox()` will be called and the user will then be
 prompted for an input
 
 **Step 2**: The user will then add an instrument using the `add` command word
@@ -144,12 +140,34 @@ added to
 the `instrumentList`,
 a print of the `instrumentList` will occur last.
 
-### Finance Manager component
+
+### Storage component
+
+**API** : [`Storage.java`](https://github.com/AY2425S2-CS2113-W11-1/tp/blob/master/src/main/java/storage/Storage.java)
+
+![StorageClassDiagram](uml-diagrams/storage/StorageClassDiagram.png)
+
+The `Storage` component,
+
+* can save instrument data (`name`, `model`, `year`, `rentFrom`, `rentTo`, `reserved`) in external save file
+  `data/SirDukeBox.txt`
+* reads entries back into current session when program is run again
+
+![StorageSequenceDiagram](uml-diagrams/storage/StorageSequenceDiagram.png)
+
+The above _sequence diagram_ shows a summary of how data is
+1. added into the current session at the start, and 
+2. saved to the `data/SirDukeBox.txt` file at the end of the program
+
+* * *
+### Other notable classes
+
+**`FinanceManager`**
 
 **API** : [
 `FinanceManager.java`](https://github.com/AY2425S2-CS2113-W11-1/tp/blob/master/src/main/java/finance/FinanceManager)
 
-![FinanceManager.png](uml-diagrams/FinanceManager.png)
+![FinanceManager.png](uml-diagrams/finance/FinanceManager.png)
 
 The `Finance Manager` component,
 
@@ -161,21 +179,32 @@ The `Finance Manager` component,
 * Upon returning of item will automatically calculate the amount owed based on rental fee of 20 and daily overdue
   fee of 50
 
-### Storage component
+**`User`, `UserList`, and `UserUtils`**
 
-**API** : [`Storage.java`](https://github.com/AY2425S2-CS2113-W11-1/tp/blob/master/src/main/java/storage/Storage.java)
+`User`
+* Represents a user that the rental owner wants to keep track of
 
-The `Storage` component,
+`UserList`
+* Represents a list of `User`s
 
-* can save instrument data (`name`, `model`, `year`, `rentFrom`, `rentTo`, `reserved`) in external external save file
-  `data/SirDukeBox.txt`
-* reads entries back into current session when program is run again
-
-### Other notable classes
-
-**`UserUtils`**
-
+`UserUtils`
 * Common methods used to implement the `User` and `UserList` feature
+
+![UseClassDiagram](uml-diagrams/user/UserClassDiagram.png)
+
+The _class diagram_ above shows how `User`, `UserList`, `UserUtils` and `Ui` are related.
+`SirDukeBox` functionality typically calls methods from `UserUtils`, which handles the interaction between `UserList` and `Ui`
+
+![UserSequenceDiagram](uml-diagrams/user/UserSequenceDiagram.png)
+
+The _sequence diagram_ above shows the process of adding a user to the session when an instrument is added. 
+`queryAndAssignUser()` is called to:
+1. Query if the instrument should be assigned to a user
+   - If `isAssigned`, move to step 2
+   - `else`, assign the instrument to `Unassigned` user and end
+2. Query if the user to assign the instrument to already exists (if `userID != 0`)
+   - If user does not exist (`userID == 0`), create a new user
+   - If user exists, assign the instrument to the existing user
 
 **`Scheduler`**
 
@@ -203,14 +232,14 @@ rental history, and instrument-related finances in an all-in-one tracking app.
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low
 (unlikely to have) - `*`
 
- Priority | As a …​                                            | I want to …​                     | So that I can…​                                        
-----------|----------------------------------------------------|----------------------------------|--------------------------------------------------------  
- `* * *`  | new user                                           | see usage instructions           | refer to instructions when I forget how to use the App 
- `* * *`  | user                                               | add a new intrument              |
- `* * *`  | user                                               | delete an instrument             | remove entries that I no longer need                   
- `* * *`  | user                                               | list the instruments I have      | see all the working instruments in the current session 
- `* *`    | user                                               | track clients' rental statistics | know which instruments are rented by who               
- `*`      | user with many instruments in the instruments list | sort instruments by type         | see instuments of interest easily                      
+| Priority | As a …​                                            | I want to …​                     | So that I can…​                                        |
+|----------|----------------------------------------------------|----------------------------------|--------------------------------------------------------|
+| `* * *`  | new user                                           | see usage instructions           | refer to instructions when I forget how to use the App |
+| `* * *`  | user                                               | add a new intrument              |                                                        |
+| `* * *`  | user                                               | delete an instrument             | remove entries that I no longer need                   |
+| `* * *`  | user                                               | list the instruments I have      | see all the working instruments in the current session |
+| `* *`    | user                                               | track clients' rental statistics | know which instruments are rented by who               |
+| `*`      | user with many instruments in the instruments list | sort instruments by type         | see instuments of interest easily                      |
 
 ### Use cases
 

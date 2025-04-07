@@ -1,0 +1,55 @@
+@startuml
+hide circle
+skinparam classAttributeIconSize 0
+class UserUtils {
+    --
+    + UserUtils(Ui ui, UserList userList)
+    + addKnownUser() : User
+    + queryAndAssignUser(instrument:Instrument) : User
+    + executeUserCommand(userChoice:int)
+    - assignSpecificUser(instrument:Instrument) : User
+    - assignExistingUser(instrument:Instrument, userindex:int) : User
+    - assignUnknownUser(instrument:Instrument) : User
+    - assignInstrumentToUser(instrument:Instrument, userIndex:int) : User
+    - assignNewUser(instrument:Instrument) : User
+    - addUser() : User
+    - removeUser()
+    - printUserList()
+    - printInstrumentListOfUser()
+    - executeListPrint(userId:int, listId:int)
+}
+
+class UserList {
+    - userCount : int
+    --
+    + UserList(Ui)
+    + addUser(User)
+    + removeUserById(int userId)
+    + getUsers() : ArrayList<User>
+    + getUserCount() : int
+    + getNumberOfGuestUsers() : int
+    + getUnassignedUser() : User
+    + getUserByIndex(index:int) : User
+    + isEmpty() : boolean
+}
+
+class User {
+    - name : String
+    - instrumentsRentalHistory : InstrumentList
+    - instrumentsCurrentlyRented : InstrumentList
+    --
+    + User(ui:Ui, userList:UserList, name:String)
+    + User(ui:Ui, userList:UserList)
+    + getName() : String
+    + setParentUserList(parentUserList:UserList)
+    + addInstrument(instrument:Instrument)
+    + removeInstrument(instrument:Instrument)
+    + getRentalHistory() : InstrumentList
+    + getCurrentlyRented() : InstrumentList
+}
+UserUtils <--> Ui
+UserUtils --> UserList
+UserList --> Ui
+
+UserList --> User : parentUserList \n\n 1..*
+@enduml
