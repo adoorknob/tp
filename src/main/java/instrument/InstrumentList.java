@@ -157,8 +157,9 @@ public class InstrumentList {
             }
             assert number > 0 && number <= numberOfInstruments : "Instrument number out of bounds: " + number;
             return instruments.get(number - 1);
-        } catch (RuntimeException e) {
-            throw new RuntimeException(e);
+        } catch (IndexOutOfBoundsException e) {
+            throw new IndexOutOfBoundsException("Instrument " + number + " does not exist," +
+                    " please choose an instrument in the list.");
         } catch (AssertionError e) {
             throw new OutOfRangeException(e.getMessage());
         }

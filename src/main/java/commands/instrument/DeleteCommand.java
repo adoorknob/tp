@@ -28,6 +28,10 @@ public class DeleteCommand extends Command {
             Instrument instrument = instrumentList.getInstrument(instrumentId);
             deleteInstrumentFromUser(instrument);
             instrumentList.deleteInstrument(instrumentId);
+        } catch (NumberFormatException e) {
+            throw new InvalidDeleteException("The instrument id was not a number");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new InvalidDeleteException("Please delete an existing instrument");
         } catch (Exception | AssertionError f) {
             throw new InvalidDeleteException(f.getMessage());
         }
