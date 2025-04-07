@@ -155,8 +155,11 @@ public class Ui {
     }
 
     public String readUserInput() {
-        if (scanner.hasNextLine()) {
-            return scanner.nextLine();
+        while (scanner.hasNextLine()) {
+            String line = scanner.nextLine().trim();
+            if (!line.isEmpty()) {
+                return line;
+            }
         }
         return null;
     }
@@ -510,7 +513,6 @@ public class Ui {
     public void printMessageWithTextBorder(String message) {
         System.out.println(TEXTBORDER);
         System.out.println(message);
-        System.out.println(TEXTBORDER);
     }
 
     public void printAmount(long amount) {

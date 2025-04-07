@@ -17,7 +17,6 @@ public class DateTimeParser {
             DateTimeFormatter.ofPattern("dd/MM/yyyy"),   // Day/Month/Year with 4-digit year
             DateTimeFormatter.ofPattern("dd/MM/yy"),     // Day/Month/Year with 2-digit year
             DateTimeFormatter.ofPattern("yyyy-MM-dd"),   // ISO format Year-Month-Day
-            DateTimeFormatter.ofPattern("MM-dd-yyyy"),   // Month-Day-Year format
             DateTimeFormatter.ofPattern("dd MMMM yyyy"), // Day FullMonth Year
             DateTimeFormatter.ofPattern("d MMM yyyy")    // Day AbbrMonth Year
     );
@@ -40,10 +39,10 @@ public class DateTimeParser {
             try {
                 return LocalDate.parse(input, format);
             } catch (DateTimeParseException e) {
-                System.out.println("Failed to parse '" + input + "' with format: " + format);
+                // Silent
             }
         }
-        throw new DateTimeParseException("Unable to parse date: " + input, input, 0);
+        throw new DateTimeParseException("Please input a valid date (dd/MM/yyyy): " + input, input, 0);
     }
 
     public static String formatDate(LocalDate date) {
