@@ -165,6 +165,13 @@ public class Ui {
         return null;
     }
 
+    public String readUserInputAllowEmpty() {
+        if (scanner.hasNextLine()) {
+            return scanner.nextLine().trim();
+        }
+        return null;
+    }
+
     public static String getCommand(String userInput) {
         assert userInput != null : "Input is null";
         String[] parsedInput = userInput.split(" ");
@@ -312,7 +319,6 @@ public class Ui {
             break;
         default:
             System.out.println("The specified filter does not exist. Please try again");
-            System.out.println(TEXTBORDER);
             return;
         }
         if (filteredInst.isEmpty()) {
@@ -432,7 +438,7 @@ public class Ui {
 
     public String queryUserNameWithNoNameChoice() {
         System.out.println("Enter user name (Leave empty if no name): ");
-        return readUserInput();
+        return readUserInputAllowEmpty();
     }
 
     public int queryUserIndexForDelete(UserList userList) {
@@ -461,7 +467,6 @@ public class Ui {
         System.out.println(TEXTBORDER);
         System.out.println("Here is a list of registered users:");
         printUserList(userList.getUsers());
-        System.out.println(TEXTBORDER);
     }
 
     public void printAcknowledgementCreatedNewUser(String userName) {
@@ -521,7 +526,11 @@ public class Ui {
         System.out.println(TEXTBORDER);
         System.out.println("What would you like to do?");
         System.out.println(USERCOMMANDS);
+    }
+
+    public void printNameIsRepeated() {
         System.out.println(TEXTBORDER);
+        System.out.println("Name is duplicated, please enter a unique name.");
     }
 
     public void printMessageWithTextBorder(String message) {
