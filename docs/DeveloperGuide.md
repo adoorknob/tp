@@ -33,7 +33,7 @@ SirDukeBox uses the following tools for development:
 
 ### Architecture
 
-![SirDukeBoxArchitextureDiagram](uml-diagrams/SirDukeBoxArchi.png)
+![SirDukeBoxArchitextureDiagram](uml-diagrams/overall/SirDukeBoxArchi.png)
 
 The **_Architecture Diagram_** given above explains the high-level design of SirDukeBox.
 
@@ -64,7 +64,7 @@ components.
 
 **How the architecture components interact with each other**
 
-![ArchiSequenceDiagram](uml-diagrams/ArchiSequenceDiagram.png)
+![ArchiSequenceDiagram](uml-diagrams/command/ArchiSequenceDiagram.png)
 
 The _Sequence Diagram_ below shows how the components interact with each other
 for the scenario where the user issues the command `add Flute|ModelName|2004`.
@@ -86,7 +86,7 @@ How the logic component works:
 
 The `UI` component,
 
-![UI.png](uml-diagrams/Ui.png)
+![UI.png](uml-diagrams/ui/Ui.png)
 
 * Handles all user input and system output to the command line.
 * Is kept as an input to most classes to maintain the use of one `Ui` object throughout the operation of the program
@@ -95,7 +95,7 @@ The `UI` component,
 
 The `Parser` component,
 
-![Parser.png](uml-diagrams/Parser.png)
+![Parser.png](uml-diagrams/parser/Parser.png)
 
 How the `Parser` component works:
 
@@ -108,7 +108,7 @@ How the `Parser` component works:
 
 **Classes**: [`InstrumentClasses`](https://github.com/AY2425S2-CS2113-W11-1/tp/tree/master/src/main/java/instrument)
 
-![InstrumentClasses.png](uml-diagrams/InstrumentClasses.png)
+![InstrumentClasses.png](uml-diagrams/instrument/InstrumentClasses.png)
 
 * Represents a real-life instrument object, to be played, rented, returned, etc.
 
@@ -116,7 +116,7 @@ How the `Parser` component works:
 
 **Classes**: [`CommandClasses`](https://github.com/AY2425S2-CS2113-W11-1/tp/tree/master/src/main/java/commands)
 
-![CommandClass.png](uml-diagrams/CommandClass-0.png)
+![CommandClass.png](uml-diagrams/command/CommandClass-0.png)
 
 The command component comprises command classes that all inherit from the common abstract class `Command`. Execution
 of commands is achieved through calling the `execute()` method, which defines each command's specific behaviour. This
@@ -145,7 +145,7 @@ a print of the `instrumentList` will occur last.
 
 **API** : [`Storage.java`](https://github.com/AY2425S2-CS2113-W11-1/tp/blob/master/src/main/java/storage/Storage.java)
 
-![StorageClassDiagram](uml-diagrams/StorageClassDiagram.png)
+![StorageClassDiagram](uml-diagrams/storage/StorageClassDiagram.png)
 
 The `Storage` component,
 
@@ -153,7 +153,7 @@ The `Storage` component,
   `data/SirDukeBox.txt`
 * reads entries back into current session when program is run again
 
-![StorageSequenceDiagram](uml-diagrams/StorageSequenceDiagram.png)
+![StorageSequenceDiagram](uml-diagrams/storage/StorageSequenceDiagram.png)
 
 The above _sequence diagram_ shows a summary of how data is
 1. added into the current session at the start, and 
@@ -167,7 +167,7 @@ The above _sequence diagram_ shows a summary of how data is
 **API** : [
 `FinanceManager.java`](https://github.com/AY2425S2-CS2113-W11-1/tp/blob/master/src/main/java/finance/FinanceManager)
 
-![FinanceManager.png](uml-diagrams/FinanceManager.png)
+![FinanceManager.png](uml-diagrams/finance/FinanceManager.png)
 
 The `Finance Manager` component,
 
@@ -190,12 +190,12 @@ The `Finance Manager` component,
 `UserUtils`
 * Common methods used to implement the `User` and `UserList` feature
 
-![UseClassDiagram](uml-diagrams/UserClassDiagram.png)
+![UseClassDiagram](uml-diagrams/user/UserClassDiagram.png)
 
 The _class diagram_ above shows how `User`, `UserList`, `UserUtils` and `Ui` are related.
 `SirDukeBox` functionality typically calls methods from `UserUtils`, which handles the interaction between `UserList` and `Ui`
 
-![UserSequenceDiagram](uml-diagrams/UserSequenceDiagram.png)
+![UserSequenceDiagram](uml-diagrams/user/UserSequenceDiagram.png)
 
 The _sequence diagram_ above shows the process of adding a user to the session when an instrument is added. 
 `queryAndAssignUser()` is called to:
