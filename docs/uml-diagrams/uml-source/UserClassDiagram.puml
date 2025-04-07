@@ -7,6 +7,7 @@ class UserUtils {
     + addKnownUser() : User
     + queryAndAssignUser(instrument:Instrument) : User
     + executeUserCommand(userChoice:int)
+    - isRepeated(userName:String) : boolean
     - assignSpecificUser(instrument:Instrument) : User
     - assignExistingUser(instrument:Instrument, userindex:int) : User
     - assignUnknownUser(instrument:Instrument) : User
