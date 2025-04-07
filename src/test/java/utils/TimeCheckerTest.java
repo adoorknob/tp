@@ -24,8 +24,7 @@ public class TimeCheckerTest {
 
     @Test
     void getCurrentTimeTest() {
-        LocalTime time = timeChecker.getCurrentTime();
-        assertEquals(LocalTime.now(), time);
+        assertEquals(LocalTime.now(), timeChecker.getCurrentTime());
     }
 
 
