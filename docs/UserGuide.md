@@ -114,12 +114,12 @@ Expected output:
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 Here is the list of instruments:
 1. Guitar | Yamaha | 1989 | Rented | Rented from: 1/4/2025 | Rented to: 2/4/2025
-2. Piano | Yamaha | 2016 | 
-3. Flute | Yamaha | 2023 | 
-4. Guitar | Fender | 1962 | 
-5. Guitar | Fender | 2020 | 
+2. Piano | Yamaha | 2016 
+3. Flute | Yamaha | 2023  
+4. Guitar | Fender | 1962  
+5. Guitar | Fender | 2020  
 6. Piano | Bosendorfer | 2023 | Rented
-7. Piano | Steinway & Sons | 2020 | 
+7. Piano | Steinway & Sons | 2020  
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 ```
 
@@ -175,8 +175,8 @@ Expected output:
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 Here is the list of instruments:
 1. Guitar | Yamaha | 1989 | Rented | Rented from: 1/4/2025 | Rented to: 2/4/2025
-2. Piano | Yamaha | 2016 | 
-3. Flute | Yamaha | 2023 | 
+2. Piano | Yamaha | 2016  
+3. Flute | Yamaha | 2023  
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 ```
 
@@ -228,7 +228,7 @@ Expected output:
 ```
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 Here is the list of instruments:
-1. Guitar | Yamaha | 1989 |
+1. Guitar | Yamaha | 1989 
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 Would you like to assign this instrument to a user? [Y/N]
 ```
@@ -251,10 +251,10 @@ Example of usage:
 Expected output:
 
 ```
-Deleting instrument: Guitar | Yamaha | 1989 |
+Deleting instrument: Guitar | Yamaha | 1989 
 Now you have 0 instruments
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
-Removed instrument [Guitar | Yamaha | 1989 | ] from user [Kash]
+Removed instrument [Guitar | Yamaha | 1989] from user [Kash]
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 ```
 
@@ -277,16 +277,16 @@ Example of usage:
 Expected output:
 
 ```
-Reserving instrument: Piano | Bosendorfer | 2023 |
+Reserving instrument: Piano | Bosendorfer | 2023 
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 Here is the list of instruments:
 1. Guitar | Yamaha | 1989 | Rented | Rented from: 1/4/2025 | Rented to: 2/4/2025
-2. Piano | Yamaha | 2016 |
-3. Flute | Yamaha | 2023 |
-4. Guitar | Fender | 1962 |
-5. Guitar | Fender | 2020 |
+2. Piano | Yamaha | 2016 
+3. Flute | Yamaha | 2023 
+4. Guitar | Fender | 1962 
+5. Guitar | Fender | 2020 
 6. Piano | Bosendorfer | 2023 | Rented | Rented from: 7/4/2025
-7. Piano | Steinway & Sons | 2020 |
+7. Piano | Steinway & Sons | 2020 
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 ```
 
@@ -312,12 +312,12 @@ Expected output:
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 Here is the list of instruments:
 1. Guitar | Yamaha | 1989 | Rented | Rented from: 1/4/2025 | Rented to: 2/4/2025
-2. Piano | Yamaha | 2016 | 
-3. Flute | Yamaha | 2023 | 
-4. Guitar | Fender | 1962 | 
+2. Piano | Yamaha | 2016 
+3. Flute | Yamaha | 2023  
+4. Guitar | Fender | 1962  
 5. Guitar | Fender | 2020 | Rented | Rented from: 1/4/2025 | Rented to: 2/4/2025
 6. Piano | Bosendorfer | 2023 | Rented | Rented from: 7/4/2025
-7. Piano | Steinway & Sons | 2020 | 
+7. Piano | Steinway & Sons | 2020  
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 ```
 
@@ -343,12 +343,12 @@ Extending reservation of instrument: Guitar from 2025-04-01 to 2025-04-04
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 Here is the list of instruments:
 1. Guitar | Yamaha | 1989 | Rented | Rented from: 1/4/2025 | Rented to: 2/4/2025
-2. Piano | Yamaha | 2016 | 
-3. Flute | Yamaha | 2023 | 
-4. Guitar | Fender | 1962 | 
+2. Piano | Yamaha | 2016 
+3. Flute | Yamaha | 2023  
+4. Guitar | Fender | 1962  
 5. Guitar | Fender | 2020 | Rented | Rented from: 1/4/2025 | Rented to: 4/4/2025
 6. Piano | Bosendorfer | 2023 | Rented
-7. Piano | Steinway & Sons | 2020 | 
+7. Piano | Steinway & Sons | 2020  
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 ```
 
@@ -372,12 +372,12 @@ Returning instrument: Guitar | Fender | 2020 | Rented | Rented from: 1/4/2025 | 
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 Here is the list of instruments:
 1. Guitar | Yamaha | 1989 | Rented | Rented from: 1/4/2025 | Rented to: 2/4/2025
-2. Piano | Yamaha | 2016 | 
-3. Flute | Yamaha | 2023 | 
-4. Guitar | Fender | 1962 | 
-5. Guitar | Fender | 2020 | 
+2. Piano | Yamaha | 2016  
+3. Flute | Yamaha | 2023  
+4. Guitar | Fender | 1962  
+5. Guitar | Fender | 2020  
 6. Piano | Bosendorfer | 2023 | Rented
-7. Piano | Steinway & Sons | 2020 | 
+7. Piano | Steinway & Sons | 2020  
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 ```
 
@@ -482,7 +482,7 @@ Expected output:
 ```
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 Here is the list of instruments:
-1. Piano | Yamaha | 2000 | 
+1. Piano | Yamaha | 2000 | Assigned to: Teng Wai
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 ```
 
@@ -511,7 +511,7 @@ Expected output:
 ```
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 Here is our recommendation: 
-5. Guitar | Fender | 2020 | 
+5. Guitar | Fender | 2020  
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 ```
