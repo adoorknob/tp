@@ -96,7 +96,7 @@ public abstract class Instrument {
     }
 
     public String toString() {
-        return name + " | " + model + " | " + year  + (isRented ? "| Rented" : "") +
+        return name + " | " + model + " | " + year + (isRented ? " | Rented" : "") +
                 (isOverDue ? " | Overdue" : "") +
                 (rentedFrom != null ? " | Rented from: " + rentedFrom.format(DATE_TIME_FORMATTER) : "") +
                 (rentedTo != null ? " | Rented to: " + rentedTo.format(DATE_TIME_FORMATTER) : "") +

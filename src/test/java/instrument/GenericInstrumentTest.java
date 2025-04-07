@@ -39,7 +39,7 @@ public class GenericInstrumentTest {
         GenericInstrument generic = new GenericInstrument("Generic", "Yamaha", 2000);
         generic.rent();
         generic.unrent();
-        assertEquals("Generic | Yamaha | 2000 | ", generic.toString());
+        assertEquals("Generic | Yamaha | 2000", generic.toString());
     }
 
     @Test

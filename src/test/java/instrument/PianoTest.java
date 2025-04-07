@@ -39,7 +39,7 @@ class PianoTest {
         Piano piano = new Piano("Piano", "Yamaha", 2000);
         piano.rent();
         piano.unrent();
-        assertEquals("Piano | Yamaha | 2000 | ", piano.toString());
+        assertEquals("Piano | Yamaha | 2000", piano.toString());
     }
 
     @Test
