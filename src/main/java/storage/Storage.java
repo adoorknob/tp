@@ -18,8 +18,8 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class Storage {
+    public String outputText = "";
     String outputFilePath;
-    String outputText = "";
     Ui ui;
     InstrumentList instrumentList;
     File file;

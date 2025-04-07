@@ -42,7 +42,8 @@ each other.
 
 **Main components of the architecture**
 
-**`SirDukeBox`** ([`Duke`](https://github.com/AY2425S2-CS2113-W11-1/tp/blob/master/src/main/java/seedu/duke/Duke.java)) is the main class and is in
+**`SirDukeBox`** ([`Duke`](https://github.com/AY2425S2-CS2113-W11-1/tp/blob/master/src/main/java/seedu/duke/Duke.java))
+is the main class and is in
 charge of the app launch and shut down.
 
 * At app launch, it initializes the other components in the correct sequence, and connects them up with each other.
@@ -57,7 +58,7 @@ The bulk of the app’s work is done by the following four components:
 * **`Parser`**: The command parser and caller.
 * **`Command Handler`**: The command executor
 * **`Storage`**: Reads data from, and writes data to, the hard disk.
-* **`Finance Manager`** Manages the finance of the application 
+* **`Finance Manager`** Manages the finance of the application
 
 **`Commons`** represents a collection of classes used by multiple other
 components.
@@ -96,7 +97,7 @@ The `UI` component,
 
 ### Parser component
 
-The `Parser` component, 
+The `Parser` component,
 
 ![Parser.png](uml-diagrams/Parser.png)
 
@@ -145,19 +146,20 @@ a print of the `instrumentList` will occur last.
 
 ### Finance Manager component
 
-**API** : [`FinanceManager.java`](https://github.com/AY2425S2-CS2113-W11-1/tp/blob/master/src/main/java/finance/FinanceManager)
+**API** : [
+`FinanceManager.java`](https://github.com/AY2425S2-CS2113-W11-1/tp/blob/master/src/main/java/finance/FinanceManager)
 
 ![FinanceManager.png](uml-diagrams/FinanceManager.png)
 
 The `Finance Manager` component,
 
 * Interacts with finance data through following commands
-  1. `add:`
-  2. `subtract:`
-  3. `get:`
-  
-* Upon returning of item will automatically calculate the amount owed based on rental fee of 20 and daily overdue 
-fee of 50  
+    1. `add:`
+    2. `subtract:`
+    3. `get:`
+
+* Upon returning of item will automatically calculate the amount owed based on rental fee of 20 and daily overdue
+  fee of 50
 
 ### Storage component
 
@@ -170,8 +172,6 @@ The `Storage` component,
 * reads entries back into current session when program is run again
 
 ### Other notable classes
-
-
 
 **`UserUtils`**
 

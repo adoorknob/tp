@@ -1,7 +1,8 @@
 package user;
 
 import exceptions.user.UserListInitiationException;
-import exceptions.user.UsernameMatchException;
+import instrument.Instrument;
+import instrument.InstrumentList;
 import ui.Ui;
 
 import java.util.ArrayList;
@@ -32,8 +33,17 @@ public class UserList {
 
     public void removeUserById(int userId) {
         User deletedUser = users.remove(userId - USERINDEXBUFFER);
+        removeUserFromInstruments(deletedUser);
         ui.printAcknowledgementDeletedUser(deletedUser.getName());
         userCount--;
+    }
+
+    private void removeUserFromInstruments(User deletedUser) {
+        InstrumentList rentalHistory = deletedUser.getRentalHistory();
+        for (int i = 0; i < rentalHistory.getList().size(); i++) {
+            Instrument instrument = rentalHistory.getList().get(i);
+            instrument.setUser(getUserByIndex(0)); // set to Unassigned
+        }
     }
 
     public ArrayList<User> getUsers() {
@@ -72,15 +82,6 @@ public class UserList {
             }
         }
         throw new UserListInitiationException("No unassigned user found, userList not initialized correctly");
-    }
-
-    public User findUserByName(String name) {
-        for (User user : users) {
-            if (user.getName().equals(name)) {
-                return user;
-            }
-        }
-        throw new UsernameMatchException("Username " + name + " not found");
     }
 
     public User getUserByIndex(int index) {
