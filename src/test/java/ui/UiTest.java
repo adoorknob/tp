@@ -140,8 +140,7 @@ public class UiTest {
                 `help` help
                 `add:` add inflow payment
                 `subtract:` subtract outflow payment
-                `get` get total cash
-                """));
+                `get` get total cash"""));
     }
 
     @Test
