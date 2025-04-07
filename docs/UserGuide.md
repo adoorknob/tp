@@ -162,6 +162,8 @@ Format: `list filter by: FILTER SEARCH_TERM`
         * Filters instruments that `is_rented()`
     * `FILTER`: `available` (`SEARCH_TERM` is not required)
         * Filters instruments that are not `is_rented()`
+    * `FILTER`: `overdue` (`SEARCH_TERM` is not required) 
+        * Filters instruments that `is_overdue()`
 
 Example of usage:
 
