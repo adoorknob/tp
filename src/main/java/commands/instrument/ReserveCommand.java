@@ -1,6 +1,7 @@
 package commands.instrument;
 
 import commands.Command;
+import exceptions.instrument.IncorrectDescriptionException;
 import exceptions.instrument.IncorrectReserveInstrumentException;
 import instrument.InstrumentList;
 import parser.CommandParser;
@@ -40,10 +41,16 @@ public class ReserveCommand extends Command {
                 reserveNil(instrumentList, indice);
             }
             ui.printInstrumentList(instrumentList.getList());
+        } catch (NumberFormatException e) {
+            throw new IncorrectDescriptionException("""
+                    Invalid reserve instrument, please follow\s
+                    reserve INSTRUMENT_NUMBER\s
+                    OR\s
+                    reserve INSTRUMENT_NUMBER from: START_DATE to: END_DATE""");
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
-    }
+   }
 
     private static void reserveNil(InstrumentList instrumentList, int indice) {
         try {

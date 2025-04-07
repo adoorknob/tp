@@ -120,8 +120,12 @@ public class InstrumentList {
 
             LocalDate prevTo = instToRent.getRentedTo();
 
-            if (to.isBefore(prevTo)) {
+            if (prevTo != null && to.isBefore(prevTo)) {
                 throw new InvalidExtendDateException("Invalid date: ");
+            }
+
+            if (to.isBefore(LocalDate.now().minusDays(1))) {
+                throw new InvalidExtendDateException("Please set a date after the current date.\n");
             }
 
             System.out.println("Extending reservation of instrument: " + instToRent.name
@@ -129,7 +133,7 @@ public class InstrumentList {
 
             instToRent.rentTo(to);
         } catch (Exception | AssertionError e) {
-            System.out.println(e.getMessage());
+            throw new IncorrectReserveInstrumentException(e.getMessage());
         }
     }
 

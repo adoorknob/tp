@@ -69,7 +69,7 @@ public class ListCommand extends Command {
         String[] parts = this.name.split("by: ", 3);
         if (parts.length != 2) {
             throw new EmptyInstrumentListException("Incorrect syntax. " +
-                    "Please follow --> filter by: [FILTER] [SEARCH_TERM]");
+                    "Please follow --> filter by: FILTER SEARCH_TERM");
         }
         return parts;
     }
