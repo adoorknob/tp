@@ -9,37 +9,39 @@
 1. [Quick Start](#quick-start)
 2. [Command summary](#command-summary)
 3. [Features](#features)
-    + [Instrument Commands](#instrument-commands)
-    + [`list` - Listing all instruments](#list-instruments:-list)
-    + [`list stock` - Listing instrument stock quantities](#list-stock---listing-instrument-stock-quantities)
-    + [`list filter by:` - Filtering instruments](#list-filter-by---filtering-instruments)
-    + [`list help` - Listing all list commands](#list-help---listing-all-list-commands)
-    + [`add` - Adding an instrument](#add---adding-an-instrument)
-    + [`delete` - Deleting an instrument](#delete---deleting-an-instrument)
-    + [`reserve` - Reserving an instrument](#reserve---reserving-an-instrument)
-    + [`reserve with date` - Reserving with date range](#reserve-with-date---reserving-with-date-range)
-    + [`extend` - Extending a reservation](#extend---extending-a-reservation)
-    + [`return` - Returning a reserved instrument](#return---returning-a-reserved-instrument)
++ [Instrument Commands](#instrument-commands)
+  + [`list` - Listing all instruments](#list-instruments---list)
+  + [`list stock` - Listing instrument stock quantities](#list-of-instrument-stocks---list-stock)
+  + [`list filter by:` - Filtering instruments](#filtered-list-of-instruments---list-filter-by)
+  + [`list help` - Listing all list commands](#list-all-list-functionalities---list-help)
+  + [`add` - Adding an instrument](#adding-an-instrument---add)
+  + [`delete` - Deleting an instrument](#deleting-an-instrument---delete)
+  + [`reserve` - Reserving an instrument](#reserving-an-instrument-without-deadline---reserve)
+  + [`reserve with date` - Reserving with date range](#reserving-an-instrument-with-deadline---reserve)
+  + [`extend` - Extending a reservation](#extending-a-reservation---extend)
+  + [`return` - Returning a reserved instrument](#returning-an-instrument---return)
 
-+ [User Commands](#user-commands)
-    + [`user` - Show user command menu](#user---show-user-command-menu)
-    + [`user` - Add a user](#user---add-a-user)
-    + [`user` - Remove a user](#user---remove-a-user)
-    + [`user` - List all users](#user---list-all-users)
-    + [`user` - List instruments for a user](#user---list-instruments-for-a-user)
++ [User Commands](#user-commands---user)
+    + [`user` - Show user command menu](#user-commands---user)
+    + [`user` - Add a user](#user-commands---user)
+    + [`user` - Remove a user](#user-commands---user)
+    + [`user` - List all users](#user-commands---user)
+    + [`user` - List instruments for a user](#user-commands---user)
 
-+ [Recommendation Commands](#recommendation-commands)
-    + [`recommend` - Recommending an instrument](#recommend---recommending-an-instrument)
++ [Recommendation Commands](#recommendation-for-an-instrument---recommend)
+    + [`recommend` - Recommending an instrument](#recommendation-for-an-instrument---recommend)
 
-+ [Finance Commands](#finance-commands)
-    + [`finance help` - Show finance command menu](#finance-help---show-finance-command-menu)
-    + [`finance add` - Add income](#finance-add---add-income)
-    + [`finance sub` - Subtract expense](#finance-sub---subtract-expense)
-    + [`finance get` - Get current balance](#finance-get---get-current-balance)
++ [Finance Commands](#finance-commands---finance)
+    + [`finance help` - Show finance command menu](#finance-commands---finance)
+    + [`finance add` - Add income](#finance-commands---finance)
+    + [`finance sub` - Subtract expense](#finance-commands---finance)
+    + [`finance get` - Get current balance](#finance-commands---finance)
 
 + [Utility Commands](#utility-commands)
-    + [`help` - Viewing all commands](#help---viewing-all-commands)
-    + [`exit` - Exiting the program](#exit---exiting-the-program)
+    + [`help` - Viewing all commands](#list-out-commands---help)
+    + [`exit` - Exiting the program](#exiting-the-program---exit)
++ [Saving the data](#saving-the-data)
++ [Loading the data](#loading-the-data)
 
 4. [FAQ](#faq)
 
@@ -90,86 +92,13 @@
 
 ## Features
 
-### List out Commands: `help`
+## Instrument Commands
 
-Lists all available commands. A brief description for each command is included.
-
-Format: `help`
-
-Example of usage:
-
-`help`
-
-Expected output:
-
-```
-Available Commands:
-help: list all commands
-list: list all instruments
-add: adds a new instrument
-delete: deletes an existing instrument
-reserve: reserves an available instrument
-extend: changes the return date of a reserved instrument
-return: returns a reserved instrument
-user: choose user commands
-recommend: recommends a recommended instrument
-finance: Manage finances: (use help flag to see commands)
-exit: quit SirDukeBox
-```
-
-### Adding an Instrument: `add`
-
-Adds a new instrument to the database.
-
-Format: `add INSTRUMENT_NAME|INSTRUMENT_MODEL|INSTRUMENT_YEAR`
-
-* `INSTRUMENT_NAME` refers to the type of instrument being added (e.g. "Guitar")
-* `INSTRUMENT_MODEL` refers to the brand/model of the specific instrument being added (e.g. "Yamaha")
-* `INSTRUMENT_YEAR` refers to the year of production of the instrument being added (e.g. "1989")
-
-Example of usage:
-
-`add Guitar|Yamaha|1989`
-
-Expected output:
-
-```
-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
-Here is the list of instruments:
-1. Guitar | Yamaha | 1989 |
-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
-Would you like to assign this instrument to a user? [Y/N]
-```
-
-Adding an instrument allows you to assign it to a `user`
-
-### Deleting an Instrument: `delete`
-
-Deletes an existing instrument from the database.
-
-Format: `delete INSTRUMENT_NUMBER`
-
-* `INSTRUMENT_NUMBER` refers to the number assigned to the
-  particular instrument. Use `list` to view each instrument's `INSTRUMENT_NUMBER`
-
-Example of usage:
-
-```delete 1```
-
-Expected output:
-
-```
-Deleting instrument: Guitar | Yamaha | 1989 |
-Now you have 0 instruments
-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
-Removed instrument [Guitar | Yamaha | 1989 | ] from user [Kash]
-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
-```
 ### Listing Features
 
 `SirDukeBox` provides several listing functionalities to help navigate the `SirDukeBox` inventory more easily.
 
-### List Instruments: `list`
+### List Instruments - `list`
 
 Lists instruments stored in the database according to their `INSTRUMENT_NUMBER`
 
@@ -194,7 +123,7 @@ Here is the list of instruments:
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 ```
 
-### List of Instrument Stocks: `list stock`
+### List of Instrument Stocks - `list stock`
 
 Lists the total, rented and available quantity for all instruments in the database according to their INSTRUMENT_NAME
 
@@ -216,7 +145,7 @@ Here is the remaining stock of instruments:
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 ```
 
-### Filtered List of Instruments: `list filter by:`
+### Filtered List of Instruments - `list filter by:`
 
 Lists the relevant instruments according to the `FILTER` and `SEARCH_TERM` provided by the user.
 
@@ -249,13 +178,13 @@ Here is the list of instruments:
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 ```
 
-### List all `list` functionalities: `list help`
+### List all `list` functionalities - `list help`
 
 Lists all available `list` functionalities. A brief description for each command is included.
 
 Format: `list help`
 
-Expected output: 
+Expected output:
 ```
 list help
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
@@ -276,7 +205,57 @@ FILTER: available (SEARCH_TERM is not required)
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 ```
 
-### Reserving an Instrument (without deadline): `reserve`
+
+### Adding an Instrument - `add`
+
+Adds a new instrument to the database.
+
+Format: `add INSTRUMENT_NAME|INSTRUMENT_MODEL|INSTRUMENT_YEAR`
+
+* `INSTRUMENT_NAME` refers to the type of instrument being added (e.g. "Guitar")
+* `INSTRUMENT_MODEL` refers to the brand/model of the specific instrument being added (e.g. "Yamaha")
+* `INSTRUMENT_YEAR` refers to the year of production of the instrument being added (e.g. "1989")
+
+Example of usage:
+
+`add Guitar|Yamaha|1989`
+
+Expected output:
+
+```
+*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
+Here is the list of instruments:
+1. Guitar | Yamaha | 1989 |
+*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
+Would you like to assign this instrument to a user? [Y/N]
+```
+
+Adding an instrument allows you to assign it to a `user`
+
+### Deleting an Instrument - `delete`
+
+Deletes an existing instrument from the database.
+
+Format: `delete INSTRUMENT_NUMBER`
+
+* `INSTRUMENT_NUMBER` refers to the number assigned to the
+  particular instrument. Use `list` to view each instrument's `INSTRUMENT_NUMBER`
+
+Example of usage:
+
+```delete 1```
+
+Expected output:
+
+```
+Deleting instrument: Guitar | Yamaha | 1989 |
+Now you have 0 instruments
+*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
+Removed instrument [Guitar | Yamaha | 1989 | ] from user [Kash]
+*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
+```
+
+### Reserving an Instrument (without deadline) - `reserve`
 
 Reserves an unreserved instrument in the database.
 
@@ -307,7 +286,7 @@ Here is the list of instruments:
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 ```
 
-### Reserving an Instrument (with deadline): `reserve`
+### Reserving an Instrument (with deadline) - `reserve`
 
 Reserves an unreserved instrument in the database from a specified `START_DATE` to a specified `END_DATE`.
 
@@ -338,7 +317,7 @@ Here is the list of instruments:
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 ```
 
-### Extending a Reservation: `extend`
+### Extending a Reservation - `extend`
 
 Extends the reservation period of a reserved instrument
 
@@ -369,7 +348,7 @@ Here is the list of instruments:
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 ```
 
-### Returning an Instrument: `return`
+### Returning an Instrument - `return`
 
 Returns a reserved instrument
 
@@ -398,7 +377,7 @@ Here is the list of instruments:
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 ```
 
-### User commands
+### User commands - `user`
 
 User will bring up a list of commands that pertains to users:
 
@@ -466,7 +445,7 @@ Expected output:
 List is empty, let's add some instruments :)
 ```
 
-### Recommendation for an instrument: `recommend`
+### Recommendation for an instrument - `recommend`
 
 Recommends an instrument from existing instrument list/inventory that is popular and not rented
 
@@ -488,7 +467,7 @@ Here is our recommendation:
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 ```
 
-### Finance commands
+### Finance commands - `finance`
 
 Finance commands pertain to managing the finances related to instruments
 
@@ -509,18 +488,82 @@ Input:
 finance add: 50
 ```
 
-### Exiting the Program: `exit`
+
+
+### List out Commands - `help`
+
+Lists all available commands. A brief description for each command is included.
+
+Format: `help`
+
+Example of usage:
+
+`help`
+
+Expected output:
+
+```
+Available Commands:
+help: list all commands
+list: list all instruments
+add: adds a new instrument
+delete: deletes an existing instrument
+reserve: reserves an available instrument
+extend: changes the return date of a reserved instrument
+return: returns a reserved instrument
+user: choose user commands
+recommend: recommends a recommended instrument
+finance: Manage finances: (use help flag to see commands)
+exit: quit SirDukeBox
+```
+
+
+### Exiting the Program - `exit`
 
 Exits the program
 
 Format: `exit`
 
-### Saving the data
+## Saving the data
 
-SirDukeBox data are saved automatically as .txt files in the same directory as the duke.jar file.  
+SirDukeBox data are saved automatically as .txt files in the same directory as the `sirDukeBox.jar` file.  
 The files are saved as `SirDukeBox.txt` and `DukeFinance.txt`
+
+## Loading the data
+
+Existing SirDukeBox data (from a previous session) are loaded automatically upon start up
+
 > NOTE: Any changes made to the .txt files outside of the
 > functionalities of SirDukeBox (e.g. editing the .txt file manually in notepad)
 > may render its format invalid. This may result in `SirDukeBox` being unable
-> to load an existing .txt file 
+> to load an existing .txt file
+
+
+## FAQ
+
+How do I transfer my data to another computer?
+
+> Having installed the app in the other computer, overwrite the empty data files created 
+> (`SirDukeBox.txt` and `DukeFinance.txt`) with the existing files that contains the data from your 
+> original computer. 
+
+Should I edit the save files manually?
+
+> SirDukeBox save files are not meant to be edited manually. Editing the save files manually in a 
+> text editor runs the risk of corrupting the existing data, after which SirDukeBox may be unable to 
+> load the file upon start up.
+
+Can I `add` instruments of the same `INSTRUMENT_NAME`, `INSTRUMENT_MODEL` and `INSTRUMENT_YEAR`?
+
+> Yes, in the event that you have two identical instruments, SirDukeBox allows duplicate entries 
+> of instruments with the same `INSTRUMENT_NAME`, `INSTRUMENT_MODEL` and `INSTRUMENT_YEAR`.
+
+Can I `return` a reserved instrument before its `START_DATE`?
+
+> No, SirDukeBox requires that instruments must be rented for at least one day from its `START-DATE`. 
+> If the `START_DATE` has yet to pass, it is assumed that the instrument has not been loaned out for
+> a reservation yet. 
+
+
+
 
