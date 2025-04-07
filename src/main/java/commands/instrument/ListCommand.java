@@ -9,6 +9,8 @@ import user.UserUtils;
 import finance.FinanceManager;
 import utils.CasingStandardiser;
 
+import java.util.regex.PatternSyntaxException;
+
 import static ui.Ui.TEXTBORDER;
 
 public class ListCommand extends Command {
@@ -51,17 +53,25 @@ public class ListCommand extends Command {
                 ui.printStockList(instrumentList.getList());
                 break;
             case FILTER:
-                String[] parts = this.name.split("by: ", 3);
+                String[] parts = getFilter();
                 searchByFilter(instrumentList, ui, parts);
                 break;
             default:
                 System.out.println("The specified subcommand does not exist.");
                 System.out.println("use `list help` to view available subcommands for `list`");
             }
-
         } catch (EmptyInstrumentListException m) {
             throw m;
         }
+    }
+
+    private String[] getFilter() {
+        String[] parts = this.name.split("by: ", 3);
+        if (parts.length != 2) {
+            throw new EmptyInstrumentListException("Incorrect syntax. " +
+                    "Please follow --> filter by: [FILTER] [SEARCH_TERM]");
+        }
+        return parts;
     }
 
     public void searchByFilter(InstrumentList instrumentList, Ui ui, String[] parts) {
