@@ -4,17 +4,17 @@
 * **[Design](#design)**
     * [Architecture](#architecture)
 * **[Implementation](#implementation)**
-    * Logic Component
-    * UI Component
-    * Parser Component
-    * Command Component
-    * Storage Component
+    * [Logic Component](#sirdukebox-logic-component)
+    * [UI Component](#ui-component)
+    * [Parser Component](#parser-component)
+    * [Command Component](#command-component)
+    * [Storage Component](#storage-component)
 * **[Appendix:Requirements](#appendix-requirements)**
-    * Product scope
-    * User stories
-    * Use cases
-    * Non-Functional Requirements
-    * Glossary
+    * [Product scope](#product-scope)
+    * [User stories](#user-stories)
+    * [Use cases](#use-cases)
+    * [Non-Functional Requirements](#non-functional-requirements)
+    * [Glossary](#glossary)
 * **[Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)**
 
 * * *
@@ -125,7 +125,8 @@ implementation simpifies extension and maintenance across the codebase.
 Given below is an example usage scenario of the `AddInstrumentCommand` class and how the add instrument mechanism
 behaves at each step.
 
-**Step 1**: The user launches the application for the first time. `runSirDukeBox()` will be called and the user will then be
+**Step 1**: The user launches the application for the first time. `runSirDukeBox()` will be called and the user will
+then be
 prompted for an input
 
 **Step 2**: The user will then add an instrument using the `add` command word
@@ -139,7 +140,6 @@ user input
 added to
 the `instrumentList`,
 a print of the `instrumentList` will occur last.
-
 
 ### Storage component
 
@@ -156,10 +156,12 @@ The `Storage` component,
 ![StorageSequenceDiagram](uml-diagrams/storage/StorageSequenceDiagram.png)
 
 The above _sequence diagram_ shows a summary of how data is
-1. added into the current session at the start, and 
+
+1. added into the current session at the start, and
 2. saved to the `data/SirDukeBox.txt` file at the end of the program
 
 * * *
+
 ### Other notable classes
 
 **`FinanceManager`**
@@ -182,29 +184,34 @@ The `Finance Manager` component,
 **`User`, `UserList`, and `UserUtils`**
 
 `User`
+
 * Represents a user that the rental owner wants to keep track of
 
 `UserList`
+
 * Represents a list of `User`s
 
 `UserUtils`
+
 * Common methods used to implement the `User` and `UserList` feature
 
 ![UseClassDiagram](uml-diagrams/user/UserClassDiagram.png)
 
 The _class diagram_ above shows how `User`, `UserList`, `UserUtils` and `Ui` are related.
-`SirDukeBox` functionality typically calls methods from `UserUtils`, which handles the interaction between `UserList` and `Ui`
+`SirDukeBox` functionality typically calls methods from `UserUtils`, which handles the interaction between `UserList`
+and `Ui`
 
 ![UserSequenceDiagram](uml-diagrams/user/UserSequenceDiagram.png)
 
-The _sequence diagram_ above shows the process of adding a user to the session when an instrument is added. 
+The _sequence diagram_ above shows the process of adding a user to the session when an instrument is added.
 `queryAndAssignUser()` is called to:
+
 1. Query if the instrument should be assigned to a user
-   - If `isAssigned`, move to step 2
-   - `else`, assign the instrument to `Unassigned` user and end
+    - If `isAssigned`, move to step 2
+    - `else`, assign the instrument to `Unassigned` user and end
 2. Query if the user to assign the instrument to already exists (if `userID != 0`)
-   - If user does not exist (`userID == 0`), create a new user
-   - If user exists, assign the instrument to the existing user
+    - If user does not exist (`userID == 0`), create a new user
+    - If user exists, assign the instrument to the existing user
 
 **`Scheduler`**
 
@@ -296,7 +303,8 @@ Available Commands:
 7. `return`: returns a reserved instrument
 8. `user`: choose user commands
 9. `recommend`: recommends a recommended instrument
-10. `exit`: quit SirDukeBox
+10. `finance`: Manage finances: (use help flag to see commands)
+11. `exit`: quit SirDukeBox
 
 Please refer to our UserGuide for more details on each command.
 

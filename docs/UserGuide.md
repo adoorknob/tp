@@ -9,17 +9,18 @@
 1. [Quick Start](#quick-start)
 2. [Command summary](#command-summary)
 3. [Features](#features)
+
 + [Instrument Commands](#instrument-commands)
-  + [`list` - Listing all instruments](#list-instruments---list)
-  + [`list stock` - Listing instrument stock quantities](#list-of-instrument-stocks---list-stock)
-  + [`list filter by:` - Filtering instruments](#filtered-list-of-instruments---list-filter-by)
-  + [`list help` - Listing all list commands](#list-all-list-functionalities---list-help)
-  + [`add` - Adding an instrument](#adding-an-instrument---add)
-  + [`delete` - Deleting an instrument](#deleting-an-instrument---delete)
-  + [`reserve` - Reserving an instrument](#reserving-an-instrument-without-deadline---reserve)
-  + [`reserve with date` - Reserving with date range](#reserving-an-instrument-with-deadline---reserve)
-  + [`extend` - Extending a reservation](#extending-a-reservation---extend)
-  + [`return` - Returning a reserved instrument](#returning-an-instrument---return)
+    + [`list` - Listing all instruments](#list-instruments---list)
+    + [`list stock` - Listing instrument stock quantities](#list-of-instrument-stocks---list-stock)
+    + [`list filter by:` - Filtering instruments](#filtered-list-of-instruments---list-filter-by)
+    + [`list help` - Listing all list commands](#list-all-list-functionalities---list-help)
+    + [`add` - Adding an instrument](#adding-an-instrument---add)
+    + [`delete` - Deleting an instrument](#deleting-an-instrument---delete)
+    + [`reserve` - Reserving an instrument](#reserving-an-instrument-without-deadline---reserve)
+    + [`reserve with date` - Reserving with date range](#reserving-an-instrument-with-deadline---reserve)
+    + [`extend` - Extending a reservation](#extending-a-reservation---extend)
+    + [`return` - Returning a reserved instrument](#returning-an-instrument---return)
 
 + [User Commands](#user-commands---user)
     + [`user` - Show user command menu](#user-commands---user)
@@ -45,7 +46,6 @@
 
 4. [FAQ](#faq)
 
-
 ## Quick Start
 
 1. Ensure that you have Java 17 or above installed.
@@ -62,31 +62,31 @@
 
 ## Command Summary
 
-|                Action                 |                            Format                             |
-|:-------------------------------------:|:--------------------------------------------------------------:|
-|           List out Commands           | `help`                                                         |
-|            Add Instrument             | `add INSTRUMENT_NAME\|INSTRUMENT_MODEL\|INSTRUMENT_YEAR`       |
-|           Delete Instrument           | `delete INSTRUMENT_NUMBER`                                     |
-|           List Instruments            | `list`                                                         |
-|        List Instrument Stocks         | `list stock`                                                   |
-|     Filtered List of Instruments      | `list filter by: FILTER SEARCH_TERM`                           |
-|       List All `list` Features        | `list help`                                                    |
-| Reserve Instrument (without deadline) | `reserve INSTRUMENT_NUMBER`                                    |
-|  Reserve Instrument (with deadline)   | `reserve INSTRUMENT_NUMBER from: START_DATE to: END_DATE`      |
-|          Extend Reservation           | `extend INSTRUMENT_NUMBER to: END_DATE`                        |
-|           Return Instrument           | `return INSTRUMENT_NUMBER`                                     |
-|          User Commands Menu           | `user`                                                         |
-|         Recommend Instrument          | `recommend INSTRUMENT_NAME`                                    |
-|         Finance Commands Menu         | `finance`                                                      |
-|             Exit Program              | `exit`                                                         |
+|                Action                 |                          Format                           |
+|:-------------------------------------:|:---------------------------------------------------------:|
+|           List out Commands           |                          `help`                           |
+|            Add Instrument             | `add INSTRUMENT_NAME\|INSTRUMENT_MODEL\|INSTRUMENT_YEAR`  |
+|           Delete Instrument           |                `delete INSTRUMENT_NUMBER`                 |
+|           List Instruments            |                          `list`                           |
+|        List Instrument Stocks         |                       `list stock`                        |
+|     Filtered List of Instruments      |           `list filter by: FILTER SEARCH_TERM`            |
+|       List All `list` Features        |                        `list help`                        |
+| Reserve Instrument (without deadline) |                `reserve INSTRUMENT_NUMBER`                |
+|  Reserve Instrument (with deadline)   | `reserve INSTRUMENT_NUMBER from: START_DATE to: END_DATE` |
+|          Extend Reservation           |          `extend INSTRUMENT_NUMBER to: END_DATE`          |
+|           Return Instrument           |                `return INSTRUMENT_NUMBER`                 |
+|          User Commands Menu           |                          `user`                           |
+|         Recommend Instrument          |                `recommend INSTRUMENT_NAME`                |
+|         Finance Commands Menu         |                         `finance`                         |
+|             Exit Program              |                          `exit`                           |
 
 > Notes about the command format:
 > + Words in `UPPER_CASE` are the parameters to be supplied by the user.
 > > e.g. in `return INSTRUMENT_NUMBER`, `INSTRUMENT_NUMBER` is a parameter that can be used as `return 2`.
 > + `START_DATE`s and `END_DATE`s should be input in the format `dd/MM/yyyy`.
 > > e.g. `extend 2 to: 07/08/2025` extends the deadline for reservation of instrument 2 to 7 August 2025.
-> + Instruments that have been reserved prior cannot be reserved again. 
-> + Instruments that are not currently reserved cannot be returned. 
+> + Instruments that have been reserved prior cannot be reserved again.
+> + Instruments that are not currently reserved cannot be returned.
 > + `INSTRUMENT_NUMBER` can be obtained by using `list`.
 > + By default, all newly added instruments are not reserved.
 
@@ -185,6 +185,7 @@ Lists all available `list` functionalities. A brief description for each command
 Format: `list help`
 
 Expected output:
+
 ```
 list help
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
@@ -204,7 +205,6 @@ FILTER: reserved (SEARCH_TERM is not required)
 FILTER: available (SEARCH_TERM is not required)
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 ```
-
 
 ### Adding an Instrument - `add`
 
@@ -264,7 +264,8 @@ Format: `reserve INSTRUMENT_NUMBER`
 * `INSTRUMENT_NUMBER` refers to the number assigned to the
   particular instrument. Use `list` to view each instrument's `INSTRUMENT_NUMBER`
 * `SirDukeBox` will set the `START_DATE`as today's date
-* * `START_DATE` refers to the date at which the reservation commences
+*
+    * `START_DATE` refers to the date at which the reservation commences
 
 Example of usage:
 
@@ -388,28 +389,33 @@ User will bring up a list of commands that pertains to users:
    ...which is selected by inputting the index of the command and following onscreen instructions
 
 For option `4`, the user will be able to choose from 2 lists:
+
 1. `Rental History`
-   * This is the list of all instruments that have been added to the user during the current session (including deleted instruments)
+    * This is the list of all instruments that have been added to the user during the current session (including deleted
+      instruments)
 2. `Currently Instruments`
-   * This is the list of instruments still allocated to the user (modified after deleting)
+    * This is the list of instruments still allocated to the user (modified after deleting)
 
 For example, if the current list of instruments assigned to the user is:
+
 ```
 1. Guitar | Yamaha | 2000
 2. Piano | Yamaha | 2000
 ```
+
 ...and `delete 2` is inputted,
-`CurrentInstruments` will be: 
+`CurrentInstruments` will be:
+
 ```
 1. Guitar | Yamaha | 2000
 ```
+
 ...while `RentalHistory` will be:
+
 ```
 1. Guitar | Yamaha | 2000
 2. Piano | Yamaha | 2000
 ```
-
-
 
 **Example of usage:** \
 Input:
@@ -469,13 +475,16 @@ Input:
 ```
 
 Expected output:
+
 ```
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 Here is the list of instruments:
 1. Piano | Yamaha | 2000 | 
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 ```
-...or if list is empty: 
+
+...or if list is empty:
+
 ```
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 This list is empty :(
@@ -525,8 +534,6 @@ Input:
 finance add: 50
 ```
 
-
-
 ### List out Commands - `help`
 
 Lists all available commands. A brief description for each command is included.
@@ -554,7 +561,6 @@ finance: Manage finances: (use help flag to see commands)
 exit: quit SirDukeBox
 ```
 
-
 ### Exiting the Program - `exit`
 
 Exits the program
@@ -575,29 +581,28 @@ Existing SirDukeBox data (from a previous session) are loaded automatically upon
 > may render its format invalid. This may result in `SirDukeBox` being unable
 > to load an existing .txt file
 
-
 ## FAQ
 
 How do I transfer my data to another computer?
 
-> Having installed the app in the other computer, overwrite the empty data files created 
-> (`SirDukeBox.txt` and `DukeFinance.txt`) with the existing files that contains the data from your 
-> original computer. 
+> Having installed the app in the other computer, overwrite the empty data files created
+> (`SirDukeBox.txt` and `DukeFinance.txt`) with the existing files that contains the data from your
+> original computer.
 
 Should I edit the save files manually?
 
-> SirDukeBox save files are not meant to be edited manually. Editing the save files manually in a 
-> text editor runs the risk of corrupting the existing data, after which SirDukeBox may be unable to 
+> SirDukeBox save files are not meant to be edited manually. Editing the save files manually in a
+> text editor runs the risk of corrupting the existing data, after which SirDukeBox may be unable to
 > load the file upon start up.
 
 Can I `add` instruments of the same `INSTRUMENT_NAME`, `INSTRUMENT_MODEL` and `INSTRUMENT_YEAR`?
 
-> Yes, in the event that you have two identical instruments, SirDukeBox allows duplicate entries 
+> Yes, in the event that you have two identical instruments, SirDukeBox allows duplicate entries
 > of instruments with the same `INSTRUMENT_NAME`, `INSTRUMENT_MODEL` and `INSTRUMENT_YEAR`.
 
 Can I `return` a reserved instrument before its `START_DATE`?
 
-> No, SirDukeBox requires that instruments must be rented for at least one day from its `START-DATE`. 
+> No, SirDukeBox requires that instruments must be rented for at least one day from its `START-DATE`.
 > If the `START_DATE` has yet to pass, it is assumed that the instrument has not been loaned out for
 > a reservation yet. 
 
