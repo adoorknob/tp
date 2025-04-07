@@ -83,7 +83,7 @@ Created new user: UserName
 Added instrument to user: Guitar | Yamaha | 2000 | 
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 Here is the list of instruments:
-1. Guitar | Yamaha | 2000 | 
+1. Guitar | Yamaha | 2000 |  | Assigned to: UserName
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 Would you like to assign this instrument to a user? [Y/N]
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
@@ -94,16 +94,16 @@ Please select from the following users:
 Added instrument to user: Piano | Yamaha | 2010 | 
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 Here is the list of instruments:
-1. Guitar | Yamaha | 2000 | 
-2. Piano | Yamaha | 2010 | 
+1. Guitar | Yamaha | 2000 |  | Assigned to: UserName
+2. Piano | Yamaha | 2010 |  | Assigned to: UserName
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 Would you like to assign this instrument to a user? [Y/N]
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 Added instrument to user: Flute | Yamaha | 2001 | 
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 Here is the list of instruments:
-1. Guitar | Yamaha | 2000 | 
-2. Piano | Yamaha | 2010 | 
+1. Guitar | Yamaha | 2000 |  | Assigned to: UserName
+2. Piano | Yamaha | 2010 |  | Assigned to: UserName
 3. Flute | Yamaha | 2001 | 
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
