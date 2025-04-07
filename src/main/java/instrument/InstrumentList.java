@@ -97,6 +97,9 @@ public class InstrumentList {
 
             //Increase usage
             instToRent.increaseUsage();
+        } catch (IndexOutOfBoundsException e) {
+            throw new IncorrectReserveInstrumentException("Instrument " + number + " does not exist, " +
+                    "please choose an instrument in the list.");
         } catch (Exception | AssertionError e) {
             throw new RuntimeException(e.getMessage());
         }
