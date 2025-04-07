@@ -2,16 +2,16 @@
 hide circle
 skinparam classAttributeIconSize 0
 class FinanceManager {
-    - long totalCash
+    -  totalCash:long
     --
     + FinanceManager(Ui ui)
-    + void setTotalCash(int totalCash)
-    + long getTotalCash()
-    + void rentalPayment(Instrument instrument, LocalDate to)
-    + void overduePayment(Instrument instrument, LocalDate now)
-    + void inflowPayment(int amount)
-    + void outflowPayment(int amount)
-    + String toFileEntry()
+    + setTotalCash(totalCash:int)
+    + getTotalCash() : long
+    + rentalPayment(instrument:Instrument , to:LocalDate)
+    + overduePayment(instrument:Instrument, now:LocalDate)
+    + inflowPayment(amount:int)
+    + outflowPayment(amount:int)
+    + toFileEntry() : String
 }
 
 class Ui

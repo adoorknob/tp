@@ -1,30 +1,30 @@
 @startuml
 hide footbox
-participant Duke as ":Duke"
-activate Duke
+participant SirDukeBox as ":SirDukeBox"
+activate SirDukeBox
 participant Ui as ":Ui"
 participant Parser as ":Parser"
 
-    Duke -> Ui : getUserInput
+    SirDukeBox -> Ui : getUserInput
     activate Ui
     deactivate Ui
-    Duke -> Parser : getCommand
+    SirDukeBox -> Parser : getCommand
     activate Parser
     Parser -> ":XYZCommand" ** : create
     activate ":XYZCommand"
-    Duke <-- Parser : command object
+    SirDukeBox <-- Parser : command object
     deactivate Parser
-    Duke -> ":XYZCommand" : execute()
+    SirDukeBox -> ":XYZCommand" : execute()
     ":XYZCommand" -> ":Flute" ** : create
     activate ":Flute"
     ":XYZCommand" -> ":InstrumentList" : addInstrument
     activate ":InstrumentList"
     deactivate ":InstrumentList"
-    Duke -> Ui : print acknowledgment
+    SirDukeBox -> Ui : print acknowledgment
     activate Ui
     deactivate Ui
-    Duke -> ":XYZCommand" : isExit()
-    Duke <-- ":XYZCommand" : false
+    SirDukeBox -> ":XYZCommand" : isExit()
+    SirDukeBox <-- ":XYZCommand" : false
     destroy ":XYZCommand"
 
 @enduml
