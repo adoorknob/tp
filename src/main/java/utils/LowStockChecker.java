@@ -22,7 +22,7 @@ public class LowStockChecker {
         Integer rentedCount = (rentCount.get(instName) == null ? 0 : rentCount.get(instName));
         Integer availCount = instCount - rentedCount;
         if (availCount < CRITICAL_QTY) { // critical, must replenish soon
-            return (instName + ": " + RED + availCount + RESET + " available\n") ;
+            return (instName + ": " + RED + availCount + RESET + " available\n");
         } else if (availCount < WARNING_QTY) {
             return (instName + ": " + YELLOW + availCount + RESET + " available\n");
         }
