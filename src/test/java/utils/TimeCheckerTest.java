@@ -10,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TimeCheckerTest {
     private TimeChecker timeChecker;
+
     @BeforeEach
     void setUp() {
         timeChecker = new TimeChecker();
