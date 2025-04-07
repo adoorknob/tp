@@ -5,6 +5,7 @@ import user.User;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 
 public abstract class Instrument {
     private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("d/M/yyyy");
@@ -98,7 +99,8 @@ public abstract class Instrument {
         return name + " | " + model + " | " + year + " | " + (isRented ? "Rented" : "") +
                 (isOverDue ? " | Overdue" : "") +
                 (rentedFrom != null ? " | Rented from: " + rentedFrom.format(DATE_TIME_FORMATTER) : "") +
-                (rentedTo != null ? " | Rented to: " + rentedTo.format(DATE_TIME_FORMATTER) : "");
+                (rentedTo != null ? " | Rented to: " + rentedTo.format(DATE_TIME_FORMATTER) : "") +
+                (!Objects.equals(user.getName(), "Unassigned") ? " | Assigned to: " + user.getName() : "");
     }
 
     public String toFileEntry() {
