@@ -1,6 +1,7 @@
 package commands.instrument;
 
 
+import exceptions.instrument.InvalidDeleteException;
 import instrument.InstrumentList;
 import user.UserUtils;
 import user.UserList;
@@ -13,7 +14,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 class DeleteCommandTest {
@@ -60,10 +61,9 @@ class DeleteCommandTest {
     @Test
     void testInvalidDeleteInstrument() {
         deleteCommand = new DeleteCommand("0");
-        deleteCommand.execute(instrumentList,ui, userUtils, financeManager);
-        String output = outputStreamCaptor.toString().trim();
-        assertTrue(output.contains("Piano"), "Printed list should contain the newly added instrument.");
-
+        assertThrows(InvalidDeleteException.class, () -> {
+            deleteCommand.execute(instrumentList, ui, userUtils, financeManager);
+        });
     }
 
     @Test
