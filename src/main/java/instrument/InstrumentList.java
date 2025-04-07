@@ -58,7 +58,6 @@ public class InstrumentList {
     }
 
     public void reserveInstrument(int number) {
-
         try {
             assert number > 0 && number <= numberOfInstruments : "Instrument number out of bounds: " + number;
 
@@ -78,7 +77,7 @@ public class InstrumentList {
             //Increase Usage
             instToRent.increaseUsage();
         } catch (Exception | AssertionError e) {
-            System.out.println(e.getMessage());
+            throw new IncorrectReserveInstrumentException(e.getMessage());
         }
     }
 
@@ -93,15 +92,13 @@ public class InstrumentList {
             if (instToRent.isRented()) {
                 throw new IncorrectReserveInstrumentException("Instrument is already reserved");
             }
-
-
             instToRent.rent();
             instToRent.rentFromTo(from, to);
 
             //Increase usage
             instToRent.increaseUsage();
         } catch (Exception | AssertionError e) {
-            System.out.println(e.getMessage());
+            throw new IncorrectReserveInstrumentException(e.getMessage());
         }
     }
 
