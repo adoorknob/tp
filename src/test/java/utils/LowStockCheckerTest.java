@@ -82,4 +82,15 @@ public class LowStockCheckerTest {
         assertTrue(output.contains("Flute" + ": " + RED + "1" + RESET + " available"));
     }
 
+    @Test
+    void testZeroStockCheck() {
+        reserveCommand = new ReserveCommand("1");
+        reserveCommand.execute(instrumentList, ui, userUtils, financeManager);
+        LowStockChecker.checkAll(instrumentList.getList());
+        String output = outputStreamCaptor.toString();
+        assertTrue(output.contains("Guitar" + ": " + RED + "0" + RESET + " available"));
+        assertTrue(output.contains("Piano" + ": " + RED + "1" + RESET + " available"));
+        assertTrue(output.contains("Flute" + ": " + RED + "1" + RESET + " available"));
+    }
+
 }
