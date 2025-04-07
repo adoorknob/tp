@@ -48,7 +48,7 @@ public class FinanceManager {
     }
 
     public void inflowPayment(int amount) {
-        if (amount >= 0) {
+        if (amount > 0) {
             totalCash += amount;
         } else {
             throw new IllegalArgumentException("Amount must be greater than zero.");
