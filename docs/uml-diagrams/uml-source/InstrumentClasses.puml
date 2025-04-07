@@ -1,0 +1,15 @@
+@startuml
+hide circle
+skinparam classAttributeIconSize 0
+abstract Instrument as "{abstract} \n Instrument" {
+    + name:String
+    + model:String
+    + year:int
+    --
+    + playInstrument():String
+}
+
+Instrument <|-- Flute
+Instrument <|-- Guitar
+Instrument <|-- Piano
+@enduml

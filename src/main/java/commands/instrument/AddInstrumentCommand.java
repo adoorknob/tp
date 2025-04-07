@@ -4,11 +4,12 @@ import commands.Command;
 import exceptions.instrument.IncorrectAddInstrumentException;
 import exceptions.storage.CorruptStorageException;
 import finance.FinanceManager;
+import instrument.Flute;
+import instrument.Piano;
+import instrument.Guitar;
+import instrument.GenericInstrument;
 import instrument.Instrument;
 import instrument.InstrumentList;
-import instrument.Flute;
-import instrument.Guitar;
-import instrument.Piano;
 import parser.CommandParser;
 
 import ui.Ui;
@@ -115,7 +116,8 @@ public class AddInstrumentCommand extends Command {
                             rentedFrom, rentedTo, usage);
                 break;
             default:
-                System.out.println("invalid instrument");
+                newInstrument = new GenericInstrument(instrument, model, year, isRented, isOverdue,
+                        rentedFrom, rentedTo, usage);
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());

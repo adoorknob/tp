@@ -39,7 +39,7 @@ class FluteTest {
         Flute flute = new Flute("Flute", "Yamaha", 2000);
         flute.rent();
         flute.unrent();
-        assertEquals("Flute | Yamaha | 2000 | ", flute.toString());
+        assertEquals("Flute | Yamaha | 2000", flute.toString());
     }
 
     @Test
