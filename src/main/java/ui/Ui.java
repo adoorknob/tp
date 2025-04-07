@@ -1,6 +1,7 @@
 package ui;
 
 import exceptions.instrument.EmptyInstrumentListException;
+import exceptions.instrument.IncorrectDescriptionException;
 import instrument.Instrument;
 import user.User;
 import user.UserList;
@@ -350,12 +351,16 @@ public class Ui {
 
     public ArrayList<Instrument> filterByYear(ArrayList<Instrument> instruments, String searchTerm) {
         ArrayList<Instrument> filteredInst = new ArrayList<>();
-        for (Instrument inst : instruments) {
-            if (inst.year == Integer.parseInt(searchTerm)) {
-                filteredInst.add(inst);
+        try {
+            for (Instrument inst : instruments) {
+                if (inst.year == Integer.parseInt(searchTerm)) {
+                    filteredInst.add(inst);
+                }
             }
+            return filteredInst;
+        } catch (NumberFormatException e) {
+            throw new IncorrectDescriptionException("Please input a valid year.");
         }
-        return filteredInst;
     }
 
     public ArrayList<Instrument> filterByReserved(ArrayList<Instrument> instruments, boolean status) {
