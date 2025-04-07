@@ -1,6 +1,5 @@
 package seedu.duke;
 
-import exceptions.instrument.IncorrectReserveInstrumentException;
 import instrument.Guitar;
 import instrument.Instrument;
 import instrument.InstrumentList;
@@ -8,7 +7,9 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class InstrumentListTest {
 

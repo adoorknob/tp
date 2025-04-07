@@ -1,7 +1,6 @@
 package user;
 
 import exceptions.user.UserListInitiationException;
-import exceptions.user.UsernameMatchException;
 import instrument.Instrument;
 import instrument.InstrumentList;
 import ui.Ui;
