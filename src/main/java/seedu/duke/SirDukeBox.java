@@ -64,7 +64,8 @@ public class SirDukeBox {
                 isExit = commandObj.isExit();
                 ui.printTextBorder();
             } catch (Exception e) {
-                System.out.println("Invalid Input - " + e.getMessage());
+                System.out.println(e.getMessage());
+                ui.printTextBorder();
             }
         }
 

@@ -46,10 +46,7 @@ public class ReserveCommand extends Command {
                             "from: date must be either today or a date in the future";
                     instrumentList.reserveInstrumentFromTo(indice, from, to);
                 } catch (DateTimeException d) {
-                    System.err.println("Please input a valid date (dd/MM/yyyy).");
-                    return;
-                } catch (Exception | AssertionError e) {
-                    System.err.println(e.getMessage());
+                    System.err.println(d.getMessage());
                     return;
                 }
             } else {
