@@ -16,6 +16,7 @@ public class ListCommand extends Command {
     public static final String FILTER = "filter";
     public static final String RESERVED = "reserved";
     public static final String AVAILABLE = "available";
+    public static final String OVERDUE = "overdue";
     public static final String HELP = "help";
     private CommandParser parser;
 
@@ -71,6 +72,9 @@ public class ListCommand extends Command {
             ui.printFilteredList(instrumentList.getList(), filter, "");
             return;
         case AVAILABLE:
+            ui.printFilteredList(instrumentList.getList(), filter, "");
+            return;
+        case OVERDUE:
             ui.printFilteredList(instrumentList.getList(), filter, "");
             return;
         default:
