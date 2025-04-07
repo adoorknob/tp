@@ -1,3 +1,24 @@
 @startuml
+hide circle
+skinparam classAttributeIconSize 0
+class Storage {
+    + outputText : String
+    - outputFilePath : String
+    - ui : Ui
+    - file : File
+    - userUtils : UserUtils
+    --
+    + Storage(ui:Ui, userUtils:UserUtils, outputFilePath:String)
+    + loadOldFile() : InstrumentList
+    + saveCurrentFile(instrumentList:InstrumentList)
+    - updateOutputText(instrumentList:InstrumentList)
+    - validateFileDirectories()
+    - validateFile()
+    - loadOldEntries()
+    - addEntryToSession(line:String)
+    - addEntryToOutputText(instrumentList:InstrumentList)
+    - writeOutputToFile()
+}
 
+Storage <-- SirDukeBox
 @enduml
