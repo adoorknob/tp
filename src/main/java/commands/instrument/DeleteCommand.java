@@ -1,6 +1,7 @@
 package commands.instrument;
 
 import commands.Command;
+import exceptions.instrument.InvalidDeleteException;
 import instrument.Instrument;
 import instrument.InstrumentList;
 import ui.Ui;
@@ -28,8 +29,7 @@ public class DeleteCommand extends Command {
             deleteInstrumentFromUser(instrument);
             instrumentList.deleteInstrument(instrumentId);
         } catch (Exception | AssertionError f) {
-            System.out.println(f.getMessage());
-            return;
+            throw new InvalidDeleteException(f.getMessage());
         }
         ui.printInstrumentList(instrumentList.getList());
 

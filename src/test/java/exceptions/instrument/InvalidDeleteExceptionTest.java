@@ -13,7 +13,7 @@ class InvalidDeleteExceptionTest {
         InvalidDeleteException exception = new InvalidDeleteException(inputMessage);
 
         // Check if the exception message is exactly as expected
-        String expectedMessage = "Invalid Delete: Instrument ID not found!";
+        String expectedMessage = "Invalid Delete function: " + inputMessage+ "\nUse: delete [integer]";
         assertEquals(expectedMessage, exception.getMessage(), "Exception message should be formatted correctly.");
     }
 

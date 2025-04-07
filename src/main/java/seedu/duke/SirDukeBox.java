@@ -65,6 +65,7 @@ public class SirDukeBox {
                 ui.printTextBorder();
             } catch (Exception e) {
                 System.out.println(e.getMessage());
+                ui.printTextBorder();
             }
         }
 

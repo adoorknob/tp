@@ -1,6 +1,7 @@
 package commands.instrument;
 
 
+import exceptions.instrument.InvalidDeleteException;
 import instrument.InstrumentList;
 import user.UserUtils;
 import user.UserList;
@@ -13,7 +14,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 class DeleteCommandTest {
@@ -39,31 +40,30 @@ class DeleteCommandTest {
         addInstrumentCommand = new AddInstrumentCommand(
                 "Guitar | yamaha | 2011 | false | false | null | null | Unassigned | 0",
                 true);
-        addInstrumentCommand.execute(instrumentList, ui, userUtils, financeManager);
+        addInstrumentCommand.execute(instrumentList,ui, userUtils, financeManager);
         addInstrumentCommand = new AddInstrumentCommand(
                 "Piano | yamaha | 2011 | false | false | null | null | Unassigned | 0",
                 true);
-        addInstrumentCommand.execute(instrumentList, ui, userUtils, financeManager);
+        addInstrumentCommand.execute(instrumentList,ui, userUtils, financeManager);
         addInstrumentCommand = new AddInstrumentCommand(
                 "Flute | yamaha | 2011 | false | false | null | null | Unassigned | 0",
                 true);
-        addInstrumentCommand.execute(instrumentList, ui, userUtils, financeManager);
+        addInstrumentCommand.execute(instrumentList,ui, userUtils, financeManager);
     }
 
     @Test
     void testDeleteInstrument() {
         deleteCommand = new DeleteCommand("1");
-        deleteCommand.execute(instrumentList, ui, userUtils, financeManager);
+        deleteCommand.execute(instrumentList,ui, userUtils, financeManager);
         assertEquals(2, instrumentList.getList().size(), "Instrument list size should increase by 1.");
     }
 
     @Test
     void testInvalidDeleteInstrument() {
         deleteCommand = new DeleteCommand("0");
-        deleteCommand.execute(instrumentList, ui, userUtils, financeManager);
-        String output = outputStreamCaptor.toString().trim();
-        assertTrue(output.contains("Piano"), "Printed list should contain the newly added instrument.");
-
+        assertThrows(InvalidDeleteException.class, () -> {
+            deleteCommand.execute(instrumentList, ui, userUtils, financeManager);
+        });
     }
 
     @Test
