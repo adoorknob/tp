@@ -37,7 +37,7 @@ public class FinanceStorageTest {
 
     @Test
     public void testLoadOldFile_validFilepath_success() {
-        FinanceStorage storage = new FinanceStorage(ui, "src/test/resources/test_file.txt");
+        FinanceStorage storage = new FinanceStorage(ui, "test/test_file.txt");
 
         assertDoesNotThrow(storage::loadOldFile);
     }
