@@ -1,0 +1,39 @@
+@startuml
+hide footbox
+participant SirDukeBox as ":SirDukeBox"
+activate SirDukeBox
+SirDukeBox -> Storage as ":Storage" ** : create()
+activate Storage
+SirDukeBox -> Storage : loadOldFile()
+Storage -> Storage : validateOutputFilepath()
+activate Storage
+deactivate Storage
+note right
+validateFileDirectories() and
+validateFile() left out for brevity
+end note
+Storage -> Storage : loadOldEntries()
+activate Storage
+deactivate Storage
+note right
+addEntryToSession() left out for brevity
+end note
+Storage --> SirDukeBox : instrumentList:InstrumentList
+deactivate Storage
+loop !isExit
+note over SirDukeBox: Rest of program is executed here, \nleft out for brevity. Program ends \nwhen user inputs exit command \n(isExit==true)
+end
+SirDukeBox -> Storage : saveCurrentFile(instrumentList)
+activate Storage
+Storage -> Storage : updateOutputText(instrumentList)
+note right
+addEntryToOutputText(Instrument) left out for brevity
+end note
+activate Storage
+deactivate Storage
+Storage -> Storage : writeOutputToFile()
+activate Storage
+deactivate Storage
+deactivate Storage
+destroy Storage
+@enduml
