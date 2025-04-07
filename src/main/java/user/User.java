@@ -5,6 +5,10 @@ import instrument.Instrument;
 import instrument.InstrumentList;
 import ui.Ui;
 
+/**
+ * Simulates a user that rents instruments.
+ * This class contains the current instruments rented by the User, as well as all the
+ */
 public class User {
     String name;
     InstrumentList instrumentsRentalHistory;
