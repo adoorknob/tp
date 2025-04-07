@@ -4,7 +4,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -22,10 +21,6 @@ public class TimeCheckerTest {
         assertEquals(LocalDate.now().getYear(), year);
     }
 
-//    @Test
-//    void getCurrentTimeTest() {
-//        assertEquals(LocalTime.now().getSecond(), timeChecker.getCurrentTime().getSecond());
-//    }
 
 
 }
