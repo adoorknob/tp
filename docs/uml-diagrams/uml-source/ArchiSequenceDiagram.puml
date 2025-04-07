@@ -15,11 +15,11 @@ participant Parser as ":Parser"
     Duke <-- Parser : command object
     deactivate Parser
     Duke -> ":XYZCommand" : execute()
-    ":XYZCommand" -> ":Flute" **
+    ":XYZCommand" -> ":Flute" ** : create
     activate ":Flute"
-    ":XYZCommand" -> InstrumentList : addInstrument
-    activate InstrumentList
-    deactivate InstrumentList
+    ":XYZCommand" -> ":InstrumentList" : addInstrument
+    activate ":InstrumentList"
+    deactivate ":InstrumentList"
     Duke -> Ui : print acknowledgment
     activate Ui
     deactivate Ui

@@ -51,7 +51,7 @@ charge of the app launch and shut down.
 * Populates the `Duke_Data` which includes the Instrument Data, Finance Data and User Data.
 * At shut down, it shuts down the other components and invokes cleanup methods where necessary.
 
-The bulk of the app’s work is done by the following four components:
+The bulk of the app’s work is done by the following five components:
 
 * **`Duke`**: The logic manager of the app.
 * **`UI`**: The UI of the App.
