@@ -1,5 +1,7 @@
 @startuml
-abstract class Command {
+hide circle
+skinparam classAttributeIconSize 0
+abstract "{abstract} \n Command" {
 +name: String
 +execute(InstrumentList, Ui, UserUtils, FinanceManager) : void
 +isExit(): boolean
@@ -7,7 +9,7 @@ abstract class Command {
 
 class XYZCommand
 
-Command <|-- XYZCommand
+ "{abstract} \n Command"<|-- XYZCommand
 
 note "XYZCommand acts as a placeholder for all *Command classes" as N1
 
