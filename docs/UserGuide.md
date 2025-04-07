@@ -251,10 +251,9 @@ Example of usage:
 Expected output:
 
 ```
-Deleting instrument: Guitar | Yamaha | 1989 
+Removed instrument [Guitar | Yamaha | 1989 | Assigned to: Kash] from user [Kash]
+Deleting instrument: Guitar | Yamaha | 1989 | Assigned to: Kash
 Now you have 0 instruments
-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
-Removed instrument [Guitar | Yamaha | 1989] from user [Kash]
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 ```
 
@@ -513,7 +512,6 @@ Expected output:
 Here is our recommendation: 
 5. Guitar | Fender | 2020  
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 ```
 
 ### Finance commands - `finance`
@@ -521,8 +519,8 @@ Here is our recommendation:
 Finance commands pertain to managing the finances related to instruments
 
 1. List all finance commands `help`
-2. Track incoming payment `add`
-2. Track outgoing payment `sub`
+2. Track incoming payment `add: AMOUNT`
+2. Track outgoing payment `subtract: AMOUNT`
 3. Get current balance `get`
 
 ...which is selected by inputting the index of the command and following onscreen instructions
@@ -535,6 +533,14 @@ Input:
 
 ```
 finance add: 50
+```
+
+Expected output:
+```
+Received payment of: 50
+*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
+Total Amount is 14463850
+*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 ```
 
 ### List out Commands - `help`

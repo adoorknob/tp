@@ -110,8 +110,7 @@ public class Ui {
             `help` help
             `add:` add inflow payment
             `subtract:` subtract outflow payment
-            `get` get total cash
-            """;
+            `get` get total cash""";
 
     private static final String LISTSUBCOMMANDLIST = """
             Available Subcommands:
@@ -415,7 +414,7 @@ public class Ui {
         }
         printSelectUserFromListWithCreateOption(userList.getUsers());
         int maxValue = userList.getUserCount();
-        return getUserInputNumber(1, maxValue);
+        return getUserInputNumber(0, maxValue);
     }
 
     public int getUserInputNumber(int minValue, int maxValue) {

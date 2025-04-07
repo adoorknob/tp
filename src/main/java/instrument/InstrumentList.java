@@ -44,7 +44,6 @@ public class InstrumentList {
 
     public void deleteInstrument(int number) {
         try {
-
             assert number > 0 && number <= numberOfInstruments : "Instrument number out of bounds: " + number;
             assert !instruments.isEmpty() : "No instruments to delete";
             System.out.println("Deleting instrument: " + instruments.get(number - 1));
@@ -52,6 +51,17 @@ public class InstrumentList {
             numberOfInstruments--;
             System.out.println("Now you have " + numberOfInstruments + " instruments");
 
+        } catch (Exception | AssertionError e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void deleteInstrumentSilent(int number) {
+        try {
+            assert number > 0 && number <= numberOfInstruments : "Instrument number out of bounds: " + number;
+            assert !instruments.isEmpty() : "No instruments to delete";
+            instruments.remove(number - 1);
+            numberOfInstruments--;
         } catch (Exception | AssertionError e) {
             System.out.println(e.getMessage());
         }

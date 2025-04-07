@@ -53,7 +53,7 @@ public class User {
     public void removeInstrument(Instrument instrument) {
         for (int i = 0; i < instrumentsCurrentlyRented.getList().size(); i++) {
             if (instrument.equals(instrumentsCurrentlyRented.getList().get(i))) {
-                instrumentsCurrentlyRented.deleteInstrument(i + 1);
+                instrumentsCurrentlyRented.deleteInstrumentSilent(i + 1);
                 ui.printRemovedInstrumentFromUser(instrument, this);
                 return;
             }
