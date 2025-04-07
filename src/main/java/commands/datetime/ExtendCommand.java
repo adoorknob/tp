@@ -1,9 +1,7 @@
 package commands.datetime;
 
 import commands.Command;
-import exceptions.instrument.EmptyInstrumentListException;
 import exceptions.instrument.IncorrectDescriptionException;
-import exceptions.instrument.InvalidExtendDateException;
 import instrument.InstrumentList;
 import parser.CommandParser;
 import ui.Ui;

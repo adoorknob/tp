@@ -21,7 +21,7 @@ public class ReturnCommand extends Command {
             int number = Integer.parseInt(this.name);
             Instrument instrument = instrumentList.getInstrument(Integer.parseInt(this.name));
 
-            if (instrument != null ) {
+            if (instrument != null) {
                 financeManager.rentalPayment(instrument, LocalDate.now());
                 if (instrument.isOverDue()) {
                     financeManager.overduePayment(instrument, LocalDate.now());

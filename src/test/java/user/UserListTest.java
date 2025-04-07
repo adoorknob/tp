@@ -17,7 +17,7 @@ public class UserListTest {
 
     @Test
     void addUser_validUser() {
-        UserList userList = new UserList (new Ui());
+        UserList userList = new UserList(new Ui());
         User user = new User(null, userList);
         userList.addUser(user);
         assertEquals(1, userList.getUserCount(), "Users should be added to the list");
@@ -25,7 +25,7 @@ public class UserListTest {
 
     @Test
     void removeUser_validUser() {
-        UserList userList = new UserList (new Ui());
+        UserList userList = new UserList(new Ui());
         User user = new User(null, userList);
         userList.addUser(user);
         userList.removeUserById(1);
@@ -34,7 +34,7 @@ public class UserListTest {
 
     @Test
     void getGuestCount_assertEquals() {
-        UserList userList = new UserList (new Ui());
+        UserList userList = new UserList(new Ui());
         User user1 = new User(null, userList);
         User user2 = new User(null, userList);
         userList.addUser(user1);
@@ -44,7 +44,7 @@ public class UserListTest {
 
     @Test
     void getUserByIndex_validUser() {
-        UserList userList = new UserList (new Ui());
+        UserList userList = new UserList(new Ui());
         String userName = "TestUser";
         User user1 = new User(null, userList, userName);
         userList.addUser(user1);

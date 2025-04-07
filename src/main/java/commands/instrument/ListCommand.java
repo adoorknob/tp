@@ -9,8 +9,6 @@ import user.UserUtils;
 import finance.FinanceManager;
 import utils.CasingStandardiser;
 
-import java.util.regex.PatternSyntaxException;
-
 import static ui.Ui.TEXTBORDER;
 
 public class ListCommand extends Command {

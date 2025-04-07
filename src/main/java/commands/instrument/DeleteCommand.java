@@ -16,9 +16,10 @@ public class DeleteCommand extends Command {
 
     /**
      * Delete instrument from instrument List
+     *
      * @param instrumentList instrument list initialised in main
-     * @param ui UI object initialised in main
-     * @param userUtils User utilities to manage user list
+     * @param ui             UI object initialised in main
+     * @param userUtils      User utilities to manage user list
      * @param financeManager Finance manager used to manage finance
      */
     @Override
@@ -41,6 +42,7 @@ public class DeleteCommand extends Command {
 
     /**
      * Deletes instrument from user list
+     *
      * @param instrument
      */
     private void deleteInstrumentFromUser(Instrument instrument) {
@@ -53,7 +55,7 @@ public class DeleteCommand extends Command {
     }
 
     @Override
-        public boolean isExit() {
+    public boolean isExit() {
         return false;
     }
 }

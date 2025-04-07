@@ -28,7 +28,7 @@ public class InstrumentList {
         try {
             assert instrument != null;
             assert instrument.year >= minYEAR && instrument.year <= currYEAR
-                    : "Invalid year (" + minYEAR + " to " + currYEAR + ") ->"  + instrument.year;
+                    : "Invalid year (" + minYEAR + " to " + currYEAR + ") ->" + instrument.year;
 
             if (instrument.name.isBlank() || instrument.model.isBlank()) {
                 throw new IncorrectDescriptionException("No name or model found");

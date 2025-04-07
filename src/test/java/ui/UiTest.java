@@ -92,24 +92,23 @@ public class UiTest {
     }
 
 
-
     @Test
     void testPrintCommandList() {
         ui.printCommandList();
         String output = outputStream.toString();
         assertTrue(output.contains("""
-            Available Commands:
-            help: list all commands
-            list: list all instruments
-            add: adds a new instrument
-            delete: deletes an existing instrument
-            reserve: reserves an available instrument
-            extend: changes the return date of a reserved instrument
-            return: returns a reserved instrument
-            user: choose user commands
-            recommend: recommends a recommended instrument
-            finance: Manage finances: (use help flag to see commands)
-            exit: quit SirDukeBox"""));
+                Available Commands:
+                help: list all commands
+                list: list all instruments
+                add: adds a new instrument
+                delete: deletes an existing instrument
+                reserve: reserves an available instrument
+                extend: changes the return date of a reserved instrument
+                return: returns a reserved instrument
+                user: choose user commands
+                recommend: recommends a recommended instrument
+                finance: Manage finances: (use help flag to see commands)
+                exit: quit SirDukeBox"""));
 
     }
 
@@ -118,19 +117,19 @@ public class UiTest {
         ui.printListSubcommandList();
         String output = outputStream.toString();
         assertTrue(output.contains("""
-            Available Subcommands:
-            
-            help: list all subcommands for `list`
-            stock: list total, available and reserved quantities for each instrument
-            filter by <FILTER> <SEARCH_TERM>: list instruments according to FILTER and SEARCH_TERM
-            
-            Available FILTERs and SEARCHTERMs: 
-            
-            FILTER: name, SEARCH_TERM: INSTRUMENT_NAME
-            FILTER: model, SEARCH_TERM: INSTRUMENT_MODEL
-            FILTER: year, SEARCH_TERM: INSTRUMENT_YEAR
-            FILTER: reserved (SEARCH_TERM is not required)
-            FILTER: available (SEARCH_TERM is not required)"""));
+                Available Subcommands:
+                
+                help: list all subcommands for `list`
+                stock: list total, available and reserved quantities for each instrument
+                filter by <FILTER> <SEARCH_TERM>: list instruments according to FILTER and SEARCH_TERM
+                
+                Available FILTERs and SEARCHTERMs: 
+                
+                FILTER: name, SEARCH_TERM: INSTRUMENT_NAME
+                FILTER: model, SEARCH_TERM: INSTRUMENT_MODEL
+                FILTER: year, SEARCH_TERM: INSTRUMENT_YEAR
+                FILTER: reserved (SEARCH_TERM is not required)
+                FILTER: available (SEARCH_TERM is not required)"""));
     }
 
     @Test
@@ -138,11 +137,11 @@ public class UiTest {
         ui.printFinanceCommandList();
         String output = outputStream.toString();
         assertTrue(output.contains("""
-            `help` help
-            `add:` add inflow payment
-            `subtract:` subtract outflow payment
-            `get` get total cash
-            """));
+                `help` help
+                `add:` add inflow payment
+                `subtract:` subtract outflow payment
+                `get` get total cash
+                """));
     }
 
     @Test
@@ -154,16 +153,16 @@ public class UiTest {
 
     @Test
     void printRecommendation_fluteWithIndex0_expectRecommendation() {
-        Flute flute = new Flute("Flute","Model",2005);
-        ui.printRecommendation(flute,0);
+        Flute flute = new Flute("Flute", "Model", 2005);
+        ui.printRecommendation(flute, 0);
         String output = outputStream.toString();
         assertTrue(output.contains("0. Flute | Model | 2005"));
     }
 
     @Test
     void printInstrumentList_twoInstruments_expectRecommendation() {
-        Flute flute = new Flute("Flute","Model",2005);
-        Guitar guitar = new Guitar("Guitar","Model",2005);
+        Flute flute = new Flute("Flute", "Model", 2005);
+        Guitar guitar = new Guitar("Guitar", "Model", 2005);
         ArrayList<Instrument> instruments = new ArrayList<>();
         instruments.add(flute);
         instruments.add(guitar);
@@ -176,7 +175,7 @@ public class UiTest {
 
     @Test
     void printInstrumentList_oneInstruments_expectRecommendation() {
-        Flute flute = new Flute("Flute","Model",2005);
+        Flute flute = new Flute("Flute", "Model", 2005);
         ArrayList<Instrument> instruments = new ArrayList<>();
         instruments.add(flute);
 
@@ -197,8 +196,8 @@ public class UiTest {
 
     @Test
     void printStockList_callFunction_expectStockList() {
-        Flute flute = new Flute("Flute","Model",2005);
-        Guitar guitar = new Guitar("Guitar","Model",2005);
+        Flute flute = new Flute("Flute", "Model", 2005);
+        Guitar guitar = new Guitar("Guitar", "Model", 2005);
         ArrayList<Instrument> instruments = new ArrayList<>();
         instruments.add(flute);
         instruments.add(guitar);
@@ -228,9 +227,9 @@ public class UiTest {
     }
 
     @Test
-    void  printFilteredList_byName_expectFilteredList() {
-        Flute flute = new Flute("Flute","Model",2005);
-        Guitar guitar = new Guitar("Guitar","Model",2005);
+    void printFilteredList_byName_expectFilteredList() {
+        Flute flute = new Flute("Flute", "Model", 2005);
+        Guitar guitar = new Guitar("Guitar", "Model", 2005);
         ArrayList<Instrument> instruments = new ArrayList<>();
         instruments.add(flute);
         instruments.add(guitar);
@@ -243,9 +242,9 @@ public class UiTest {
     }
 
     @Test
-    void  printFilteredList_byModel_expectFilteredList() {
-        Flute flute = new Flute("Flute","Model",2005);
-        Guitar guitar = new Guitar("Guitar","Model",2005);
+    void printFilteredList_byModel_expectFilteredList() {
+        Flute flute = new Flute("Flute", "Model", 2005);
+        Guitar guitar = new Guitar("Guitar", "Model", 2005);
         ArrayList<Instrument> instruments = new ArrayList<>();
         instruments.add(flute);
         instruments.add(guitar);
@@ -258,9 +257,9 @@ public class UiTest {
     }
 
     @Test
-    void  printFilteredList_byYear_expectFilteredList() {
-        Flute flute = new Flute("Flute","Model",2002);
-        Guitar guitar = new Guitar("Guitar","Model",2005);
+    void printFilteredList_byYear_expectFilteredList() {
+        Flute flute = new Flute("Flute", "Model", 2002);
+        Guitar guitar = new Guitar("Guitar", "Model", 2005);
         ArrayList<Instrument> instruments = new ArrayList<>();
         instruments.add(flute);
         instruments.add(guitar);
@@ -273,7 +272,7 @@ public class UiTest {
     }
 
     @Test
-    void  filterByName_twoSameNames_expectFilteredList() {
+    void filterByName_twoSameNames_expectFilteredList() {
         Flute flute = new Flute("Flute", "Model", 2002);
         Guitar guitar = new Guitar("Guitar", "Model", 2005);
         Guitar guitar2 = new Guitar("Guitar", "Model", 2012);
@@ -291,7 +290,7 @@ public class UiTest {
     }
 
     @Test
-    void  filterByName_threeSameModels_expectFilteredList() {
+    void filterByName_threeSameModels_expectFilteredList() {
         Flute flute = new Flute("Flute", "Model", 2002);
         Guitar guitar = new Guitar("Guitar", "Model", 2005);
         Guitar guitar2 = new Guitar("Guitar", "Model", 2012);
@@ -309,7 +308,7 @@ public class UiTest {
     }
 
     @Test
-    void  filterByReserved_twoNotReserved_expectFilteredList() {
+    void filterByReserved_twoNotReserved_expectFilteredList() {
         Flute flute = new Flute("Flute", "Model", 2002);
         Guitar guitar = new Guitar("Guitar", "Model", 2005);
         Guitar guitar2 = new Guitar("Guitar", "Model", 2012);
@@ -328,7 +327,7 @@ public class UiTest {
     }
 
     @Test
-    void  filterByReserved_oneReserved_expectFilteredList() {
+    void filterByReserved_oneReserved_expectFilteredList() {
         Flute flute = new Flute("Flute", "Model", 2002);
         Guitar guitar = new Guitar("Guitar", "Model", 2005);
         Guitar guitar2 = new Guitar("Guitar", "Model", 2012);
@@ -409,7 +408,7 @@ public class UiTest {
     @Test
     void queryUserIndex_emptyUserList_expect0() {
         UserList userList = new UserList(ui);
-        assertEquals(0,ui.queryUserIndex(userList));
+        assertEquals(0, ui.queryUserIndex(userList));
 
     }
 
@@ -440,7 +439,7 @@ public class UiTest {
         String input = "2\n";
         System.setIn(new ByteArrayInputStream(input.getBytes()));
         Ui ui = new Ui();
-        int result = ui.getUserInputNumber(1,3);
+        int result = ui.getUserInputNumber(1, 3);
         assertEquals(2, result);
     }
 
@@ -448,7 +447,7 @@ public class UiTest {
     void isUserIntInputValid_validUserInput_expectTrue() {
         String userInput = "2";
 
-        Boolean result = ui.isUserIntInputValid(userInput,1,3);
+        Boolean result = ui.isUserIntInputValid(userInput, 1, 3);
         assertEquals(true, result);
     }
 
@@ -456,7 +455,7 @@ public class UiTest {
     void isUserIntInputValid_invalidUserInput_expectTrue() {
         String userInput = "d";
 
-        Boolean result = ui.isUserIntInputValid(userInput,1,3);
+        Boolean result = ui.isUserIntInputValid(userInput, 1, 3);
         assertEquals(false, result);
     }
 
@@ -464,14 +463,14 @@ public class UiTest {
     void isUserIntInputValid_invalidUserInput2_expectTrue() {
         String userInput = "10";
 
-        Boolean result = ui.isUserIntInputValid(userInput,1,3);
+        Boolean result = ui.isUserIntInputValid(userInput, 1, 3);
         assertEquals(false, result);
     }
 
     @Test
     void printPleaseInputValidNumber_callFunction_expectPleaseInputValidNumber() {
 
-        ui.printPleaseInputValidNumber(1,10);
+        ui.printPleaseInputValidNumber(1, 10);
         String output = outputStream.toString();
         assertTrue(output.contains("Please input a number between 1 and 10"));
     }
@@ -591,7 +590,7 @@ public class UiTest {
     @Test
     void printAddInstrumentToUser_flute_expectAddFlute() {
 
-        Flute flute = new Flute("Flute","Model",2005);
+        Flute flute = new Flute("Flute", "Model", 2005);
 
         ui.printAddInstrumentToUser(flute);
         String output = outputStream.toString();
@@ -601,7 +600,7 @@ public class UiTest {
     @Test
     void printRemovedInstrumentFromUser_flute_expectRemovedFlute() {
 
-        Flute flute = new Flute("Flute","Model",2005);
+        Flute flute = new Flute("Flute", "Model", 2005);
 
         ui.printRemovedInstrumentFromUser(flute, new User(ui, new UserList(ui), "Bobby"));
         String output = outputStream.toString();
@@ -719,10 +718,10 @@ public class UiTest {
         String output = outputStream.toString();
 
         assertTrue(output.contains("""
-            1. Add User
-            2. Remove User
-            3. Print list of users
-            4. Print list of instruments of specific user"""));
+                1. Add User
+                2. Remove User
+                3. Print list of users
+                4. Print list of instruments of specific user"""));
     }
 
     @Test
@@ -778,30 +777,6 @@ public class UiTest {
 
         assertTrue(output.contains("*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+"));
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }

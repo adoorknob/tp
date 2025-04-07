@@ -11,7 +11,6 @@ import finance.FinanceManager;
 import utils.DateTimeParser;
 
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 
 public class ReserveCommand extends Command {
     private CommandParser parser;
@@ -22,10 +21,11 @@ public class ReserveCommand extends Command {
     }
 
     /**
-     *  Reserves item on instrument list
+     * Reserves item on instrument list
+     *
      * @param instrumentList list of instruments
-     * @param ui UI object from SirDuke
-     * @param userUtils userUtils from SirDuke
+     * @param ui             UI object from SirDuke
+     * @param userUtils      userUtils from SirDuke
      * @param financeManager financeManger from SirDuke
      */
     @Override
@@ -50,7 +50,7 @@ public class ReserveCommand extends Command {
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
-   }
+    }
 
     private static void reserveNil(InstrumentList instrumentList, int indice) {
         try {

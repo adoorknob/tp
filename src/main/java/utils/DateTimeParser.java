@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- *   Class for handling Date Parsing for SirDukeBox
+ * Class for handling Date Parsing for SirDukeBox
  */
 public class DateTimeParser {
     private static final List<DateTimeFormatter> DATE_FORMATS = Arrays.asList(
@@ -25,6 +25,7 @@ public class DateTimeParser {
 
     /**
      * Parses date
+     *
      * @param input String containing the date
      * @return the Date in localDate format
      * @throws DateTimeParseException When incorrect or invalid date is given

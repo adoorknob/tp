@@ -13,7 +13,8 @@ public class CommandParser {
     private static Integer minYEAR = 1600;
 
 
-    public CommandParser() {}
+    public CommandParser() {
+    }
 
     public String[] separate(String input) throws IncorrectAddInstrumentException {
         if (input == null || input.isEmpty()) {
@@ -113,7 +114,7 @@ public class CommandParser {
     }
 
     public int getUsage(String[] userInput, boolean isStorageInstrument) throws RuntimeException {
-        if (isStorageInstrument &&  userInput.length > 8 && userInput[8].isEmpty()) {
+        if (isStorageInstrument && userInput.length > 8 && userInput[8].isEmpty()) {
             try {
                 return Integer.parseInt(userInput[8].trim());
             } catch (NumberFormatException e) {

@@ -2,7 +2,7 @@ package commands.instrument;
 
 
 import commands.datetime.ExtendCommand;
-import instrument.Instrument;
+import exceptions.instrument.IncorrectReserveInstrumentException;
 import instrument.InstrumentList;
 import user.UserUtils;
 import user.UserList;
@@ -15,11 +15,11 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.fail;
 
 class ExtendCommandTest {
     private static LocalDate todayDate = LocalDate.now();
@@ -84,25 +84,24 @@ class ExtendCommandTest {
     @Test
     void testOutOfBoundsInstrument() {
         extendCommand = new ExtendCommand(invalidinstNum + " to: " + furtherDate);
-        extendCommand.execute(instrumentList, ui, userUtils, financeManager);
-        ArrayList<Instrument> instruments = instrumentList.getList();
-        int furtherDateCount = 0;
-        for (Instrument inst : instruments) {
-            furtherDateCount += (inst.getRentedTo() == furtherDate ? 1 : 0);
+        try {
+            extendCommand.execute(instrumentList, ui, userUtils, financeManager);
+            fail("Exception should have been thrown");
+        } catch (IncorrectReserveInstrumentException e) {
+            assertTrue(e.getMessage().contains("Instrument number out of bounds: " + invalidinstNum));
         }
-        assertEquals(0, furtherDateCount);
     }
 
     @Test
     void testInvalidEndDate() {
         extendCommand = new ExtendCommand(validInstNum + " to: " + pastDate);
-        extendCommand.execute(instrumentList, ui, userUtils, financeManager);
-        int pastDateCount = 0;
-        ArrayList<Instrument> instruments = instrumentList.getList();
-        for (Instrument inst : instruments) {
-            pastDateCount += (inst.getRentedTo() == pastDate ? 1 : 0);
+        try {
+            extendCommand.execute(instrumentList, ui, userUtils, financeManager);
+            fail("Exception should have been thrown");
+        } catch (IncorrectReserveInstrumentException e) {
+            assertTrue(e.getMessage().contains("New return date cannot be earlier" +
+                    " than previous return date"));
         }
-        assertEquals(0, pastDateCount);
     }
 
     @Test

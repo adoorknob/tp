@@ -57,10 +57,11 @@ public class AddInstrumentCommand extends Command {
     }
 
     /**
-     *  Add instrument from storage
+     * Add instrument from storage
+     *
      * @param instrumentList List of instruments instantiated in Duke
-     * @param ui UI object handling UI
-     * @param userUtils userUtilities which handles user related commands
+     * @param ui             UI object handling UI
+     * @param userUtils      userUtilities which handles user related commands
      */
     public void addInstrumentToSession(InstrumentList instrumentList, Ui ui, UserUtils userUtils) {
         Instrument newInstrument;
@@ -73,7 +74,8 @@ public class AddInstrumentCommand extends Command {
     }
 
     /**
-     *  Add instrument to the instrument list
+     * Add instrument to the instrument list
+     *
      * @param instrumentList
      * @param ui
      * @return instrument
@@ -105,15 +107,15 @@ public class AddInstrumentCommand extends Command {
             switch (instrument) {
             case "Flute":
                 newInstrument = new Flute(instrument, model, year, isRented, isOverdue,
-                            rentedFrom, rentedTo, usage);
+                        rentedFrom, rentedTo, usage);
                 break;
             case "Piano":
                 newInstrument = new Piano(instrument, model, year, isRented, isOverdue,
-                            rentedFrom, rentedTo, usage);
+                        rentedFrom, rentedTo, usage);
                 break;
             case "Guitar":
                 newInstrument = new Guitar(instrument, model, year, isRented, isOverdue,
-                            rentedFrom, rentedTo, usage);
+                        rentedFrom, rentedTo, usage);
                 break;
             default:
                 newInstrument = new GenericInstrument(instrument, model, year, isRented, isOverdue,
@@ -127,9 +129,10 @@ public class AddInstrumentCommand extends Command {
     }
 
     /**
-     *  Add user to instrument and updates instrument and userList
+     * Add user to instrument and updates instrument and userList
+     *
      * @param newInstrument New instrument that is to be tagged
-     * @param userUtils Utility object that handles Users and User List
+     * @param userUtils     Utility object that handles Users and User List
      */
     private void addUser(Instrument newInstrument, UserUtils userUtils) {
         if (this.isStorageInstrument) {
@@ -141,9 +144,10 @@ public class AddInstrumentCommand extends Command {
     }
 
     /**
-     *  If the user is a known user
+     * If the user is a known user
+     *
      * @param newInstrument New instrument that is to be tagged
-     * @param userUtils Utility object that handles Users and User List
+     * @param userUtils     Utility object that handles Users and User List
      */
     private void addKnownUser(Instrument newInstrument, UserUtils userUtils) {
         User knownUser = userUtils.addKnownUser(this.instrumentUserName);
