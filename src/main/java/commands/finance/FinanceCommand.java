@@ -50,6 +50,8 @@ public class FinanceCommand extends Command {
                 ui.printNoMatchingCommandError();
                 break;
             }
+        } catch (NumberFormatException e) {
+            throw new IncorrectFinanceInstructionException("Please enter a valid amount.");
         } catch (Exception e) {
             throw new IncorrectFinanceInstructionException(e.getMessage());
         }
