@@ -7,6 +7,4 @@ y
 1
 add Flute|Yamaha|2001
 n
-reserve 1
-return 1
 exit
