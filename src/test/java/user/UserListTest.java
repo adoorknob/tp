@@ -1,5 +1,6 @@
 package user;
 
+import instrument.Guitar;
 import org.junit.jupiter.api.Test;
 import ui.Ui;
 
