@@ -4,7 +4,12 @@ import commands.Command;
 import exceptions.instrument.IncorrectAddInstrumentException;
 import exceptions.storage.CorruptStorageException;
 import finance.FinanceManager;
-import instrument.*;
+import instrument.Flute;
+import instrument.Piano;
+import instrument.Guitar;
+import instrument.GenericInstrument;
+import instrument.Instrument;
+import instrument.InstrumentList;
 import parser.CommandParser;
 
 import ui.Ui;
