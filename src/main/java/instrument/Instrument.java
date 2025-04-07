@@ -100,7 +100,8 @@ public abstract class Instrument {
                 (isOverDue ? " | Overdue" : "") +
                 (rentedFrom != null ? " | Rented from: " + rentedFrom.format(DATE_TIME_FORMATTER) : "") +
                 (rentedTo != null ? " | Rented to: " + rentedTo.format(DATE_TIME_FORMATTER) : "") +
-                (user != null && !Objects.equals(user.getName(), "Unassigned") ? " | Assigned to: " + user.getName() : "");
+                (user != null && !Objects.equals(user.getName(), "Unassigned") ?
+                        " | Assigned to: " + user.getName() : "");
     }
 
     public String toFileEntry() {
