@@ -9,7 +9,6 @@ import user.UserUtils;
 import finance.FinanceManager;
 import utils.DateTimeParser;
 
-import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
@@ -42,7 +41,7 @@ public class ReserveCommand extends Command {
             }
             ui.printInstrumentList(instrumentList.getList());
         } catch (Exception e) {
-            e.printStackTrace();
+            System.err.println(e.getMessage());
         }
     }
 
@@ -66,12 +65,8 @@ public class ReserveCommand extends Command {
             assert from.isAfter(LocalDate.now().minus(1, ChronoUnit.DAYS)) :
                     "from: date must be either today or a date in the future";
             instrumentList.reserveInstrumentFromTo(indice, from, to);
-        } catch (DateTimeException d) {
-            System.err.println("Please input a valid date (dd/MM/yyyy).");
-            return true;
         } catch (Exception | AssertionError e) {
-            System.err.println(e.getMessage());
-            return true;
+            throw new IncorrectReserveInstrumentException(e.getMessage());
         }
         return false;
     }
