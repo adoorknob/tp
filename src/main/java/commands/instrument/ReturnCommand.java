@@ -1,12 +1,12 @@
 package commands.instrument;
 
 import commands.Command;
+import exceptions.instrument.IncorrectReturnInstructionException;
 import finance.FinanceManager;
 import instrument.InstrumentList;
 import instrument.Instrument;
 import ui.Ui;
 import user.UserUtils;
-import exceptions.instrument.IncorrectReturnInstructionException;
 
 import java.time.LocalDate;
 
@@ -30,7 +30,7 @@ public class ReturnCommand extends Command {
             instrumentList.returnInstrument(number);
             ui.printInstrumentList(instrumentList.getList());
         } catch (Exception | AssertionError e) {
-            System.err.println(e.getMessage());
+            throw new IncorrectReturnInstructionException(e.getMessage());
         }
     }
 

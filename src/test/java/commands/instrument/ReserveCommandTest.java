@@ -1,9 +1,6 @@
-package commands;
+package commands.instrument;
 
 
-import commands.instrument.AddInstrumentCommand;
-import commands.instrument.DeleteCommand;
-import commands.instrument.ReserveCommand;
 import instrument.Instrument;
 import instrument.InstrumentList;
 import user.UserUtils;
@@ -24,6 +21,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 class ReserveCommandTest {
+    private static LocalDate todayDate = LocalDate.now();
+    private static LocalDate pastDate = LocalDate.now().minus(6, ChronoUnit.MONTHS);
+    private static LocalDate futureDate = LocalDate.now().plus(6, ChronoUnit.MONTHS);
+    private static LocalDate invalidDate = LocalDate.parse("1599-01-01");
+    private static String validInstNum = "1";
+    private static String invalidInstNum = "5";
+    private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
     private AddInstrumentCommand addInstrumentCommand;
     private ReserveCommand reserveCommand;
     private InstrumentList instrumentList;
@@ -31,7 +35,6 @@ class ReserveCommandTest {
     private UserList userList;
     private UserUtils userUtils;
     private FinanceManager financeManager;
-    private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
 
     @BeforeEach
     void setUp() {
@@ -46,36 +49,31 @@ class ReserveCommandTest {
         addInstrumentCommand = new AddInstrumentCommand(
                 "Guitar | yamaha | 2011 | false | false | null | null | Unassigned | 0",
                 true);
-        addInstrumentCommand.execute(instrumentList,ui, userUtils, financeManager);
+        addInstrumentCommand.execute(instrumentList, ui, userUtils, financeManager);
         addInstrumentCommand = new AddInstrumentCommand(
                 "Piano | yamaha | 2011 | false | false | null | null | Unassigned | 0",
                 true);
-        addInstrumentCommand.execute(instrumentList,ui, userUtils, financeManager);
+        addInstrumentCommand.execute(instrumentList, ui, userUtils, financeManager);
         addInstrumentCommand = new AddInstrumentCommand(
                 "Flute | yamaha | 2011 | false | false | null | null | Unassigned | 0",
                 true);
-        addInstrumentCommand.execute(instrumentList,ui, userUtils, financeManager);
+        addInstrumentCommand.execute(instrumentList, ui, userUtils, financeManager);
     }
-
-    private static LocalDate TODAYDATE = LocalDate.now();
-    private static LocalDate PASTDATE = LocalDate.now().minus(6, ChronoUnit.MONTHS);
-    private static LocalDate FUTUREDATE = LocalDate.now().plus(6, ChronoUnit.MONTHS);
-    private static LocalDate INVALIDDATE = LocalDate.parse("1599-01-01");
-    private static String VALIDINSTNUM = "1";
-    private static String INVALIDINSTNUM = "5";
 
     @Test
     void testReserveInstrument() {
-        reserveCommand = new ReserveCommand(VALIDINSTNUM + " from: " + TODAYDATE + " to: " + FUTUREDATE);
+        reserveCommand = new ReserveCommand(validInstNum + " from: " + todayDate + " to: " + futureDate);
         reserveCommand.execute(instrumentList, ui, userUtils, financeManager);
         assertTrue(instrumentList.getList().get(0).isRented(), "Instrument attribute `isRented` should be true");
-        assertEquals(TODAYDATE, instrumentList.getList().get(0).getRentedFrom(), "Instrument `rentedFrom` should be updated");
-        assertEquals(FUTUREDATE, instrumentList.getList().get(0).getRentedTo(), "Instrument `rentedFrom` should be updated");
+        assertEquals(todayDate, instrumentList.getList().get(0).getRentedFrom(),
+                "Instrument `rentedFrom` should be updated");
+        assertEquals(futureDate, instrumentList.getList().get(0).getRentedTo(),
+                "Instrument `rentedFrom` should be updated");
     }
 
     @Test
     void testOutOfBoundsInstrument() {
-        reserveCommand = new ReserveCommand(INVALIDINSTNUM + " from: " + TODAYDATE + " to: " + FUTUREDATE);
+        reserveCommand = new ReserveCommand(invalidInstNum + " from: " + todayDate + " to: " + futureDate);
         reserveCommand.execute(instrumentList, ui, userUtils, financeManager);
         ArrayList<Instrument> instruments = instrumentList.getList();
         int rentedCount = 0;
@@ -87,7 +85,7 @@ class ReserveCommandTest {
 
     @Test
     void testInvalidStartDate() {
-        reserveCommand = new ReserveCommand(VALIDINSTNUM + " from: " + INVALIDDATE + " to: " + FUTUREDATE);
+        reserveCommand = new ReserveCommand(validInstNum + " from: " + invalidDate + " to: " + futureDate);
         reserveCommand.execute(instrumentList, ui, userUtils, financeManager);
         int rentedCount = 0;
         ArrayList<Instrument> instruments = instrumentList.getList();
@@ -99,7 +97,7 @@ class ReserveCommandTest {
 
     @Test
     void testInvalidEndDate() {
-        reserveCommand = new ReserveCommand(VALIDINSTNUM + " from: " + TODAYDATE + " to: " + PASTDATE);
+        reserveCommand = new ReserveCommand(validInstNum + " from: " + todayDate + " to: " + pastDate);
         reserveCommand.execute(instrumentList, ui, userUtils, financeManager);
         int rentedCount = 0;
         ArrayList<Instrument> instruments = instrumentList.getList();
@@ -111,7 +109,7 @@ class ReserveCommandTest {
 
     @Test
     void testIsExit() {
-        reserveCommand = new ReserveCommand(VALIDINSTNUM + " from: " + TODAYDATE + " to: " + FUTUREDATE);
+        reserveCommand = new ReserveCommand(validInstNum + " from: " + todayDate + " to: " + futureDate);
         assertFalse(reserveCommand.isExit());
     }
 }
