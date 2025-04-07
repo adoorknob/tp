@@ -157,7 +157,7 @@ public class UiTest {
         Flute flute = new Flute("Flute","Model",2005);
         ui.printRecommendation(flute,0);
         String output = outputStream.toString();
-        assertTrue(output.contains("0. Flute | Model | 2005 |"));
+        assertTrue(output.contains("0. Flute | Model | 2005"));
     }
 
     @Test
@@ -170,7 +170,7 @@ public class UiTest {
 
         ui.printInstrumentList(instruments);
         String output = outputStream.toString();
-        assertTrue(output.contains("2. Guitar | Model | 2005 |"));
+        assertTrue(output.contains("2. Guitar | Model | 2005"));
 
     }
 
@@ -182,7 +182,7 @@ public class UiTest {
 
         ui.printInstrumentList(instruments);
         String output = outputStream.toString();
-        assertTrue(output.contains("1. Flute | Model | 2005 |"));
+        assertTrue(output.contains("1. Flute | Model | 2005"));
 
     }
 
@@ -239,7 +239,7 @@ public class UiTest {
 
         String output = outputStream.toString();
 
-        assertTrue(output.contains("1. Guitar | Model | 2005 |"));
+        assertTrue(output.contains("1. Guitar | Model | 2005"));
     }
 
     @Test
@@ -254,7 +254,7 @@ public class UiTest {
 
         String output = outputStream.toString();
 
-        assertTrue(output.contains("2. Guitar | Model | 2005 |"));
+        assertTrue(output.contains("2. Guitar | Model | 2005"));
     }
 
     @Test
@@ -269,7 +269,7 @@ public class UiTest {
 
         String output = outputStream.toString();
 
-        assertTrue(output.contains("1. Flute | Model | 2002 |"));
+        assertTrue(output.contains("1. Flute | Model | 2002"));
     }
 
     @Test
@@ -595,7 +595,7 @@ public class UiTest {
 
         ui.printAddInstrumentToUser(flute);
         String output = outputStream.toString();
-        assertTrue(output.contains("Added instrument to user: Flute | Model | 2005 |"));
+        assertTrue(output.contains("Added instrument to user: Flute | Model | 2005"));
     }
 
     @Test
@@ -605,7 +605,7 @@ public class UiTest {
 
         ui.printRemovedInstrumentFromUser(flute, new User(ui, new UserList(ui), "Bobby"));
         String output = outputStream.toString();
-        assertTrue(output.contains("Removed instrument [Flute | Model | 2005 | ] from user [Bobby]"));
+        assertTrue(output.contains("Removed instrument [Flute | Model | 2005] from user [Bobby]"));
     }
 
     @Test

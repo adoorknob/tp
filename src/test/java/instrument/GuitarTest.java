@@ -39,7 +39,7 @@ class GuitarTest {
         Guitar guitar = new Guitar("Guitar", "Yamaha", 2000);
         guitar.rent();
         guitar.unrent();
-        assertEquals("Guitar | Yamaha | 2000 | ", guitar.toString());
+        assertEquals("Guitar | Yamaha | 2000", guitar.toString());
     }
 
     @Test

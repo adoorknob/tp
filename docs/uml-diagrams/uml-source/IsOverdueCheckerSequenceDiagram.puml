@@ -1,0 +1,32 @@
+@startuml
+hide footbox
+participant SirDukeBox as ":SirDukeBox"
+activate SirDukeBox
+participant IsOverdueChecker as "<font color=#FF0000> <<class>> \n IsOverdueChecker"
+
+SirDukeBox -> IsOverdueChecker : startDailyOverdueCheck(Scheduler, InstrumentList)
+activate IsOverdueChecker
+note left
+<b> Scheduler </b>
+Represents return of
+java.util.concurrent.Executors.
+newSingleThreadScheduledExecutor()
+end note
+IsOverdueChecker -> IsOverdueChecker : checkAll()
+note right
+scheduled to be called
+once a day by Scheduler
+end note
+activate IsOverdueChecker
+IsOverdueChecker -> IsOverdueChecker : isOverDue(LocalDate):boolean
+activate IsOverdueChecker
+return
+return
+
+loop !isExit over SirDukeBox
+note over SirDukeBox: Rest of program is executed here, \nleft out for brevity. Program ends \nwhen user inputs exit command \n(isExit==true)
+end
+
+SirDukeBox -> IsOverdueChecker : shutdownScheduler(Scheduler)
+destroy IsOverdueChecker
+@enduml
