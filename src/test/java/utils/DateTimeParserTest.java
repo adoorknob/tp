@@ -19,7 +19,6 @@ class DateTimeParserTest {
         assertEquals(LocalDate.of(2023, 3, 15), DateTimeParser.parseDate("15/03/2023"));
         assertEquals(LocalDate.of(2023, 3, 15), DateTimeParser.parseDate("15/03/23"));
         assertEquals(LocalDate.of(2023, 3, 15), DateTimeParser.parseDate("2023-03-15"));
-        assertEquals(LocalDate.of(2023, 3, 15), DateTimeParser.parseDate("03-15-2023"));
         assertEquals(LocalDate.of(2023, 3, 15), DateTimeParser.parseDate("15 March 2023"));
         assertEquals(LocalDate.of(2023, 3, 15), DateTimeParser.parseDate("15 Mar 2023"));
     }

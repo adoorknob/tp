@@ -9,7 +9,6 @@ import user.UserUtils;
 import finance.FinanceManager;
 import utils.DateTimeParser;
 
-import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
@@ -34,36 +33,42 @@ public class ReserveCommand extends Command {
             String[] userInput = parser.splits(this.name);
             int indice = Integer.parseInt(userInput[0]);
             if (userInput.length > 1) {
-                try {
-                    String[] parts = this.name.split("from: |to: ", 3);
-                    if (parts.length < 2) {
-                        throw new IncorrectReserveInstrumentException("Invalid format: ");
-                    }
-                    LocalDate from = DateTimeParser.parseDate(parts[1]);
-                    LocalDate to = DateTimeParser.parseDate(parts[2]);
-                    assert from.isBefore(to) : "from: date must be before to: date";
-                    assert from.isAfter(LocalDate.now().minus(1, ChronoUnit.DAYS)) :
-                            "from: date must be either today or a date in the future";
-                    instrumentList.reserveInstrumentFromTo(indice, from, to);
-                } catch (DateTimeException d) {
-                    System.err.println("Please input a valid date (dd/MM/yyyy).");
-                    return;
-                } catch (Exception | AssertionError e) {
-                    System.err.println(e.getMessage());
+                if (reserveFromTo(instrumentList, indice)) {
                     return;
                 }
             } else {
-                try {
-                    instrumentList.reserveInstrumentFromTo(indice, LocalDate.now(), null);
-                } catch (Exception | AssertionError e) {
-                    throw new IncorrectReserveInstrumentException(e.getMessage());
-                }
+                reserveNil(instrumentList, indice);
             }
-
             ui.printInstrumentList(instrumentList.getList());
         } catch (Exception e) {
-            e.printStackTrace();
+            System.err.println(e.getMessage());
         }
+    }
+
+    private static void reserveNil(InstrumentList instrumentList, int indice) {
+        try {
+            instrumentList.reserveInstrumentFromTo(indice, LocalDate.now(), null);
+        } catch (Exception | AssertionError e) {
+            throw new IncorrectReserveInstrumentException(e.getMessage());
+        }
+    }
+
+    private boolean reserveFromTo(InstrumentList instrumentList, int indice) {
+        try {
+            String[] parts = this.name.split("from: |to: ", 3);
+            if (parts.length < 2) {
+                throw new IncorrectReserveInstrumentException("Invalid format: ");
+            }
+            LocalDate from = DateTimeParser.parseDate(parts[1]);
+            LocalDate to = DateTimeParser.parseDate(parts[2]);
+            assert from.isBefore(to) : "from: date must be before to: date";
+            assert from.isAfter(LocalDate.now().minus(1, ChronoUnit.DAYS)) :
+                    "from: date must be either today or a date in the future";
+            instrumentList.reserveInstrumentFromTo(indice, from, to);
+        } catch (Exception | AssertionError e) {
+            throw new IncorrectReserveInstrumentException(e.getMessage());
+        }
+        return false;
     }
 
     @Override

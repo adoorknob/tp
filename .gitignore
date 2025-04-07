@@ -12,6 +12,7 @@ src/main/resources/docs/
 .DS_Store
 *.iml
 bin/
-
 text-ui-test/ACTUAL.TXT
+
 data/SirDukeBox.txt
+data/DukeFinance.txt
