@@ -456,6 +456,10 @@ public class Ui {
         printMessageWithTextBorder("No users exist currently. Creating new user...");
     }
 
+    public void printNoCurrentUsers() {
+        printMessageWithTextBorder("No users exist currently.");
+    }
+
     public void printSelectUserFromListWithCreateOption(ArrayList<User> userList) {
         System.out.println(TEXTBORDER);
         System.out.println("Please select from the following users:");
@@ -490,6 +494,10 @@ public class Ui {
     }
 
     public int queryUserInstrumentListUserChoice(UserList userList) {
+        if (userList.getUserCount() == 0) {
+            printNoCurrentUsers();
+            return -1;
+        }
         printSelectUserFromList(userList.getUsers());
         int maxValue = userList.getUserCount();
         return getUserInputNumber(1, maxValue);
