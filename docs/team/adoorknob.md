@@ -31,12 +31,24 @@ instrument-related finances in an all-in-one tracking app.
 
 **Contributions to DeveloperGuide**
 
+* Acknowledgements
 * Architecture diagram
 * Example `Command` sequence diagram
 * Design and Implementation
   * `User`
   * `Storage`
   * `IsOverdueChecker`
+  * Logic Component
+  * Command Component
+  * Storage Component
+  * Other Notable Classes: `IsOverdueChecker`, `User`
+* Appendix:Requirements
+  * Product scope
+  * User stories
+  * Use cases
+  * Non-Functional Requirements
+  * Glossary
+* Appendix: Instructions for manual testing
 
 **Contributions to team-based tasks**
 
