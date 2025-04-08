@@ -7,7 +7,8 @@ instrument-related finances in an all-in-one tracking app.
 
 ### Summary of Contributions
 
-[**Code Contributed**](https://nus-cs2113-ay2425s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2025-02-21&tabOpen=true&tabType=authorship&tabAuthor=adoorknob&tabRepo=AY2425S2-CS2113-W11-1/tp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
+[**Code Contributed
+**](https://nus-cs2113-ay2425s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2025-02-21&tabOpen=true&tabType=authorship&tabAuthor=adoorknob&tabRepo=AY2425S2-CS2113-W11-1/tp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
 **Enhancements Implemented**
 
@@ -16,7 +17,7 @@ instrument-related finances in an all-in-one tracking app.
 * **Feature:** `Storage` for saving data
 * **Enhancements:** `Ui` for main functionality
 * **Enhancements:** Various cases of error handling
-  * `IndexOutOfBounds` for `extend`, `reserve`, `finance`
+    * `IndexOutOfBounds` for `extend`, `reserve`, `finance`
 * **Testing:** for relevant classes and methods
     * `User`, `UserList` and `UserUtils`
     * `Storage`, `FinanceStorage`
@@ -25,9 +26,9 @@ instrument-related finances in an all-in-one tracking app.
 **Contributions to UserGuide**
 
 * Explanation of `User` commands and feature
-* Bugfix 
-  * missing features
-  * typos
+* Bugfix
+    * missing features
+    * typos
 
 **Contributions to DeveloperGuide**
 
@@ -35,19 +36,19 @@ instrument-related finances in an all-in-one tracking app.
 * Architecture diagram
 * Example `Command` sequence diagram
 * Design and Implementation
-  * `User`
-  * `Storage`
-  * `IsOverdueChecker`
-  * Logic Component
-  * Command Component
-  * Storage Component
-  * Other Notable Classes: `IsOverdueChecker`, `User`
+    * `User`
+    * `Storage`
+    * `IsOverdueChecker`
+    * Logic Component
+    * Command Component
+    * Storage Component
+    * Other Notable Classes: `IsOverdueChecker`, `User`
 * Appendix:Requirements
-  * Product scope
-  * User stories
-  * Use cases
-  * Non-Functional Requirements
-  * Glossary
+    * Product scope
+    * User stories
+    * Use cases
+    * Non-Functional Requirements
+    * Glossary
 * Appendix: Instructions for manual testing
 
 **Contributions to team-based tasks**
@@ -64,8 +65,8 @@ instrument-related finances in an all-in-one tracking app.
 
 * Reviewed/made (informed) edits to UML diagrams
 * Test features by other members:
-  * `extend`, `reserve`
-  * `finance`
+    * `extend`, `reserve`
+    * `finance`
 
 **Contributions beyond the project team**
 
@@ -108,53 +109,53 @@ Sequence Diagram:
 **User**
 
 > ### User commands - `user`
-> 
+>
 > User will bring up a list of commands that pertains to users:
-> 
+>
 > 1. Adding a user
 > 2. Removing a user
 > 3. Listing all users
 > 4. Listing a user's instruments
->    ...which is selected by inputting the index of the command and>  following onscreen instructions
-> 
+     > ...which is selected by inputting the index of the command and>  following onscreen instructions
+>
 > For option `4`, the user will be able to choose from 2 lists:
-> 
+>
 > 1. `Rental History`
 > * This is the list of all instruments that have been added to the user during the current session (including deleted
->   instruments)
+    > instruments)
 > 2. `Currently Instruments`
 > * This is the list of instruments still allocated to the user > (modified after deleting)
-> 
+>
 > For example, if the current list of instruments assigned to the user is:
-> 
+>
 > ```
 > 1. Guitar | Yamaha | 2000
 > 2. Piano | Yamaha | 2000
 > ```
-> 
+>
 > ...and `delete 2` is inputted,
 > `CurrentInstruments` will be:
-> 
+>
 > ```
 > 1. Guitar | Yamaha | 2000
 > ```
-> 
+>
 > ...while `RentalHistory` will be:
-> 
+>
 > ```
 > 1. Guitar | Yamaha | 2000
 > 2. Piano | Yamaha | 2000
 > ```
-> 
+>
 > **Example of usage:** \
 > Input:
-> 
+>
 > ```
 > user
 > ```
-> 
+>
 > Expected output:
-> 
+>
 > ```
 > *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 > What would you like to do?
@@ -164,15 +165,15 @@ Sequence Diagram:
 > 4. Print list of instruments of specific user
 > *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 > ```
-> 
+>
 > Input:
-> 
+>
 > ```
 > 4
 > ```
-> 
+>
 > Expected output:
-> 
+>
 > ```
 > *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 > Please select from the following existing users:
@@ -181,39 +182,39 @@ Sequence Diagram:
 > 3. Kashfy
 > 4. Jason
 > ```
-> 
+>
 > Input:
-> 
+>
 > ```
 > 1
 > ```
-> 
+>
 > Expected output:
-> 
+>
 > ```
 > *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 > Available List Choices:
 > 1. Rental History
 > 2. Current Instruments
 > ```
-> 
+>
 > Input:
-> 
+>
 > ```
 > 1
 > ```
-> 
+>
 > Expected output:
-> 
+>
 > ```
 > *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 > Here is the list of instruments:
 > 1. Piano | Yamaha | 2000 | 
 > *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 > ```
-> 
+>
 > ...or if list is empty:
-> 
+>
 > ```
 > *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
 > This list is empty :(

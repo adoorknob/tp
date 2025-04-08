@@ -223,8 +223,9 @@ The _sequence diagram_ above shows the process of adding a user to the session w
 
 ![IsOverdueCheckerSequenceDiagram](uml-diagrams/scheduler/IsOverdueCheckerSequenceDiagram.png)
 
-Above is the _sequence diagram_ illustrating how the `IsOverdueChecker` static class methods are called to begin the scheduled checking,
-and cleanup the scheduler on termination of the program. 
+Above is the _sequence diagram_ illustrating how the `IsOverdueChecker` static class methods are called to begin the
+scheduled checking,
+and cleanup the scheduler on termination of the program.
 
 * * *
 

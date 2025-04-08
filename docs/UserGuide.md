@@ -162,7 +162,7 @@ Format: `list filter by: FILTER SEARCH_TERM`
         * Filters instruments that `is_rented()`
     * `FILTER`: `available` (`SEARCH_TERM` is not required)
         * Filters instruments that are not `is_rented()`
-    * `FILTER`: `overdue` (`SEARCH_TERM` is not required) 
+    * `FILTER`: `overdue` (`SEARCH_TERM` is not required)
         * Filters instruments that `is_overdue()`
 
 Example of usage:
@@ -217,7 +217,7 @@ Format: `add INSTRUMENT_NAME|INSTRUMENT_MODEL|INSTRUMENT_YEAR`
 * `INSTRUMENT_NAME` refers to the type of instrument being added (e.g. "Guitar")
 * `INSTRUMENT_MODEL` refers to the brand/model of the specific instrument being added (e.g. "Yamaha")
 * `INSTRUMENT_YEAR` refers to the year of production of the instrument being added (e.g. "1989")
-  * lowest value for `INSTRUMENT_YEAR` is set to 1600 - any year before that is invalid
+    * lowest value for `INSTRUMENT_YEAR` is set to 1600 - any year before that is invalid
 
 Example of usage:
 
@@ -536,6 +536,7 @@ finance add: 50
 ```
 
 Expected output:
+
 ```
 Received payment of: 50
 *-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-*-+=+-+-*-+=+-+-*-+
