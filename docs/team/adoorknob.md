@@ -7,8 +7,7 @@ instrument-related finances in an all-in-one tracking app.
 
 ### Summary of Contributions
 
-[**Code Contributed
-**](https://nus-cs2113-ay2425s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2025-02-21&tabOpen=true&tabType=authorship&tabAuthor=adoorknob&tabRepo=AY2425S2-CS2113-W11-1/tp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
+[**Code Contributed**](https://nus-cs2113-ay2425s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2025-02-21&tabOpen=true&tabType=authorship&tabAuthor=adoorknob&tabRepo=AY2425S2-CS2113-W11-1/tp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
 **Enhancements Implemented**
 
@@ -21,17 +20,23 @@ instrument-related finances in an all-in-one tracking app.
 * **Testing:** for relevant classes and methods
     * `User`, `UserList` and `UserUtils`
     * `Storage`, `FinanceStorage`
+* **Testing:** implementation of mock child classes of existing classes (e.g., `StubUi`) to test code
 
 **Contributions to UserGuide**
 
 * Explanation of `User` commands and feature
-* Bugfix
+* Bugfix 
+  * missing features
+  * typos
 
 **Contributions to DeveloperGuide**
 
 * Architecture diagram
 * Example `Command` sequence diagram
 * Design and Implementation
+  * `User`
+  * `Storage`
+  * `IsOverdueChecker`
 
 **Contributions to team-based tasks**
 
@@ -39,14 +44,21 @@ instrument-related finances in an all-in-one tracking app.
 * Setting up tools (Github, Gradle)
 * Updating developer docs
     * Overall architecture
+    * Overall Design and Implementation
     * Appendix: Requirements
     * Appendix: Instructions for Manual Testing
 
 **Review/mentoring contributions**
 
 * Reviewed/made (informed) edits to UML diagrams
+* Test features by other members:
+  * `extend`, `reserve`
+  * `finance`
 
 **Contributions beyond the project team**
+
+* Above-average number of PR peer review comments during iP PR peer review
+* Submitted 18 issues during PE-D (top 10%)
 
 ## Appendix
 
