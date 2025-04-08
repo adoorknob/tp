@@ -14,7 +14,9 @@ public class FinanceManager {
     public FinanceManager(Ui ui) {
         totalCash = 0;
         this.ui = ui;
-    };
+    }
+
+    ;
 
     public void setTotalCash(int totalCash) {
         this.totalCash = totalCash;
@@ -48,7 +50,7 @@ public class FinanceManager {
     }
 
     public void inflowPayment(int amount) {
-        if (amount >= 0) {
+        if (amount > 0) {
             totalCash += amount;
         } else {
             throw new IllegalArgumentException("Amount must be greater than zero.");

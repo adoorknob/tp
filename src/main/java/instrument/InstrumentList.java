@@ -28,7 +28,7 @@ public class InstrumentList {
         try {
             assert instrument != null;
             assert instrument.year >= minYEAR && instrument.year <= currYEAR
-                    : "Invalid year (" + minYEAR + " to " + currYEAR + ") ->"  + instrument.year;
+                    : "Invalid year (" + minYEAR + " to " + currYEAR + ") ->" + instrument.year;
 
             if (instrument.name.isBlank() || instrument.model.isBlank()) {
                 throw new IncorrectDescriptionException("No name or model found");
@@ -44,7 +44,6 @@ public class InstrumentList {
 
     public void deleteInstrument(int number) {
         try {
-
             assert number > 0 && number <= numberOfInstruments : "Instrument number out of bounds: " + number;
             assert !instruments.isEmpty() : "No instruments to delete";
             System.out.println("Deleting instrument: " + instruments.get(number - 1));
@@ -52,6 +51,17 @@ public class InstrumentList {
             numberOfInstruments--;
             System.out.println("Now you have " + numberOfInstruments + " instruments");
 
+        } catch (Exception | AssertionError e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void deleteInstrumentSilent(int number) {
+        try {
+            assert number > 0 && number <= numberOfInstruments : "Instrument number out of bounds: " + number;
+            assert !instruments.isEmpty() : "No instruments to delete";
+            instruments.remove(number - 1);
+            numberOfInstruments--;
         } catch (Exception | AssertionError e) {
             System.out.println(e.getMessage());
         }
@@ -97,6 +107,9 @@ public class InstrumentList {
 
             //Increase usage
             instToRent.increaseUsage();
+        } catch (IndexOutOfBoundsException e) {
+            throw new IncorrectReserveInstrumentException("Instrument " + number + " does not exist, " +
+                    "please choose an instrument in the list.");
         } catch (Exception | AssertionError e) {
             throw new RuntimeException(e.getMessage());
         }
@@ -117,8 +130,12 @@ public class InstrumentList {
 
             LocalDate prevTo = instToRent.getRentedTo();
 
-            if (to.isBefore(prevTo)) {
+            if (prevTo != null && to.isBefore(prevTo)) {
                 throw new InvalidExtendDateException("Invalid date: ");
+            }
+
+            if (to.isBefore(LocalDate.now().minusDays(1))) {
+                throw new InvalidExtendDateException("Please set a date after the current date.\n");
             }
 
             System.out.println("Extending reservation of instrument: " + instToRent.name
@@ -126,7 +143,7 @@ public class InstrumentList {
 
             instToRent.rentTo(to);
         } catch (Exception | AssertionError e) {
-            System.out.println(e.getMessage());
+            throw new IncorrectReserveInstrumentException(e.getMessage());
         }
     }
 
@@ -157,8 +174,9 @@ public class InstrumentList {
             }
             assert number > 0 && number <= numberOfInstruments : "Instrument number out of bounds: " + number;
             return instruments.get(number - 1);
-        } catch (RuntimeException e) {
-            throw new RuntimeException(e);
+        } catch (IndexOutOfBoundsException e) {
+            throw new IndexOutOfBoundsException("Instrument " + number + " does not exist," +
+                    " please choose an instrument in the list.");
         } catch (AssertionError e) {
             throw new OutOfRangeException(e.getMessage());
         }

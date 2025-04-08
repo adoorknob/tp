@@ -1,6 +1,7 @@
 package commands.instrument;
 
 import commands.Command;
+import exceptions.instrument.IncorrectDescriptionException;
 import exceptions.instrument.IncorrectReserveInstrumentException;
 import instrument.InstrumentList;
 import parser.CommandParser;
@@ -10,7 +11,6 @@ import finance.FinanceManager;
 import utils.DateTimeParser;
 
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 
 public class ReserveCommand extends Command {
     private CommandParser parser;
@@ -21,10 +21,11 @@ public class ReserveCommand extends Command {
     }
 
     /**
-     *  Reserves item on instrument list
+     * Reserves item on instrument list
+     *
      * @param instrumentList list of instruments
-     * @param ui UI object from SirDuke
-     * @param userUtils userUtils from SirDuke
+     * @param ui             UI object from SirDuke
+     * @param userUtils      userUtils from SirDuke
      * @param financeManager financeManger from SirDuke
      */
     @Override
@@ -40,6 +41,12 @@ public class ReserveCommand extends Command {
                 reserveNil(instrumentList, indice);
             }
             ui.printInstrumentList(instrumentList.getList());
+        } catch (NumberFormatException e) {
+            throw new IncorrectDescriptionException("""
+                    Invalid reserve instrument, please follow\s
+                    reserve INSTRUMENT_NUMBER\s
+                    OR\s
+                    reserve INSTRUMENT_NUMBER from: START_DATE to: END_DATE""");
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
@@ -62,8 +69,14 @@ public class ReserveCommand extends Command {
             LocalDate from = DateTimeParser.parseDate(parts[1]);
             LocalDate to = DateTimeParser.parseDate(parts[2]);
             assert from.isBefore(to) : "from: date must be before to: date";
-            assert from.isAfter(LocalDate.now().minus(1, ChronoUnit.DAYS)) :
+            assert from.isAfter(LocalDate.now().minusDays(1)) :
                     "from: date must be either today or a date in the future";
+            if (from.isAfter(to)) {
+                throw new IncorrectReserveInstrumentException("from: date must be after to: date");
+            } else if (from.isBefore(LocalDate.now().minusDays(1))) {
+                throw new IncorrectReserveInstrumentException("from: date must be either today " +
+                        "or a date in the future");
+            }
             instrumentList.reserveInstrumentFromTo(indice, from, to);
         } catch (Exception | AssertionError e) {
             throw new IncorrectReserveInstrumentException(e.getMessage());

@@ -4,6 +4,8 @@ import instrument.Instrument;
 import instrument.InstrumentList;
 import ui.Ui;
 
+import java.util.Objects;
+
 public class UserUtils {
     UserList userList;
     Ui ui;
@@ -58,7 +60,10 @@ public class UserUtils {
     }
 
     private User addUser() {
-        String userName = ui.queryUserNameWithNoNameChoice();
+        String userName;
+        do {
+            userName = ui.queryUserNameWithNoNameChoice();
+        } while (isRepeated(userName));
         User newUser;
         if (userName.trim().isEmpty()) {
             newUser = new User(ui, userList);
@@ -67,6 +72,16 @@ public class UserUtils {
         }
         userList.addUser(newUser);
         return newUser;
+    }
+
+    private boolean isRepeated(String userName) {
+        for (User user : userList.users) {
+            if (Objects.equals(user.getName(), userName)) {
+                ui.printNameIsRepeated();
+                return true;
+            }
+        }
+        return false;
     }
 
     public void executeUserCommand(int userChoice) {

@@ -8,7 +8,7 @@ public class GenericInstrument extends Instrument {
     }
 
     public GenericInstrument(String name, String model, int year, boolean isRented, boolean isOverDue,
-                 LocalDate rentedFrom, LocalDate rentedTo, int usage) {
+                             LocalDate rentedFrom, LocalDate rentedTo, int usage) {
         super(name, model, year, isRented, isOverDue, rentedFrom, rentedTo, usage);
     }
 

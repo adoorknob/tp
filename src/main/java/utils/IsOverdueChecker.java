@@ -20,7 +20,7 @@ public class IsOverdueChecker {
      *
      * @param dueDate The due date to check.
      * @return {@code true} if the due date is before the current date, {@code false} otherwise.
-     *         If the due date is {@code null} or invalid, it will return {@code false}.
+     *     If the due date is {@code null} or invalid, it will return {@code false}.
      */
     public static boolean isOverdue(LocalDate dueDate) {
         // If the due date is null, it's treated as not overdue

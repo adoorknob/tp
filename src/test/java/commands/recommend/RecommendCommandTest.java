@@ -20,7 +20,7 @@ class RecommendCommandTest {
         private final boolean rented;
 
         StubInstrument(String name, int usage, boolean rented) {
-            super(name,"SampleModel", 2000);
+            super(name, "SampleModel", 2000);
             this.usage = usage;
             this.rented = rented;
         }

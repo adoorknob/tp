@@ -37,11 +37,13 @@ public class FinanceCommand extends Command {
                 amount = Integer.parseInt(userInput[1]);
                 financeManager.inflowPayment(amount);
                 ui.printReceivedAmount(amount);
+                ui.printAmount(financeManager.getTotalCash());
                 break;
             case SUB:
                 amount = Integer.parseInt(userInput[1]);
                 financeManager.outflowPayment(amount);
                 ui.printPaymentAmount(amount);
+                ui.printAmount(financeManager.getTotalCash());
                 break;
             case GET:
                 ui.printAmount(financeManager.getTotalCash());
@@ -50,6 +52,8 @@ public class FinanceCommand extends Command {
                 ui.printNoMatchingCommandError();
                 break;
             }
+        } catch (NumberFormatException e) {
+            throw new IncorrectFinanceInstructionException("Please enter a valid amount.");
         } catch (Exception e) {
             throw new IncorrectFinanceInstructionException(e.getMessage());
         }

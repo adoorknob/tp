@@ -1,7 +1,7 @@
 package commands.datetime;
 
 import commands.Command;
-import exceptions.instrument.InvalidExtendDateException;
+import exceptions.instrument.IncorrectDescriptionException;
 import instrument.InstrumentList;
 import parser.CommandParser;
 import ui.Ui;
@@ -26,25 +26,30 @@ public class ExtendCommand extends Command {
             String[] userInput = parser.splits(this.name);
             int indice = Integer.parseInt(userInput[0]);
             try {
-                String[] parts = this.name.split("to: ", 3);
+                String[] parts = getParts();
                 LocalDate to = DateTimeParser.parseDate(parts[1]);
                 instrumentList.extendInstrumentTo(indice, to);
-            } catch (InvalidExtendDateException e) {
-                System.out.println(e.getMessage());
-                return;
             } catch (DateTimeException d) {
-                System.out.println("Please input a valid date (dd/MM/yyyy).");
-                return;
+                throw new IncorrectDescriptionException("Please input a valid date (dd/MM/yyyy).");
             } catch (Exception | AssertionError f) {
-                System.out.println(f.getMessage());
-                return;
+                throw f;
             }
-
-
             ui.printInstrumentList(instrumentList.getList());
+        } catch (NumberFormatException n) {
+            throw new IncorrectDescriptionException("Please follow the format:\n" +
+                    "extend INSTRUMENT_NUMBER to: END_DATE");
         } catch (Exception e) {
-            e.printStackTrace();
+            throw e;
         }
+    }
+
+    private String[] getParts() {
+        String[] parts = this.name.split("to: ", 3);
+        if (parts.length != 2) {
+            throw new IncorrectDescriptionException("Incorrect syntax. " +
+                    "Please follow --> extend INSTRUMENT_NUMBER to: END_DATE");
+        }
+        return parts;
     }
 
     @Override

@@ -1,6 +1,7 @@
 package ui;
 
 import exceptions.instrument.EmptyInstrumentListException;
+import exceptions.instrument.IncorrectDescriptionException;
 import instrument.Instrument;
 import user.User;
 import user.UserList;
@@ -109,8 +110,7 @@ public class Ui {
             `help` help
             `add:` add inflow payment
             `subtract:` subtract outflow payment
-            `get` get total cash
-            """;
+            `get` get total cash""";
 
     private static final String LISTSUBCOMMANDLIST = """
             Available Subcommands:
@@ -161,6 +161,13 @@ public class Ui {
             if (!line.isEmpty()) {
                 return line;
             }
+        }
+        return null;
+    }
+
+    public String readUserInputAllowEmpty() {
+        if (scanner.hasNextLine()) {
+            return scanner.nextLine().trim();
         }
         return null;
     }
@@ -312,7 +319,6 @@ public class Ui {
             break;
         default:
             System.out.println("The specified filter does not exist. Please try again");
-            System.out.println(TEXTBORDER);
             return;
         }
         if (filteredInst.isEmpty()) {
@@ -344,12 +350,16 @@ public class Ui {
 
     public ArrayList<Instrument> filterByYear(ArrayList<Instrument> instruments, String searchTerm) {
         ArrayList<Instrument> filteredInst = new ArrayList<>();
-        for (Instrument inst : instruments) {
-            if (inst.year == Integer.parseInt(searchTerm)) {
-                filteredInst.add(inst);
+        try {
+            for (Instrument inst : instruments) {
+                if (inst.year == Integer.parseInt(searchTerm)) {
+                    filteredInst.add(inst);
+                }
             }
+            return filteredInst;
+        } catch (NumberFormatException e) {
+            throw new IncorrectDescriptionException("Please input a valid year.");
         }
-        return filteredInst;
     }
 
     public ArrayList<Instrument> filterByReserved(ArrayList<Instrument> instruments, boolean status) {
@@ -404,7 +414,7 @@ public class Ui {
         }
         printSelectUserFromListWithCreateOption(userList.getUsers());
         int maxValue = userList.getUserCount();
-        return getUserInputNumber(1, maxValue);
+        return getUserInputNumber(0, maxValue);
     }
 
     public int getUserInputNumber(int minValue, int maxValue) {
@@ -432,7 +442,7 @@ public class Ui {
 
     public String queryUserNameWithNoNameChoice() {
         System.out.println("Enter user name (Leave empty if no name): ");
-        return readUserInput();
+        return readUserInputAllowEmpty();
     }
 
     public int queryUserIndexForDelete(UserList userList) {
@@ -461,7 +471,6 @@ public class Ui {
         System.out.println(TEXTBORDER);
         System.out.println("Here is a list of registered users:");
         printUserList(userList.getUsers());
-        System.out.println(TEXTBORDER);
     }
 
     public void printAcknowledgementCreatedNewUser(String userName) {
@@ -521,7 +530,11 @@ public class Ui {
         System.out.println(TEXTBORDER);
         System.out.println("What would you like to do?");
         System.out.println(USERCOMMANDS);
+    }
+
+    public void printNameIsRepeated() {
         System.out.println(TEXTBORDER);
+        System.out.println("Name is duplicated, please enter a unique name.");
     }
 
     public void printMessageWithTextBorder(String message) {

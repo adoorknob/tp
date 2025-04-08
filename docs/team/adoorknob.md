@@ -16,6 +16,8 @@ instrument-related finances in an all-in-one tracking app.
     * `UserUtils`, `User` and `UserList`
 * **Feature:** `Storage` for saving data
 * **Enhancements:** `Ui` for main functionality
+* **Enhancements:** Various cases of error handling
+  * `IndexOutOfBounds` for `extend`, `reserve`, `finance`
 * **Testing:** for relevant classes and methods
     * `User`, `UserList` and `UserUtils`
     * `Storage`, `FinanceStorage`
@@ -23,6 +25,7 @@ instrument-related finances in an all-in-one tracking app.
 **Contributions to UserGuide**
 
 * Explanation of `User` commands and feature
+* Bugfix
 
 **Contributions to DeveloperGuide**
 
