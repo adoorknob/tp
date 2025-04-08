@@ -105,6 +105,9 @@ public class UserUtils {
 
     private void printInstrumentListOfUser() {
         int userId = ui.queryUserInstrumentListUserChoice(userList);
+        if (userId == -1) {
+            return;
+        }
         int listId = ui.queryUserInstrumentListListChoice();
         executeListPrint(userId, listId);
     }
